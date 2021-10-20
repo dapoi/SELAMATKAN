@@ -28,4 +28,8 @@
     <string name="negative">SEMBUH</string>
     <string name="die">MENINGGAL</string>
     <string name="view_all">lihat semua >></string>
+    <string name="view_clear">lebih jelas >></string>
+    <string name="find_rs">Temukan rumah sakit segera</string>
+    <string name="wish">Apa yang kamu butuhkan? semoga sehat selalu ya ....</string>
+    <string name="choose_prov">Pilih Provinsi</string>
 </resources>

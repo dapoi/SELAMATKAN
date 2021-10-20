@@ -79,6 +79,7 @@ class SignUpActivity : AppCompatActivity() {
                         Log.w("Register User", "Error adding document ${exception.message}")
                     }
                 startActivity(Intent(this, LogInActivity::class.java))
+                finish()
             } else {
                 Toast.makeText(
                     this,

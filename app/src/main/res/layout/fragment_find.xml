@@ -57,16 +57,27 @@
             android:id="@+id/tv_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/encodesans_bold"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:maxLines="2"
-            android:ellipsize="end"
             app:layout_constraintEnd_toStartOf="@+id/img_icon"
             app:layout_constraintStart_toStartOf="@+id/tv_hi"
             app:layout_constraintTop_toBottomOf="@+id/tv_hi"
             tools:text="Daffa" />
+
+        <TextView
+            android:id="@+id/tv_desc_greet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/encodesans_regular"
+            android:text="@string/wish"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/img_icon"
+            app:layout_constraintEnd_toStartOf="@+id/img_icon"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -79,7 +90,7 @@
         android:textColor="@color/dark_gray"
         android:fontFamily="@font/encodesans_medium"
         android:text="@string/covid"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_greet" />
 
@@ -100,7 +111,7 @@
         android:id="@+id/card_covid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -228,5 +239,68 @@
 
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/tv_title_rs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/encodesans_medium"
+        android:text="@string/find_rs"
+        android:textColor="@color/dark_gray"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/card_covid"
+        app:layout_constraintTop_toBottomOf="@+id/card_covid" />
+
+    <TextView
+        android:id="@+id/tv_view_clear"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/encodesans_regular"
+        android:text="@string/view_clear"
+        android:textColor="@color/blue"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title_rs"
+        app:layout_constraintEnd_toEndOf="@+id/tv_view_all"
+        app:layout_constraintTop_toTopOf="@+id/tv_title_rs" />
+
+    <TextView
+        android:id="@+id/tv_title_prov"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/encodesans_bold"
+        android:text="@string/choose_prov"
+        android:textColor="@color/dark_gray"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_title_rs"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_rs" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_province"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_province_until_city" />
+
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/nestedScrollView"
+        app:layout_constraintEnd_toEndOf="@+id/nestedScrollView"
+        app:layout_constraintStart_toStartOf="@+id/nestedScrollView"
+        app:layout_constraintTop_toTopOf="@+id/nestedScrollView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,6 +18,7 @@
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_data.xml" value="0.17685185185185184" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_doctor.xml" value="0.20185185185185187" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_find_selector.xml" value="0.3369140625" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_hospital.xml" value="0.21614583333333334" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_info.xml" value="0.21614583333333334" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_info_selector.xml" value="0.21614583333333334" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_negative.xml" value="0.21614583333333334" />
@@ -33,8 +34,10 @@
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_find.xml" value="0.22" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_first_onboarding.xml" value="0.22" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_other.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_second_onboarding.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_third_onboarding.xml" value="0.2" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_province_until_city.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/menu/bottom_menu.xml" value="0.2" />
       </map>
     </option>

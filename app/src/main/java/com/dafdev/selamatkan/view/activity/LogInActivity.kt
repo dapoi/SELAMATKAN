@@ -3,16 +3,19 @@ package com.dafdev.selamatkan.view.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.dafdev.selamatkan.databinding.ActivityLogInBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LogInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLogInBinding
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var fStore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,10 +23,12 @@ class LogInActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         mAuth = FirebaseAuth.getInstance()
+        fStore = FirebaseFirestore.getInstance()
 
         with(binding) {
             toolbar.setNavigationOnClickListener { onBackPressed() }
             btnLogin.setOnClickListener {
+                showControl(false)
                 val email = etEmail.text.toString()
                 val password = etPassword.text.toString()
 
@@ -40,7 +45,10 @@ class LogInActivity : AppCompatActivity() {
                         inputPassword.error = "Minimum of password is 6 characters"
                         return@setOnClickListener
                     }
-                    else -> loginUser(email, password)
+                    else -> {
+                        loginUser(email, password)
+                        showControl(true)
+                    }
                 }
             }
         }
@@ -56,6 +64,7 @@ class LogInActivity : AppCompatActivity() {
                             startActivity(Intent(this, HomeActivity::class.java))
                         }
                         else -> {
+                            showControl(false)
                             verif.sendEmailVerification()
                             Snackbar.make(
                                 binding.root,
@@ -66,7 +75,24 @@ class LogInActivity : AppCompatActivity() {
                     }
                 }
             } else {
-                Toast.makeText(this, "Email atau kata sandi anda salah", Toast.LENGTH_SHORT).show()
+                showControl(false)
+                Snackbar.make(
+                    binding.root,
+                    "Email atau kata sandi anda salah",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
+        }
+    }
+
+    private fun showControl(state: Boolean) {
+        with(binding) {
+            if (state) {
+                progressBar.visibility = View.VISIBLE
+                tvRegister.visibility = View.GONE
+            } else {
+                progressBar.visibility = View.GONE
+                tvRegister.visibility = View.VISIBLE
             }
         }
     }
