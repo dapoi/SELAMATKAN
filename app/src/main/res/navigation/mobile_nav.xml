@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_nav"
+    app:startDestination="@+id/nav_find">
+
+    <fragment
+        android:id="@+id/nav_find"
+        android:name="com.dafdev.selamatkan.view.fragment.main.FindFragment"
+        android:label="fragment_find"
+        tools:layout="@layout/fragment_find" />
+    <fragment
+        android:id="@+id/nav_article"
+        android:name="com.dafdev.selamatkan.view.fragment.main.ArticleFragment"
+        android:label="fragment_article"
+        tools:layout="@layout/fragment_article" />
+    <fragment
+        android:id="@+id/nav_other"
+        android:name="com.dafdev.selamatkan.view.fragment.main.OtherFragment"
+        android:label="fragment_other"
+        tools:layout="@layout/fragment_other" />
+
+</navigation>

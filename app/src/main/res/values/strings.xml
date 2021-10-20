@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">SELAMATKAN!</string>
+    <string name="log_in">Masuk</string>
+    <string name="sign_up">Daftar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="desc1">Aplikasi ini dapat membantumu menemukan rumah sakit covid atau non-covid terdekat</string>
+    <string name="desc2">Kamu juga dapat memantau perkembangan Covid-19 di Indonesia bahkan Provinsi</string>
+    <string name="desc3">Juga terdapat konten berita kesehatan terkini dan terpercaya, dari media ternama di Indonesia</string>
+    <string name="title1">Temukan Pertolongan Terdekat</string>
+    <string name="title2">Data Covid-19</string>
+    <string name="title3">Berita Kesehatan</string>
+    <string name="name">Nama</string>
+    <string name="sub_title_signup">Silahkan isi data yang diperlukan</string>
+    <string name="sign_up_title">Daftar</string>
+    <string name="password">Kata Sandi</string>
+    <string name="email">Email</string>
+    <string name="login">Masuk</string>
+    <string name="title_signup">Buat Akun</string>
+    <string name="title_login">Masuk Akun</string>
+    <string name="sub_title_login">Silahkan isi dengan akun yang telah anda buat</string>
+    <string name="home">Beranda</string>
+    <string name="content">Artikel</string>
+    <string name="other">Lainnya</string>
+    <string name="greet">Halo,</string>
+    <string name="covid">Covid-19 di Indonesia</string>
+    <string name="positive">POSITIF</string>
+    <string name="negative">SEMBUH</string>
+    <string name="die">MENINGGAL</string>
+    <string name="view_all">lihat semua >></string>
+</resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "802980481885",
+    "project_id": "skripsi-project-5041b",
+    "storage_bucket": "skripsi-project-5041b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802980481885:android:dce272dcb9209fe29d76b4",
+        "android_client_info": {
+          "package_name": "com.dafdev.selamatkan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "802980481885-oluf71h3ib9741n4t0663pc1tfqem4hb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmmsWUE44Jw9zXwUA9Zrbi5a4nmTPhtOY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "802980481885-oluf71h3ib9741n4t0663pc1tfqem4hb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
