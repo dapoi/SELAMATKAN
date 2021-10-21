@@ -10,19 +10,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SELAMATKAN">
         <activity
-            android:name=".view.activity.HomeActivity"
+            android:name=".view.activity.main.ProvinceActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".view.activity.LogInActivity"
+            android:name=".view.activity.main.CityActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".view.activity.SignUpActivity"
+            android:name=".view.activity.main.HomeActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".view.activity.OnboardingActivity"
+            android:name=".view.activity.auth.LogInActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".view.activity.auth.SignUpActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".view.activity.auth.OnboardingActivity"
             android:exported="true"
             android:theme="@style/Theme.SELAMATKAN.NoActionBar">
             <intent-filter>

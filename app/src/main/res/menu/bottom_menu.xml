@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_find"
+        android:id="@+id/nav_home"
         android:title="@string/home"
-        android:icon="@drawable/ic_find_selector"/>
+        android:icon="@drawable/ic_home_selector"/>
     <item
         android:id="@+id/nav_article"
         android:title="@string/content"

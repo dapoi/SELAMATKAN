@@ -1,48 +1,36 @@
 package com.dafdev.selamatkan.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.dafdev.selamatkan.data.source.HealthRepository
-import com.dafdev.selamatkan.di.Injection
+import com.dafdev.selamatkan.data.repository.HealthRepository
+import com.dafdev.selamatkan.data.source.RemoteDataSource
 
-class ViewModelFactory private constructor(private val healthRepo: HealthRepository) :
+class ViewModelFactory(private val remoteDataSource: RemoteDataSource) :
     ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T =
         when {
             modelClass.isAssignableFrom(ProvinceViewModel::class.java) -> {
-                ProvinceViewModel(healthRepo) as T
+                ProvinceViewModel(HealthRepository(remoteDataSource)) as T
             }
             modelClass.isAssignableFrom(CitiesViewModel::class.java) -> {
-                CitiesViewModel(healthRepo) as T
+                CitiesViewModel(HealthRepository(remoteDataSource)) as T
             }
             modelClass.isAssignableFrom(HospitalCovidViewModel::class.java) -> {
-                HospitalCovidViewModel(healthRepo) as T
+                HospitalCovidViewModel(HealthRepository(remoteDataSource)) as T
             }
             modelClass.isAssignableFrom(HospitalNonCovidViewModel::class.java) -> {
-                HospitalNonCovidViewModel(healthRepo) as T
+                HospitalNonCovidViewModel(HealthRepository(remoteDataSource)) as T
             }
             modelClass.isAssignableFrom(DetailCovidHospital::class.java) -> {
-                DetailCovidHospital(healthRepo) as T
+                DetailCovidHospital(HealthRepository(remoteDataSource)) as T
             }
             modelClass.isAssignableFrom(DetailNonCovidHospital::class.java) -> {
-                DetailNonCovidHospital(healthRepo) as T
+                DetailNonCovidHospital(HealthRepository(remoteDataSource)) as T
             }
             modelClass.isAssignableFrom(LocationMapHospitalViewModel::class.java) -> {
-                LocationMapHospitalViewModel(healthRepo) as T
+                LocationMapHospitalViewModel(HealthRepository(remoteDataSource)) as T
             }
             else -> throw Throwable("Unknown ViewModel Class: " + modelClass.name)
         }
-
-    companion object {
-
-        @Volatile
-        private var INSTANCE: ViewModelFactory? = null
-
-        fun getInstance(context: Context): ViewModelFactory =
-            INSTANCE ?: synchronized(this) {
-                INSTANCE ?: ViewModelFactory(Injection.provideRepository(context))
-            }
-    }
 }

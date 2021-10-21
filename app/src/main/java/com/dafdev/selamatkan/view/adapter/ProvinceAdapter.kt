@@ -1,18 +1,23 @@
 package com.dafdev.selamatkan.view.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
+import com.dafdev.selamatkan.data.source.response.ProvincesItem
 import com.dafdev.selamatkan.databinding.ItemProvinceUntilCityBinding
+import com.dafdev.selamatkan.utils.Constant
+import com.dafdev.selamatkan.view.activity.main.CityActivity
 
-class ProvinceAdapter : RecyclerView.Adapter<ProvinceAdapter.ProvinceViewHolder>() {
+class ProvinceAdapter(private val context: Context) :
+    RecyclerView.Adapter<ProvinceAdapter.ProvinceViewHolder>() {
 
-    private val listProvince = ArrayList<ProvinceEntity>()
+    private val listProvince = ArrayList<ProvincesItem>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setProvinceAdapter(data: List<ProvinceEntity>) {
+    fun setProvinceAdapter(data: List<ProvincesItem>) {
         listProvince.clear()
         listProvince.addAll(data)
         notifyDataSetChanged()
@@ -28,18 +33,21 @@ class ProvinceAdapter : RecyclerView.Adapter<ProvinceAdapter.ProvinceViewHolder>
     }
 
     override fun onBindViewHolder(holder: ProvinceAdapter.ProvinceViewHolder, position: Int) {
-        val dataPosition = listProvince[position]
-        holder.bind(dataPosition)
+        holder.tvProvince.text = listProvince[position].name
+        holder.cvProvince.setOnClickListener {
+            Constant.provinsiId = listProvince[position].id!!
+            Constant.provinsiName = listProvince[position].name!!
+            Intent(context, CityActivity::class.java).also {
+                context.startActivity(it)
+            }
+        }
     }
 
     override fun getItemCount(): Int = listProvince.size
 
-    inner class ProvinceViewHolder(private val binding: ItemProvinceUntilCityBinding) :
+    inner class ProvinceViewHolder(binding: ItemProvinceUntilCityBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: ProvinceEntity) {
-            with(binding) {
-                tvTerritorial.text = data.name
-            }
-        }
+        var cvProvince = binding.cvTerritorial
+        var tvProvince = binding.tvTerritorial
     }
 }

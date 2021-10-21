@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_nav"
-    app:startDestination="@+id/nav_find">
+    app:startDestination="@+id/nav_home">
 
     <fragment
-        android:id="@+id/nav_find"
-        android:name="com.dafdev.selamatkan.view.fragment.main.FindFragment"
-        android:label="fragment_find"
-        tools:layout="@layout/fragment_find" />
+        android:id="@+id/nav_home"
+        android:name="com.dafdev.selamatkan.view.fragment.main.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/nav_article"
         android:name="com.dafdev.selamatkan.view.fragment.main.ArticleFragment"
