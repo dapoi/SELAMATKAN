@@ -1,13 +1,18 @@
 package com.dafdev.selamatkan.view.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.data.source.response.CitiesItem
 import com.dafdev.selamatkan.databinding.ItemProvinceUntilCityBinding
+import com.dafdev.selamatkan.utils.Constant
+import com.dafdev.selamatkan.view.activity.main.HospitalActivity
 
-class CityAdapter : RecyclerView.Adapter<CityAdapter.CityViewHolder>() {
+class CityAdapter(private val context: Context) :
+    RecyclerView.Adapter<CityAdapter.CityViewHolder>() {
 
     private val listCity = ArrayList<CitiesItem>()
 
@@ -19,9 +24,13 @@ class CityAdapter : RecyclerView.Adapter<CityAdapter.CityViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityAdapter.CityViewHolder {
-        val view =
-            ItemProvinceUntilCityBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CityViewHolder(view)
+        return CityViewHolder(
+            ItemProvinceUntilCityBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: CityAdapter.CityViewHolder, position: Int) {
@@ -36,6 +45,12 @@ class CityAdapter : RecyclerView.Adapter<CityAdapter.CityViewHolder>() {
         fun bind(data: CitiesItem) {
             with(binding) {
                 tvTerritorial.text = data.name
+                cvTerritorial.setOnClickListener {
+                    Constant.kotaId = data.id!!
+                    Intent(context, HospitalActivity::class.java).also {
+                        context.startActivity(it)
+                    }
+                }
             }
         }
     }

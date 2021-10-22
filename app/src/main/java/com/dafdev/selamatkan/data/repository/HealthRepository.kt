@@ -7,17 +7,17 @@ class HealthRepository(
     private val remoteDataSource: RemoteDataSource,
 ) : IHealthRepository {
 
-    override suspend fun getListProvince(): List<ProvincesItem> =
-        remoteDataSource.getListProvince() as List<ProvincesItem>
+    override suspend fun getListProvince(): List<ProvincesItem?>? =
+        remoteDataSource.getListProvince()
 
-    override suspend fun getListCities(provinceId: String): List<CitiesItem> =
-        remoteDataSource.getListCites(provinceId) as List<CitiesItem>
+    override suspend fun getListCities(provinceId: String): List<CitiesItem?>? =
+        remoteDataSource.getListCites(provinceId)
 
     override suspend fun getListCovidHospital(
         provinceId: String,
         cityId: String
-    ): List<HospitalsCovidItem> =
-        remoteDataSource.getListCovidHospital(provinceId, cityId) as List<HospitalsCovidItem>
+    ): List<HospitalsCovidItem?>? =
+        remoteDataSource.getListCovidHospital(provinceId, cityId)
 
     override suspend fun getListNonCovidHospital(
         provinceId: String,
@@ -33,17 +33,4 @@ class HealthRepository(
 
     override suspend fun getLocationHospitalMap(hospitalId: String): DataMapHospital =
         remoteDataSource.getLocationHospitalMap(hospitalId)!!
-
-
-    companion object {
-
-        @Volatile
-        private var INSTANCE: HealthRepository? = null
-
-        fun getInstance(
-            remoteDataSource: RemoteDataSource,
-        ): HealthRepository = INSTANCE ?: synchronized(this) {
-            INSTANCE ?: HealthRepository(remoteDataSource)
-        }
-    }
 }

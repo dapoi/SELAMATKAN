@@ -27,27 +27,33 @@ class ProvinceAdapter(private val context: Context) :
         parent: ViewGroup,
         viewType: Int
     ): ProvinceAdapter.ProvinceViewHolder {
-        val view =
-            ItemProvinceUntilCityBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ProvinceViewHolder(view)
+        return ProvinceViewHolder(
+            ItemProvinceUntilCityBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ProvinceAdapter.ProvinceViewHolder, position: Int) {
-        holder.tvProvince.text = listProvince[position].name
-        holder.cvProvince.setOnClickListener {
-            Constant.provinsiId = listProvince[position].id!!
-            Constant.provinsiName = listProvince[position].name!!
-            Intent(context, CityActivity::class.java).also {
-                context.startActivity(it)
-            }
-        }
+        holder.bind(listProvince[position])
     }
 
     override fun getItemCount(): Int = listProvince.size
 
-    inner class ProvinceViewHolder(binding: ItemProvinceUntilCityBinding) :
+    inner class ProvinceViewHolder(private val binding: ItemProvinceUntilCityBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        var cvProvince = binding.cvTerritorial
-        var tvProvince = binding.tvTerritorial
+        fun bind(data: ProvincesItem) {
+            with(binding) {
+                tvTerritorial.text = data.name
+                cvTerritorial.setOnClickListener {
+                    Constant.provinsiId = data.id!!
+                    Intent(context, CityActivity::class.java).also {
+                        context.startActivity(it)
+                    }
+                }
+            }
+        }
     }
 }

@@ -14,7 +14,7 @@ class CitiesViewModel(private val city: HealthRepository) : ViewModel() {
         return liveData(Dispatchers.IO) {
             emit(Resource.loading(data = null))
             try {
-                emit(Resource.success(data = city.getListCities(provinceId)))
+                emit(Resource.success(data = city.getListCities(provinceId)) as Resource<List<CitiesItem>>)
             } catch (e: Exception) {
                 emit(Resource.error(data = null, message = e.message.toString()))
             }

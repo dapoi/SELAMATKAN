@@ -23,7 +23,7 @@
     <string name="content">Artikel</string>
     <string name="other">Lainnya</string>
     <string name="greet">Halo,</string>
-    <string name="covid">Covid-19 di Indonesia</string>
+    <string name="covid_indonesia">Covid-19 di Indonesia</string>
     <string name="positive">POSITIF</string>
     <string name="negative">SEMBUH</string>
     <string name="die">MENINGGAL</string>
@@ -33,4 +33,13 @@
     <string name="wish">Apa yang kamu butuhkan? semoga sehat selalu ya ....</string>
     <string name="choose_prov">Pilih Provinsi</string>
     <string name="choose_city">Pilih Kota</string>
+    <string name="choose_hospital">Pilih Rumah Sakit</string>
+    <string name="name_hospital_title">Nama RS</string>
+    <string name="separated">:</string>
+    <string name="address">Alamat</string>
+    <string name="bed">Kasur\nTersedia</string>
+    <string name="phone">No. Kontak</string>
+    <string name="queue">Antrian</string>
+    <string name="covid">Covid</string>
+    <string name="non_covid">Non-Covid</string>
 </resources>

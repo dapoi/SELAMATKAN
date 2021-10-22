@@ -17,7 +17,7 @@ data class HospitalsCovidItem(
     val address: String? = null,
 
     @Json(name = "bed_availability")
-    val bedAvailability: Int? = null,
+    val bed_availability: Int?,
 
     @Json(name = "phone")
     val phone: String? = null,

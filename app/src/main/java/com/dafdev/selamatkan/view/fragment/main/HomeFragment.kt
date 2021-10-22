@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dafdev.selamatkan.data.source.RemoteDataSource
 import com.dafdev.selamatkan.data.source.network.ApiConfig
+import com.dafdev.selamatkan.data.source.response.ProvincesItem
 import com.dafdev.selamatkan.databinding.FragmentHomeBinding
 import com.dafdev.selamatkan.view.activity.main.ProvinceActivity
 import com.dafdev.selamatkan.view.adapter.ProvinceAdapter
@@ -101,7 +102,7 @@ class HomeFragment : Fragment() {
                     Status.LOADING -> progressBar(true)
                     Status.SUCCESS -> {
                         progressBar(false)
-                        provinceAdapter.setProvinceAdapter(resources.data!!)
+                        provinceAdapter.setProvinceAdapter(resources.data!! as List<ProvincesItem>)
                     }
                     Status.ERROR -> {
                         progressBar(false)

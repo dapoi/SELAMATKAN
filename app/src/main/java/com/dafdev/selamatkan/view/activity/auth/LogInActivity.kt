@@ -34,15 +34,15 @@ class LogInActivity : AppCompatActivity() {
 
                 when {
                     email.isEmpty() -> {
-                        inputEmail.error = "Email must be filled"
+                        inputEmail.error = "Email harus  diisi"
                         return@setOnClickListener
                     }
                     !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-                        inputEmail.error = "Email is not valid"
+                        inputEmail.error = "Email tidak valid"
                         return@setOnClickListener
                     }
                     password.isEmpty() || password.length < 6 -> {
-                        inputPassword.error = "Minimum of password is 6 characters"
+                        inputPassword.error = "Minimal kata sandi harus lebih dari 6 karakter"
                         return@setOnClickListener
                     }
                     else -> {

@@ -1,6 +1,5 @@
 package com.dafdev.selamatkan.data.source.network
 
-import com.dafdev.selamatkan.data.source.remote.response.*
 import com.dafdev.selamatkan.data.source.response.*
 import retrofit2.http.GET
 import retrofit2.http.Query

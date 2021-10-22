@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dafdev.selamatkan.data.source.RemoteDataSource
 import com.dafdev.selamatkan.data.source.network.ApiConfig
+import com.dafdev.selamatkan.data.source.response.ProvincesItem
 import com.dafdev.selamatkan.databinding.ActivityProvinceBinding
 import com.dafdev.selamatkan.view.adapter.ProvinceAdapter
 import com.dafdev.selamatkan.viewmodel.ProvinceViewModel
@@ -51,7 +52,7 @@ class ProvinceActivity : AppCompatActivity() {
                     Status.LOADING -> progressBar(true)
                     Status.SUCCESS -> {
                         progressBar(false)
-                        provinceAdapter.setProvinceAdapter(resources.data!!)
+                        provinceAdapter.setProvinceAdapter(resources.data!! as List<ProvincesItem>)
                     }
                     Status.ERROR -> {
                         progressBar(false)

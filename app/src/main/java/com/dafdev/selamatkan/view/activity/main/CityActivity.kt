@@ -35,7 +35,7 @@ class CityActivity : AppCompatActivity() {
     }
 
     private fun setUpAdapter() {
-        cityAdapter = CityAdapter()
+        cityAdapter = CityAdapter(this)
         binding.rvCity.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@CityActivity)

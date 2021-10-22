@@ -10,13 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SELAMATKAN">
         <activity
+            android:name=".view.activity.main.HospitalActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activity.main.ProvinceActivity"
-            android:exported="false"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize"
+            android:exported="false" />
         <activity
             android:name=".view.activity.main.CityActivity"
-            android:exported="false"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize"
+            android:exported="false" />
         <activity
             android:name=".view.activity.main.HomeActivity"
             android:exported="false"
