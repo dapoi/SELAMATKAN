@@ -16,9 +16,11 @@ import com.dafdev.selamatkan.data.source.response.ProvincesItem
 import com.dafdev.selamatkan.databinding.FragmentHomeBinding
 import com.dafdev.selamatkan.view.activity.main.ProvinceActivity
 import com.dafdev.selamatkan.view.adapter.ProvinceAdapter
+import com.dafdev.selamatkan.viewmodel.IndoDataCovidViewModel
 import com.dafdev.selamatkan.viewmodel.ProvinceViewModel
 import com.dafdev.selamatkan.viewmodel.ViewModelFactory
 import com.dafdev.selamatkan.vo.Status
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialFadeThrough
 import com.google.firebase.firestore.FirebaseFirestore
 import timber.log.Timber
@@ -29,7 +31,8 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var fStore: FirebaseFirestore
     private lateinit var provinceAdapter: ProvinceAdapter
-    private lateinit var provinceVIewModel: ProvinceViewModel
+    private lateinit var provinceViewModel: ProvinceViewModel
+    private lateinit var covidViewModel: IndoDataCovidViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,9 +97,36 @@ class HomeFragment : Fragment() {
     }
 
     private fun setViewModel() {
-        val factory = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiService()))
-        provinceVIewModel = ViewModelProvider(this, factory)[ProvinceViewModel::class.java]
-        provinceVIewModel.getListProv().observe(viewLifecycleOwner, {
+        val factoryDataCovid = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiCovid()))
+        covidViewModel =
+            ViewModelProvider(this, factoryDataCovid)[IndoDataCovidViewModel::class.java]
+        covidViewModel.dataCovidIndo().observe(viewLifecycleOwner, {
+            it.let { resources ->
+                when (resources.status) {
+                    Status.LOADING -> {
+                        binding.apply {
+                            tvPositive.text = "..."
+                            tvNegative.text = "..."
+                            tvDeath.text = "..."
+                        }
+                    }
+                    Status.SUCCESS -> {
+                        binding.apply {
+                            tvPositive.text = it.data?.positif?.toLong().toString()
+                            tvNegative.text = it.data?.sembuh?.toLong().toString()
+                            tvDeath.text = it.data?.meninggal?.toLong().toString()
+                        }
+                    }
+                    Status.ERROR -> {
+                        Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
+                    }
+                }
+            }
+        })
+
+        val factoryProvince = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiHospital()))
+        provinceViewModel = ViewModelProvider(this, factoryProvince)[ProvinceViewModel::class.java]
+        provinceViewModel.getListProv().observe(viewLifecycleOwner, {
             it.let { resources ->
                 when (resources.status) {
                     Status.LOADING -> progressBar(true)

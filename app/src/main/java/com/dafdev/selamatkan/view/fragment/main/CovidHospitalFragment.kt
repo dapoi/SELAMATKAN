@@ -49,7 +49,7 @@ class CovidHospitalFragment : Fragment() {
     }
 
     private fun setViewModel() {
-        val factory = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiService()))
+        val factory = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiHospital()))
         hospitalViewModel = ViewModelProvider(
             requireActivity(),
             factory
@@ -60,7 +60,11 @@ class CovidHospitalFragment : Fragment() {
                     Status.LOADING -> progressBar(true)
                     Status.SUCCESS -> {
                         progressBar(false)
-                        hospitalCovidAdapter.setCovidHospital(resource.data!!)
+                        if (resource.data.isNullOrEmpty()) {
+                            dataEmpty(true)
+                        } else {
+                            hospitalCovidAdapter.setCovidHospital(resource.data)
+                        }
                     }
                     Status.ERROR -> {
                         progressBar(false)
@@ -76,6 +80,14 @@ class CovidHospitalFragment : Fragment() {
             binding.progressBar.visibility = View.VISIBLE
         } else {
             binding.progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun dataEmpty(state: Boolean) {
+        if (state) {
+            binding.tvResult.visibility = View.VISIBLE
+        } else {
+            binding.tvResult.visibility = View.GONE
         }
     }
 }

@@ -10,6 +10,9 @@ class ViewModelFactory(private val remoteDataSource: RemoteDataSource) :
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T =
         when {
+            modelClass.isAssignableFrom(IndoDataCovidViewModel::class.java) -> {
+                IndoDataCovidViewModel(HealthRepository(remoteDataSource)) as T
+            }
             modelClass.isAssignableFrom(ProvinceViewModel::class.java) -> {
                 ProvinceViewModel(HealthRepository(remoteDataSource)) as T
             }

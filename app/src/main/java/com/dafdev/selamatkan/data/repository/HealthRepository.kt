@@ -6,6 +6,8 @@ import com.dafdev.selamatkan.data.source.response.*
 class HealthRepository(
     private val remoteDataSource: RemoteDataSource,
 ) : IHealthRepository {
+    override suspend fun getDataCovidIndonesia(): IndoDataCovidResponse =
+        remoteDataSource.getDataCovidIndonesia()
 
     override suspend fun getListProvince(): List<ProvincesItem?>? =
         remoteDataSource.getListProvince()

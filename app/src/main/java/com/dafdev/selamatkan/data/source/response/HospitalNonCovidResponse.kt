@@ -14,10 +14,10 @@ data class HospitalNonCovidResponse(
 data class AvailableBedsItem(
 
 	@Json(name="bed_class")
-	val bedClass: String? = null,
+	val bed_class: String? = null,
 
 	@Json(name="room_name")
-	val roomName: String? = null,
+	val room_name: String? = null,
 
 	@Json(name="available")
 	val available: Int? = null,

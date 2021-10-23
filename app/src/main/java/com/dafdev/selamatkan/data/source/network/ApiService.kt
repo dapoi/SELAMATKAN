@@ -6,6 +6,11 @@ import retrofit2.http.Query
 
 interface ApiService {
 
+    // api covid di Indonesia beserta provinsi
+    @GET("indonesia")
+    suspend fun getDataCovidIndo(): IndoDataCovidResponse
+
+    // ini adalah api rumah sakit
     @GET("get-provinces")
     suspend fun getListProvinces(): ProvinceResponse
 

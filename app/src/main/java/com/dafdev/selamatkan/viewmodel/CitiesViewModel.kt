@@ -7,6 +7,7 @@ import com.dafdev.selamatkan.data.repository.HealthRepository
 import com.dafdev.selamatkan.data.source.response.CitiesItem
 import com.dafdev.selamatkan.vo.Resource
 import kotlinx.coroutines.Dispatchers
+import timber.log.Timber
 
 class CitiesViewModel(private val city: HealthRepository) : ViewModel() {
 
@@ -14,7 +15,9 @@ class CitiesViewModel(private val city: HealthRepository) : ViewModel() {
         return liveData(Dispatchers.IO) {
             emit(Resource.loading(data = null))
             try {
-                emit(Resource.success(data = city.getListCities(provinceId)) as Resource<List<CitiesItem>>)
+                val dataCity = city.getListCities(provinceId)
+                emit(Resource.success(dataCity) as Resource<List<CitiesItem>>)
+                Timber.d("$dataCity")
             } catch (e: Exception) {
                 emit(Resource.error(data = null, message = e.message.toString()))
             }

@@ -44,7 +44,7 @@ class CityActivity : AppCompatActivity() {
     }
 
     private fun setUpViewModel() {
-        val factory = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiService()))
+        val factory = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiHospital()))
         cityViewModel = ViewModelProvider(this, factory)[CitiesViewModel::class.java]
         cityViewModel.dataCity(Constant.provinsiId).observe(this, {
             it.let { resource ->

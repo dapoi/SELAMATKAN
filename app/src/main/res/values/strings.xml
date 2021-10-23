@@ -38,8 +38,9 @@
     <string name="separated">:</string>
     <string name="address">Alamat</string>
     <string name="bed">Kasur\nTersedia</string>
-    <string name="phone">No. Kontak</string>
+    <string name="phone">No. Telp</string>
     <string name="queue">Antrian</string>
     <string name="covid">Covid</string>
     <string name="non_covid">Non-Covid</string>
+    <string name="bed_class">Tipe Kamar</string>
 </resources>

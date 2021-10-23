@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_list_hospital" />
+        tools:listitem="@layout/item_list_covid_hospital" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

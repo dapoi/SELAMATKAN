@@ -4,6 +4,8 @@ import com.dafdev.selamatkan.data.source.response.*
 
 interface IHealthRepository {
 
+    suspend fun getDataCovidIndonesia(): IndoDataCovidResponse
+
     suspend fun getListProvince(): List<ProvincesItem?>?
 
     suspend fun getListCities(provinceId: String): List<CitiesItem?>?

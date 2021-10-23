@@ -49,7 +49,7 @@ class NonCovidHospitalFragment : Fragment() {
     }
 
     private fun setViewModel() {
-        val factory = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiService()))
+        val factory = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiHospital()))
         hospitalViewModel = ViewModelProvider(
             requireActivity(),
             factory

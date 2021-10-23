@@ -4,6 +4,8 @@ import com.dafdev.selamatkan.data.source.network.ApiService
 
 class RemoteDataSource(private val apiService: ApiService) {
 
+    suspend fun getDataCovidIndonesia() = apiService.getDataCovidIndo()
+
     suspend fun getListProvince() = apiService.getListProvinces().provinces
 
     suspend fun getListCites(provinceId: String) = apiService.getListCities(provinceId).cities

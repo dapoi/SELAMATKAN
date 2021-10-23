@@ -7,6 +7,7 @@ import com.dafdev.selamatkan.data.repository.HealthRepository
 import com.dafdev.selamatkan.data.source.response.HospitalsNonCovidItem
 import com.dafdev.selamatkan.vo.Resource
 import kotlinx.coroutines.Dispatchers
+import timber.log.Timber
 
 class HospitalNonCovidViewModel(private val nonCovidHospital: HealthRepository) : ViewModel() {
 
@@ -19,6 +20,7 @@ class HospitalNonCovidViewModel(private val nonCovidHospital: HealthRepository) 
             try {
                 val dataHospital = nonCovidHospital.getListNonCovidHospital(provinceId, cityId)
                 emit(Resource.success(dataHospital))
+                Timber.d("$dataHospital")
             } catch (e: Exception) {
                 emit(Resource.error(null, e.message.toString()))
             }

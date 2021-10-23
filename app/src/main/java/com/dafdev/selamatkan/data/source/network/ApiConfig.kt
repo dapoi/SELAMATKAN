@@ -15,10 +15,20 @@ object ApiConfig {
             .build()
     }
 
-    fun provideApiService(): ApiService {
+    fun provideApiHospital(): ApiService {
         val moshi = MoshiConverterFactory.create()
         val retrofit = Retrofit.Builder()
             .baseUrl("https://rs-bed-covid-api.vercel.app/api/")
+            .addConverterFactory(moshi)
+            .client(provideOkHttpClient())
+            .build()
+        return retrofit.create(ApiService::class.java)
+    }
+
+    fun provideApiCovid(): ApiService {
+        val moshi = MoshiConverterFactory.create()
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://apicovid19indonesia-v2.vercel.app/api/")
             .addConverterFactory(moshi)
             .client(provideOkHttpClient())
             .build()

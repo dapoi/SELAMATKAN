@@ -44,7 +44,7 @@ class ProvinceActivity : AppCompatActivity() {
     }
 
     private fun setUpViewModel() {
-        val factory = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiService()))
+        val factory = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiHospital()))
         provinceVIewModel = ViewModelProvider(this, factory)[ProvinceViewModel::class.java]
         provinceVIewModel.getListProv().observe(this, {
             it.let { resources ->
