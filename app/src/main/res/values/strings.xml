@@ -37,10 +37,14 @@
     <string name="name_hospital_title">Nama RS</string>
     <string name="separated">:</string>
     <string name="address">Alamat</string>
-    <string name="bed">Kasur\nTersedia</string>
+    <string name="bed_room">Kamar\nTersedia</string>
+    <string name="bed_total">Total Kasur</string>
+    <string name="bed_empty">Kasur\nTersedia</string>
     <string name="phone">No. Telp</string>
     <string name="queue">Antrian</string>
     <string name="covid">Covid</string>
     <string name="non_covid">Non-Covid</string>
     <string name="bed_class">Tipe Kamar</string>
+    <string name="empty">Maaf, tidak ada rumah sakit yang terdaftar di kota Anda :(</string>
+    <string name="api_key">AIzaSyBrIZ8NJV3ga7TEv3paRnX2pknF56FXtsA</string>
 </resources>

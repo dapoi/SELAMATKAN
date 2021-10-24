@@ -4,8 +4,8 @@ import com.squareup.moshi.Json
 
 data class HospitalLocationResponse(
 
-    @Json(name = "dataHospitalDetail")
-    val dataMap: DataMapHospital? = null,
+    @Json(name = "data")
+    val data: DataMapHospital? = null,
 
     @Json(name = "status")
     val status: Int? = null
@@ -29,5 +29,5 @@ data class DataMapHospital(
     val lat: String? = null,
 
     @Json(name = "long")
-    val jsonMemberLong: String? = null
+    val long: String? = null
 )

@@ -4,8 +4,8 @@ import com.squareup.moshi.Json
 
 data class DetailResponse(
 
-    @Json(name = "dataHospitalDetail")
-    val dataHospitalDetail: DataHospitalDetail? = null,
+    @Json(name = "data")
+    val data: DataHospitalDetail? = null,
 
     @Json(name = "status")
     val status: Int? = null
@@ -14,13 +14,13 @@ data class DetailResponse(
 data class Stats(
 
     @Json(name = "bed_empty")
-    val bedEmpty: Int? = null,
+    val bed_empty: Int? = null,
 
     @Json(name = "title")
     val title: String? = null,
 
     @Json(name = "bed_available")
-    val bedAvailable: Int? = null,
+    val bed_available: Int? = null,
 
     @Json(name = "queue")
     val queue: Int? = null

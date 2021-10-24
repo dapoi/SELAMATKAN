@@ -98,7 +98,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_password"
-            android:drawablePadding="10dp" />
+            android:drawablePadding="10dp"
+            android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -126,8 +127,8 @@
             android:id="@+id/tv_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/allerta"
             android:layout_gravity="center"
+            android:fontFamily="@font/allerta"
             android:text="@string/sign_up"
             android:textAlignment="center"
             android:textColor="@color/white"

@@ -17,13 +17,13 @@ class RemoteDataSource(private val apiService: ApiService) {
         apiService.getListHospitalsNonCovid(provinceId, cityId, "2").hospitals
 
     suspend fun getDetailCovidHospital(hospitalId: String) =
-        apiService.getListDetails(hospitalId, "1").dataHospitalDetail?.bedDetail
+        apiService.getListDetails(hospitalId, "1").data?.bedDetail
 
     suspend fun getDetailNonCovidHospital(hospitalId: String) =
-        apiService.getListDetails(hospitalId, "2").dataHospitalDetail?.bedDetail
+        apiService.getListDetails(hospitalId, "2").data?.bedDetail
 
     suspend fun getLocationHospitalMap(hospitalId: String) =
-        apiService.getMapLocation(hospitalId).dataMap
+        apiService.getMapLocation(hospitalId).data
 
     companion object {
 

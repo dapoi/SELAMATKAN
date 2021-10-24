@@ -25,11 +25,11 @@ class ViewModelFactory(private val remoteDataSource: RemoteDataSource) :
             modelClass.isAssignableFrom(HospitalNonCovidViewModel::class.java) -> {
                 HospitalNonCovidViewModel(HealthRepository(remoteDataSource)) as T
             }
-            modelClass.isAssignableFrom(DetailCovidHospital::class.java) -> {
-                DetailCovidHospital(HealthRepository(remoteDataSource)) as T
+            modelClass.isAssignableFrom(DetailCovidHospitalViewModel::class.java) -> {
+                DetailCovidHospitalViewModel(HealthRepository(remoteDataSource)) as T
             }
-            modelClass.isAssignableFrom(DetailNonCovidHospital::class.java) -> {
-                DetailNonCovidHospital(HealthRepository(remoteDataSource)) as T
+            modelClass.isAssignableFrom(DetailNonCovidHospitalViewModel::class.java) -> {
+                DetailNonCovidHospitalViewModel(HealthRepository(remoteDataSource)) as T
             }
             modelClass.isAssignableFrom(LocationMapHospitalViewModel::class.java) -> {
                 LocationMapHospitalViewModel(HealthRepository(remoteDataSource)) as T

@@ -33,6 +33,6 @@ class HealthRepository(
     override suspend fun getDetailNonCovidHospital(hospitalId: String): List<BedDetailItem> =
         remoteDataSource.getDetailNonCovidHospital(hospitalId) as List<BedDetailItem>
 
-    override suspend fun getLocationHospitalMap(hospitalId: String): DataMapHospital =
-        remoteDataSource.getLocationHospitalMap(hospitalId)!!
+    override suspend fun getLocationHospitalMap(hospitalId: String): DataMapHospital? =
+        remoteDataSource.getLocationHospitalMap(hospitalId)
 }

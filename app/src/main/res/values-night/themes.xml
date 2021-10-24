@@ -1,6 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.SELAMATKAN" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.SELAMATKAN" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryVariant">@color/blue</item>
@@ -12,10 +11,23 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
 
     <style name="Theme.SELAMATKAN.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.SELAMATKAN.BottomNavigationInactive">
+        <item name="android:fontFamily">@font/encodesans_regular</item>
+        <item name="background">@null</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Theme.SELAMATKAN.BottomNavigationActive">
+        <item name="android:fontFamily">@font/encodesans_semibold</item>
+        <item name="background">@null</item>
+        <item name="android:textSize">12sp</item>
     </style>
 </resources>

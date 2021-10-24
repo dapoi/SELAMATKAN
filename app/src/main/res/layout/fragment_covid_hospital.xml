@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="" />
+        tools:listitem="@layout/item_list_covid_hospital" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -26,14 +26,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="18sp"
+    <include
+        android:id="@+id/view_emtpy"
+        layout="@layout/empty_layout"
         android:visibility="gone"
-        android:text="Maaf, tidak ada rumah sakit yang terdaftar di kota Anda :("
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

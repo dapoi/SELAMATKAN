@@ -7,14 +7,14 @@ import com.dafdev.selamatkan.vo.Resource
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 
-class LocationMapHospitalViewModel(private val location: HealthRepository) : ViewModel() {
+class DetailCovidHospitalViewModel(private val detailCovidHospital: HealthRepository) : ViewModel() {
 
-    fun getLocationHospital(hospitalId: String) = liveData(Dispatchers.IO) {
+    fun dataDetailCovidHospital(hospitalId: String) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
-            val dataLocation = location.getLocationHospitalMap(hospitalId)
-            emit(Resource.success(dataLocation))
-            Timber.d(dataLocation.toString())
+            val dataDetail = detailCovidHospital.getDetailCovidHospital(hospitalId)
+            emit(Resource.success(dataDetail))
+            Timber.d(dataDetail.toString())
         } catch (e: Exception) {
             emit(Resource.error(null, e.message.toString()))
         }

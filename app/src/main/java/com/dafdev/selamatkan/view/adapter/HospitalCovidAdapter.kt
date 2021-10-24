@@ -1,13 +1,18 @@
 package com.dafdev.selamatkan.view.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.data.source.response.HospitalsCovidItem
 import com.dafdev.selamatkan.databinding.ItemListCovidHospitalBinding
+import com.dafdev.selamatkan.utils.Constant
+import com.dafdev.selamatkan.view.activity.main.HospitalDetailActivity
 
-class HospitalCovidAdapter : RecyclerView.Adapter<HospitalCovidAdapter.CovidViewHolder>() {
+class HospitalCovidAdapter(private val context: Context) :
+    RecyclerView.Adapter<HospitalCovidAdapter.CovidViewHolder>() {
 
     private val listHospital = ArrayList<HospitalsCovidItem>()
 
@@ -41,14 +46,24 @@ class HospitalCovidAdapter : RecyclerView.Adapter<HospitalCovidAdapter.CovidView
                 data.apply {
                     tvHospitalName.text = name
                     tvHospitalAddress.text = address
-                    tvHospitalBed.text = bed_availability.toString()
-                    tvHospitalQueue.text = queue.toString()
                     if (phone == null) {
                         tvHospitalPhone.text = "-"
                     } else {
                         tvHospitalPhone.text = phone
                     }
                     tvInfo.text = info
+                    cvHospital.setOnClickListener {
+                        Constant.hospitalId = id!!
+                        Constant.hospitalName = name!!
+                        if (phone != null) {
+                            Constant.phoneNumber = phone
+                        } else {
+                            Constant.phoneNumber = ""
+                        }
+                        Intent(context, HospitalDetailActivity::class.java).also {
+                            context.startActivity(it)
+                        }
+                    }
                 }
             }
         }

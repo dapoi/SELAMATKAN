@@ -17,19 +17,19 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
-            android:src="@drawable/ic_hospital_detail"
+            android:src="@drawable/ic_bed"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_hospital_name_title"
+            android:id="@+id/tv_detail_bed_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/encodesans_bold"
-            android:text="@string/name_hospital_title"
+            android:text="@string/bed_class"
             android:textColor="@color/dark_gray"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/img_hospital_detail"
@@ -44,13 +44,13 @@
             android:text="@string/separated"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_hospital_name_title"
-            app:layout_constraintStart_toEndOf="@+id/tv_hospital_name_title"
-            app:layout_constraintTop_toTopOf="@+id/tv_hospital_name_title"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_detail_bed_title"
+            app:layout_constraintStart_toEndOf="@+id/tv_detail_bed_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_detail_bed_title"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/tv_hospital_name"
+            android:id="@+id/tv_detail_bed_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -61,19 +61,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_separated1"
             app:layout_constraintTop_toTopOf="@+id/tv_separated1"
-            tools:text="RS Sehat" />
+            tools:text="Kamar tulip" />
 
         <TextView
-            android:id="@+id/tv_hospital_address_title"
+            android:id="@+id/tv_detail_total_bed_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/encodesans_bold"
-            android:text="@string/address"
+            android:text="@string/bed_total"
             android:textColor="@color/dark_gray"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/tv_hospital_name_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hospital_name" />
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_bed_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_bed_name" />
 
         <TextView
             android:id="@+id/tv_separated2"
@@ -83,35 +83,35 @@
             android:text="@string/separated"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_hospital_address_title"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_detail_total_bed_title"
             app:layout_constraintEnd_toEndOf="@+id/tv_separated1"
             app:layout_constraintStart_toStartOf="@+id/tv_separated1"
-            app:layout_constraintTop_toTopOf="@+id/tv_hospital_address_title" />
+            app:layout_constraintTop_toTopOf="@+id/tv_detail_total_bed_title" />
 
         <TextView
-            android:id="@+id/tv_hospital_address"
+            android:id="@+id/tv_detail_total_bed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/encodesans_medium"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/tv_hospital_name"
+            app:layout_constraintEnd_toEndOf="@+id/tv_detail_bed_name"
             app:layout_constraintStart_toEndOf="@+id/tv_separated2"
-            app:layout_constraintTop_toTopOf="@+id/tv_hospital_address_title"
-            tools:text="Plosok gunung" />
+            app:layout_constraintTop_toTopOf="@+id/tv_detail_total_bed_title"
+            tools:text="100" />
 
         <TextView
-            android:id="@+id/tv_hospital_phone_title"
+            android:id="@+id/tv_detail_available_bed_title"
             android:layout_width="wrap_content"
-            android:layout_height="26dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/encodesans_bold"
-            android:text="@string/phone"
+            android:text="@string/bed_empty"
             android:textColor="@color/dark_gray"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/tv_hospital_address_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hospital_address" />
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_total_bed_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_total_bed" />
 
         <TextView
             android:id="@+id/tv_separated3"
@@ -121,49 +121,35 @@
             android:text="@string/separated"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_hospital_phone_title"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_detail_available_bed_title"
             app:layout_constraintEnd_toEndOf="@+id/tv_separated2"
-            app:layout_constraintStart_toStartOf="@+id/tv_separated2"
-            app:layout_constraintTop_toTopOf="@+id/tv_hospital_phone_title" />
+            app:layout_constraintStart_toStartOf="@+id/tv_separated2" />
 
         <TextView
-            android:id="@+id/tv_hospital_phone"
+            android:id="@+id/tv_detail_available_bed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/encodesans_medium"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tv_separated3"
-            app:layout_constraintEnd_toEndOf="@+id/tv_hospital_address"
-            app:layout_constraintStart_toStartOf="@+id/tv_hospital_address"
-            app:layout_constraintTop_toTopOf="@+id/tv_separated3"
-            tools:text="12345678" />
+            app:layout_constraintEnd_toEndOf="@+id/tv_detail_total_bed"
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_total_bed"
+            tools:text="80" />
 
         <TextView
             android:id="@+id/tv_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/encodesans_regular"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/img_arrow"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hospital_phone"
+            app:layout_constraintEnd_toEndOf="@+id/tv_detail_available_bed"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_available_bed"
             tools:text="10 menit lalu" />
-
-        <ImageView
-            android:id="@+id/img_arrow"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:scaleX="-1"
-            android:src="@drawable/ic_back"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_info"
-            app:layout_constraintEnd_toEndOf="@+id/tv_hospital_phone"
-            app:layout_constraintTop_toTopOf="@+id/tv_info"
-            app:tint="@color/blue" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -23,7 +23,8 @@
             android:layout_gravity="center"
             android:fontFamily="@font/encodesans_medium"
             android:text="@string/choose_city"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
 

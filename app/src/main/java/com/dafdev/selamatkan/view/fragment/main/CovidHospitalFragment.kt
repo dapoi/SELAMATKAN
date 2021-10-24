@@ -40,7 +40,7 @@ class CovidHospitalFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        hospitalCovidAdapter = HospitalCovidAdapter()
+        hospitalCovidAdapter = HospitalCovidAdapter(requireActivity())
         with(binding.rvHospitalCovid) {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
@@ -54,25 +54,26 @@ class CovidHospitalFragment : Fragment() {
             requireActivity(),
             factory
         )[HospitalCovidViewModel::class.java]
-        hospitalViewModel.covidHospital(Constant.provinsiId, Constant.kotaId).observe(viewLifecycleOwner, {
-            it.let { resource ->
-                when(resource.status) {
-                    Status.LOADING -> progressBar(true)
-                    Status.SUCCESS -> {
-                        progressBar(false)
-                        if (resource.data.isNullOrEmpty()) {
-                            dataEmpty(true)
-                        } else {
-                            hospitalCovidAdapter.setCovidHospital(resource.data)
+        hospitalViewModel.covidHospital(Constant.provinsiId, Constant.kotaId)
+            .observe(viewLifecycleOwner, {
+                it.let { resource ->
+                    when (resource.status) {
+                        Status.LOADING -> progressBar(true)
+                        Status.SUCCESS -> {
+                            progressBar(false)
+                            if (resource.data.isNullOrEmpty()) {
+                                dataEmpty()
+                            } else {
+                                hospitalCovidAdapter.setCovidHospital(resource.data)
+                            }
+                        }
+                        Status.ERROR -> {
+                            progressBar(false)
+                            Toast.makeText(requireActivity(), "Error", Toast.LENGTH_SHORT).show()
                         }
                     }
-                    Status.ERROR -> {
-                        progressBar(false)
-                        Toast.makeText(requireActivity(), "Error", Toast.LENGTH_SHORT).show()
-                    }
                 }
-            }
-        })
+            })
     }
 
     private fun progressBar(state: Boolean) {
@@ -83,11 +84,7 @@ class CovidHospitalFragment : Fragment() {
         }
     }
 
-    private fun dataEmpty(state: Boolean) {
-        if (state) {
-            binding.tvResult.visibility = View.VISIBLE
-        } else {
-            binding.tvResult.visibility = View.GONE
-        }
+    private fun dataEmpty() {
+        binding.viewEmtpy.root.visibility = View.VISIBLE
     }
 }

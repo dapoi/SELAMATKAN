@@ -38,7 +38,6 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         enterTransition = MaterialFadeThrough()
-        exitTransition = MaterialFadeThrough()
     }
 
     override fun onCreateView(
@@ -149,5 +148,9 @@ class HomeFragment : Fragment() {
         } else {
             binding.progressBar.visibility = View.GONE
         }
+    }
+
+    companion object {
+        private const val REQ_PERMISSION = 100
     }
 }

@@ -40,7 +40,7 @@ class NonCovidHospitalFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        hospitalAdapter = HospitalNonCovidAdapter()
+        hospitalAdapter = HospitalNonCovidAdapter(requireActivity())
         with(binding.rvHospitalNonCovid) {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
@@ -61,7 +61,11 @@ class NonCovidHospitalFragment : Fragment() {
                         Status.LOADING -> progressBar(true)
                         Status.SUCCESS -> {
                             progressBar(false)
-                            hospitalAdapter.setNonCovidHospital(resource.data!!)
+                            if (resource.data.isNullOrEmpty()) {
+                                dataEmpty()
+                            } else {
+                                hospitalAdapter.setNonCovidHospital(resource.data)
+                            }
                         }
                         Status.ERROR -> {
                             progressBar(false)
@@ -78,5 +82,9 @@ class NonCovidHospitalFragment : Fragment() {
         } else {
             binding.progressBar.visibility = View.GONE
         }
+    }
+
+    private fun dataEmpty() {
+        binding.viewEmtpy.root.visibility = View.VISIBLE
     }
 }

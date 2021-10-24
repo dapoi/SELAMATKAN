@@ -17,7 +17,6 @@ class ArticleFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         enterTransition = MaterialFadeThrough()
-        exitTransition = MaterialFadeThrough()
     }
 
     override fun onCreateView(
