@@ -6,6 +6,8 @@ interface IHealthRepository {
 
     suspend fun getDataCovidIndonesia(): IndoDataCovidResponse
 
+    suspend fun getDataCovidProv(): List<ProvinceCovidResponse?>?
+
     suspend fun getListProvince(): List<ProvincesItem?>?
 
     suspend fun getListCities(provinceId: String): List<CitiesItem?>?

@@ -13,6 +13,9 @@ class ViewModelFactory(private val remoteDataSource: RemoteDataSource) :
             modelClass.isAssignableFrom(IndoDataCovidViewModel::class.java) -> {
                 IndoDataCovidViewModel(HealthRepository(remoteDataSource)) as T
             }
+            modelClass.isAssignableFrom(ProvinceCovidViewModel::class.java) -> {
+                ProvinceCovidViewModel(HealthRepository(remoteDataSource)) as T
+            }
             modelClass.isAssignableFrom(ProvinceViewModel::class.java) -> {
                 ProvinceViewModel(HealthRepository(remoteDataSource)) as T
             }

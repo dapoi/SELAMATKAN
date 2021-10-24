@@ -12,7 +12,6 @@
     <string name="title3">Berita Kesehatan</string>
     <string name="name">Nama</string>
     <string name="sub_title_signup">Silahkan isi data yang diperlukan</string>
-    <string name="sign_up_title">Daftar</string>
     <string name="password">Kata Sandi</string>
     <string name="email">Email</string>
     <string name="login">Masuk</string>
@@ -37,14 +36,13 @@
     <string name="name_hospital_title">Nama RS</string>
     <string name="separated">:</string>
     <string name="address">Alamat</string>
-    <string name="bed_room">Kamar\nTersedia</string>
     <string name="bed_total">Total Kasur</string>
     <string name="bed_empty">Kasur\nTersedia</string>
     <string name="phone">No. Telp</string>
-    <string name="queue">Antrian</string>
     <string name="covid">Covid</string>
     <string name="non_covid">Non-Covid</string>
     <string name="bed_class">Tipe Kamar</string>
     <string name="empty">Maaf, tidak ada rumah sakit yang terdaftar di kota Anda :(</string>
     <string name="api_key">AIzaSyBrIZ8NJV3ga7TEv3paRnX2pknF56FXtsA</string>
+    <string name="data_prov">Data Covid Per Provinsi</string>
 </resources>

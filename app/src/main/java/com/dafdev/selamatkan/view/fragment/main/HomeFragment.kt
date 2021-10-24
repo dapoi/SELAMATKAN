@@ -15,6 +15,7 @@ import com.dafdev.selamatkan.data.source.network.ApiConfig
 import com.dafdev.selamatkan.data.source.response.ProvincesItem
 import com.dafdev.selamatkan.databinding.FragmentHomeBinding
 import com.dafdev.selamatkan.view.activity.main.ProvinceActivity
+import com.dafdev.selamatkan.view.activity.main.ProvinceCovidActivity
 import com.dafdev.selamatkan.view.adapter.ProvinceAdapter
 import com.dafdev.selamatkan.viewmodel.IndoDataCovidViewModel
 import com.dafdev.selamatkan.viewmodel.ProvinceViewModel
@@ -63,6 +64,10 @@ class HomeFragment : Fragment() {
                         in 19..24 -> text = "Selamat Malam"
                     }
                 }
+            }
+
+            tvViewAll.setOnClickListener {
+                startActivity(Intent(requireActivity(), ProvinceCovidActivity::class.java))
             }
 
             tvViewClear.setOnClickListener {

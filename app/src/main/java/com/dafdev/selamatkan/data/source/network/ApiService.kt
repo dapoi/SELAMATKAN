@@ -10,6 +10,9 @@ interface ApiService {
     @GET("indonesia")
     suspend fun getDataCovidIndo(): IndoDataCovidResponse
 
+    @GET("indonesia/provinsi")
+    suspend fun getDataCovidProv(): List<ProvinceCovidResponse>
+
     // ini adalah api rumah sakit
     @GET("get-provinces")
     suspend fun getListProvinces(): ProvinceResponse

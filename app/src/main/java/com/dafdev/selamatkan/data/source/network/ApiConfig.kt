@@ -3,6 +3,7 @@ package com.dafdev.selamatkan.data.source.network
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -26,10 +27,10 @@ object ApiConfig {
     }
 
     fun provideApiCovid(): ApiService {
-        val moshi = MoshiConverterFactory.create()
+        val gson = GsonConverterFactory.create()
         val retrofit = Retrofit.Builder()
             .baseUrl("https://apicovid19indonesia-v2.vercel.app/api/")
-            .addConverterFactory(moshi)
+            .addConverterFactory(gson)
             .client(provideOkHttpClient())
             .build()
         return retrofit.create(ApiService::class.java)

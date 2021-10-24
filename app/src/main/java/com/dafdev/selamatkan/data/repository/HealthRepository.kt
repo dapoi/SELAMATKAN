@@ -9,6 +9,9 @@ class HealthRepository(
     override suspend fun getDataCovidIndonesia(): IndoDataCovidResponse =
         remoteDataSource.getDataCovidIndonesia()
 
+    override suspend fun getDataCovidProv(): List<ProvinceCovidResponse> =
+        remoteDataSource.getDataCovidProv()
+
     override suspend fun getListProvince(): List<ProvincesItem?>? =
         remoteDataSource.getListProvince()
 

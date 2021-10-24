@@ -6,6 +6,8 @@ class RemoteDataSource(private val apiService: ApiService) {
 
     suspend fun getDataCovidIndonesia() = apiService.getDataCovidIndo()
 
+    suspend fun getDataCovidProv() = apiService.getDataCovidProv()
+
     suspend fun getListProvince() = apiService.getListProvinces().provinces
 
     suspend fun getListCites(provinceId: String) = apiService.getListCities(provinceId).cities
@@ -24,15 +26,4 @@ class RemoteDataSource(private val apiService: ApiService) {
 
     suspend fun getLocationHospitalMap(hospitalId: String) =
         apiService.getMapLocation(hospitalId).data
-
-    companion object {
-
-        @Volatile
-        private var INSTANCE: RemoteDataSource? = null
-
-        fun getInstance(apiService: ApiService): RemoteDataSource =
-            INSTANCE ?: synchronized(this) {
-                INSTANCE ?: RemoteDataSource(apiService)
-            }
-    }
 }

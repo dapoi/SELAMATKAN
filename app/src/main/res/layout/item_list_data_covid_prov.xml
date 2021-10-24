@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="10dp"
+    app:cardCornerRadius="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ll_covid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/tv_province"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/encodesans_medium"
+            android:textAlignment="center"
+            android:textColor="@color/dark_gray"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Provinsi" />
+
+        <ImageView
+            android:id="@+id/img_positive"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_positive"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_province" />
+
+        <TextView
+            android:id="@+id/tv_positive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/droid_sans"
+            android:textColor="@color/orange"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/img_positive"
+            app:layout_constraintStart_toStartOf="@+id/img_positive"
+            app:layout_constraintTop_toBottomOf="@+id/img_positive"
+            tools:text="10000000" />
+
+        <TextView
+            android:id="@+id/tv_positive_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/droid_sans"
+            android:text="@string/positive"
+            android:textColor="@color/orange"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/tv_positive"
+            app:layout_constraintStart_toStartOf="@id/tv_positive"
+            app:layout_constraintTop_toBottomOf="@id/tv_positive" />
+
+        <ImageView
+            android:id="@+id/img_negative"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_negative"
+            app:layout_constraintEnd_toStartOf="@+id/img_death"
+            app:layout_constraintStart_toEndOf="@+id/img_positive"
+            app:layout_constraintTop_toTopOf="@+id/img_positive" />
+
+        <TextView
+            android:id="@+id/tv_negative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/droid_sans"
+            android:textColor="@color/green"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/img_negative"
+            app:layout_constraintStart_toStartOf="@+id/img_negative"
+            app:layout_constraintTop_toBottomOf="@+id/img_negative"
+            tools:text="122929929" />
+
+        <TextView
+            android:id="@+id/tv_negative_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/droid_sans"
+            android:text="@string/negative"
+            android:textColor="@color/green"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tv_negative"
+            app:layout_constraintStart_toStartOf="@+id/tv_negative"
+            app:layout_constraintTop_toBottomOf="@+id/tv_negative" />
+
+        <ImageView
+            android:id="@+id/img_death"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="32dp"
+            android:src="@drawable/ic_death"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_negative" />
+
+        <TextView
+            android:id="@+id/tv_death"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/droid_sans"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/img_death"
+            app:layout_constraintStart_toStartOf="@+id/img_death"
+            app:layout_constraintTop_toBottomOf="@+id/img_death"
+            tools:text="12121212" />
+
+        <TextView
+            android:id="@+id/tv_death_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/droid_sans"
+            android:text="@string/die"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tv_death"
+            app:layout_constraintStart_toStartOf="@+id/tv_death"
+            app:layout_constraintTop_toBottomOf="@+id/tv_death" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>
