@@ -38,4 +38,7 @@ class HealthRepository(
 
     override suspend fun getLocationHospitalMap(hospitalId: String): DataMapHospital? =
         remoteDataSource.getLocationHospitalMap(hospitalId)
+
+    override suspend fun getNews(): List<Articles> =
+        remoteDataSource.getNews() as List<Articles>
 }

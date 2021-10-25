@@ -37,6 +37,9 @@ class ViewModelFactory(private val remoteDataSource: RemoteDataSource) :
             modelClass.isAssignableFrom(LocationMapHospitalViewModel::class.java) -> {
                 LocationMapHospitalViewModel(HealthRepository(remoteDataSource)) as T
             }
+            modelClass.isAssignableFrom(NewsViewModel::class.java) -> {
+                NewsViewModel(HealthRepository(remoteDataSource)) as T
+            }
             else -> throw Throwable("Unknown ViewModel Class: " + modelClass.name)
         }
 }

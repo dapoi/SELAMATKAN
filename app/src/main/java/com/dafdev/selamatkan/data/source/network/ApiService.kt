@@ -6,14 +6,18 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    // api covid di Indonesia beserta provinsi
+    /**
+     * API Data Covid
+     */
     @GET("indonesia")
     suspend fun getDataCovidIndo(): IndoDataCovidResponse
 
     @GET("indonesia/provinsi")
     suspend fun getDataCovidProv(): List<ProvinceCovidResponse>
 
-    // ini adalah api rumah sakit
+    /**
+     * Api Rumah Sakit
+     */
     @GET("get-provinces")
     suspend fun getListProvinces(): ProvinceResponse
 
@@ -46,4 +50,18 @@ interface ApiService {
     suspend fun getMapLocation(
         @Query("hospitalid") hospitalId: String
     ): HospitalLocationResponse
+
+    /**
+     * Api Berita
+     */
+    @GET("v2/top-headlines")
+    suspend fun getNews(
+        @Query("country") countryCode: String = "id",
+        @Query("category") category: String = "health",
+        @Query("apiKey") apiKey: String = API_KEY
+    ): NewsResponse
+
+    companion object {
+        private const val API_KEY = "b5e957cc160649c09671f3dc74c2f3b2"
+    }
 }

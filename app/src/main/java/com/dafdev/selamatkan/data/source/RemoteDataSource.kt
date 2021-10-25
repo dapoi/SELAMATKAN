@@ -26,4 +26,6 @@ class RemoteDataSource(private val apiService: ApiService) {
 
     suspend fun getLocationHospitalMap(hospitalId: String) =
         apiService.getMapLocation(hospitalId).data
+
+    suspend fun getNews() = apiService.getNews().articles
 }

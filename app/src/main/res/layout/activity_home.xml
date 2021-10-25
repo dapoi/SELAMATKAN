@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="@color/white"
-        android:paddingHorizontal="40dp"
+        android:paddingHorizontal="20dp"
         app:itemIconSize="25dp"
         app:itemHorizontalTranslationEnabled="false"
         app:itemRippleColor="@null"

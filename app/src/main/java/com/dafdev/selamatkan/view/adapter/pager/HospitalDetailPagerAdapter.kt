@@ -23,6 +23,6 @@ class HospitalDetailPagerAdapter(private val context: Context, fm: FragmentManag
         context.resources.getString(TAB_TITLES[position])
 
     companion object {
-        private val TAB_TITLES = intArrayOf(R.string.covid, R.string.non_covid)
+        private val TAB_TITLES = intArrayOf(R.string.khusus, R.string.umum)
     }
 }

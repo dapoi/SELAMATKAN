@@ -28,4 +28,5 @@ interface IHealthRepository {
 
     suspend fun getLocationHospitalMap(hospitalId: String): DataMapHospital?
 
+    suspend fun getNews(): List<Articles>
 }

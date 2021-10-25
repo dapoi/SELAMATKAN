@@ -4,12 +4,12 @@
     <string name="sign_up">Daftar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="desc1">Aplikasi ini dapat membantumu menemukan rumah sakit covid atau non-covid terdekat</string>
-    <string name="desc2">Kamu juga dapat memantau perkembangan Covid-19 di Indonesia bahkan Provinsi</string>
-    <string name="desc3">Juga terdapat konten berita kesehatan terkini dan terpercaya, dari media ternama di Indonesia</string>
+    <string name="desc1">Aplikasi ini dapat membantu anda menemukan rumah sakit covid atau non-covid terdekat</string>
+    <string name="desc2">Terdapat konten berita kesehatan terkini dan terpercaya, dari media ternama di Indonesia</string>
+    <string name="desc3">Anda juga dapat memantau perkembangan Covid-19 di Indonesia bahkan Provinsi</string>
     <string name="title1">Temukan Pertolongan Terdekat</string>
-    <string name="title2">Data Covid-19</string>
-    <string name="title3">Berita Kesehatan</string>
+    <string name="title2">Berita Kesehatan</string>
+    <string name="title3">Data Covid-19</string>
     <string name="name">Nama</string>
     <string name="sub_title_signup">Silahkan isi data yang diperlukan</string>
     <string name="password">Kata Sandi</string>
@@ -28,8 +28,8 @@
     <string name="die">MENINGGAL</string>
     <string name="view_all">lihat semua >></string>
     <string name="view_clear">lebih jelas >></string>
-    <string name="find_rs">Temukan rumah sakit di wilayah Anda</string>
-    <string name="wish">Apa yang kamu butuhkan? semoga sehat selalu ya ....</string>
+    <string name="find_rs">Temukan rumah sakit di wilayah anda</string>
+    <string name="wish">Apa yang anda butuhkan? semoga sehat selalu ya ....</string>
     <string name="choose_prov">Pilih Provinsi</string>
     <string name="choose_city">Pilih Kota</string>
     <string name="choose_hospital">Pilih Rumah Sakit</string>
@@ -41,8 +41,11 @@
     <string name="phone">No. Telp</string>
     <string name="covid">Covid</string>
     <string name="non_covid">Non-Covid</string>
+    <string name="khusus">Ruang Khusus</string>
+    <string name="umum">Ruang Umum</string>
     <string name="bed_class">Tipe Kamar</string>
-    <string name="empty">Maaf, tidak ada rumah sakit yang terdaftar di kota Anda :(</string>
+    <string name="empty">Maaf, tidak ada data yang terdaftar :(</string>
     <string name="api_key">AIzaSyBrIZ8NJV3ga7TEv3paRnX2pknF56FXtsA</string>
     <string name="data_prov">Data Covid Per Provinsi</string>
+    <string name="article">Artikel Kesehatan</string>
 </resources>
