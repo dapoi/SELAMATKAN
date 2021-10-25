@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.main.CovidHospitalFragment">
+    tools:context=".view.fragment.main.hospital.list.CovidHospitalFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_hospital_covid"
@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_list_covid_hospital" />
+        tools:listitem="@layout/item_list_hospital" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <include
-        android:id="@+id/view_emtpy"
+        android:id="@+id/view_empty"
         layout="@layout/empty_layout"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

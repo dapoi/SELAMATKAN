@@ -11,7 +11,7 @@ import com.dafdev.selamatkan.data.source.network.ApiConfig
 import com.dafdev.selamatkan.data.source.response.DataMapHospital
 import com.dafdev.selamatkan.databinding.ActivityHospitalDetailBinding
 import com.dafdev.selamatkan.utils.Constant
-import com.dafdev.selamatkan.view.adapter.HospitalDetailPagerAdapter
+import com.dafdev.selamatkan.view.adapter.pager.HospitalDetailPagerAdapter
 import com.dafdev.selamatkan.viewmodel.LocationMapHospitalViewModel
 import com.dafdev.selamatkan.viewmodel.ViewModelFactory
 import com.dafdev.selamatkan.vo.Status

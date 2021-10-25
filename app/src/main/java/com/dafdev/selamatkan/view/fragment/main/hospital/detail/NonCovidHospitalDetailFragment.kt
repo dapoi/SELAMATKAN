@@ -1,4 +1,4 @@
-package com.dafdev.selamatkan.view.fragment.main
+package com.dafdev.selamatkan.view.fragment.main.hospital.detail
 
 import android.content.Intent
 import android.net.Uri
@@ -13,26 +13,26 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.data.source.RemoteDataSource
 import com.dafdev.selamatkan.data.source.network.ApiConfig
-import com.dafdev.selamatkan.databinding.FragmentCovidHospitalDetailBinding
+import com.dafdev.selamatkan.databinding.FragmentNonCovidHospitalDetailBinding
 import com.dafdev.selamatkan.utils.Constant
-import com.dafdev.selamatkan.view.adapter.HospitalDetailCovidAdapter
-import com.dafdev.selamatkan.viewmodel.DetailCovidHospitalViewModel
+import com.dafdev.selamatkan.view.adapter.hospital.detail.HospitalDetailNonCovidAdapter
+import com.dafdev.selamatkan.viewmodel.DetailNonCovidHospitalViewModel
 import com.dafdev.selamatkan.viewmodel.ViewModelFactory
 import com.dafdev.selamatkan.vo.Status
 import com.google.android.material.snackbar.Snackbar
 
-class CovidHospitalDetailFragment : Fragment() {
+class NonCovidHospitalDetailFragment : Fragment() {
 
-    private lateinit var binding: FragmentCovidHospitalDetailBinding
-    private lateinit var covidDetailAdapter: HospitalDetailCovidAdapter
-    private lateinit var covidDetailViewModel: DetailCovidHospitalViewModel
+    private lateinit var binding: FragmentNonCovidHospitalDetailBinding
+    private lateinit var nonCovidDetailAdapter: HospitalDetailNonCovidAdapter
+    private lateinit var nonCovidDetailViewModel: DetailNonCovidHospitalViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCovidHospitalDetailBinding.inflate(inflater, container, false)
+        binding = FragmentNonCovidHospitalDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -58,53 +58,47 @@ class CovidHospitalDetailFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        covidDetailAdapter = HospitalDetailCovidAdapter()
-        binding.rvHospitalDetailCovid.apply {
+        nonCovidDetailAdapter = HospitalDetailNonCovidAdapter()
+        binding.rvHospitalDetailNonCovid.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = covidDetailAdapter
+            adapter = nonCovidDetailAdapter
 
-            addOnScrollListener(object : RecyclerView.OnScrollListener(){
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
+            binding.apply {
+                addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                        super.onScrolled(recyclerView, dx, dy)
 
-                    binding.apply {
-                        addOnScrollListener(object : RecyclerView.OnScrollListener(){
-                            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                                super.onScrolled(recyclerView, dx, dy)
+                        // if the recycler view is scrolled
+                        // above hide the FAB
+                        if (dy > 5 && fab.isShown) {
+                            fab.hide()
+                        }
 
-                                // if the recycler view is scrolled
-                                // above hide the FAB
-                                if (dy > 5 && fab.isShown) {
-                                    fab.hide()
-                                }
+                        // if the recycler view is
+                        // scrolled above show the FAB
+                        if (dy < -5 && !fab.isShown) {
+                            fab.show()
+                        }
 
-                                // if the recycler view is
-                                // scrolled above show the FAB
-                                if (dy < -5 && !fab.isShown) {
-                                    fab.show()
-                                }
-
-                                // of the recycler view is at the first
-                                // item always show the FAB
-                                if (!recyclerView.canScrollVertically(-1)) {
-                                    fab.show()
-                                }
-                            }
-                        })
+                        // of the recycler view is at the first
+                        // item always show the FAB
+                        if (!recyclerView.canScrollVertically(-1)) {
+                            fab.show()
+                        }
                     }
-                }
-            })
+                })
+            }
         }
     }
 
     private fun setViewModel() {
         val factory = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiHospital()))
-        covidDetailViewModel = ViewModelProvider(
+        nonCovidDetailViewModel = ViewModelProvider(
             this,
             factory
-        )[DetailCovidHospitalViewModel::class.java]
-        covidDetailViewModel.dataDetailCovidHospital(Constant.hospitalId)
+        )[DetailNonCovidHospitalViewModel::class.java]
+        nonCovidDetailViewModel.dataDetailNonCovidHospital(Constant.hospitalId)
             .observe(viewLifecycleOwner, {
                 it.let { resource ->
                     when (resource.status) {
@@ -114,7 +108,7 @@ class CovidHospitalDetailFragment : Fragment() {
                             if (resource.data.isNullOrEmpty()) {
                                 dataEmpty()
                             } else {
-                                covidDetailAdapter.setData(resource.data)
+                                nonCovidDetailAdapter.setData(resource.data)
                             }
                         }
                         Status.ERROR -> {
@@ -135,6 +129,6 @@ class CovidHospitalDetailFragment : Fragment() {
     }
 
     private fun dataEmpty() {
-        binding.viewEmtpy.root.visibility = View.VISIBLE
+        binding.viewEmpty.root.visibility = View.VISIBLE
     }
 }

@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.dafdev.selamatkan.view.fragment.main.HomeFragment"
+        android:name="com.dafdev.selamatkan.view.fragment.main.bottom.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/nav_article"
-        android:name="com.dafdev.selamatkan.view.fragment.main.ArticleFragment"
+        android:name="com.dafdev.selamatkan.view.fragment.main.bottom.ArticleFragment"
         android:label="fragment_article"
         tools:layout="@layout/fragment_article" />
     <fragment
         android:id="@+id/nav_other"
-        android:name="com.dafdev.selamatkan.view.fragment.main.OtherFragment"
+        android:name="com.dafdev.selamatkan.view.fragment.main.bottom.OtherFragment"
         android:label="fragment_other"
         tools:layout="@layout/fragment_other" />
 

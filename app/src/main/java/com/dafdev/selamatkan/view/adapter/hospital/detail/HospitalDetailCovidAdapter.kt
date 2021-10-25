@@ -1,4 +1,4 @@
-package com.dafdev.selamatkan.view.adapter
+package com.dafdev.selamatkan.view.adapter.hospital.detail
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.data.source.response.BedDetailItem
 import com.dafdev.selamatkan.databinding.ItemDetailHospitalBinding
-import com.dafdev.selamatkan.utils.Constant
 
 class HospitalDetailCovidAdapter :
     RecyclerView.Adapter<HospitalDetailCovidAdapter.HospitalDetailViewHolder>() {
@@ -23,7 +22,7 @@ class HospitalDetailCovidAdapter :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): HospitalDetailCovidAdapter.HospitalDetailViewHolder {
+    ): HospitalDetailViewHolder {
         return HospitalDetailViewHolder(
             ItemDetailHospitalBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -34,7 +33,7 @@ class HospitalDetailCovidAdapter :
     }
 
     override fun onBindViewHolder(
-        holder: HospitalDetailCovidAdapter.HospitalDetailViewHolder,
+        holder: HospitalDetailViewHolder,
         position: Int
     ) {
         holder.bind(listHospitalCovidDetail[position])

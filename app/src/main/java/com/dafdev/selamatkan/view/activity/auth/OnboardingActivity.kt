@@ -7,7 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.dafdev.selamatkan.databinding.ActivityOnboardingBinding
 import com.dafdev.selamatkan.view.activity.main.HomeActivity
-import com.dafdev.selamatkan.view.adapter.OnboardingPagerAdapter
+import com.dafdev.selamatkan.view.adapter.pager.OnboardingPagerAdapter
 import com.google.firebase.auth.FirebaseAuth
 
 class OnboardingActivity : AppCompatActivity() {

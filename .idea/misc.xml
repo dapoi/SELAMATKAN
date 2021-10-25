@@ -40,6 +40,7 @@
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/activity_province_covid.xml" value="0.1859375" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/empty_layout.xml" value="0.2" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_article.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_covid_hospital.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_covid_hospital_detail.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_find.xml" value="0.22" />
@@ -50,7 +51,7 @@
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_other.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_second_onboarding.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_third_onboarding.xml" value="0.2" />
-        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_detail_hospital.xml" value="0.3333333333333333" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_detail_hospital.xml" value="0.22" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_covid_hospital.xml" value="0.3333333333333333" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_covid_stat.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_data_covid_prov.xml" value="0.2" />

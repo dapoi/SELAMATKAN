@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.ActivityHospitalBinding
-import com.dafdev.selamatkan.view.adapter.HospitalPagerAdapter
+import com.dafdev.selamatkan.view.adapter.pager.HospitalPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class HospitalActivity : AppCompatActivity() {

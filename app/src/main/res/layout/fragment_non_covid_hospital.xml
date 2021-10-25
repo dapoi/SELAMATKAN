@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_list_non_covid_hospital" />
+        tools:listitem="@layout/item_list_hospital" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <include
-        android:id="@+id/view_emtpy"
+        android:id="@+id/view_empty"
         layout="@layout/empty_layout"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

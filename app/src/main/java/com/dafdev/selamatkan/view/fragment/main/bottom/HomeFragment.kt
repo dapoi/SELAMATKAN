@@ -1,4 +1,4 @@
-package com.dafdev.selamatkan.view.fragment.main
+package com.dafdev.selamatkan.view.fragment.main.bottom
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -153,9 +153,5 @@ class HomeFragment : Fragment() {
         } else {
             binding.progressBar.visibility = View.GONE
         }
-    }
-
-    companion object {
-        private const val REQ_PERMISSION = 100
     }
 }

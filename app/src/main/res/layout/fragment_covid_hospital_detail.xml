@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.main.CovidHospitalDetailFragment">
+    tools:context=".view.fragment.main.hospital.detail.CovidHospitalDetailFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_hospital_detail_covid"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <include
-        android:id="@+id/view_emtpy"
+        android:id="@+id/view_empty"
         layout="@layout/empty_layout"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

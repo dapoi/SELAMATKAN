@@ -1,4 +1,4 @@
-package com.dafdev.selamatkan.view.adapter
+package com.dafdev.selamatkan.view.adapter.hospital.detail
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -22,7 +22,7 @@ class HospitalDetailNonCovidAdapter :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): HospitalDetailNonCovidAdapter.HospitalDetailViewHolder {
+    ): HospitalDetailViewHolder {
         return HospitalDetailViewHolder(
             ItemDetailHospitalBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -33,7 +33,7 @@ class HospitalDetailNonCovidAdapter :
     }
 
     override fun onBindViewHolder(
-        holder: HospitalDetailNonCovidAdapter.HospitalDetailViewHolder,
+        holder: HospitalDetailViewHolder,
         position: Int
     ) {
         holder.bind(listHospitalNonCovidDetail[position])

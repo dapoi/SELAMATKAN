@@ -1,11 +1,10 @@
-package com.dafdev.selamatkan.view.fragment.main
+package com.dafdev.selamatkan.view.fragment.main.bottom
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dafdev.selamatkan.R
+import androidx.fragment.app.Fragment
 import com.dafdev.selamatkan.databinding.FragmentArticleBinding
 import com.google.android.material.transition.MaterialFadeThrough
 

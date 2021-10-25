@@ -1,4 +1,4 @@
-package com.dafdev.selamatkan.view.adapter
+package com.dafdev.selamatkan.view.adapter.hospital.list
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.data.source.response.HospitalsNonCovidItem
-import com.dafdev.selamatkan.databinding.ItemListNonCovidHospitalBinding
+import com.dafdev.selamatkan.databinding.ItemListHospitalBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.activity.main.HospitalDetailActivity
 
@@ -26,9 +26,9 @@ class HospitalNonCovidAdapter(private val context: Context) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): HospitalNonCovidAdapter.NonCovidViewHolder {
+    ): NonCovidViewHolder {
         return NonCovidViewHolder(
-            ItemListNonCovidHospitalBinding.inflate(
+            ItemListHospitalBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -37,7 +37,7 @@ class HospitalNonCovidAdapter(private val context: Context) :
     }
 
     override fun onBindViewHolder(
-        holder: HospitalNonCovidAdapter.NonCovidViewHolder,
+        holder: NonCovidViewHolder,
         position: Int
     ) {
         holder.bind(listHospital[position])
@@ -45,7 +45,7 @@ class HospitalNonCovidAdapter(private val context: Context) :
 
     override fun getItemCount(): Int = listHospital.size
 
-    inner class NonCovidViewHolder(private val binding: ItemListNonCovidHospitalBinding) :
+    inner class NonCovidViewHolder(private val binding: ItemListHospitalBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: HospitalsNonCovidItem) {
             with(binding) {

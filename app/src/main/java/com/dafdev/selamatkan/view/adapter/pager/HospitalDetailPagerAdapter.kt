@@ -1,12 +1,12 @@
-package com.dafdev.selamatkan.view.adapter
+package com.dafdev.selamatkan.view.adapter.pager
 
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.dafdev.selamatkan.R
-import com.dafdev.selamatkan.view.fragment.main.CovidHospitalDetailFragment
-import com.dafdev.selamatkan.view.fragment.main.NonCovidHospitalDetailFragment
+import com.dafdev.selamatkan.view.fragment.main.hospital.detail.CovidHospitalDetailFragment
+import com.dafdev.selamatkan.view.fragment.main.hospital.detail.NonCovidHospitalDetailFragment
 
 class HospitalDetailPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {

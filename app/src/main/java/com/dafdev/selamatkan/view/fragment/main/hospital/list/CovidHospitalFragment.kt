@@ -1,4 +1,4 @@
-package com.dafdev.selamatkan.view.fragment.main
+package com.dafdev.selamatkan.view.fragment.main.hospital.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,25 +10,25 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dafdev.selamatkan.data.source.RemoteDataSource
 import com.dafdev.selamatkan.data.source.network.ApiConfig
-import com.dafdev.selamatkan.databinding.FragmentNonCovidHospitalBinding
+import com.dafdev.selamatkan.databinding.FragmentCovidHospitalBinding
 import com.dafdev.selamatkan.utils.Constant
-import com.dafdev.selamatkan.view.adapter.HospitalNonCovidAdapter
-import com.dafdev.selamatkan.viewmodel.HospitalNonCovidViewModel
+import com.dafdev.selamatkan.view.adapter.hospital.list.HospitalCovidAdapter
+import com.dafdev.selamatkan.viewmodel.HospitalCovidViewModel
 import com.dafdev.selamatkan.viewmodel.ViewModelFactory
 import com.dafdev.selamatkan.vo.Status
 
-class NonCovidHospitalFragment : Fragment() {
+class CovidHospitalFragment : Fragment() {
 
-    private lateinit var binding: FragmentNonCovidHospitalBinding
-    private lateinit var hospitalAdapter: HospitalNonCovidAdapter
-    private lateinit var hospitalViewModel: HospitalNonCovidViewModel
+    private lateinit var binding: FragmentCovidHospitalBinding
+    private lateinit var hospitalCovidAdapter: HospitalCovidAdapter
+    private lateinit var hospitalViewModel: HospitalCovidViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentNonCovidHospitalBinding.inflate(inflater, container, false)
+        binding = FragmentCovidHospitalBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -40,11 +40,11 @@ class NonCovidHospitalFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        hospitalAdapter = HospitalNonCovidAdapter(requireActivity())
-        with(binding.rvHospitalNonCovid) {
+        hospitalCovidAdapter = HospitalCovidAdapter(requireActivity())
+        with(binding.rvHospitalCovid) {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = hospitalAdapter
+            adapter = hospitalCovidAdapter
         }
     }
 
@@ -53,8 +53,8 @@ class NonCovidHospitalFragment : Fragment() {
         hospitalViewModel = ViewModelProvider(
             requireActivity(),
             factory
-        )[HospitalNonCovidViewModel::class.java]
-        hospitalViewModel.nonCovidHospital(Constant.provinsiId, Constant.kotaId)
+        )[HospitalCovidViewModel::class.java]
+        hospitalViewModel.covidHospital(Constant.provinsiId, Constant.kotaId)
             .observe(viewLifecycleOwner, {
                 it.let { resource ->
                     when (resource.status) {
@@ -64,7 +64,7 @@ class NonCovidHospitalFragment : Fragment() {
                             if (resource.data.isNullOrEmpty()) {
                                 dataEmpty()
                             } else {
-                                hospitalAdapter.setNonCovidHospital(resource.data)
+                                hospitalCovidAdapter.setCovidHospital(resource.data)
                             }
                         }
                         Status.ERROR -> {
@@ -85,6 +85,6 @@ class NonCovidHospitalFragment : Fragment() {
     }
 
     private fun dataEmpty() {
-        binding.viewEmtpy.root.visibility = View.VISIBLE
+        binding.viewEmpty.root.visibility = View.VISIBLE
     }
 }

@@ -1,4 +1,4 @@
-package com.dafdev.selamatkan.view.fragment.main
+package com.dafdev.selamatkan.view.fragment.main.bottom
 
 import android.content.Intent
 import android.os.Bundle

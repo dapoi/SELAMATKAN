@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package com.dafdev.selamatkan.view.adapter
+package com.dafdev.selamatkan.view.adapter.pager
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
