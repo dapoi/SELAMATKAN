@@ -44,7 +44,7 @@ class SignUpActivity : AppCompatActivity() {
                         return@setOnClickListener
                     }
                     email.isEmpty() -> {
-                        inputEmail.error = "Kamu belum memasukkan email"
+                        inputEmail.error = "Email harus diisi"
                         return@setOnClickListener
                     }
                     password.isEmpty() || password.length < 6 -> {
