@@ -8,8 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dafdev.selamatkan.data.source.RemoteDataSource
-import com.dafdev.selamatkan.data.source.network.ApiConfig
+import com.dafdev.selamatkan.data.source.remote.RemoteDataSource
+import com.dafdev.selamatkan.data.source.remote.network.ApiConfig
 import com.dafdev.selamatkan.databinding.FragmentCovidHospitalBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.adapter.hospital.list.HospitalCovidAdapter

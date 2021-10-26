@@ -6,7 +6,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dafdev.selamatkan.data.source.response.HospitalsCovidItem
+import com.dafdev.selamatkan.data.source.remote.response.HospitalsCovidItem
 import com.dafdev.selamatkan.databinding.ItemListHospitalBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.activity.main.HospitalDetailActivity

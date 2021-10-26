@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dafdev.selamatkan.data.source.response.BedDetailItem
+import com.dafdev.selamatkan.data.source.remote.response.BedDetailItem
 import com.dafdev.selamatkan.databinding.ItemDetailHospitalBinding
 
 class HospitalDetailCovidAdapter :

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.dafdev.selamatkan.data.repository.HealthRepository
-import com.dafdev.selamatkan.data.source.response.CitiesItem
+import com.dafdev.selamatkan.data.source.remote.response.CitiesItem
 import com.dafdev.selamatkan.vo.Resource
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber

@@ -3,7 +3,7 @@ package com.dafdev.selamatkan.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dafdev.selamatkan.data.repository.HealthRepository
-import com.dafdev.selamatkan.data.source.RemoteDataSource
+import com.dafdev.selamatkan.data.source.remote.RemoteDataSource
 
 class ViewModelFactory(private val remoteDataSource: RemoteDataSource) :
     ViewModelProvider.NewInstanceFactory() {

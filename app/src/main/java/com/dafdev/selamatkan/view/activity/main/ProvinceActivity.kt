@@ -6,9 +6,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dafdev.selamatkan.data.source.RemoteDataSource
-import com.dafdev.selamatkan.data.source.network.ApiConfig
-import com.dafdev.selamatkan.data.source.response.ProvincesItem
+import com.dafdev.selamatkan.data.source.remote.RemoteDataSource
+import com.dafdev.selamatkan.data.source.remote.network.ApiConfig
+import com.dafdev.selamatkan.data.source.remote.response.ProvincesItem
 import com.dafdev.selamatkan.databinding.ActivityProvinceBinding
 import com.dafdev.selamatkan.view.adapter.ProvinceAdapter
 import com.dafdev.selamatkan.viewmodel.ProvinceViewModel

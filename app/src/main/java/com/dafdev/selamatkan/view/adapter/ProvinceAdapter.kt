@@ -6,7 +6,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dafdev.selamatkan.data.source.response.ProvincesItem
+import com.dafdev.selamatkan.data.source.remote.response.ProvincesItem
 import com.dafdev.selamatkan.databinding.ItemProvinceUntilCityBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.activity.main.CityActivity

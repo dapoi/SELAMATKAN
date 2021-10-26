@@ -1,4 +1,4 @@
-package com.dafdev.selamatkan.data.source.network
+package com.dafdev.selamatkan.data.source.remote.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

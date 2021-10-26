@@ -6,9 +6,9 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.dafdev.selamatkan.R
-import com.dafdev.selamatkan.data.source.RemoteDataSource
-import com.dafdev.selamatkan.data.source.network.ApiConfig
-import com.dafdev.selamatkan.data.source.response.DataMapHospital
+import com.dafdev.selamatkan.data.source.remote.RemoteDataSource
+import com.dafdev.selamatkan.data.source.remote.network.ApiConfig
+import com.dafdev.selamatkan.data.source.remote.response.DataMapHospital
 import com.dafdev.selamatkan.databinding.ActivityHospitalDetailBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.adapter.pager.HospitalDetailPagerAdapter

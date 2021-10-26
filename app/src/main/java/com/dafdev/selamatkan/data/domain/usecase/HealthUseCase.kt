@@ -1,4 +1,4 @@
-package com.dafdev.selamatkan.data.repository
+package com.dafdev.selamatkan.data.domain.usecase
 
 import com.dafdev.selamatkan.data.domain.model.*
 import com.dafdev.selamatkan.data.source.local.model.CovidIndoEntity
@@ -7,7 +7,7 @@ import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.vo.Resource
 import kotlinx.coroutines.flow.Flow
 
-interface IHealthRepository {
+interface HealthUseCase {
 
     fun getDataCovidIndonesia(): Flow<Resource<CovidIndoEntity>>
 

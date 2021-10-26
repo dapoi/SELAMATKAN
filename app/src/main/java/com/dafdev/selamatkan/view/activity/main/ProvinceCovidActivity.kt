@@ -5,8 +5,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dafdev.selamatkan.data.source.RemoteDataSource
-import com.dafdev.selamatkan.data.source.network.ApiConfig
+import com.dafdev.selamatkan.data.source.remote.RemoteDataSource
+import com.dafdev.selamatkan.data.source.remote.network.ApiConfig
 import com.dafdev.selamatkan.databinding.ActivityProvinceCovidBinding
 import com.dafdev.selamatkan.view.adapter.ProvinceCovidAdapter
 import com.dafdev.selamatkan.viewmodel.ProvinceCovidViewModel

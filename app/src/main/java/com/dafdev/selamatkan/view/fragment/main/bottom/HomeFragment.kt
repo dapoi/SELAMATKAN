@@ -10,9 +10,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dafdev.selamatkan.data.source.RemoteDataSource
-import com.dafdev.selamatkan.data.source.network.ApiConfig
-import com.dafdev.selamatkan.data.source.response.ProvincesItem
+import com.dafdev.selamatkan.data.source.remote.RemoteDataSource
+import com.dafdev.selamatkan.data.source.remote.network.ApiConfig
+import com.dafdev.selamatkan.data.source.remote.response.ProvincesItem
 import com.dafdev.selamatkan.databinding.FragmentHomeBinding
 import com.dafdev.selamatkan.view.activity.main.ProvinceActivity
 import com.dafdev.selamatkan.view.activity.main.ProvinceCovidActivity
