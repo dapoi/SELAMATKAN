@@ -108,15 +108,11 @@ class CovidHospitalDetailFragment : Fragment() {
                     is Resource.Loading -> progressBar(true)
                     is Resource.Success -> {
                         progressBar(false)
-                        if (it.data.isNullOrEmpty()) {
-                            dataEmpty()
-                        } else {
-                            covidDetailAdapter.setData(it.data)
-                        }
+                        covidDetailAdapter.setData(it.data!!)
                     }
                     is Resource.Error -> {
                         progressBar(false)
-                        Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
+                        dataEmpty()
                     }
                 }
             })

@@ -33,7 +33,7 @@ object DataMapper {
         val listNews = ArrayList<NewsEntity>()
         newsResponse.map {
             val newsEntity = NewsEntity(
-                0,
+                null,
                 it.author,
                 it.title,
                 it.publishedAt,

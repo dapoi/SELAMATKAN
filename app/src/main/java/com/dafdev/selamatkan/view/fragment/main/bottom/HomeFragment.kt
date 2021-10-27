@@ -14,12 +14,10 @@ import com.dafdev.selamatkan.view.activity.main.ProvinceActivity
 import com.dafdev.selamatkan.view.activity.main.ProvinceCovidActivity
 import com.dafdev.selamatkan.view.adapter.ProvinceAdapter
 import com.dafdev.selamatkan.viewmodel.IndoDataCovidViewModel
-import com.dafdev.selamatkan.viewmodel.ProvinceInsideViewModel
 import com.dafdev.selamatkan.viewmodel.ProvinceViewModel
 import com.dafdev.selamatkan.viewmodel.ViewModelFactory
 import com.dafdev.selamatkan.vo.Resource
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.transition.MaterialFadeThrough
 import com.google.firebase.firestore.FirebaseFirestore
 import timber.log.Timber
 import java.util.*
@@ -31,12 +29,6 @@ class HomeFragment : Fragment() {
     private lateinit var provinceAdapter: ProvinceAdapter
     private lateinit var provinceViewModel: ProvinceViewModel
     private lateinit var covidViewModel: IndoDataCovidViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        enterTransition = MaterialFadeThrough()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

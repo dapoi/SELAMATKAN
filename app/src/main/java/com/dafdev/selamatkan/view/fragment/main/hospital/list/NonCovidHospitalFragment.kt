@@ -13,7 +13,6 @@ import com.dafdev.selamatkan.view.adapter.hospital.list.HospitalNonCovidAdapter
 import com.dafdev.selamatkan.viewmodel.HospitalNonCovidViewModel
 import com.dafdev.selamatkan.viewmodel.ViewModelFactory
 import com.dafdev.selamatkan.vo.Resource
-import com.google.android.material.snackbar.Snackbar
 
 class NonCovidHospitalFragment : Fragment() {
 
@@ -58,15 +57,11 @@ class NonCovidHospitalFragment : Fragment() {
                     is Resource.Loading -> progressBar(true)
                     is Resource.Success -> {
                         progressBar(false)
-                        if (it.data.isNullOrEmpty()) {
-                            dataEmpty()
-                        } else {
-                            hospitalAdapter.setNonCovidHospital(it.data)
-                        }
+                        hospitalAdapter.setNonCovidHospital(it.data!!)
                     }
                     is Resource.Error -> {
                         progressBar(false)
-                        Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
+                        dataEmpty()
                     }
                 }
             })
