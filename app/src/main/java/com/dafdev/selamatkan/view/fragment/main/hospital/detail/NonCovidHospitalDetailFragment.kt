@@ -11,14 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dafdev.selamatkan.data.source.remote.RemoteDataSource
-import com.dafdev.selamatkan.data.source.remote.network.ApiConfig
 import com.dafdev.selamatkan.databinding.FragmentNonCovidHospitalDetailBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.adapter.hospital.detail.HospitalDetailNonCovidAdapter
 import com.dafdev.selamatkan.viewmodel.DetailNonCovidHospitalViewModel
 import com.dafdev.selamatkan.viewmodel.ViewModelFactory
-import com.dafdev.selamatkan.vo.Status
+import com.dafdev.selamatkan.vo.Resource
 import com.google.android.material.snackbar.Snackbar
 
 class NonCovidHospitalDetailFragment : Fragment() {
@@ -93,28 +91,26 @@ class NonCovidHospitalDetailFragment : Fragment() {
     }
 
     private fun setViewModel() {
-        val factory = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiHospital()))
+        val factory = ViewModelFactory.getInstance(requireActivity())
         nonCovidDetailViewModel = ViewModelProvider(
             this,
             factory
         )[DetailNonCovidHospitalViewModel::class.java]
         nonCovidDetailViewModel.dataDetailNonCovidHospital(Constant.hospitalId)
             .observe(viewLifecycleOwner, {
-                it.let { resource ->
-                    when (resource.status) {
-                        Status.LOADING -> progressBar(true)
-                        Status.SUCCESS -> {
-                            progressBar(false)
-                            if (resource.data.isNullOrEmpty()) {
-                                dataEmpty()
-                            } else {
-                                nonCovidDetailAdapter.setData(resource.data)
-                            }
+                when (it) {
+                    is Resource.Loading -> progressBar(true)
+                    is Resource.Success -> {
+                        progressBar(false)
+                        if (it.data.isNullOrEmpty()) {
+                            dataEmpty()
+                        } else {
+                            nonCovidDetailAdapter.setData(it.data)
                         }
-                        Status.ERROR -> {
-                            progressBar(false)
-                            Snackbar.make(binding.root, "error", Snackbar.LENGTH_LONG).show()
-                        }
+                    }
+                    is Resource.Error -> {
+                        progressBar(false)
+                        Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
                     }
                 }
             })

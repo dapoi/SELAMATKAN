@@ -6,18 +6,18 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
+import com.dafdev.selamatkan.data.domain.model.Province
 import com.dafdev.selamatkan.databinding.ItemProvinceUntilCityBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.activity.main.CityActivity
 
-class ProvinceAdapter(private val context: Context) :
-    RecyclerView.Adapter<ProvinceAdapter.ProvinceViewHolder>() {
+class ProvinceInsideAdapter(private val context: Context) :
+    RecyclerView.Adapter<ProvinceInsideAdapter.ProvinceViewHolder>() {
 
-    private val listProvince = ArrayList<ProvinceEntity>()
+    private val listProvince = ArrayList<Province>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setProvinceAdapter(data: List<ProvinceEntity>) {
+    fun setProvinceAdapter(data: List<Province>) {
         listProvince.clear()
         listProvince.addAll(data)
         notifyDataSetChanged()
@@ -26,7 +26,7 @@ class ProvinceAdapter(private val context: Context) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ProvinceAdapter.ProvinceViewHolder {
+    ): ProvinceInsideAdapter.ProvinceViewHolder {
         return ProvinceViewHolder(
             ItemProvinceUntilCityBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -36,7 +36,7 @@ class ProvinceAdapter(private val context: Context) :
         )
     }
 
-    override fun onBindViewHolder(holder: ProvinceAdapter.ProvinceViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ProvinceInsideAdapter.ProvinceViewHolder, position: Int) {
         holder.bind(listProvince[position])
     }
 
@@ -44,11 +44,11 @@ class ProvinceAdapter(private val context: Context) :
 
     inner class ProvinceViewHolder(private val binding: ItemProvinceUntilCityBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: ProvinceEntity) {
+        fun bind(data: Province) {
             with(binding) {
                 tvTerritorial.text = data.name
                 cvTerritorial.setOnClickListener {
-                    Constant.provinsiId = data.id
+                    Constant.provinsiId = data.id!!
                     Intent(context, CityActivity::class.java).also {
                         context.startActivity(it)
                     }

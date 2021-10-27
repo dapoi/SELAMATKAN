@@ -11,14 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dafdev.selamatkan.data.source.remote.RemoteDataSource
-import com.dafdev.selamatkan.data.source.remote.network.ApiConfig
 import com.dafdev.selamatkan.databinding.FragmentCovidHospitalDetailBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.adapter.hospital.detail.HospitalDetailCovidAdapter
 import com.dafdev.selamatkan.viewmodel.DetailCovidHospitalViewModel
 import com.dafdev.selamatkan.viewmodel.ViewModelFactory
-import com.dafdev.selamatkan.vo.Status
+import com.dafdev.selamatkan.vo.Resource
 import com.google.android.material.snackbar.Snackbar
 
 class CovidHospitalDetailFragment : Fragment() {
@@ -64,12 +62,12 @@ class CovidHospitalDetailFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = covidDetailAdapter
 
-            addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
 
                     binding.apply {
-                        addOnScrollListener(object : RecyclerView.OnScrollListener(){
+                        addOnScrollListener(object : RecyclerView.OnScrollListener() {
                             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                                 super.onScrolled(recyclerView, dx, dy)
 
@@ -99,28 +97,26 @@ class CovidHospitalDetailFragment : Fragment() {
     }
 
     private fun setViewModel() {
-        val factory = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiHospital()))
+        val factory = ViewModelFactory.getInstance(requireActivity())
         covidDetailViewModel = ViewModelProvider(
             this,
             factory
         )[DetailCovidHospitalViewModel::class.java]
         covidDetailViewModel.dataDetailCovidHospital(Constant.hospitalId)
             .observe(viewLifecycleOwner, {
-                it.let { resource ->
-                    when (resource.status) {
-                        Status.LOADING -> progressBar(true)
-                        Status.SUCCESS -> {
-                            progressBar(false)
-                            if (resource.data.isNullOrEmpty()) {
-                                dataEmpty()
-                            } else {
-                                covidDetailAdapter.setData(resource.data)
-                            }
+                when (it) {
+                    is Resource.Loading -> progressBar(true)
+                    is Resource.Success -> {
+                        progressBar(false)
+                        if (it.data.isNullOrEmpty()) {
+                            dataEmpty()
+                        } else {
+                            covidDetailAdapter.setData(it.data)
                         }
-                        Status.ERROR -> {
-                            progressBar(false)
-                            Snackbar.make(binding.root, "error", Snackbar.LENGTH_LONG).show()
-                        }
+                    }
+                    is Resource.Error -> {
+                        progressBar(false)
+                        Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
                     }
                 }
             })

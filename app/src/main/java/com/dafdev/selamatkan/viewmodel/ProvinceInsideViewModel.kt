@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.dafdev.selamatkan.data.domain.usecase.HealthUseCase
 
-class ProvinceCovidViewModel(private val covid: HealthUseCase) : ViewModel() {
+class ProvinceInsideViewModel(private val province: HealthUseCase) : ViewModel() {
 
-    fun dataCovidProv() = covid.getDataCovidProv().asLiveData()
+    fun getListProvInside() = province.getListProvinceInside().asLiveData()
 }

@@ -4,17 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dafdev.selamatkan.data.source.remote.RemoteDataSource
-import com.dafdev.selamatkan.data.source.remote.network.ApiConfig
 import com.dafdev.selamatkan.databinding.FragmentArticleBinding
 import com.dafdev.selamatkan.view.adapter.NewsAdapter
 import com.dafdev.selamatkan.viewmodel.NewsViewModel
 import com.dafdev.selamatkan.viewmodel.ViewModelFactory
-import com.dafdev.selamatkan.vo.Status
+import com.dafdev.selamatkan.vo.Resource
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialFadeThrough
 
 class ArticleFragment : Fragment() {
@@ -55,20 +53,18 @@ class ArticleFragment : Fragment() {
     }
 
     private fun setViewModel() {
-        val factory = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiNews()))
+        val factory = ViewModelFactory.getInstance(requireActivity())
         newsViewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
         newsViewModel.getNews().observe(viewLifecycleOwner, {
-            it.let { resource ->
-                when (resource.status) {
-                    Status.LOADING -> progressBar(true)
-                    Status.SUCCESS -> {
-                        progressBar(false)
-                        newsAdapter.setNews(resource.data!!)
-                    }
-                    Status.ERROR -> {
-                        progressBar(false)
-                        Toast.makeText(requireActivity(), "Error", Toast.LENGTH_SHORT).show()
-                    }
+            when (it) {
+                is Resource.Loading -> progressBar(true)
+                is Resource.Success -> {
+                    progressBar(false)
+                    newsAdapter.setNews(it.data!!)
+                }
+                is Resource.Error -> {
+                    progressBar(false)
+                    Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
                 }
             }
         })

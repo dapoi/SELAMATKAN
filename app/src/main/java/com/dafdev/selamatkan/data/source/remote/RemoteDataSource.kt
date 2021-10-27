@@ -8,11 +8,15 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import timber.log.Timber
 
-class RemoteDataSource private constructor(private val apiService: ApiService) {
+class RemoteDataSource private constructor(
+    private val apiHospital: ApiService,
+    private val apiCovid: ApiService,
+    private val apiNews: ApiService
+) {
 
     fun getDataCovidIndo() = flow {
         try {
-            val data = apiService.getDataCovidIndo()
+            val data = apiCovid.getDataCovidIndo()
             emit(ApiResponse.Success(data))
             Timber.d(data.toString())
         } catch (e: Exception) {
@@ -23,7 +27,7 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
 
     fun getDataCovidProv() = flow {
         try {
-            val data = apiService.getDataCovidProv()
+            val data = apiCovid.getDataCovidProv()
             if (data.isNotEmpty()) {
                 emit(ApiResponseOnline.Success(data))
                 Timber.d(data.toString())
@@ -38,7 +42,7 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
 
     fun getListProvinceHome() = flow {
         try {
-            val data = apiService.getListProvinces().provinces
+            val data = apiHospital.getListProvinces().provinces
             if (data != null) {
                 if (data.isNotEmpty()) {
                     emit(ApiResponse.Success(data))
@@ -55,7 +59,7 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
 
     fun getListProvinceInside() = flow {
         try {
-            val data = apiService.getListProvinces().provinces
+            val data = apiHospital.getListProvinces().provinces
             if (data != null) {
                 if (data.isNotEmpty()) {
                     emit(ApiResponseOnline.Success(data))
@@ -72,7 +76,7 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
 
     fun getListCities(provinceId: String) = flow {
         try {
-            val data = apiService.getListCities(provinceId).cities
+            val data = apiHospital.getListCities(provinceId).cities
             if (data != null) {
                 if (data.isNotEmpty()) {
                     emit(ApiResponseOnline.Success(data))
@@ -89,7 +93,7 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
 
     fun getListCovidHospital(provinceId: String, cityId: String) = flow {
         try {
-            val data = apiService.getListHospitalsCovid(provinceId, cityId, "1").hospitals
+            val data = apiHospital.getListHospitalsCovid(provinceId, cityId, "1").hospitals
             if (data != null) {
                 if (data.isNotEmpty()) {
                     emit(ApiResponseOnline.Success(data))
@@ -106,7 +110,7 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
 
     fun getListNonCovidHospital(provinceId: String, cityId: String) = flow {
         try {
-            val data = apiService.getListHospitalsNonCovid(provinceId, cityId, "2").hospitals
+            val data = apiHospital.getListHospitalsNonCovid(provinceId, cityId, "2").hospitals
             if (data != null) {
                 if (data.isNotEmpty()) {
                     emit(ApiResponseOnline.Success(data))
@@ -123,7 +127,7 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
 
     fun getDetailCovidHospital(hospitalId: String) = flow {
         try {
-            val data = apiService.getListDetails(hospitalId, "1").data?.bedDetail
+            val data = apiHospital.getListDetails(hospitalId, "1").data?.bedDetail
             if (data != null) {
                 if (data.isNotEmpty()) {
                     emit(ApiResponseOnline.Success(data))
@@ -140,7 +144,7 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
 
     fun getDetailNonCovidHospital(hospitalId: String) = flow {
         try {
-            val data = apiService.getListDetails(hospitalId, "2").data?.bedDetail
+            val data = apiHospital.getListDetails(hospitalId, "2").data?.bedDetail
             if (data != null) {
                 if (data.isNotEmpty()) {
                     emit(ApiResponseOnline.Success(data))
@@ -157,7 +161,7 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
 
     fun getLocationHospital(hospitalId: String) = flow {
         try {
-            val data = apiService.getMapLocation(hospitalId).data
+            val data = apiHospital.getMapLocation(hospitalId).data
             emit(ApiResponseOnline.Success(data))
             Timber.d(data.toString())
         } catch (e: Exception) {
@@ -168,7 +172,7 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
 
     fun getNews() = flow {
         try {
-            val data = apiService.getNews().articles
+            val data = apiNews.getNews().articles
             if (data != null) {
                 if (data.isNotEmpty()) {
                     emit(ApiResponse.Success(data))
@@ -188,9 +192,13 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
         @Volatile
         private var INSTANCE: RemoteDataSource? = null
 
-        fun getInstance(apiService: ApiService): RemoteDataSource =
+        fun getInstance(
+            apiHospital: ApiService,
+            apiCovid: ApiService,
+            apiNews: ApiService
+        ): RemoteDataSource =
             INSTANCE ?: synchronized(this) {
-                INSTANCE ?: RemoteDataSource(apiService)
+                INSTANCE ?: RemoteDataSource(apiHospital, apiCovid, apiNews)
             }
     }
 }

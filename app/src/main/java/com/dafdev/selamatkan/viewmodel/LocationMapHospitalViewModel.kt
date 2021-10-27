@@ -1,22 +1,11 @@
 package com.dafdev.selamatkan.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import com.dafdev.selamatkan.data.repository.HealthRepository
-import com.dafdev.selamatkan.vo.Resource
-import kotlinx.coroutines.Dispatchers
-import timber.log.Timber
+import androidx.lifecycle.asLiveData
+import com.dafdev.selamatkan.data.domain.usecase.HealthUseCase
 
-class LocationMapHospitalViewModel(private val location: HealthRepository) : ViewModel() {
+class LocationMapHospitalViewModel(private val location: HealthUseCase) : ViewModel() {
 
-    fun getLocationHospital(hospitalId: String) = liveData(Dispatchers.IO) {
-        emit(Resource.loading(null))
-        try {
-            val dataLocation = location.getLocationHospitalMap(hospitalId)
-            emit(Resource.success(dataLocation))
-            Timber.d(dataLocation.toString())
-        } catch (e: Exception) {
-            emit(Resource.error(null, e.message.toString()))
-        }
-    }
+    fun getLocationHospital(hospitalId: String) =
+        location.getLocationHospitalMap(hospitalId).asLiveData()
 }

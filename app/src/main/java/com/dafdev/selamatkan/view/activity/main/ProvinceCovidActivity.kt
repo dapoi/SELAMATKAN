@@ -5,13 +5,11 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dafdev.selamatkan.data.source.remote.RemoteDataSource
-import com.dafdev.selamatkan.data.source.remote.network.ApiConfig
 import com.dafdev.selamatkan.databinding.ActivityProvinceCovidBinding
 import com.dafdev.selamatkan.view.adapter.ProvinceCovidAdapter
 import com.dafdev.selamatkan.viewmodel.ProvinceCovidViewModel
 import com.dafdev.selamatkan.viewmodel.ViewModelFactory
-import com.dafdev.selamatkan.vo.Status
+import com.dafdev.selamatkan.vo.Resource
 import com.google.android.material.snackbar.Snackbar
 
 class ProvinceCovidActivity : AppCompatActivity() {
@@ -41,20 +39,18 @@ class ProvinceCovidActivity : AppCompatActivity() {
     }
 
     private fun setViewModel() {
-        val factory = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiCovid()))
+        val factory = ViewModelFactory.getInstance(this)
         covidViewModel = ViewModelProvider(this, factory)[ProvinceCovidViewModel::class.java]
         covidViewModel.dataCovidProv().observe(this, {
-            it.let { resource ->
-                when (resource.status) {
-                    Status.LOADING -> progressBar(true)
-                    Status.SUCCESS -> {
-                        progressBar(false)
-                        covidAdapter.setData(resource.data!!)
-                    }
-                    Status.ERROR -> {
-                        progressBar(false)
-                        Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
-                    }
+            when (it) {
+                is Resource.Loading -> progressBar(true)
+                is Resource.Success -> {
+                    progressBar(false)
+                    covidAdapter.setData(it.data!!)
+                }
+                is Resource.Error -> {
+                    progressBar(false)
+                    Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
                 }
             }
         })

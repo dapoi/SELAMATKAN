@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.dafdev.selamatkan.data.source.remote.response.Articles
+import com.dafdev.selamatkan.data.source.local.model.NewsEntity
 import com.dafdev.selamatkan.databinding.ItemNewsBinding
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
-    private val listNews = ArrayList<Articles>()
+    private val listNews = ArrayList<NewsEntity>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setNews(data: List<Articles>) {
+    fun setNews(data: List<NewsEntity>) {
         listNews.clear()
         listNews.addAll(data)
         notifyDataSetChanged()
@@ -31,7 +31,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     inner class NewsViewHolder(private val binding: ItemNewsBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: Articles) {
+        fun bind(data: NewsEntity) {
             with(binding) {
                 Glide.with(itemView.context)
                     .load(data.urlToImage)

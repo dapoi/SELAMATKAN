@@ -21,8 +21,8 @@ object DataMapper {
         val listProv = ArrayList<ProvinceEntity>()
         provinceResponse.map {
             val provinceEntity = ProvinceEntity(
-                it.id,
-                it.name,
+                it.name!!,
+                it.id!!,
             )
             listProv.add(provinceEntity)
         }
@@ -93,7 +93,8 @@ object DataMapper {
                 it.id,
                 it.name,
                 it.address,
-                it.phone
+                it.phone,
+                it.info
             )
             listHospital.add(hospitalCovid)
         }
@@ -107,7 +108,8 @@ object DataMapper {
                 it.id,
                 it.name,
                 it.address,
-                it.phone
+                it.phone,
+                it.available_beds?.get(0)?.info
             )
             listHospital.add(hospitalNonCovid)
         }
