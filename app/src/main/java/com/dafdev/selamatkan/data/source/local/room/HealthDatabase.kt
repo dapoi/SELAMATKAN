@@ -6,10 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.dafdev.selamatkan.data.source.local.model.CovidIndoEntity
 import com.dafdev.selamatkan.data.source.local.model.NewsEntity
+import com.dafdev.selamatkan.data.source.local.model.NewsFavEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 
 @Database(
-    entities = [CovidIndoEntity::class, ProvinceEntity::class, NewsEntity::class],
+    entities = [CovidIndoEntity::class, ProvinceEntity::class, NewsEntity::class, NewsFavEntity::class],
     version = 1,
     exportSchema = false
 )

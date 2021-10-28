@@ -35,5 +35,9 @@ interface IHealthRepository {
 
     fun getLocationHospitalMap(hospitalId: String): Flow<Resource<Location>>
 
-    fun getNews(): Flow<Resource<List<NewsEntity>>>
+    fun getNews(): Flow<Resource<List<News>>>
+
+    fun updateFavNews(newsEntity: News, fav: Boolean)
+
+    fun getFavNews(): Flow<List<News>>
 }

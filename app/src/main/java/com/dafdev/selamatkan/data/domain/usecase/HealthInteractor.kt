@@ -3,7 +3,6 @@ package com.dafdev.selamatkan.data.domain.usecase
 import com.dafdev.selamatkan.data.domain.model.*
 import com.dafdev.selamatkan.data.repository.IHealthRepository
 import com.dafdev.selamatkan.data.source.local.model.CovidIndoEntity
-import com.dafdev.selamatkan.data.source.local.model.NewsEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.vo.Resource
 import kotlinx.coroutines.flow.Flow
@@ -55,8 +54,16 @@ class HealthInteractor(private val iHealthRepository: IHealthRepository) : Healt
         return iHealthRepository.getLocationHospitalMap(hospitalId)
     }
 
-    override fun getNews(): Flow<Resource<List<NewsEntity>>> {
+    override fun getNews(): Flow<Resource<List<News>>> {
         return iHealthRepository.getNews()
+    }
+
+    override fun updateFavNews(news: News, fav: Boolean) {
+        return iHealthRepository.updateFavNews(news, fav)
+    }
+
+    override fun getFavNews(): Flow<List<News>> {
+        return iHealthRepository.getFavNews()
     }
 
 }

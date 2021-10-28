@@ -2,6 +2,7 @@ package com.dafdev.selamatkan.data.source.local
 
 import com.dafdev.selamatkan.data.source.local.model.CovidIndoEntity
 import com.dafdev.selamatkan.data.source.local.model.NewsEntity
+import com.dafdev.selamatkan.data.source.local.model.NewsFavEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.data.source.local.room.HealthDao
 import kotlinx.coroutines.flow.Flow
@@ -21,6 +22,13 @@ class LocalDataSource private constructor(private val healthDao: HealthDao) {
         healthDao.insertProvinceHome(provinceEntity)
 
     suspend fun insertListNews(newsEntity: List<NewsEntity>) = healthDao.insertNews(newsEntity)
+
+    fun updateFavNews(newsFavEntity: NewsFavEntity, fav: Boolean) {
+        newsFavEntity.isFav = fav
+        healthDao.updateFavNews(newsFavEntity)
+    }
+
+    fun getFavNews(): Flow<List<NewsFavEntity>> = healthDao.getFavNews()
 
     companion object {
         private var INSTANCE: LocalDataSource? = null

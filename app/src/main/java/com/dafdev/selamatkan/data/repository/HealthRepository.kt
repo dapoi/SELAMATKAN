@@ -5,7 +5,6 @@ import com.dafdev.selamatkan.data.source.NetworkBoundResource
 import com.dafdev.selamatkan.data.source.NetworkOnlyResource
 import com.dafdev.selamatkan.data.source.local.LocalDataSource
 import com.dafdev.selamatkan.data.source.local.model.CovidIndoEntity
-import com.dafdev.selamatkan.data.source.local.model.NewsEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.data.source.remote.RemoteDataSource
 import com.dafdev.selamatkan.data.source.remote.network.ApiResponse
@@ -15,6 +14,7 @@ import com.dafdev.selamatkan.utils.AppExecutors
 import com.dafdev.selamatkan.utils.DataMapper
 import com.dafdev.selamatkan.vo.Resource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class HealthRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
@@ -152,22 +152,38 @@ class HealthRepository private constructor(
         }.asFlow()
     }
 
-    override fun getNews(): Flow<Resource<List<NewsEntity>>> {
-        return object : NetworkBoundResource<List<NewsEntity>, List<Articles>>(appExecutors) {
-            override fun loadFromDB(): Flow<List<NewsEntity>> = localDataSource.getListNews()
+    override fun getNews(): Flow<Resource<List<News>>> {
+        return object : NetworkBoundResource<List<News>, List<Articles>>(appExecutors) {
+            override fun loadFromDB(): Flow<List<News>> =
+                localDataSource.getListNews().map {
+                    DataMapper.mapNewsEntitiesToDomain(it)
+                }
 
-            override fun shouldFetch(data: List<NewsEntity>?): Boolean =
+            override fun shouldFetch(data: List<News>?): Boolean =
                 data == null || data.isEmpty()
 
             override suspend fun createCall(): Flow<ApiResponse<List<Articles>>> =
                 remoteDataSource.getNews() as Flow<ApiResponse<List<Articles>>>
 
-            override suspend fun saveCallResult(data: List<Articles>) {
+            override suspend fun saveCallResult(data: List<Articles>) =
                 DataMapper.mapNewsResponseToEntity(data).let {
                     localDataSource.insertListNews(it)
                 }
-            }
+
         }.asFlow()
+    }
+
+    override fun updateFavNews(newsEntity: News, fav: Boolean) {
+        val favEntity = DataMapper.mapNewsDomainToFavEntity(newsEntity)
+        appExecutors.diskIO().execute {
+            localDataSource.updateFavNews(favEntity, fav)
+        }
+    }
+
+    override fun getFavNews(): Flow<List<News>> {
+        return localDataSource.getFavNews().map {
+            DataMapper.mapNewsFavEntitiesToDomain(it)
+        }
     }
 
     companion object {

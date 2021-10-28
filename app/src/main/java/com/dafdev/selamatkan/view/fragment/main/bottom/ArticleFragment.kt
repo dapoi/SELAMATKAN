@@ -1,6 +1,10 @@
 package com.dafdev.selamatkan.view.fragment.main.bottom
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,15 +33,27 @@ class ArticleFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setAdapter()
-        setViewModel()
+        binding.apply {
+            swipe.setColorSchemeColors(Color.BLUE)
+
+            setViewModel()
+            setAdapter()
+            swipe.setOnRefreshListener {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    setViewModel()
+                    setAdapter()
+                    binding.swipe.isRefreshing = false
+                }, 2000)
+            }
+        }
     }
 
     private fun setAdapter() {
-        newsAdapter = NewsAdapter()
+        newsAdapter = NewsAdapter(requireActivity())
         binding.rvNews.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.dafdev.selamatkan.databinding.FragmentOtherBinding
+import com.dafdev.selamatkan.utils.SharedPref
 import com.dafdev.selamatkan.view.activity.auth.OnboardingActivity
 import com.google.firebase.auth.FirebaseAuth
 
@@ -14,6 +15,7 @@ class OtherFragment : Fragment() {
 
     private lateinit var binding: FragmentOtherBinding
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var pref: SharedPref
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,8 +30,10 @@ class OtherFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mAuth = FirebaseAuth.getInstance()
+        pref = SharedPref(requireActivity())
 
         binding.test.setOnClickListener {
+            pref.clearUser()
             mAuth.signOut()
             startActivity(Intent(requireActivity(), OnboardingActivity::class.java))
         }
