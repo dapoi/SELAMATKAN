@@ -6,7 +6,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.dafdev.selamatkan.data.source.local.model.CovidIndoEntity
 import com.dafdev.selamatkan.data.source.local.model.NewsEntity
-import com.dafdev.selamatkan.data.source.local.model.NewsFavEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -30,10 +29,4 @@ interface HealthDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNews(newsEntity: List<NewsEntity>)
-
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun updateFavNews(newsEntity: NewsFavEntity)
-
-    @Query("SELECT * FROM fav_news WHERE favorite = 1")
-    fun getFavNews(): Flow<List<NewsFavEntity>>
 }

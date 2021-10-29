@@ -33,10 +33,10 @@ class HealthRepository private constructor(
             override suspend fun createCall(): Flow<ApiResponse<IndoDataCovidResponse>> =
                 remoteDataSource.getDataCovidIndo()
 
-            override suspend fun saveCallResult(data: IndoDataCovidResponse) =
-                DataMapper.mapCovidResponseToEntity(data).let {
-                    localDataSource.insertCovidIndo(it)
-                }
+            override suspend fun saveCallResult(data: IndoDataCovidResponse) {
+                val entity = DataMapper.mapCovidResponseToEntity(data)
+                localDataSource.insertCovidIndo(entity)
+            }
         }.asFlow()
     }
 
@@ -63,9 +63,8 @@ class HealthRepository private constructor(
                 remoteDataSource.getListProvinceHome() as Flow<ApiResponse<List<ProvincesItem>>>
 
             override suspend fun saveCallResult(data: List<ProvincesItem>) {
-                DataMapper.mapProvinceResponseToEntity(data).let {
-                    localDataSource.insertListProvinceHome(it)
-                }
+                val entity = DataMapper.mapProvinceResponseToEntity(data)
+                localDataSource.insertListProvinceHome(entity)
             }
         }.asFlow()
     }
@@ -163,27 +162,13 @@ class HealthRepository private constructor(
                 data == null || data.isEmpty()
 
             override suspend fun createCall(): Flow<ApiResponse<List<Articles>>> =
-                remoteDataSource.getNews() as Flow<ApiResponse<List<Articles>>>
+                remoteDataSource.getNews()
 
-            override suspend fun saveCallResult(data: List<Articles>) =
-                DataMapper.mapNewsResponseToEntity(data).let {
-                    localDataSource.insertListNews(it)
-                }
-
+            override suspend fun saveCallResult(data: List<Articles>) {
+                val entity = DataMapper.mapNewsResponseToEntity(data)
+                localDataSource.insertListNews(entity)
+            }
         }.asFlow()
-    }
-
-    override fun updateFavNews(newsEntity: News, fav: Boolean) {
-        val favEntity = DataMapper.mapNewsDomainToFavEntity(newsEntity)
-        appExecutors.diskIO().execute {
-            localDataSource.updateFavNews(favEntity, fav)
-        }
-    }
-
-    override fun getFavNews(): Flow<List<News>> {
-        return localDataSource.getFavNews().map {
-            DataMapper.mapNewsFavEntitiesToDomain(it)
-        }
     }
 
     companion object {

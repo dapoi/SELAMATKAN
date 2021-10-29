@@ -16,6 +16,9 @@
         android:theme="@style/Theme.SELAMATKAN"
         tools:targetApi="m">
         <activity
+            android:name=".view.activity.main.DetailNewsActivity"
+            android:configChanges="orientation|screenSize"/>
+        <activity
             android:name=".view.activity.main.ProvinceCovidActivity"
             android:exported="false" />
         <activity
@@ -35,6 +38,7 @@
         <activity
             android:name=".view.activity.main.HomeActivity"
             android:exported="false"
+            android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".view.activity.auth.LogInActivity"

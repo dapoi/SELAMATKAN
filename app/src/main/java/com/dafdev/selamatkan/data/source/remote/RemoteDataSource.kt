@@ -173,13 +173,11 @@ class RemoteDataSource private constructor(
     fun getNews() = flow {
         try {
             val data = apiNews.getNews().articles
-            if (data != null) {
-                if (data.isNotEmpty()) {
-                    emit(ApiResponse.Success(data))
-                    Timber.d(data.toString())
-                } else {
-                    emit(ApiResponse.Empty)
-                }
+            if (data.isNotEmpty()) {
+                emit(ApiResponse.Success(data))
+                Timber.d(data.toString())
+            } else {
+                emit(ApiResponse.Empty)
             }
         } catch (e: Exception) {
             emit(ApiResponse.Error(e.message.toString()))

@@ -1,6 +1,7 @@
 package com.dafdev.selamatkan.view.fragment.main.bottom
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dafdev.selamatkan.databinding.FragmentArticleBinding
+import com.dafdev.selamatkan.view.activity.main.DetailNewsActivity
 import com.dafdev.selamatkan.view.adapter.NewsAdapter
 import com.dafdev.selamatkan.viewmodel.NewsViewModel
 import com.dafdev.selamatkan.viewmodel.ViewModelFactory
@@ -53,11 +55,17 @@ class ArticleFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        newsAdapter = NewsAdapter(requireActivity())
+        newsAdapter = NewsAdapter()
         binding.rvNews.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = newsAdapter
+        }
+        newsAdapter.onItemClick = {
+            Intent(activity, DetailNewsActivity::class.java).also { intent ->
+                intent.putExtra(DetailNewsActivity.EXTRA_DATA, it)
+                startActivity(intent)
+            }
         }
     }
 

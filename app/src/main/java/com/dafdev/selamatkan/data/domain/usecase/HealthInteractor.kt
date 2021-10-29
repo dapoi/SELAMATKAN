@@ -57,13 +57,4 @@ class HealthInteractor(private val iHealthRepository: IHealthRepository) : Healt
     override fun getNews(): Flow<Resource<List<News>>> {
         return iHealthRepository.getNews()
     }
-
-    override fun updateFavNews(news: News, fav: Boolean) {
-        return iHealthRepository.updateFavNews(news, fav)
-    }
-
-    override fun getFavNews(): Flow<List<News>> {
-        return iHealthRepository.getFavNews()
-    }
-
 }

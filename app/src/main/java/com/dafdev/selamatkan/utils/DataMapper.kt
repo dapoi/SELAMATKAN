@@ -3,7 +3,6 @@ package com.dafdev.selamatkan.utils
 import com.dafdev.selamatkan.data.domain.model.*
 import com.dafdev.selamatkan.data.source.local.model.CovidIndoEntity
 import com.dafdev.selamatkan.data.source.local.model.NewsEntity
-import com.dafdev.selamatkan.data.source.local.model.NewsFavEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.data.source.remote.response.*
 import kotlinx.coroutines.flow.Flow
@@ -34,7 +33,7 @@ object DataMapper {
         val listNews = ArrayList<NewsEntity>()
         newsResponse.map {
             val newsEntity = NewsEntity(
-                null,
+                id = null,
                 it.author,
                 it.title,
                 it.publishedAt,
@@ -42,7 +41,7 @@ object DataMapper {
                 it.description,
                 it.url,
                 it.content,
-                false
+                isFav = false
             )
             listNews.add(newsEntity)
         }
@@ -63,33 +62,6 @@ object DataMapper {
                 isFav = it.isFav
             )
         }
-
-    fun mapNewsFavEntitiesToDomain(input: List<NewsFavEntity>): List<News> =
-        input.map {
-            News(
-                id = it.id,
-                author = it.author,
-                title = it.title,
-                publishedAt = it.publishedAt,
-                urlToImage = it.urlToImage,
-                description = it.description,
-                url = it.url,
-                content = it.content,
-                isFav = it.isFav
-            )
-        }
-
-    fun mapNewsDomainToFavEntity(input: News) = NewsFavEntity(
-        id = input.id,
-        author = input.author,
-        title = input.title,
-        publishedAt = input.publishedAt,
-        urlToImage = input.urlToImage,
-        description = input.description,
-        url = input.url,
-        content = input.content,
-        isFav = input.isFav
-    )
 
     fun mapProvinceCovidResponseToProvince(provincesItem: List<ProvinceCovidResponse>): Flow<List<CovidProv>> {
         val listProv = ArrayList<CovidProv>()
