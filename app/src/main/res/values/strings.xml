@@ -3,7 +3,6 @@
     <string name="log_in">Masuk</string>
     <string name="sign_up">Daftar</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="desc1">Aplikasi ini dapat membantu anda menemukan rumah sakit covid atau non-covid terdekat</string>
     <string name="desc2">Terdapat konten berita kesehatan terkini dan terpercaya, dari media ternama di Indonesia</string>
     <string name="desc3">Anda juga dapat memantau perkembangan Covid-19 di Indonesia bahkan Provinsi</string>
@@ -49,5 +48,4 @@
     <string name="data_prov">Data Covid Per Provinsi</string>
     <string name="article">Artikel Kesehatan</string>
     <string name="detail_articel">Detil Artikel</string>
-    <string name="favorite">Favorite</string>
 </resources>
