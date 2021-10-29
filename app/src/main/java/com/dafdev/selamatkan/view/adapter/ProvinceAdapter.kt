@@ -6,7 +6,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dafdev.selamatkan.data.source.response.ProvincesItem
+import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.databinding.ItemProvinceUntilCityBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.activity.main.CityActivity
@@ -14,10 +14,10 @@ import com.dafdev.selamatkan.view.activity.main.CityActivity
 class ProvinceAdapter(private val context: Context) :
     RecyclerView.Adapter<ProvinceAdapter.ProvinceViewHolder>() {
 
-    private val listProvince = ArrayList<ProvincesItem>()
+    private val listProvince = ArrayList<ProvinceEntity>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setProvinceAdapter(data: List<ProvincesItem>) {
+    fun setProvinceAdapter(data: List<ProvinceEntity>) {
         listProvince.clear()
         listProvince.addAll(data)
         notifyDataSetChanged()
@@ -44,11 +44,11 @@ class ProvinceAdapter(private val context: Context) :
 
     inner class ProvinceViewHolder(private val binding: ItemProvinceUntilCityBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: ProvincesItem) {
+        fun bind(data: ProvinceEntity) {
             with(binding) {
                 tvTerritorial.text = data.name
                 cvTerritorial.setOnClickListener {
-                    Constant.provinsiId = data.id!!
+                    Constant.provinsiId = data.id
                     Intent(context, CityActivity::class.java).also {
                         context.startActivity(it)
                     }

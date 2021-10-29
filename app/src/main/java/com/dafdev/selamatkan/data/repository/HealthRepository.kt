@@ -1,44 +1,186 @@
 package com.dafdev.selamatkan.data.repository
 
-import com.dafdev.selamatkan.data.source.RemoteDataSource
-import com.dafdev.selamatkan.data.source.response.*
+import com.dafdev.selamatkan.data.domain.model.*
+import com.dafdev.selamatkan.data.source.NetworkBoundResource
+import com.dafdev.selamatkan.data.source.NetworkOnlyResource
+import com.dafdev.selamatkan.data.source.local.LocalDataSource
+import com.dafdev.selamatkan.data.source.local.model.CovidIndoEntity
+import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
+import com.dafdev.selamatkan.data.source.remote.RemoteDataSource
+import com.dafdev.selamatkan.data.source.remote.network.ApiResponse
+import com.dafdev.selamatkan.data.source.remote.network.ApiResponseOnline
+import com.dafdev.selamatkan.data.source.remote.response.*
+import com.dafdev.selamatkan.utils.AppExecutors
+import com.dafdev.selamatkan.utils.DataMapper
+import com.dafdev.selamatkan.vo.Resource
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
-class HealthRepository(
+class HealthRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource,
+    private val appExecutors: AppExecutors
 ) : IHealthRepository {
-    override suspend fun getDataCovidIndonesia(): IndoDataCovidResponse =
-        remoteDataSource.getDataCovidIndonesia()
 
-    override suspend fun getDataCovidProv(): List<ProvinceCovidResponse> =
-        remoteDataSource.getDataCovidProv()
+    override fun getDataCovidIndonesia(): Flow<Resource<CovidIndoEntity>> {
+        return object : NetworkBoundResource<CovidIndoEntity, IndoDataCovidResponse>(appExecutors) {
+            override fun loadFromDB(): Flow<CovidIndoEntity> =
+                localDataSource.getCovidIndo()
 
-    override suspend fun getListProvince(): List<ProvincesItem?>? =
-        remoteDataSource.getListProvince()
+            override fun shouldFetch(data: CovidIndoEntity?): Boolean =
+                data == null
 
-    override suspend fun getListCities(provinceId: String): List<CitiesItem?>? =
-        remoteDataSource.getListCites(provinceId)
+            override suspend fun createCall(): Flow<ApiResponse<IndoDataCovidResponse>> =
+                remoteDataSource.getDataCovidIndo()
 
-    override suspend fun getListCovidHospital(
+            override suspend fun saveCallResult(data: IndoDataCovidResponse) {
+                val entity = DataMapper.mapCovidResponseToEntity(data)
+                localDataSource.insertCovidIndo(entity)
+            }
+        }.asFlow()
+    }
+
+    override fun getDataCovidProv(): Flow<Resource<List<CovidProv>>> {
+        return object : NetworkOnlyResource<List<CovidProv>, List<ProvinceCovidResponse>>() {
+            override fun loadFromNetwork(data: List<ProvinceCovidResponse>): Flow<List<CovidProv>> =
+                DataMapper.mapProvinceCovidResponseToProvince(data)
+
+            override suspend fun createCall(): Flow<ApiResponseOnline<List<ProvinceCovidResponse>>> =
+                remoteDataSource.getDataCovidProv()
+        }.asFlow()
+    }
+
+    override fun getListProvinceHome(): Flow<Resource<List<ProvinceEntity>>> {
+        return object :
+            NetworkBoundResource<List<ProvinceEntity>, List<ProvincesItem>>(appExecutors) {
+            override fun loadFromDB(): Flow<List<ProvinceEntity>> =
+                localDataSource.getListProvinceHome()
+
+            override fun shouldFetch(data: List<ProvinceEntity>?): Boolean =
+                data == null || data.isEmpty()
+
+            override suspend fun createCall(): Flow<ApiResponse<List<ProvincesItem>>> =
+                remoteDataSource.getListProvinceHome() as Flow<ApiResponse<List<ProvincesItem>>>
+
+            override suspend fun saveCallResult(data: List<ProvincesItem>) {
+                val entity = DataMapper.mapProvinceResponseToEntity(data)
+                localDataSource.insertListProvinceHome(entity)
+            }
+        }.asFlow()
+    }
+
+    override fun getListProvinceInside(): Flow<Resource<List<Province>>> {
+        return object : NetworkOnlyResource<List<Province>, List<ProvincesItem>>() {
+            override fun loadFromNetwork(data: List<ProvincesItem>): Flow<List<Province>> =
+                DataMapper.mapProvinceResponseToProvince(data)
+
+            override suspend fun createCall(): Flow<ApiResponseOnline<List<ProvincesItem>>> =
+                remoteDataSource.getListProvinceInside() as Flow<ApiResponseOnline<List<ProvincesItem>>>
+        }.asFlow()
+    }
+
+    override fun getListCities(provinceId: String): Flow<Resource<List<Cities>>> {
+        return object : NetworkOnlyResource<List<Cities>, List<CitiesItem>>() {
+            override fun loadFromNetwork(data: List<CitiesItem>): Flow<List<Cities>> =
+                DataMapper.mapCitiesResponseToCities(data)
+
+            override suspend fun createCall(): Flow<ApiResponseOnline<List<CitiesItem>>> =
+                remoteDataSource.getListCities(provinceId) as Flow<ApiResponseOnline<List<CitiesItem>>>
+        }.asFlow()
+    }
+
+    override fun getListCovidHospital(
         provinceId: String,
         cityId: String
-    ): List<HospitalsCovidItem?>? =
-        remoteDataSource.getListCovidHospital(provinceId, cityId)
+    ): Flow<Resource<List<HospitalCovid>>> {
+        return object : NetworkOnlyResource<List<HospitalCovid>, List<HospitalsCovidItem>>() {
+            override fun loadFromNetwork(data: List<HospitalsCovidItem>): Flow<List<HospitalCovid>> =
+                DataMapper.mapHospitalCovidResponseToHospitalCovid(data)
 
-    override suspend fun getListNonCovidHospital(
+            override suspend fun createCall(): Flow<ApiResponseOnline<List<HospitalsCovidItem>>> =
+                remoteDataSource.getListCovidHospital(
+                    provinceId,
+                    cityId
+                ) as Flow<ApiResponseOnline<List<HospitalsCovidItem>>>
+        }.asFlow()
+    }
+
+    override fun getListNonCovidHospital(
         provinceId: String,
         cityId: String
-    ): List<HospitalsNonCovidItem> =
-        remoteDataSource.getListNonCovidHospital(provinceId, cityId) as List<HospitalsNonCovidItem>
+    ): Flow<Resource<List<HospitalNonCovid>>> {
+        return object : NetworkOnlyResource<List<HospitalNonCovid>, List<HospitalsNonCovidItem>>() {
+            override fun loadFromNetwork(data: List<HospitalsNonCovidItem>): Flow<List<HospitalNonCovid>> =
+                DataMapper.mapHospitalNonCovidResponseToHospitalNonCovid(data)
 
-    override suspend fun getDetailCovidHospital(hospitalId: String): List<BedDetailItem> =
-        remoteDataSource.getDetailCovidHospital(hospitalId) as List<BedDetailItem>
+            override suspend fun createCall(): Flow<ApiResponseOnline<List<HospitalsNonCovidItem>>> =
+                remoteDataSource.getListNonCovidHospital(
+                    provinceId,
+                    cityId
+                ) as Flow<ApiResponseOnline<List<HospitalsNonCovidItem>>>
+        }.asFlow()
+    }
 
-    override suspend fun getDetailNonCovidHospital(hospitalId: String): List<BedDetailItem> =
-        remoteDataSource.getDetailNonCovidHospital(hospitalId) as List<BedDetailItem>
+    override fun getDetailCovidHospital(hospitalId: String): Flow<Resource<List<DetailHospital>>> {
+        return object : NetworkOnlyResource<List<DetailHospital>, List<BedDetailItem>>() {
+            override fun loadFromNetwork(data: List<BedDetailItem>): Flow<List<DetailHospital>> =
+                DataMapper.mapHospitalDetailResponseToHospitalDetail(data)
 
-    override suspend fun getLocationHospitalMap(hospitalId: String): DataMapHospital? =
-        remoteDataSource.getLocationHospitalMap(hospitalId)
+            override suspend fun createCall(): Flow<ApiResponseOnline<List<BedDetailItem>>> =
+                remoteDataSource.getDetailCovidHospital(hospitalId) as Flow<ApiResponseOnline<List<BedDetailItem>>>
+        }.asFlow()
+    }
 
-    override suspend fun getNews(): List<Articles> =
-        remoteDataSource.getNews() as List<Articles>
+    override fun getDetailNonCovidHospital(hospitalId: String): Flow<Resource<List<DetailHospital>>> {
+        return object : NetworkOnlyResource<List<DetailHospital>, List<BedDetailItem>>() {
+            override fun loadFromNetwork(data: List<BedDetailItem>): Flow<List<DetailHospital>> =
+                DataMapper.mapHospitalDetailResponseToHospitalDetail(data)
+
+            override suspend fun createCall(): Flow<ApiResponseOnline<List<BedDetailItem>>> =
+                remoteDataSource.getDetailNonCovidHospital(hospitalId) as Flow<ApiResponseOnline<List<BedDetailItem>>>
+        }.asFlow()
+    }
+
+    override fun getLocationHospitalMap(hospitalId: String): Flow<Resource<Location>> {
+        return object : NetworkOnlyResource<Location, DataMapHospital>() {
+            override fun loadFromNetwork(data: DataMapHospital): Flow<Location> =
+                DataMapper.mapLocationResponseToLocation(data)
+
+            override suspend fun createCall(): Flow<ApiResponseOnline<DataMapHospital>> =
+                remoteDataSource.getLocationHospital(hospitalId) as Flow<ApiResponseOnline<DataMapHospital>>
+        }.asFlow()
+    }
+
+    override fun getNews(): Flow<Resource<List<News>>> {
+        return object : NetworkBoundResource<List<News>, List<Articles>>(appExecutors) {
+            override fun loadFromDB(): Flow<List<News>> =
+                localDataSource.getListNews().map {
+                    DataMapper.mapNewsEntitiesToDomain(it)
+                }
+
+            override fun shouldFetch(data: List<News>?): Boolean =
+                data == null || data.isEmpty()
+
+            override suspend fun createCall(): Flow<ApiResponse<List<Articles>>> =
+                remoteDataSource.getNews()
+
+            override suspend fun saveCallResult(data: List<Articles>) {
+                val entity = DataMapper.mapNewsResponseToEntity(data)
+                localDataSource.insertListNews(entity)
+            }
+        }.asFlow()
+    }
+
+    companion object {
+        @Volatile
+        private var INSTANCE: HealthRepository? = null
+
+        fun getInstance(
+            remoteDataSource: RemoteDataSource,
+            localDataSource: LocalDataSource,
+            appExecutors: AppExecutors
+        ): HealthRepository = INSTANCE ?: synchronized(this) {
+            INSTANCE ?: HealthRepository(remoteDataSource, localDataSource, appExecutors)
+        }
+    }
 }

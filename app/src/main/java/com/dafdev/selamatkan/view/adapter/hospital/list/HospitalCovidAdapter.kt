@@ -6,7 +6,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dafdev.selamatkan.data.source.response.HospitalsCovidItem
+import com.dafdev.selamatkan.data.domain.model.HospitalCovid
 import com.dafdev.selamatkan.databinding.ItemListHospitalBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.activity.main.HospitalDetailActivity
@@ -14,10 +14,10 @@ import com.dafdev.selamatkan.view.activity.main.HospitalDetailActivity
 class HospitalCovidAdapter(private val context: Context) :
     RecyclerView.Adapter<HospitalCovidAdapter.CovidViewHolder>() {
 
-    private val listHospital = ArrayList<HospitalsCovidItem>()
+    private val listHospital = ArrayList<HospitalCovid>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setCovidHospital(data: List<HospitalsCovidItem>) {
+    fun setCovidHospital(data: List<HospitalCovid>) {
         listHospital.clear()
         listHospital.addAll(data)
         notifyDataSetChanged()
@@ -41,7 +41,7 @@ class HospitalCovidAdapter(private val context: Context) :
 
     inner class CovidViewHolder(private val binding: ItemListHospitalBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: HospitalsCovidItem) {
+        fun bind(data: HospitalCovid) {
             with(binding) {
                 data.apply {
                     tvHospitalName.text = name

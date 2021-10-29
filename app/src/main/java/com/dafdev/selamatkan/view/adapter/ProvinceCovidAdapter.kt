@@ -4,15 +4,16 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dafdev.selamatkan.data.source.response.ProvinceCovidResponse
+import com.dafdev.selamatkan.data.domain.model.CovidProv
+import com.dafdev.selamatkan.data.source.remote.response.ProvinceCovidResponse
 import com.dafdev.selamatkan.databinding.ItemListDataCovidProvBinding
 
 class ProvinceCovidAdapter : RecyclerView.Adapter<ProvinceCovidAdapter.CovidViewHolder>() {
 
-    private val listCovidProv = ArrayList<ProvinceCovidResponse>()
+    private val listCovidProv = ArrayList<CovidProv>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(data: List<ProvinceCovidResponse>) {
+    fun setData(data: List<CovidProv>) {
         listCovidProv.clear()
         listCovidProv.addAll(data)
         notifyDataSetChanged()
@@ -39,7 +40,7 @@ class ProvinceCovidAdapter : RecyclerView.Adapter<ProvinceCovidAdapter.CovidView
 
     inner class CovidViewHolder(private val binding: ItemListDataCovidProvBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: ProvinceCovidResponse) {
+        fun bind(data: CovidProv) {
             with(binding) {
                 data.apply {
                     tvProvince.text = provinsi

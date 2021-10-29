@@ -17,7 +17,6 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var fStore: FirebaseFirestore
 
-    private var userID: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
@@ -62,31 +61,37 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun registerUser(name: String, email: String, password: String) {
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-            if (it.isSuccessful) {
-                Toast.makeText(this, "Pendaftaran berhasil, periksa email anda", Toast.LENGTH_LONG)
-                    .show()
-                userID = mAuth.currentUser?.uid
-                val user = hashMapOf(
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val dataUser = hashMapOf(
+                    "email" to email,
                     "name" to name
                 )
-                fStore.collection("users")
-                    .add(user)
-                    .addOnSuccessListener { doc ->
-                        Timber.d("Document added with ID: " + doc.id)
+                fStore.collection("users").add(dataUser)
+                    .addOnSuccessListener {
+                        Timber.i("Register", "Registrasi tersimpan dengan ${it.id}")
                     }
-                    .addOnFailureListener { exception ->
-                        Timber.w("Error adding document " + exception.message)
+                    .addOnFailureListener {
+                        Timber.e("Register", "Registrasi gagal ${it.message}")
                     }
+                val verif = mAuth.currentUser
+                verif?.sendEmailVerification()
+                Toast.makeText(
+                    this,
+                    "Pendaftaran berhasil, silahkan cek email Anda",
+                    Toast.LENGTH_SHORT
+                ).show()
                 startActivity(Intent(this, LogInActivity::class.java))
                 finish()
             } else {
                 Toast.makeText(
                     this,
-                    "Pendaftaran gagal, silahkan coba lagi",
-                    Toast.LENGTH_LONG
+                    "Email ini sudah memiliki akun",
+                    Toast.LENGTH_SHORT
                 ).show()
             }
+        }.addOnFailureListener {
+            Timber.e("Error", it.message.toString())
         }
     }
 

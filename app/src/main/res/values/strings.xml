@@ -48,4 +48,6 @@
     <string name="api_key">AIzaSyBrIZ8NJV3ga7TEv3paRnX2pknF56FXtsA</string>
     <string name="data_prov">Data Covid Per Provinsi</string>
     <string name="article">Artikel Kesehatan</string>
+    <string name="detail_articel">Detil Artikel</string>
+    <string name="favorite">Favorite</string>
 </resources>

@@ -4,18 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dafdev.selamatkan.data.source.RemoteDataSource
-import com.dafdev.selamatkan.data.source.network.ApiConfig
 import com.dafdev.selamatkan.databinding.FragmentNonCovidHospitalBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.adapter.hospital.list.HospitalNonCovidAdapter
 import com.dafdev.selamatkan.viewmodel.HospitalNonCovidViewModel
 import com.dafdev.selamatkan.viewmodel.ViewModelFactory
-import com.dafdev.selamatkan.vo.Status
+import com.dafdev.selamatkan.vo.Resource
 
 class NonCovidHospitalFragment : Fragment() {
 
@@ -49,28 +46,22 @@ class NonCovidHospitalFragment : Fragment() {
     }
 
     private fun setViewModel() {
-        val factory = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiHospital()))
+        val factory = ViewModelFactory.getInstance(requireActivity())
         hospitalViewModel = ViewModelProvider(
             requireActivity(),
             factory
         )[HospitalNonCovidViewModel::class.java]
         hospitalViewModel.nonCovidHospital(Constant.provinsiId, Constant.kotaId)
             .observe(viewLifecycleOwner, {
-                it.let { resource ->
-                    when (resource.status) {
-                        Status.LOADING -> progressBar(true)
-                        Status.SUCCESS -> {
-                            progressBar(false)
-                            if (resource.data.isNullOrEmpty()) {
-                                dataEmpty()
-                            } else {
-                                hospitalAdapter.setNonCovidHospital(resource.data)
-                            }
-                        }
-                        Status.ERROR -> {
-                            progressBar(false)
-                            Toast.makeText(requireActivity(), "Error", Toast.LENGTH_SHORT).show()
-                        }
+                when (it) {
+                    is Resource.Loading -> progressBar(true)
+                    is Resource.Success -> {
+                        progressBar(false)
+                        hospitalAdapter.setNonCovidHospital(it.data!!)
+                    }
+                    is Resource.Error -> {
+                        progressBar(false)
+                        dataEmpty()
                     }
                 }
             })

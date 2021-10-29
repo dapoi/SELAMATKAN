@@ -1,45 +1,61 @@
 package com.dafdev.selamatkan.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.dafdev.selamatkan.data.repository.HealthRepository
-import com.dafdev.selamatkan.data.source.RemoteDataSource
+import com.dafdev.selamatkan.data.domain.usecase.HealthUseCase
+import com.dafdev.selamatkan.di.Injection
 
-class ViewModelFactory(private val remoteDataSource: RemoteDataSource) :
+class ViewModelFactory(private val healthUseCase: HealthUseCase) :
     ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T =
         when {
             modelClass.isAssignableFrom(IndoDataCovidViewModel::class.java) -> {
-                IndoDataCovidViewModel(HealthRepository(remoteDataSource)) as T
+                IndoDataCovidViewModel(healthUseCase) as T
             }
             modelClass.isAssignableFrom(ProvinceCovidViewModel::class.java) -> {
-                ProvinceCovidViewModel(HealthRepository(remoteDataSource)) as T
+                ProvinceCovidViewModel(healthUseCase) as T
+            }
+            modelClass.isAssignableFrom(ProvinceInsideViewModel::class.java) -> {
+                ProvinceInsideViewModel(healthUseCase) as T
             }
             modelClass.isAssignableFrom(ProvinceViewModel::class.java) -> {
-                ProvinceViewModel(HealthRepository(remoteDataSource)) as T
+                ProvinceViewModel(healthUseCase) as T
             }
             modelClass.isAssignableFrom(CitiesViewModel::class.java) -> {
-                CitiesViewModel(HealthRepository(remoteDataSource)) as T
+                CitiesViewModel(healthUseCase) as T
             }
             modelClass.isAssignableFrom(HospitalCovidViewModel::class.java) -> {
-                HospitalCovidViewModel(HealthRepository(remoteDataSource)) as T
+                HospitalCovidViewModel(healthUseCase) as T
             }
             modelClass.isAssignableFrom(HospitalNonCovidViewModel::class.java) -> {
-                HospitalNonCovidViewModel(HealthRepository(remoteDataSource)) as T
+                HospitalNonCovidViewModel(healthUseCase) as T
             }
             modelClass.isAssignableFrom(DetailCovidHospitalViewModel::class.java) -> {
-                DetailCovidHospitalViewModel(HealthRepository(remoteDataSource)) as T
+                DetailCovidHospitalViewModel(healthUseCase) as T
             }
             modelClass.isAssignableFrom(DetailNonCovidHospitalViewModel::class.java) -> {
-                DetailNonCovidHospitalViewModel(HealthRepository(remoteDataSource)) as T
+                DetailNonCovidHospitalViewModel(healthUseCase) as T
             }
             modelClass.isAssignableFrom(LocationMapHospitalViewModel::class.java) -> {
-                LocationMapHospitalViewModel(HealthRepository(remoteDataSource)) as T
+                LocationMapHospitalViewModel(healthUseCase) as T
             }
             modelClass.isAssignableFrom(NewsViewModel::class.java) -> {
-                NewsViewModel(HealthRepository(remoteDataSource)) as T
+                NewsViewModel(healthUseCase) as T
             }
             else -> throw Throwable("Unknown ViewModel Class: " + modelClass.name)
         }
+
+    companion object {
+        @Volatile
+        private var instance: ViewModelFactory? = null
+
+        fun getInstance(context: Context): ViewModelFactory =
+            instance ?: synchronized(this) {
+                instance ?: ViewModelFactory(
+                    Injection.provideHealthUseCase(context)
+                )
+            }
+    }
 }

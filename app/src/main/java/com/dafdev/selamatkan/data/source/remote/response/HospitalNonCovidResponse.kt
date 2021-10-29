@@ -1,13 +1,13 @@
-package com.dafdev.selamatkan.data.source.response
+package com.dafdev.selamatkan.data.source.remote.response
 
 import com.squareup.moshi.Json
 
 data class HospitalNonCovidResponse(
 
-	@Json(name="hospitals")
+    @Json(name="hospitals")
 	val hospitals: List<HospitalsNonCovidItem?>? = null,
 
-	@Json(name="status")
+    @Json(name="status")
 	val status: Int? = null
 )
 
@@ -28,18 +28,18 @@ data class AvailableBedsItem(
 
 data class HospitalsNonCovidItem(
 
-	@Json(name="address")
+    @Json(name="address")
 	val address: String? = null,
 
-	@Json(name="available_beds")
+    @Json(name="available_beds")
 	val available_beds: List<AvailableBedsItem?>? = null,
 
-	@Json(name="phone")
+    @Json(name="phone")
 	val phone: String? = null,
 
-	@Json(name="name")
+    @Json(name="name")
 	val name: String? = null,
 
-	@Json(name="id")
+    @Json(name="id")
 	val id: String? = null
 )

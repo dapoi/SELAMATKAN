@@ -6,7 +6,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dafdev.selamatkan.data.source.response.HospitalsNonCovidItem
+import com.dafdev.selamatkan.data.domain.model.HospitalNonCovid
 import com.dafdev.selamatkan.databinding.ItemListHospitalBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.activity.main.HospitalDetailActivity
@@ -14,10 +14,10 @@ import com.dafdev.selamatkan.view.activity.main.HospitalDetailActivity
 class HospitalNonCovidAdapter(private val context: Context) :
     RecyclerView.Adapter<HospitalNonCovidAdapter.NonCovidViewHolder>() {
 
-    private val listHospital = ArrayList<HospitalsNonCovidItem>()
+    private val listHospital = ArrayList<HospitalNonCovid>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setNonCovidHospital(data: List<HospitalsNonCovidItem>) {
+    fun setNonCovidHospital(data: List<HospitalNonCovid>) {
         listHospital.clear()
         listHospital.addAll(data)
         notifyDataSetChanged()
@@ -47,7 +47,7 @@ class HospitalNonCovidAdapter(private val context: Context) :
 
     inner class NonCovidViewHolder(private val binding: ItemListHospitalBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: HospitalsNonCovidItem) {
+        fun bind(data: HospitalNonCovid) {
             with(binding) {
                 data.apply {
                     tvHospitalName.text = name
@@ -57,7 +57,7 @@ class HospitalNonCovidAdapter(private val context: Context) :
                     } else {
                         tvHospitalPhone.text = phone
                     }
-                    tvInfo.text = available_beds?.get(0)?.info
+                    tvInfo.text = info
                     cvHospital.setOnClickListener {
                         Constant.hospitalId = id!!
                         Constant.hospitalName = name!!

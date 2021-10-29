@@ -1,33 +1,30 @@
 package com.dafdev.selamatkan.view.fragment.main.bottom
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dafdev.selamatkan.data.source.RemoteDataSource
-import com.dafdev.selamatkan.data.source.network.ApiConfig
 import com.dafdev.selamatkan.databinding.FragmentArticleBinding
+import com.dafdev.selamatkan.view.activity.main.DetailNewsActivity
 import com.dafdev.selamatkan.view.adapter.NewsAdapter
 import com.dafdev.selamatkan.viewmodel.NewsViewModel
 import com.dafdev.selamatkan.viewmodel.ViewModelFactory
-import com.dafdev.selamatkan.vo.Status
-import com.google.android.material.transition.MaterialFadeThrough
+import com.dafdev.selamatkan.vo.Resource
+import com.google.android.material.snackbar.Snackbar
 
 class ArticleFragment : Fragment() {
 
     private lateinit var binding: FragmentArticleBinding
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var newsViewModel: NewsViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        enterTransition = MaterialFadeThrough()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,11 +35,23 @@ class ArticleFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setAdapter()
-        setViewModel()
+        binding.apply {
+            swipe.setColorSchemeColors(Color.BLUE)
+
+            setViewModel()
+            setAdapter()
+            swipe.setOnRefreshListener {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    setViewModel()
+                    setAdapter()
+                    binding.swipe.isRefreshing = false
+                }, 2000)
+            }
+        }
     }
 
     private fun setAdapter() {
@@ -52,23 +61,27 @@ class ArticleFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = newsAdapter
         }
+        newsAdapter.onItemClick = {
+            Intent(activity, DetailNewsActivity::class.java).also { intent ->
+                intent.putExtra(DetailNewsActivity.EXTRA_DATA, it)
+                startActivity(intent)
+            }
+        }
     }
 
     private fun setViewModel() {
-        val factory = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiNews()))
+        val factory = ViewModelFactory.getInstance(requireActivity())
         newsViewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
         newsViewModel.getNews().observe(viewLifecycleOwner, {
-            it.let { resource ->
-                when (resource.status) {
-                    Status.LOADING -> progressBar(true)
-                    Status.SUCCESS -> {
-                        progressBar(false)
-                        newsAdapter.setNews(resource.data!!)
-                    }
-                    Status.ERROR -> {
-                        progressBar(false)
-                        Toast.makeText(requireActivity(), "Error", Toast.LENGTH_SHORT).show()
-                    }
+            when (it) {
+                is Resource.Loading -> progressBar(true)
+                is Resource.Success -> {
+                    progressBar(false)
+                    newsAdapter.setNews(it.data!!)
+                }
+                is Resource.Error -> {
+                    progressBar(false)
+                    Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
                 }
             }
         })

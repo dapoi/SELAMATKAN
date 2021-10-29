@@ -2,24 +2,21 @@ package com.dafdev.selamatkan.view.activity.main
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dafdev.selamatkan.data.source.RemoteDataSource
-import com.dafdev.selamatkan.data.source.network.ApiConfig
-import com.dafdev.selamatkan.data.source.response.ProvincesItem
 import com.dafdev.selamatkan.databinding.ActivityProvinceBinding
-import com.dafdev.selamatkan.view.adapter.ProvinceAdapter
-import com.dafdev.selamatkan.viewmodel.ProvinceViewModel
+import com.dafdev.selamatkan.view.adapter.ProvinceInsideAdapter
+import com.dafdev.selamatkan.viewmodel.ProvinceInsideViewModel
 import com.dafdev.selamatkan.viewmodel.ViewModelFactory
-import com.dafdev.selamatkan.vo.Status
+import com.dafdev.selamatkan.vo.Resource
+import com.google.android.material.snackbar.Snackbar
 
 class ProvinceActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProvinceBinding
-    private lateinit var provinceAdapter: ProvinceAdapter
-    private lateinit var provinceVIewModel: ProvinceViewModel
+    private lateinit var provinceAdapter: ProvinceInsideAdapter
+    private lateinit var provinceVIewModel: ProvinceInsideViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +32,7 @@ class ProvinceActivity : AppCompatActivity() {
     }
 
     private fun setUpAdapter() {
-        provinceAdapter = ProvinceAdapter(this)
+        provinceAdapter = ProvinceInsideAdapter(this)
         binding.rvProvince.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
@@ -44,20 +41,18 @@ class ProvinceActivity : AppCompatActivity() {
     }
 
     private fun setUpViewModel() {
-        val factory = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiHospital()))
-        provinceVIewModel = ViewModelProvider(this, factory)[ProvinceViewModel::class.java]
-        provinceVIewModel.getListProv().observe(this, {
-            it.let { resources ->
-                when (resources.status) {
-                    Status.LOADING -> progressBar(true)
-                    Status.SUCCESS -> {
-                        progressBar(false)
-                        provinceAdapter.setProvinceAdapter(resources.data!! as List<ProvincesItem>)
-                    }
-                    Status.ERROR -> {
-                        progressBar(false)
-                        Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
-                    }
+        val factory = ViewModelFactory.getInstance(this)
+        provinceVIewModel = ViewModelProvider(this, factory)[ProvinceInsideViewModel::class.java]
+        provinceVIewModel.getListProvInside().observe(this, {
+            when (it) {
+                is Resource.Loading -> progressBar(true)
+                is Resource.Success -> {
+                    progressBar(false)
+                    provinceAdapter.setProvinceAdapter(it.data!!)
+                }
+                is Resource.Error -> {
+                    progressBar(false)
+                    Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
                 }
             }
         })

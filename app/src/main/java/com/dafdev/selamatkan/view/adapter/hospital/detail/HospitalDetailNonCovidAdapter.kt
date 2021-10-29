@@ -4,16 +4,16 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dafdev.selamatkan.data.source.response.BedDetailItem
+import com.dafdev.selamatkan.data.domain.model.DetailHospital
 import com.dafdev.selamatkan.databinding.ItemDetailHospitalBinding
 
 class HospitalDetailNonCovidAdapter :
     RecyclerView.Adapter<HospitalDetailNonCovidAdapter.HospitalDetailViewHolder>() {
 
-    private val listHospitalNonCovidDetail = ArrayList<BedDetailItem>()
+    private val listHospitalNonCovidDetail = ArrayList<DetailHospital>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(data: List<BedDetailItem>) {
+    fun setData(data: List<DetailHospital>) {
         listHospitalNonCovidDetail.clear()
         listHospitalNonCovidDetail.addAll(data)
         notifyDataSetChanged()
@@ -43,13 +43,13 @@ class HospitalDetailNonCovidAdapter :
 
     inner class HospitalDetailViewHolder(private val binding: ItemDetailHospitalBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: BedDetailItem) {
+        fun bind(data: DetailHospital) {
             with(binding) {
                 data.apply {
-                    tvDetailBedName.text = stats?.title
-                    tvDetailTotalBed.text = stats?.bed_available.toString()
-                    tvDetailAvailableBed.text = stats?.bed_empty.toString()
-                    tvInfo.text = time
+                    tvDetailBedName.text = bedName
+                    tvDetailTotalBed.text = totalBed.toString()
+                    tvDetailAvailableBed.text = bedAble.toString()
+                    tvInfo.text = info
                 }
             }
         }

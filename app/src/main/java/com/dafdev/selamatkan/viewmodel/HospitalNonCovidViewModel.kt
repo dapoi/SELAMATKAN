@@ -1,29 +1,11 @@
 package com.dafdev.selamatkan.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import com.dafdev.selamatkan.data.repository.HealthRepository
-import com.dafdev.selamatkan.data.source.response.HospitalsNonCovidItem
-import com.dafdev.selamatkan.vo.Resource
-import kotlinx.coroutines.Dispatchers
-import timber.log.Timber
+import androidx.lifecycle.asLiveData
+import com.dafdev.selamatkan.data.domain.usecase.HealthUseCase
 
-class HospitalNonCovidViewModel(private val nonCovidHospital: HealthRepository) : ViewModel() {
+class HospitalNonCovidViewModel(private val nonCovidHospital: HealthUseCase) : ViewModel() {
 
-    fun nonCovidHospital(
-        provinceId: String,
-        cityId: String
-    ): LiveData<Resource<List<HospitalsNonCovidItem>>> {
-        return liveData(Dispatchers.IO) {
-            emit(Resource.loading(null))
-            try {
-                val dataHospital = nonCovidHospital.getListNonCovidHospital(provinceId, cityId)
-                emit(Resource.success(dataHospital))
-                Timber.d("$dataHospital")
-            } catch (e: Exception) {
-                emit(Resource.error(null, e.message.toString()))
-            }
-        }
-    }
+    fun nonCovidHospital(provinceId: String, cityId: String) =
+        nonCovidHospital.getListNonCovidHospital(provinceId, cityId).asLiveData()
 }

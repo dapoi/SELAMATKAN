@@ -6,25 +6,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dafdev.selamatkan.data.source.RemoteDataSource
-import com.dafdev.selamatkan.data.source.network.ApiConfig
-import com.dafdev.selamatkan.data.source.response.ProvincesItem
 import com.dafdev.selamatkan.databinding.FragmentHomeBinding
+import com.dafdev.selamatkan.utils.SharedPref
 import com.dafdev.selamatkan.view.activity.main.ProvinceActivity
 import com.dafdev.selamatkan.view.activity.main.ProvinceCovidActivity
 import com.dafdev.selamatkan.view.adapter.ProvinceAdapter
 import com.dafdev.selamatkan.viewmodel.IndoDataCovidViewModel
 import com.dafdev.selamatkan.viewmodel.ProvinceViewModel
 import com.dafdev.selamatkan.viewmodel.ViewModelFactory
-import com.dafdev.selamatkan.vo.Status
+import com.dafdev.selamatkan.vo.Resource
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.transition.MaterialFadeThrough
 import com.google.firebase.firestore.FirebaseFirestore
-import timber.log.Timber
 import java.util.*
 
 class HomeFragment : Fragment() {
@@ -34,12 +29,7 @@ class HomeFragment : Fragment() {
     private lateinit var provinceAdapter: ProvinceAdapter
     private lateinit var provinceViewModel: ProvinceViewModel
     private lateinit var covidViewModel: IndoDataCovidViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        enterTransition = MaterialFadeThrough()
-    }
+    private lateinit var pref: SharedPref
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -74,18 +64,12 @@ class HomeFragment : Fragment() {
                 startActivity(Intent(requireActivity(), ProvinceActivity::class.java))
             }
         }
-
         fStore = FirebaseFirestore.getInstance()
+        pref = SharedPref(requireActivity())
 
-        fStore.collection("users").get().addOnSuccessListener {
-            for (doc in it) {
-                val dataName = doc["name"]
-                binding.tvName.text = dataName.toString()
-            }
+        pref.getUser().name.let {
+            binding.tvName.text = it
         }
-            .addOnFailureListener { exception ->
-                Timber.tag("Find Fragment").w(exception, "Error getting documents.")
-            }
 
         setAdapter()
         setViewModel()
@@ -101,46 +85,42 @@ class HomeFragment : Fragment() {
     }
 
     private fun setViewModel() {
-        val factoryDataCovid = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiCovid()))
-        covidViewModel =
-            ViewModelProvider(this, factoryDataCovid)[IndoDataCovidViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(requireActivity())
+        covidViewModel = ViewModelProvider(this, factory)[IndoDataCovidViewModel::class.java]
         covidViewModel.dataCovidIndo().observe(viewLifecycleOwner, {
-            it.let { resources ->
-                when (resources.status) {
-                    Status.LOADING -> {
-                        binding.apply {
-                            tvPositive.text = "..."
-                            tvNegative.text = "..."
-                            tvDeath.text = "..."
-                        }
+            when (it) {
+                is Resource.Loading -> {
+                    binding.apply {
+                        tvPositive.text = "..."
+                        tvNegative.text = "..."
+                        tvDeath.text = "..."
                     }
-                    Status.SUCCESS -> {
-                        binding.apply {
-                            tvPositive.text = it.data?.positif?.toLong().toString()
-                            tvNegative.text = it.data?.sembuh?.toLong().toString()
-                            tvDeath.text = it.data?.meninggal?.toLong().toString()
-                        }
+                }
+                is Resource.Success -> {
+                    binding.apply {
+                        tvPositive.text = it.data?.positif?.toLong().toString()
+                        tvNegative.text = it.data?.sembuh?.toLong().toString()
+                        tvDeath.text = it.data?.meninggal?.toLong().toString()
                     }
-                    Status.ERROR -> {
-                        Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
-                    }
+                }
+                is Resource.Error -> {
+                    Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
                 }
             }
         })
 
-        val factoryProvince = ViewModelFactory(RemoteDataSource(ApiConfig.provideApiHospital()))
-        provinceViewModel = ViewModelProvider(this, factoryProvince)[ProvinceViewModel::class.java]
+        provinceViewModel = ViewModelProvider(this, factory)[ProvinceViewModel::class.java]
         provinceViewModel.getListProv().observe(viewLifecycleOwner, {
-            it.let { resources ->
-                when (resources.status) {
-                    Status.LOADING -> progressBar(true)
-                    Status.SUCCESS -> {
+            if (it != null) {
+                when (it) {
+                    is Resource.Loading -> progressBar(true)
+                    is Resource.Success -> {
                         progressBar(false)
-                        provinceAdapter.setProvinceAdapter(resources.data!! as List<ProvincesItem>)
+                        provinceAdapter.setProvinceAdapter(it.data!!)
                     }
-                    Status.ERROR -> {
+                    is Resource.Error -> {
                         progressBar(false)
-                        Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
+                        Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
                     }
                 }
             }

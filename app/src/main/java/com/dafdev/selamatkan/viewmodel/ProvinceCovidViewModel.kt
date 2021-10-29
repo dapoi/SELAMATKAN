@@ -1,22 +1,10 @@
 package com.dafdev.selamatkan.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import com.dafdev.selamatkan.data.repository.HealthRepository
-import com.dafdev.selamatkan.vo.Resource
-import kotlinx.coroutines.Dispatchers
-import timber.log.Timber
+import androidx.lifecycle.asLiveData
+import com.dafdev.selamatkan.data.domain.usecase.HealthUseCase
 
-class ProvinceCovidViewModel(private val covid: HealthRepository) : ViewModel() {
+class ProvinceCovidViewModel(private val covid: HealthUseCase) : ViewModel() {
 
-    fun dataCovidProv() = liveData(Dispatchers.IO) {
-        emit(Resource.loading(null))
-        try {
-            val data = covid.getDataCovidProv()
-            emit(Resource.success(data))
-            Timber.d(data.toString())
-        } catch (e: Exception) {
-            emit(Resource.error(null, e.message.toString()))
-        }
-    }
+    fun dataCovidProv() = covid.getDataCovidProv().asLiveData()
 }

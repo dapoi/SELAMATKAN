@@ -6,15 +6,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.dafdev.selamatkan.data.source.response.Articles
+import com.dafdev.selamatkan.data.domain.model.News
 import com.dafdev.selamatkan.databinding.ItemNewsBinding
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
-    private val listNews = ArrayList<Articles>()
+    private var listNews = ArrayList<News>()
+    var onItemClick: ((News) -> Unit)? = null
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setNews(data: List<Articles>) {
+    fun setNews(data: List<News>) {
         listNews.clear()
         listNews.addAll(data)
         notifyDataSetChanged()
@@ -31,7 +36,8 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     inner class NewsViewHolder(private val binding: ItemNewsBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: Articles) {
+        @SuppressLint("NewApi", "SetTextI18n")
+        fun bind(data: News) {
             with(binding) {
                 Glide.with(itemView.context)
                     .load(data.urlToImage)
@@ -39,8 +45,21 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
                     .into(imgNews)
 
                 tvTitleNews.text = data.title
-                tvContentNews.text = data.content
-                tvDateNews.text = data.publishedAt
+                if (data.content.isNullOrEmpty()) {
+                    tvContentNews.text = "Klik untuk melihat lebih detil"
+                } else {
+                    tvContentNews.text = data.content
+                }
+
+                val zdt = ZonedDateTime.parse(data.publishedAt)
+                val resultDate = DateTimeFormatter.ofPattern("d MMM yyyy HH:mm", Locale.ENGLISH)
+                tvDateNews.text = resultDate.format(zdt)
+            }
+        }
+
+        init {
+            binding.root.setOnClickListener {
+                onItemClick?.invoke(listNews[absoluteAdapterPosition])
             }
         }
     }

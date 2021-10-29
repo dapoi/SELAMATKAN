@@ -1,4 +1,4 @@
-package com.dafdev.selamatkan.data.source.network
+package com.dafdev.selamatkan.data.source.remote.network
 
 sealed class ApiResponse<out R> {
     data class Success<out T>(val data: T) : ApiResponse<T>()

@@ -58,24 +58,17 @@
             android:id="@+id/tv_date_news"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/light_gray"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/buttonFav"
-            app:layout_constraintStart_toStartOf="@+id/tv_content_news"
-            app:layout_constraintTop_toTopOf="@+id/buttonFav"
-            tools:text="20:00" />
-
-        <ImageView
-            android:id="@+id/buttonFav"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            app:srcCompat="@drawable/ic_fav_selector"
-            android:background="@drawable/ic_fav_selector"
+
+            android:textColor="@color/light_gray"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tv_content_news"
-            app:layout_constraintTop_toBottomOf="@+id/tv_content_news" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_content_news"
+            tools:text="20:00" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

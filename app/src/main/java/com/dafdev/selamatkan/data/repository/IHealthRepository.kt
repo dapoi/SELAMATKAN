@@ -1,32 +1,39 @@
 package com.dafdev.selamatkan.data.repository
 
-import com.dafdev.selamatkan.data.source.response.*
+import com.dafdev.selamatkan.data.domain.model.*
+import com.dafdev.selamatkan.data.source.local.model.CovidIndoEntity
+import com.dafdev.selamatkan.data.source.local.model.NewsEntity
+import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
+import com.dafdev.selamatkan.vo.Resource
+import kotlinx.coroutines.flow.Flow
 
 interface IHealthRepository {
 
-    suspend fun getDataCovidIndonesia(): IndoDataCovidResponse
+    fun getDataCovidIndonesia(): Flow<Resource<CovidIndoEntity>>
 
-    suspend fun getDataCovidProv(): List<ProvinceCovidResponse?>?
+    fun getDataCovidProv(): Flow<Resource<List<CovidProv>>>
 
-    suspend fun getListProvince(): List<ProvincesItem?>?
+    fun getListProvinceHome(): Flow<Resource<List<ProvinceEntity>>>
 
-    suspend fun getListCities(provinceId: String): List<CitiesItem?>?
+    fun getListProvinceInside(): Flow<Resource<List<Province>>>
 
-    suspend fun getListCovidHospital(
+    fun getListCities(provinceId: String): Flow<Resource<List<Cities>>>
+
+    fun getListCovidHospital(
         provinceId: String,
         cityId: String,
-    ): List<HospitalsCovidItem?>?
+    ): Flow<Resource<List<HospitalCovid>>>
 
-    suspend fun getListNonCovidHospital(
+    fun getListNonCovidHospital(
         provinceId: String,
         cityId: String
-    ): List<HospitalsNonCovidItem?>?
+    ): Flow<Resource<List<HospitalNonCovid>>>
 
-    suspend fun getDetailCovidHospital(hospitalId: String): List<BedDetailItem?>?
+    fun getDetailCovidHospital(hospitalId: String): Flow<Resource<List<DetailHospital>>>
 
-    suspend fun getDetailNonCovidHospital(hospitalId: String): List<BedDetailItem?>?
+    fun getDetailNonCovidHospital(hospitalId: String): Flow<Resource<List<DetailHospital>>>
 
-    suspend fun getLocationHospitalMap(hospitalId: String): DataMapHospital?
+    fun getLocationHospitalMap(hospitalId: String): Flow<Resource<Location>>
 
-    suspend fun getNews(): List<Articles>
+    fun getNews(): Flow<Resource<List<News>>>
 }
