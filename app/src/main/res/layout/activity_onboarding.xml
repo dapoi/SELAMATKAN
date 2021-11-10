@@ -4,82 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.auth.OnboardingActivity">
+    tools:context=".view.activity.onboard.OnboardingActivity">
 
-    <TextView
-        android:id="@+id/app_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/amaranth"
-        android:text="@string/app_name"
-        android:textColor="@color/red"
-        android:textSize="22sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/tabs_indicator"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_name" />
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabs_indicator"
-        android:layout_width="42dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="@null"
-        app:layout_constraintBottom_toTopOf="@+id/btn_login"
-        app:layout_constraintEnd_toEndOf="@+id/btn_login"
-        app:layout_constraintStart_toStartOf="@+id/btn_login"
-        app:tabBackground="@drawable/bg_tab_indicator"
-        app:tabGravity="center"
-        app:tabIndicatorHeight="0dp"
-        app:tabPaddingEnd="20dp"
-        app:tabPaddingStart="10dp"
-        app:tabRippleColor="@null" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_login"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="0dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/bg_btn_login"
-        android:fontFamily="@font/allerta"
-        android:paddingBottom="1dp"
-        android:text="@string/log_in"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_sign_up"
-        app:layout_constraintEnd_toEndOf="@+id/btn_sign_up"
-        app:layout_constraintStart_toStartOf="@+id/btn_sign_up" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_sign_up"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="0dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="64dp"
-        android:background="@drawable/bg_btn_signup"
-        android:fontFamily="@font/allerta"
-        android:paddingBottom="1dp"
-        android:text="@string/sign_up"
-        android:textAllCaps="false"
-        android:textColor="@color/blue"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/onboard_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

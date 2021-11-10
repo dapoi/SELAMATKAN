@@ -1,22 +1,11 @@
 <resources>
-    <string name="app_name">SELAMATKAN!</string>
-    <string name="log_in">Masuk</string>
-    <string name="sign_up">Daftar</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="desc1">Aplikasi ini dapat membantu anda menemukan rumah sakit covid atau non-covid terdekat</string>
-    <string name="desc2">Terdapat konten berita kesehatan terkini dan terpercaya, dari media ternama di Indonesia</string>
+    <string name="app_name">Temukan!</string>
+    <string name="desc1">Aplikasi ini dapat membantu anda menemukan rumah sakit di Indonesia, tanpa harus mendatanginya secara langsung</string>
+    <string name="desc2">Terdapat artikel kesehatan terkini dan terpercaya, dari media ternama di Indonesia</string>
     <string name="desc3">Anda juga dapat memantau perkembangan Covid-19 di Indonesia bahkan Provinsi</string>
-    <string name="title1">Temukan Pertolongan Terdekat</string>
+    <string name="title1">Rumah Sakit</string>
     <string name="title2">Berita Kesehatan</string>
     <string name="title3">Data Covid-19</string>
-    <string name="name">Nama</string>
-    <string name="sub_title_signup">Silahkan isi data yang diperlukan</string>
-    <string name="password">Kata Sandi</string>
-    <string name="email">Email</string>
-    <string name="login">Masuk</string>
-    <string name="title_signup">Buat Akun</string>
-    <string name="title_login">Masuk Akun</string>
-    <string name="sub_title_login">Silahkan isi dengan akun yang telah anda buat</string>
     <string name="home">Beranda</string>
     <string name="content">Artikel</string>
     <string name="other">Lainnya</string>
@@ -48,5 +37,7 @@
     <string name="data_prov">Data Covid Per Provinsi</string>
     <string name="article">Artikel Kesehatan</string>
     <string name="detail_articel">Detil Artikel</string>
-    <string name="forgot">Lupa password?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="next">Lanjut</string>
+    <string name="selesai">Selesai</string>
 </resources>

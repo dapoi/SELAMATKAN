@@ -46,7 +46,7 @@ class CityAdapter(private val context: Context) :
             with(binding) {
                 tvTerritorial.text = data.name
                 cvTerritorial.setOnClickListener {
-                    Constant.kotaId = data.id!!
+                    Constant.cityId = data.id!!
                     Intent(context, HospitalActivity::class.java).also {
                         context.startActivity(it)
                     }

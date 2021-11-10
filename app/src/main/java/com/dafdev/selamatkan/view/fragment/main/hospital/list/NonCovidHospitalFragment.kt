@@ -51,7 +51,7 @@ class NonCovidHospitalFragment : Fragment() {
             requireActivity(),
             factory
         )[HospitalNonCovidViewModel::class.java]
-        hospitalViewModel.nonCovidHospital(Constant.provinsiId, Constant.kotaId)
+        hospitalViewModel.nonCovidHospital(Constant.provinceId, Constant.cityId)
             .observe(viewLifecycleOwner, {
                 when (it) {
                     is Resource.Loading -> progressBar(true)

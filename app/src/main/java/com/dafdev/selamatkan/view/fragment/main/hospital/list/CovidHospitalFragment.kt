@@ -13,7 +13,6 @@ import com.dafdev.selamatkan.view.adapter.hospital.list.HospitalCovidAdapter
 import com.dafdev.selamatkan.viewmodel.HospitalCovidViewModel
 import com.dafdev.selamatkan.viewmodel.ViewModelFactory
 import com.dafdev.selamatkan.vo.Resource
-import com.google.android.material.snackbar.Snackbar
 
 class CovidHospitalFragment : Fragment() {
 
@@ -52,7 +51,7 @@ class CovidHospitalFragment : Fragment() {
             requireActivity(),
             factory
         )[HospitalCovidViewModel::class.java]
-        hospitalViewModel.covidHospital(Constant.provinsiId, Constant.kotaId)
+        hospitalViewModel.covidHospital(Constant.provinceId, Constant.cityId)
             .observe(viewLifecycleOwner, {
                 when (it) {
                     is Resource.Loading -> progressBar(true)

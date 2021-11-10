@@ -4,38 +4,33 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 
-class SharedPref(context: Context) {
+class SharedPref private constructor() {
 
-    private var sharedPref: SharedPreferences = context.getSharedPreferences(SESSION, MODE)
-
-    fun saveUser(email: String, name: String) {
-        val editor = sharedPref.edit()
-        with(editor) {
-            putString(SESSION_EMAIL, email)
-            putString(SESSION_NAME, name)
-            putBoolean(SESSION_ISLOGIN, true)
+    @SuppressLint("CommitPrefEdits")
+    fun setIsFirstLaunch() {
+        with(editor!!) {
+            putBoolean("firsr", false)
             apply()
         }
     }
 
-    fun getUser(): User {
-        val email = sharedPref.getString(SESSION_EMAIL, "")
-        val name = sharedPref.getString(SESSION_NAME, "")
-        return User(email, name)
-    }
-
-    @SuppressLint("CommitPrefEdits")
-    fun clearUser() {
-        val editor = sharedPref.edit()
-        editor.clear()
-    }
+    fun isFirstLaunch(): Boolean = sharedPreference!!.getBoolean("first", true)
 
     companion object {
-        const val SESSION = "SESSION"
-        const val MODE = Context.MODE_PRIVATE
+        private val sharedPref = SharedPref()
+        private var sharedPreference: SharedPreferences? = null
+        private var editor: SharedPreferences.Editor? = null
 
-        const val SESSION_EMAIL = "email"
-        const val SESSION_NAME = "name"
-        const val SESSION_ISLOGIN = "isLogin"
+        @Synchronized
+        fun getInstance(context: Context): SharedPref {
+
+            if (sharedPreference == null) {
+                sharedPreference =
+                    context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
+                editor = sharedPreference!!.edit()
+            }
+
+            return sharedPref
+        }
     }
 }
