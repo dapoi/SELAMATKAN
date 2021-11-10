@@ -54,6 +54,12 @@ class LogInActivity : AppCompatActivity() {
                     }
                 }
             }
+
+            tvForgot.setOnClickListener {
+                Intent(this@LogInActivity, ResetActivity::class.java).also {
+                    startActivity(it)
+                }
+            }
         }
     }
 
