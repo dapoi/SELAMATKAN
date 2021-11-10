@@ -93,7 +93,9 @@ class HospitalDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         gMap = gMapReady
         val latLong = LatLng(latitudeString?.toDouble()!!, longitudeString?.toDouble()!!)
         with(gMap) {
-            addMarker(MarkerOptions().position(latLong).title(Constant.hospitalName))
+            addMarker(MarkerOptions().position(latLong).title(Constant.hospitalName)).also {
+                it?.showInfoWindow()
+            }
             moveCamera(CameraUpdateFactory.newLatLng(latLong))
             animateCamera(
                 CameraUpdateFactory.newLatLngZoom(
