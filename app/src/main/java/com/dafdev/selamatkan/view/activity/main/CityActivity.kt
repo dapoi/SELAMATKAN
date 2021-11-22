@@ -2,22 +2,23 @@ package com.dafdev.selamatkan.view.activity.main
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dafdev.selamatkan.databinding.ActivityCityBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.adapter.CityAdapter
 import com.dafdev.selamatkan.viewmodel.CitiesViewModel
-import com.dafdev.selamatkan.viewmodel.ViewModelFactory
 import com.dafdev.selamatkan.vo.Resource
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CityActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCityBinding
     private lateinit var cityAdapter: CityAdapter
-    private lateinit var cityViewModel: CitiesViewModel
+    private val cityViewModel: CitiesViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +43,6 @@ class CityActivity : AppCompatActivity() {
     }
 
     private fun setUpViewModel() {
-        val factory = ViewModelFactory.getInstance(this)
-        cityViewModel = ViewModelProvider(this, factory)[CitiesViewModel::class.java]
         cityViewModel.dataCity(Constant.provinceId).observe(this, {
             when (it) {
                 is Resource.Loading -> progressBar(true)

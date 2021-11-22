@@ -2,21 +2,22 @@ package com.dafdev.selamatkan.view.activity.main
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dafdev.selamatkan.databinding.ActivityProvinceCovidBinding
 import com.dafdev.selamatkan.view.adapter.ProvinceCovidAdapter
 import com.dafdev.selamatkan.viewmodel.ProvinceCovidViewModel
-import com.dafdev.selamatkan.viewmodel.ViewModelFactory
 import com.dafdev.selamatkan.vo.Resource
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProvinceCovidActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProvinceCovidBinding
     private lateinit var covidAdapter: ProvinceCovidAdapter
-    private lateinit var covidViewModel: ProvinceCovidViewModel
+    private val covidViewModel: ProvinceCovidViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +40,6 @@ class ProvinceCovidActivity : AppCompatActivity() {
     }
 
     private fun setViewModel() {
-        val factory = ViewModelFactory.getInstance(this)
-        covidViewModel = ViewModelProvider(this, factory)[ProvinceCovidViewModel::class.java]
         covidViewModel.dataCovidProv().observe(this, {
             when (it) {
                 is Resource.Loading -> progressBar(true)

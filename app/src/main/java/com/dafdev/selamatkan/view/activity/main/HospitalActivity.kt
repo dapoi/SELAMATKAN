@@ -6,7 +6,9 @@ import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.ActivityHospitalBinding
 import com.dafdev.selamatkan.view.adapter.pager.HospitalPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HospitalActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHospitalBinding

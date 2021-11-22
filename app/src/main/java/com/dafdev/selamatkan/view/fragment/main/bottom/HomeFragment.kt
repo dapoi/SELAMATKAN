@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dafdev.selamatkan.databinding.FragmentHomeBinding
 import com.dafdev.selamatkan.view.activity.main.ProvinceActivity
@@ -15,17 +15,18 @@ import com.dafdev.selamatkan.view.activity.main.ProvinceCovidActivity
 import com.dafdev.selamatkan.view.adapter.ProvinceAdapter
 import com.dafdev.selamatkan.viewmodel.IndoDataCovidViewModel
 import com.dafdev.selamatkan.viewmodel.ProvinceViewModel
-import com.dafdev.selamatkan.viewmodel.ViewModelFactory
 import com.dafdev.selamatkan.vo.Resource
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var provinceAdapter: ProvinceAdapter
-    private lateinit var provinceViewModel: ProvinceViewModel
-    private lateinit var covidViewModel: IndoDataCovidViewModel
+    private val provinceViewModel: ProvinceViewModel by viewModels()
+    private val covidViewModel: IndoDataCovidViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,9 +76,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setViewModel() {
-        val factory = ViewModelFactory.getInstance(requireActivity())
-        covidViewModel = ViewModelProvider(this, factory)[IndoDataCovidViewModel::class.java]
-        covidViewModel.dataCovidIndo().observe(viewLifecycleOwner, {
+        covidViewModel.dataCovidIndo.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Loading -> {
                     binding.apply {
@@ -99,8 +98,7 @@ class HomeFragment : Fragment() {
             }
         })
 
-        provinceViewModel = ViewModelProvider(this, factory)[ProvinceViewModel::class.java]
-        provinceViewModel.getListProv().observe(viewLifecycleOwner, {
+        provinceViewModel.getListProv.observe(viewLifecycleOwner, {
             if (it != null) {
                 when (it) {
                     is Resource.Loading -> progressBar(true)

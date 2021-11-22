@@ -15,8 +15,11 @@ import com.dafdev.selamatkan.utils.DataMapper
 import com.dafdev.selamatkan.vo.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class HealthRepository private constructor(
+@Singleton
+class HealthRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
@@ -60,7 +63,7 @@ class HealthRepository private constructor(
                 data == null || data.isEmpty()
 
             override suspend fun createCall(): Flow<ApiResponse<List<ProvincesItem>>> =
-                remoteDataSource.getListProvinceHome() as Flow<ApiResponse<List<ProvincesItem>>>
+                remoteDataSource.getListProvinceHome()
 
             override suspend fun saveCallResult(data: List<ProvincesItem>) {
                 val entity = DataMapper.mapProvinceResponseToEntity(data)
@@ -75,7 +78,7 @@ class HealthRepository private constructor(
                 DataMapper.mapProvinceResponseToProvince(data)
 
             override suspend fun createCall(): Flow<ApiResponseOnline<List<ProvincesItem>>> =
-                remoteDataSource.getListProvinceInside() as Flow<ApiResponseOnline<List<ProvincesItem>>>
+                remoteDataSource.getListProvinceInside()
         }.asFlow()
     }
 
@@ -169,18 +172,5 @@ class HealthRepository private constructor(
                 localDataSource.insertListNews(entity)
             }
         }.asFlow()
-    }
-
-    companion object {
-        @Volatile
-        private var INSTANCE: HealthRepository? = null
-
-        fun getInstance(
-            remoteDataSource: RemoteDataSource,
-            localDataSource: LocalDataSource,
-            appExecutors: AppExecutors
-        ): HealthRepository = INSTANCE ?: synchronized(this) {
-            INSTANCE ?: HealthRepository(remoteDataSource, localDataSource, appExecutors)
-        }
     }
 }

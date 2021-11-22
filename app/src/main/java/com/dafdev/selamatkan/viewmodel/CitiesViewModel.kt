@@ -3,8 +3,11 @@ package com.dafdev.selamatkan.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.dafdev.selamatkan.data.domain.usecase.HealthUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class CitiesViewModel(private val city: HealthUseCase) : ViewModel() {
+@HiltViewModel
+class CitiesViewModel @Inject constructor(private val city: HealthUseCase) : ViewModel() {
 
     fun dataCity(provinceId: String) = city.getListCities(provinceId).asLiveData()
 }

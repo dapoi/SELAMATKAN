@@ -1,17 +1,18 @@
 package com.dafdev.selamatkan.data.source.remote
 
-import com.dafdev.selamatkan.data.source.remote.network.ApiResponse
-import com.dafdev.selamatkan.data.source.remote.network.ApiResponseOnline
-import com.dafdev.selamatkan.data.source.remote.network.ApiService
+import com.dafdev.selamatkan.data.source.remote.network.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import timber.log.Timber
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RemoteDataSource private constructor(
-    private val apiHospital: ApiService,
-    private val apiCovid: ApiService,
-    private val apiNews: ApiService
+@Singleton
+class RemoteDataSource @Inject constructor(
+    private val apiCovid: ApiCovid,
+    private val apiHospital: ApiHospital,
+    private val apiNews: ApiNews
 ) {
 
     fun getDataCovidIndo() = flow {
@@ -43,13 +44,11 @@ class RemoteDataSource private constructor(
     fun getListProvinceHome() = flow {
         try {
             val data = apiHospital.getListProvinces().provinces
-            if (data != null) {
-                if (data.isNotEmpty()) {
-                    emit(ApiResponse.Success(data))
-                    Timber.d(data.toString())
-                } else {
-                    emit(ApiResponse.Empty)
-                }
+            if (data.isNotEmpty()) {
+                emit(ApiResponse.Success(data))
+                Timber.d(data.toString())
+            } else {
+                emit(ApiResponse.Empty)
             }
         } catch (e: Exception) {
             emit(ApiResponse.Error(e.message.toString()))
@@ -60,13 +59,11 @@ class RemoteDataSource private constructor(
     fun getListProvinceInside() = flow {
         try {
             val data = apiHospital.getListProvinces().provinces
-            if (data != null) {
-                if (data.isNotEmpty()) {
-                    emit(ApiResponseOnline.Success(data))
-                    Timber.d(data.toString())
-                } else {
-                    emit(ApiResponseOnline.Error(data.toString()))
-                }
+            if (data.isNotEmpty()) {
+                emit(ApiResponseOnline.Success(data))
+                Timber.d(data.toString())
+            } else {
+                emit(ApiResponseOnline.Error(data.toString()))
             }
         } catch (e: Exception) {
             emit(ApiResponseOnline.Error(e.message.toString()))
@@ -184,19 +181,4 @@ class RemoteDataSource private constructor(
             Timber.e("Remote Data Source, ${e.message}")
         }
     }.flowOn(Dispatchers.IO)
-
-    companion object {
-
-        @Volatile
-        private var INSTANCE: RemoteDataSource? = null
-
-        fun getInstance(
-            apiHospital: ApiService,
-            apiCovid: ApiService,
-            apiNews: ApiService
-        ): RemoteDataSource =
-            INSTANCE ?: synchronized(this) {
-                INSTANCE ?: RemoteDataSource(apiHospital, apiCovid, apiNews)
-            }
-    }
 }
