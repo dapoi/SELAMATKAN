@@ -3,15 +3,14 @@ package com.dafdev.selamatkan.view.activity.main
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.data.domain.model.Location
 import com.dafdev.selamatkan.databinding.ActivityHospitalDetailBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.adapter.pager.HospitalDetailPagerAdapter
 import com.dafdev.selamatkan.viewmodel.LocationMapHospitalViewModel
-import com.dafdev.selamatkan.viewmodel.ViewModelFactory
 import com.dafdev.selamatkan.vo.Resource
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -20,12 +19,14 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HospitalDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var binding: ActivityHospitalDetailBinding
     private lateinit var gMap: GoogleMap
-    private lateinit var locationViewModel: LocationMapHospitalViewModel
+    private val locationViewModel: LocationMapHospitalViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,12 +66,6 @@ class HospitalDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onMapReady(gMapReady: GoogleMap) {
-
-        val factory = ViewModelFactory.getInstance(this)
-        locationViewModel = ViewModelProvider(
-            this,
-            factory
-        )[LocationMapHospitalViewModel::class.java]
         locationViewModel.getLocationHospital(Constant.hospitalId).observe(this, {
             when (it) {
                 is Resource.Loading -> progressBar(true)

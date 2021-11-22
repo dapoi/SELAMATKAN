@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -63,6 +64,10 @@ dependencies {
     implementation "io.github.everythingme:overscroll-decor-android:$overscroll"
     implementation 'com.airbnb.android:lottie:3.4.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+    //dagger hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     //room
     implementation "androidx.room:room-runtime:$room_version"

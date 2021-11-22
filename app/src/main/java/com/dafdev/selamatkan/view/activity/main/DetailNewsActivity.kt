@@ -5,7 +5,9 @@ import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import com.dafdev.selamatkan.data.domain.model.News
 import com.dafdev.selamatkan.databinding.ActivityDetailNewsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailNewsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailNewsBinding

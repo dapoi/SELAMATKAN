@@ -5,8 +5,11 @@ import com.dafdev.selamatkan.data.source.local.model.NewsEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.data.source.local.room.HealthDao
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class LocalDataSource private constructor(private val healthDao: HealthDao) {
+@Singleton
+class LocalDataSource @Inject constructor(private val healthDao: HealthDao) {
 
     fun getCovidIndo(): Flow<CovidIndoEntity> = healthDao.getDataCovidIndo()
 
@@ -21,13 +24,4 @@ class LocalDataSource private constructor(private val healthDao: HealthDao) {
         healthDao.insertProvinceHome(provinceEntity)
 
     suspend fun insertListNews(newsEntity: List<NewsEntity>) = healthDao.insertNews(newsEntity)
-
-    companion object {
-        private var INSTANCE: LocalDataSource? = null
-
-        fun getInstance(newsDao: HealthDao): LocalDataSource =
-            INSTANCE ?: synchronized(this) {
-                INSTANCE ?: LocalDataSource(newsDao)
-            }
-    }
 }

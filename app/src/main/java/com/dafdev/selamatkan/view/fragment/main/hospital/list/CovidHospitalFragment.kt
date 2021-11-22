@@ -5,20 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dafdev.selamatkan.databinding.FragmentCovidHospitalBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.adapter.hospital.list.HospitalCovidAdapter
 import com.dafdev.selamatkan.viewmodel.HospitalCovidViewModel
-import com.dafdev.selamatkan.viewmodel.ViewModelFactory
 import com.dafdev.selamatkan.vo.Resource
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CovidHospitalFragment : Fragment() {
 
     private lateinit var binding: FragmentCovidHospitalBinding
     private lateinit var hospitalCovidAdapter: HospitalCovidAdapter
-    private lateinit var hospitalViewModel: HospitalCovidViewModel
+    private val hospitalViewModel: HospitalCovidViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,11 +47,6 @@ class CovidHospitalFragment : Fragment() {
     }
 
     private fun setViewModel() {
-        val factory = ViewModelFactory.getInstance(requireActivity())
-        hospitalViewModel = ViewModelProvider(
-            requireActivity(),
-            factory
-        )[HospitalCovidViewModel::class.java]
         hospitalViewModel.covidHospital(Constant.provinceId, Constant.cityId)
             .observe(viewLifecycleOwner, {
                 when (it) {

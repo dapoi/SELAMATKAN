@@ -6,8 +6,11 @@ import com.dafdev.selamatkan.data.source.local.model.CovidIndoEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.vo.Resource
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class HealthInteractor(private val iHealthRepository: IHealthRepository) : HealthUseCase {
+class HealthInteractor @Inject constructor(
+    private val iHealthRepository: IHealthRepository
+) : HealthUseCase {
     override fun getDataCovidIndonesia(): Flow<Resource<CovidIndoEntity>> {
         return iHealthRepository.getDataCovidIndonesia()
     }

@@ -8,21 +8,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.databinding.FragmentNonCovidHospitalDetailBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.adapter.hospital.detail.HospitalDetailNonCovidAdapter
 import com.dafdev.selamatkan.viewmodel.DetailNonCovidHospitalViewModel
-import com.dafdev.selamatkan.viewmodel.ViewModelFactory
 import com.dafdev.selamatkan.vo.Resource
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NonCovidHospitalDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentNonCovidHospitalDetailBinding
     private lateinit var nonCovidDetailAdapter: HospitalDetailNonCovidAdapter
-    private lateinit var nonCovidDetailViewModel: DetailNonCovidHospitalViewModel
+    private val nonCovidDetailViewModel: DetailNonCovidHospitalViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -90,11 +91,6 @@ class NonCovidHospitalDetailFragment : Fragment() {
     }
 
     private fun setViewModel() {
-        val factory = ViewModelFactory.getInstance(requireActivity())
-        nonCovidDetailViewModel = ViewModelProvider(
-            this,
-            factory
-        )[DetailNonCovidHospitalViewModel::class.java]
         nonCovidDetailViewModel.dataDetailNonCovidHospital(Constant.hospitalId)
             .observe(viewLifecycleOwner, {
                 when (it) {
