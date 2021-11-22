@@ -17,8 +17,11 @@ Repositori ini merupakan projek akhir dari perkuliahan saya, dan sekaligus untuk
 - [Glide](https://github.com/bumptech/glide)
 
 ## Referensi / Sumber Data
-Terimakasih kepada Mas Satya yang telah mengizinkan saya untuk menggunakan API ini
+Terimakasih kepada Mas Satya yang telah mengizinkan saya untuk menggunakan API Rumah Sakit ini
 https://github.com/satyawikananda/rs-bed-covid-indo-api
+
+API Berita
+https://newsapi.org
 
 ## Kebijakan & Lisensi
 
