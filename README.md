@@ -20,7 +20,7 @@ Repositori ini merupakan projek akhir dari perkuliahan saya, dan sekaligus untuk
 Terimakasih kepada Mas Satya yang telah mengizinkan saya untuk menggunakan API Rumah Sakit ini
 https://github.com/satyawikananda/rs-bed-covid-indo-api
 
-API Berita
+API Berita 
 https://newsapi.org
 
 ## Kebijakan & Lisensi
@@ -42,3 +42,4 @@ https://newsapi.org
    limitations under the License.
 
 ```
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
