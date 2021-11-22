@@ -48,7 +48,7 @@ class ProvinceAdapter(private val context: Context) :
             with(binding) {
                 tvTerritorial.text = data.name
                 cvTerritorial.setOnClickListener {
-                    Constant.provinsiId = data.id
+                    Constant.provinceId = data.id
                     Intent(context, CityActivity::class.java).also {
                         context.startActivity(it)
                     }

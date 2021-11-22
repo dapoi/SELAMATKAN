@@ -44,7 +44,7 @@ class CityActivity : AppCompatActivity() {
     private fun setUpViewModel() {
         val factory = ViewModelFactory.getInstance(this)
         cityViewModel = ViewModelProvider(this, factory)[CitiesViewModel::class.java]
-        cityViewModel.dataCity(Constant.provinsiId).observe(this, {
+        cityViewModel.dataCity(Constant.provinceId).observe(this, {
             when (it) {
                 is Resource.Loading -> progressBar(true)
                 is Resource.Success -> {

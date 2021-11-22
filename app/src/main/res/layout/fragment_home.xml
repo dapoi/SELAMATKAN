@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ll_greet"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:background="@drawable/bg_gradient"
         android:paddingVertical="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,35 +47,25 @@
             android:fontFamily="@font/droid_sans"
             android:textColor="@color/white"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tv_hi"
             app:layout_constraintStart_toEndOf="@+id/tv_hi"
             app:layout_constraintTop_toTopOf="@+id/tv_hi"
             tools:text="Selamat pagi" />
 
         <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/encodesans_bold"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/img_icon"
-            app:layout_constraintStart_toStartOf="@+id/tv_hi"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hi"
-            tools:text="Daffa" />
-
-        <TextView
             android:id="@+id/tv_desc_greet"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:fontFamily="@font/encodesans_regular"
             android:text="@string/wish"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/img_icon"
             app:layout_constraintEnd_toStartOf="@+id/img_icon"
-            app:layout_constraintStart_toStartOf="@+id/tv_name" />
+            app:layout_constraintStart_toStartOf="@id/tv_hi"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hi" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

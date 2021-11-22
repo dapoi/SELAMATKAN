@@ -9,7 +9,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:background="@color/white"
         android:paddingHorizontal="20dp"
         app:itemIconSize="25dp"

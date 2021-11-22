@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dafdev.selamatkan.databinding.FragmentHomeBinding
-import com.dafdev.selamatkan.utils.SharedPref
 import com.dafdev.selamatkan.view.activity.main.ProvinceActivity
 import com.dafdev.selamatkan.view.activity.main.ProvinceCovidActivity
 import com.dafdev.selamatkan.view.adapter.ProvinceAdapter
@@ -19,17 +18,14 @@ import com.dafdev.selamatkan.viewmodel.ProvinceViewModel
 import com.dafdev.selamatkan.viewmodel.ViewModelFactory
 import com.dafdev.selamatkan.vo.Resource
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var fStore: FirebaseFirestore
     private lateinit var provinceAdapter: ProvinceAdapter
     private lateinit var provinceViewModel: ProvinceViewModel
     private lateinit var covidViewModel: IndoDataCovidViewModel
-    private lateinit var pref: SharedPref
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,12 +59,6 @@ class HomeFragment : Fragment() {
             tvViewClear.setOnClickListener {
                 startActivity(Intent(requireActivity(), ProvinceActivity::class.java))
             }
-        }
-        fStore = FirebaseFirestore.getInstance()
-        pref = SharedPref(requireActivity())
-
-        pref.getUser().name.let {
-            binding.tvName.text = it
         }
 
         setAdapter()
