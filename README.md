@@ -1,5 +1,7 @@
-# TEMUKAN (Projek Skripsi) 
-Repositori ini merupakan projek akhir dari perkuliahan saya, dan sekaligus untuk memenuhi persyaratan kelulusan. Dengan aplikasi ini, Anda dapat menemukan Rumah Sakit Covid dan Non-Covid di Indonesia secara mudah dan efisien. Di dalamnya juga terdapat beberapa fitur menarik lain.
+<div align="center">
+<h1>TEMUKAN</h1>
+</div>
+Repositori ini merupakan projek akhir(skripsi) dari perkuliahan saya, dan sekaligus untuk memenuhi persyaratan kelulusan. Dengan aplikasi ini, Anda dapat menemukan Rumah Sakit Covid dan Non-Covid di Indonesia secara mudah dan efisien. Di dalamnya juga terdapat beberapa fitur menarik lain.
 
 ## Fitur
 - Data rumah sakit Covid dan Non-Covid di Indonesia (kuota kamar/kasur, nomor telepon, dan map)
@@ -42,4 +44,6 @@ https://newsapi.org
    limitations under the License.
 
 ```
+
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+
