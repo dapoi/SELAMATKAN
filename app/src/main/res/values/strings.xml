@@ -21,12 +21,9 @@
     <string name="choose_prov">Pilih Provinsi</string>
     <string name="choose_city">Pilih Kota</string>
     <string name="choose_hospital">Pilih Rumah Sakit</string>
-    <string name="name_hospital_title">Nama RS</string>
     <string name="separated">:</string>
-    <string name="address">Alamat</string>
     <string name="bed_total">Total Kasur</string>
     <string name="bed_empty">Kasur\nTersedia</string>
-    <string name="phone">No. Telp</string>
     <string name="covid">Covid</string>
     <string name="non_covid">Non-Covid</string>
     <string name="khusus">Ruang Khusus</string>
