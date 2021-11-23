@@ -49,29 +49,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_hospital_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:fontFamily="@font/encodesans_medium"
-                android:textColor="@color/dark_gray"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Rumah Sakit Sehat" />
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_inside"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_hospital_name">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/img_route"
@@ -160,27 +147,79 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
-                android:id="@+id/img_location"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:id="@+id/img_hospital"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginTop="24dp"
-                android:src="@drawable/ic_location"
+                android:src="@drawable/ic_icon_hospital"
                 app:layout_constraintStart_toStartOf="@+id/cl_inside"
                 app:layout_constraintTop_toBottomOf="@+id/cl_inside"
-                app:tint="@color/blue" />
+                app:tint="@color/blue"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_hospital_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/encodesans_regular"
+                android:textColor="@color/dark_gray"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/cl_inside"
+                app:layout_constraintStart_toEndOf="@+id/img_hospital"
+                app:layout_constraintTop_toTopOf="@+id/img_hospital"
+                tools:text="Rumah Sakit Sehat" />
+
+            <ImageView
+                android:id="@+id/img_location"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_location"
+                app:layout_constraintStart_toStartOf="@+id/img_hospital"
+                app:layout_constraintTop_toBottomOf="@+id/tv_hospital_name"
+                app:tint="@color/blue"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/tv_hospital_address"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:fontFamily="@font/droid_sans"
+                android:fontFamily="@font/encodesans_regular"
                 android:textColor="@color/dark_gray"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="@+id/cl_inside"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_hospital_name"
                 app:layout_constraintStart_toEndOf="@+id/img_location"
                 app:layout_constraintTop_toTopOf="@+id/img_location"
                 tools:text="Jl. Hanjuang Raya" />
+
+            <ImageView
+                android:id="@+id/img_phone_second"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_icon_phone"
+                app:layout_constraintStart_toStartOf="@+id/img_location"
+                app:layout_constraintTop_toBottomOf="@+id/tv_hospital_address"
+                app:tint="@color/blue"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_hospital_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/encodesans_regular"
+                android:textColor="@color/dark_gray"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/img_phone_second"
+                app:layout_constraintStart_toEndOf="@+id/img_phone_second"
+                app:layout_constraintTop_toTopOf="@+id/img_phone_second"
+                tools:text="12345" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

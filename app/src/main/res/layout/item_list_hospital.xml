@@ -17,37 +17,12 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:src="@drawable/ic_hospital_detail"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_hospital_name_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/encodesans_bold"
-            android:text="@string/name_hospital_title"
-            android:textColor="@color/dark_gray"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/img_hospital_detail"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_separated1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:fontFamily="@font/encodesans_regular"
-            android:text="@string/separated"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_hospital_name_title"
-            app:layout_constraintStart_toEndOf="@+id/tv_hospital_name_title"
-            app:layout_constraintTop_toTopOf="@+id/tv_hospital_name_title"
-            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/tv_hospital_name"
@@ -56,102 +31,27 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/encodesans_regular"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/img_hospital_detail"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_separated1"
-            app:layout_constraintTop_toTopOf="@+id/tv_separated1"
+            app:layout_constraintStart_toEndOf="@+id/img_hospital_detail"
+            app:layout_constraintTop_toTopOf="@+id/img_hospital_detail"
             tools:text="RS Sehat" />
-
-        <TextView
-            android:id="@+id/tv_hospital_address_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/encodesans_bold"
-            android:text="@string/address"
-            android:textColor="@color/dark_gray"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/tv_hospital_name_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hospital_name" />
-
-        <TextView
-            android:id="@+id/tv_separated2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/encodesans_regular"
-            android:text="@string/separated"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_hospital_address_title"
-            app:layout_constraintEnd_toEndOf="@+id/tv_separated1"
-            app:layout_constraintStart_toStartOf="@+id/tv_separated1"
-            app:layout_constraintTop_toTopOf="@+id/tv_hospital_address_title" />
-
-        <TextView
-            android:id="@+id/tv_hospital_address"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:fontFamily="@font/encodesans_regular"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/tv_hospital_name"
-            app:layout_constraintStart_toEndOf="@+id/tv_separated2"
-            app:layout_constraintTop_toTopOf="@+id/tv_hospital_address_title"
-            tools:text="Plosok gunung" />
-
-        <TextView
-            android:id="@+id/tv_hospital_phone_title"
-            android:layout_width="wrap_content"
-            android:layout_height="26dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/encodesans_bold"
-            android:text="@string/phone"
-            android:textColor="@color/dark_gray"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/tv_hospital_address_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hospital_address" />
-
-        <TextView
-            android:id="@+id/tv_separated3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/encodesans_regular"
-            android:text="@string/separated"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_hospital_phone_title"
-            app:layout_constraintEnd_toEndOf="@+id/tv_separated2"
-            app:layout_constraintStart_toStartOf="@+id/tv_separated2"
-            app:layout_constraintTop_toTopOf="@+id/tv_hospital_phone_title" />
-
-        <TextView
-            android:id="@+id/tv_hospital_phone"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/encodesans_regular"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_separated3"
-            app:layout_constraintEnd_toEndOf="@+id/tv_hospital_address"
-            app:layout_constraintStart_toStartOf="@+id/tv_hospital_address"
-            app:layout_constraintTop_toTopOf="@+id/tv_separated3"
-            tools:text="12345678" />
 
         <TextView
             android:id="@+id/tv_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/encodesans_regular"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/img_arrow"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hospital_phone"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hospital_name"
             tools:text="10 menit lalu" />
 
         <ImageView
@@ -161,7 +61,7 @@
             android:scaleX="-1"
             android:src="@drawable/ic_back"
             app:layout_constraintBottom_toBottomOf="@+id/tv_info"
-            app:layout_constraintEnd_toEndOf="@+id/tv_hospital_phone"
+            app:layout_constraintEnd_toEndOf="@+id/tv_hospital_name"
             app:layout_constraintTop_toTopOf="@+id/tv_info"
             app:tint="@color/blue" />
 

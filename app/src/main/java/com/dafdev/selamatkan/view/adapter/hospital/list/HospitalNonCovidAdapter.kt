@@ -51,12 +51,6 @@ class HospitalNonCovidAdapter(private val context: Context) :
             with(binding) {
                 data.apply {
                     tvHospitalName.text = name
-                    tvHospitalAddress.text = address
-                    if (phone == null) {
-                        tvHospitalPhone.text = "-"
-                    } else {
-                        tvHospitalPhone.text = phone
-                    }
                     tvInfo.text = info
                     cvHospital.setOnClickListener {
                         Constant.hospitalAddress = address!!
@@ -64,6 +58,8 @@ class HospitalNonCovidAdapter(private val context: Context) :
                         Constant.hospitalName = name!!
                         if (phone != null) {
                             Constant.phoneNumber = phone
+                        } else {
+                            Constant.phoneNumber = "-"
                         }
                         Intent(context, HospitalDetailActivity::class.java).also {
                             context.startActivity(it)

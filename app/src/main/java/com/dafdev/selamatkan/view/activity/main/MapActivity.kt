@@ -78,7 +78,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
             tvHospitalName.text = Constant.hospitalName
             tvHospitalAddress.text = Constant.hospitalAddress
-
+            tvHospitalPhone.text = Constant.phoneNumber
         }
     }
 
