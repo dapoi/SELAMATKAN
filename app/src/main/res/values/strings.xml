@@ -37,7 +37,10 @@
     <string name="data_prov">Data Covid Per Provinsi</string>
     <string name="article">Artikel Kesehatan</string>
     <string name="detail_articel">Detil Artikel</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="next">Lanjut</string>
     <string name="selesai">Selesai</string>
+    <string name="available_room">Kapasitas Tersedia</string>
+    <string name="telephone">Telepon</string>
+    <string name="direction">Petunjuk</string>
+    <string name="share">Bagikan</string>
 </resources>

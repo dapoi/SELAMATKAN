@@ -22,11 +22,9 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HospitalDetailActivity : AppCompatActivity(), OnMapReadyCallback {
+class HospitalDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHospitalDetailBinding
-    private lateinit var gMap: GoogleMap
-    private val locationViewModel: LocationMapHospitalViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,11 +34,6 @@ class HospitalDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.apply {
             toolbar.setNavigationOnClickListener { onBackPressed() }
 
-            // show map
-            val mapFragment = supportFragmentManager.findFragmentById(R.id.fragment_map_hospital)
-                    as SupportMapFragment
-            mapFragment.getMapAsync(this@HospitalDetailActivity)
-
             val pagerAdapter = HospitalDetailPagerAdapter(
                 this@HospitalDetailActivity,
                 supportFragmentManager
@@ -48,67 +41,6 @@ class HospitalDetailActivity : AppCompatActivity(), OnMapReadyCallback {
             viewPager.adapter = pagerAdapter
 
             tabsHospital.setupWithViewPager(viewPager, true)
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        for (result in grantResults) {
-            if (result == PackageManager.PERMISSION_GRANTED) {
-                finish()
-                startActivity(intent)
-            }
-        }
-    }
-
-    override fun onMapReady(gMapReady: GoogleMap) {
-        locationViewModel.getLocationHospital(Constant.hospitalId).observe(this, {
-            when (it) {
-                is Resource.Loading -> progressBar(true)
-                is Resource.Success -> {
-                    progressBar(false)
-                    setUpMap(it.data, gMapReady)
-                }
-                is Resource.Error -> {
-                    progressBar(false)
-                    Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
-                }
-            }
-        })
-    }
-
-    private fun setUpMap(data: Location?, gMapReady: GoogleMap) {
-        val latitudeString = data?.lat
-        val longitudeString = data?.long
-
-        gMap = gMapReady
-        val latLong = LatLng(latitudeString?.toDouble()!!, longitudeString?.toDouble()!!)
-        with(gMap) {
-            addMarker(MarkerOptions().position(latLong).title(Constant.hospitalName)).also {
-                it?.showInfoWindow()
-            }
-            moveCamera(CameraUpdateFactory.newLatLng(latLong))
-            animateCamera(
-                CameraUpdateFactory.newLatLngZoom(
-                    LatLng(latitudeString.toDouble(), longitudeString.toDouble()),
-                    14f
-                )
-            )
-            uiSettings.setAllGesturesEnabled(true)
-            uiSettings.isZoomGesturesEnabled = true
-            isTrafficEnabled = true
-        }
-    }
-
-    private fun progressBar(state: Boolean) {
-        if (state) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.GONE
         }
     }
 }
