@@ -6,25 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".view.activity.main.HospitalDetailActivity">
 
-    <fragment
-        android:id="@+id/fragment_map_hospital"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/bg_btn_detail_map_selected"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_back_map" />
+        app:navigationIcon="@drawable/ic_back">
+
+        <TextView
+            android:id="@+id/tv_title_hosptial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/encodesans_medium"
+            android:text="@string/available_room"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs_hospital"
@@ -33,7 +35,7 @@
         android:background="?attr/colorOnPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_map_hospital"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:tabIndicatorColor="@color/blue"
         app:tabIndicatorFullWidth="false"
         app:tabSelectedTextColor="@color/dark_gray"
@@ -50,13 +52,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabs_hospital" />
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_map_hospital"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_map_hospital"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

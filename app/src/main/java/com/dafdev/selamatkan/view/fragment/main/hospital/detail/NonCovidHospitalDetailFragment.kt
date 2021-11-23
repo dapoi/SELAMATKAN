@@ -1,18 +1,17 @@
 package com.dafdev.selamatkan.view.fragment.main.hospital.detail
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.databinding.FragmentNonCovidHospitalDetailBinding
 import com.dafdev.selamatkan.utils.Constant
+import com.dafdev.selamatkan.view.activity.main.MapActivity
 import com.dafdev.selamatkan.view.adapter.hospital.detail.HospitalDetailNonCovidAdapter
 import com.dafdev.selamatkan.viewmodel.DetailNonCovidHospitalViewModel
 import com.dafdev.selamatkan.vo.Resource
@@ -41,17 +40,7 @@ class NonCovidHospitalDetailFragment : Fragment() {
         setViewModel()
 
         binding.fab.setOnClickListener {
-            if (Constant.phoneNumber == "") {
-                Toast.makeText(
-                    requireActivity(),
-                    "Maaf, nomor rumah sakit ini tidak diketahui :(",
-                    Toast.LENGTH_LONG
-                ).show()
-            } else {
-                Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + Constant.phoneNumber)).also {
-                    startActivity(it)
-                }
-            }
+            startActivity(Intent(requireActivity(), MapActivity::class.java))
         }
     }
 

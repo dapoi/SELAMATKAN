@@ -53,6 +53,7 @@ class HospitalCovidAdapter(private val context: Context) :
                     }
                     tvInfo.text = info
                     cvHospital.setOnClickListener {
+                        Constant.hospitalAddress = address!!
                         Constant.hospitalId = id!!
                         Constant.hospitalName = name!!
                         if (phone != null) {

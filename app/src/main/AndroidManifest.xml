@@ -16,16 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SELAMATKAN"
         tools:targetApi="m">
+        <activity
+            android:name=".view.activity.main.MapActivity"
+            android:exported="false" />
         <activity android:name=".view.activity.main.DetailNewsActivity" />
         <activity android:name=".view.activity.main.ProvinceCovidActivity" />
         <activity android:name=".view.activity.main.HospitalDetailActivity" />
         <activity android:name=".view.activity.main.HospitalActivity" />
-        <activity
-            android:name=".view.activity.main.ProvinceActivity" />
-        <activity
-            android:name=".view.activity.main.CityActivity" />
-        <activity
-            android:name=".view.activity.main.HomeActivity" />
+        <activity android:name=".view.activity.main.ProvinceActivity" />
+        <activity android:name=".view.activity.main.CityActivity" />
+        <activity android:name=".view.activity.main.HomeActivity" />
         <activity
             android:name=".view.activity.onboard.OnboardingActivity"
             android:exported="true"
