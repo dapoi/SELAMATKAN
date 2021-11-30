@@ -68,9 +68,9 @@ object DataMapper {
         provincesItem.map {
             val prov = CovidProv(
                 it.provinsi,
-                it.kasus,
+                it.meninggal,
                 it.sembuh,
-                it.meninggal
+                it.kasus
             )
             listProv.add(prov)
         }

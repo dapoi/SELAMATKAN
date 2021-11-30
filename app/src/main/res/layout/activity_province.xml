@@ -23,7 +23,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/encodesans_medium"
             android:text="@string/choose_prov"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>

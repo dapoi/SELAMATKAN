@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/img_hospital"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
@@ -34,7 +34,7 @@
             android:fontFamily="@font/encodesans_regular"
             android:maxLines="2"
             android:textColor="@color/dark_gray"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/img_hospital"
             app:layout_constraintEnd_toStartOf="@+id/img_arrow"

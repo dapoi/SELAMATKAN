@@ -13,9 +13,6 @@ data class ProvinceCovidResponse(
     @field:SerializedName("sembuh")
     val sembuh: Int? = null,
 
-    @field:SerializedName("dirawat")
-    val dirawat: Int? = null,
-
     @field:SerializedName("kasus")
     val kasus: Int? = null
 )

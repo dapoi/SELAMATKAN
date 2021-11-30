@@ -7,7 +7,5 @@ data class CovidProv(
 
     val sembuh: Int? = null,
 
-    val dirawat: Int? = null,
-
     val kasus: Int? = null
 )

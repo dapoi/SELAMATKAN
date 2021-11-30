@@ -24,6 +24,7 @@ import java.util.*
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+
     private lateinit var provinceAdapter: ProvinceAdapter
     private val provinceViewModel: ProvinceViewModel by viewModels()
     private val covidViewModel: IndoDataCovidViewModel by viewModels()

@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ll_greet"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="150dp"
         android:background="@drawable/bg_gradient"
         android:paddingVertical="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,7 +19,7 @@
         <ImageView
             android:id="@+id/img_icon"
             android:layout_width="251dp"
-            android:layout_height="142dp"
+            android:layout_height="120dp"
             android:layout_marginEnd="-90dp"
             android:scaleX="-1"
             android:src="@drawable/img_covid"
@@ -35,7 +35,7 @@
             android:fontFamily="@font/droid_sans"
             android:text="@string/greet"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,7 +46,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/droid_sans"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tv_hi"
             app:layout_constraintStart_toEndOf="@+id/tv_hi"
@@ -114,8 +114,8 @@
 
             <ImageView
                 android:id="@+id/img_positive"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="32dp"
                 android:src="@drawable/ic_positive"
                 app:layout_constraintStart_toStartOf="parent"
@@ -151,8 +151,8 @@
 
             <ImageView
                 android:id="@+id/img_negative"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@drawable/ic_negative"
                 app:layout_constraintEnd_toStartOf="@+id/img_death"
                 app:layout_constraintStart_toEndOf="@+id/img_positive"
@@ -188,8 +188,8 @@
 
             <ImageView
                 android:id="@+id/img_death"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginEnd="32dp"
                 android:src="@drawable/ic_death"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -243,7 +243,7 @@
         android:id="@+id/tv_title_prov"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="64dp"
         android:fontFamily="@font/encodesans_bold"
         android:text="@string/find_rs"

@@ -22,7 +22,7 @@
             android:fontFamily="@font/encodesans_medium"
             android:text="@string/article"
             android:textColor="@color/blue"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="italic" />
 
     </androidx.appcompat.widget.Toolbar>
