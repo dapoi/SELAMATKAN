@@ -23,7 +23,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/encodesans_medium"
             android:text="@string/data_prov"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -41,8 +41,8 @@
 
     <ProgressBar
         android:id="@+id/progress_bar"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
