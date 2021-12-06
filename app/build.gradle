@@ -17,6 +17,8 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField("String", "API_KEY", api_key)
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -61,7 +63,6 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glide_version"
     implementation "com.airbnb.android:lottie:$lottie_version"
     implementation "com.facebook.shimmer:shimmer:$shimmer_version"
-    implementation "com.airbnb.android:lottie:$lottie_version"
 
     //dagger hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"

@@ -1,5 +1,6 @@
 package com.dafdev.selamatkan.data.source.remote.network
 
+import com.dafdev.selamatkan.BuildConfig
 import com.dafdev.selamatkan.data.source.remote.response.NewsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -16,6 +17,6 @@ interface ApiNews {
     ): NewsResponse
 
     companion object {
-        private const val API_KEY = "b5e957cc160649c09671f3dc74c2f3b2"
+        private const val API_KEY = BuildConfig.API_KEY
     }
 }
