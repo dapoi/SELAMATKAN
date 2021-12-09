@@ -162,7 +162,7 @@ class HealthRepository @Inject constructor(
                 }
 
             override fun shouldFetch(data: List<News>?): Boolean =
-                data == null || data.isEmpty()
+                true
 
             override suspend fun createCall(): Flow<ApiResponse<List<Articles>>> =
                 remoteDataSource.getNews()
