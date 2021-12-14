@@ -16,15 +16,35 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_list_hospital" />
 
-    <ProgressBar
+    <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/progress_bar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_list_hospital_placeholder" />
+
+            <include layout="@layout/item_list_hospital_placeholder" />
+
+            <include layout="@layout/item_list_hospital_placeholder" />
+
+            <include layout="@layout/item_list_hospital_placeholder" />
+
+            <include layout="@layout/item_list_hospital_placeholder" />
+
+            <include layout="@layout/item_list_hospital_placeholder" />
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <include
         android:id="@+id/view_empty"

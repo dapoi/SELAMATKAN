@@ -78,7 +78,8 @@
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_covid_hospital.xml" value="0.3333333333333333" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_covid_stat.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_data_covid_prov.xml" value="0.2" />
-        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_hospital.xml" value="0.3333333333333333" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_hospital.xml" value="0.22" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_hospital_placeholder.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_news.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_non_covid_hospital.xml" value="0.22" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_prov_to_city.xml" value="0.2" />

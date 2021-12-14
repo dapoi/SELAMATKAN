@@ -97,6 +97,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_covid"
+        style="@style/CardView.Light"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -315,7 +316,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/item_list_area_placeholder" />
+            <include layout="@layout/item_covid_indo" />
 
         </LinearLayout>
 
