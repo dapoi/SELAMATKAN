@@ -170,14 +170,10 @@ class RemoteDataSource @Inject constructor(
     fun getNews() = flow {
         try {
             val data = apiNews.getNews().articles
-            if (data.isNotEmpty()) {
-                emit(ApiResponse.Success(data))
-                Timber.d(data.toString())
-            } else {
-                emit(ApiResponse.Empty)
-            }
+            emit(ApiResponseOnline.Success(data))
+            Timber.d(data.toString())
         } catch (e: Exception) {
-            emit(ApiResponse.Error(e.message.toString()))
+            emit(ApiResponseOnline.Error(e.message.toString()))
             Timber.e("Remote Data Source, ${e.message}")
         }
     }.flowOn(Dispatchers.IO)

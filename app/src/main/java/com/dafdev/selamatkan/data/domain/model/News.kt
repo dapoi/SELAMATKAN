@@ -5,8 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class News(
-    var id: Int?,
-
     var author: String?,
 
     var title: String?,
@@ -20,6 +18,4 @@ data class News(
     var url: String?,
 
     var content: String?,
-
-    var isFav: Boolean
 ) : Parcelable

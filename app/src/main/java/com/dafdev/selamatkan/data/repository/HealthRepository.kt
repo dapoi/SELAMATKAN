@@ -14,7 +14,6 @@ import com.dafdev.selamatkan.utils.AppExecutors
 import com.dafdev.selamatkan.utils.DataMapper
 import com.dafdev.selamatkan.vo.Resource
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -155,22 +154,13 @@ class HealthRepository @Inject constructor(
     }
 
     override fun getNews(): Flow<Resource<List<News>>> {
-        return object : NetworkBoundResource<List<News>, List<Articles>>(appExecutors) {
-            override fun loadFromDB(): Flow<List<News>> =
-                localDataSource.getListNews().map {
-                    DataMapper.mapNewsEntitiesToDomain(it)
-                }
+        return object : NetworkOnlyResource<List<News>, List<Articles>>() {
+            override fun loadFromNetwork(data: List<Articles>): Flow<List<News>> =
+                DataMapper.mapArticlesToNews(data)
 
-            override fun shouldFetch(data: List<News>?): Boolean =
-                true
-
-            override suspend fun createCall(): Flow<ApiResponse<List<Articles>>> =
+            override suspend fun createCall(): Flow<ApiResponseOnline<List<Articles>>> =
                 remoteDataSource.getNews()
 
-            override suspend fun saveCallResult(data: List<Articles>) {
-                val entity = DataMapper.mapNewsResponseToEntity(data)
-                localDataSource.insertListNews(entity)
-            }
         }.asFlow()
     }
 }
