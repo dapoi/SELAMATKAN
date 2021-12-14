@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.data.domain.model.DetailHospital
-import com.dafdev.selamatkan.databinding.ItemDetailHospitalBinding
+import com.dafdev.selamatkan.databinding.ItemListDetailHospitalBinding
 
 class HospitalDetailNonCovidAdapter :
     RecyclerView.Adapter<HospitalDetailNonCovidAdapter.HospitalDetailViewHolder>() {
@@ -24,7 +24,7 @@ class HospitalDetailNonCovidAdapter :
         viewType: Int
     ): HospitalDetailViewHolder {
         return HospitalDetailViewHolder(
-            ItemDetailHospitalBinding.inflate(
+            ItemListDetailHospitalBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -41,7 +41,7 @@ class HospitalDetailNonCovidAdapter :
 
     override fun getItemCount(): Int = listHospitalNonCovidDetail.size
 
-    inner class HospitalDetailViewHolder(private val binding: ItemDetailHospitalBinding) :
+    inner class HospitalDetailViewHolder(private val binding: ItemListDetailHospitalBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: DetailHospital) {
             with(binding) {

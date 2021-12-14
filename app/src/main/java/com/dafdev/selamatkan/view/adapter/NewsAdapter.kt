@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
+import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.data.domain.model.News
-import com.dafdev.selamatkan.databinding.ItemNewsBinding
+import com.dafdev.selamatkan.databinding.ItemListNewsBinding
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -26,7 +28,13 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsAdapter.NewsViewHolder =
-        NewsViewHolder(ItemNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        NewsViewHolder(
+            ItemListNewsBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
 
     override fun onBindViewHolder(holder: NewsAdapter.NewsViewHolder, position: Int) {
         holder.bind(listNews[position])
@@ -34,14 +42,17 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     override fun getItemCount(): Int = listNews.size
 
-    inner class NewsViewHolder(private val binding: ItemNewsBinding) :
+    inner class NewsViewHolder(private val binding: ItemListNewsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("NewApi", "SetTextI18n")
         fun bind(data: News) {
             with(binding) {
                 Glide.with(itemView.context)
                     .load(data.urlToImage)
-                    .transform(RoundedCorners(10))
+                    .transform(RoundedCorners(10)).apply(
+                        RequestOptions.placeholderOf(R.drawable.ic_loading)
+                            .error(R.drawable.ic_error)
+                    )
                     .into(imgNews)
 
                 tvTitleNews.text = data.title

@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
-import com.dafdev.selamatkan.databinding.ItemProvinceUntilCityBinding
+import com.dafdev.selamatkan.databinding.ItemListAreaBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.activity.main.CityActivity
 
@@ -28,7 +28,7 @@ class ProvinceAdapter(private val context: Context) :
         viewType: Int
     ): ProvinceAdapter.ProvinceViewHolder {
         return ProvinceViewHolder(
-            ItemProvinceUntilCityBinding.inflate(
+            ItemListAreaBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -42,7 +42,7 @@ class ProvinceAdapter(private val context: Context) :
 
     override fun getItemCount(): Int = listProvince.size
 
-    inner class ProvinceViewHolder(private val binding: ItemProvinceUntilCityBinding) :
+    inner class ProvinceViewHolder(private val binding: ItemListAreaBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: ProvinceEntity) {
             with(binding) {

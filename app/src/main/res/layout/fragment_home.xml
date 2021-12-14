@@ -92,7 +92,7 @@
         android:textColor="@color/blue"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_title_covid"
-        app:layout_constraintEnd_toEndOf="@+id/card_covid"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_title_covid" />
 
     <androidx.cardview.widget.CardView
@@ -102,7 +102,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
         app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tv_view_all"
         app:layout_constraintStart_toStartOf="@id/tv_title_covid"
         app:layout_constraintTop_toBottomOf="@+id/tv_title_covid">
 
@@ -243,15 +243,16 @@
         android:id="@+id/tv_title_prov"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="64dp"
         android:fontFamily="@font/encodesans_bold"
         android:text="@string/find_rs"
         android:textColor="@color/dark_gray"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/tv_view_clear"
-        app:layout_constraintStart_toStartOf="@+id/card_covid"
-        app:layout_constraintTop_toBottomOf="@+id/card_covid" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
@@ -268,18 +269,63 @@
             android:id="@+id/rv_province"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/item_province_until_city" />
+            tools:listitem="@layout/item_list_area" />
 
     </androidx.core.widget.NestedScrollView>
 
-    <ProgressBar
+    <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/progress_bar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/nestedScrollView"
         app:layout_constraintEnd_toEndOf="@+id/nestedScrollView"
         app:layout_constraintStart_toStartOf="@+id/nestedScrollView"
-        app:layout_constraintTop_toTopOf="@+id/nestedScrollView" />
+        app:layout_constraintTop_toTopOf="@+id/nestedScrollView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_list_area_placeholder" />
+
+            <include layout="@layout/item_list_area_placeholder" />
+
+            <include layout="@layout/item_list_area_placeholder" />
+
+            <include layout="@layout/item_list_area_placeholder" />
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/loading_covid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/tv_view_all"
+        app:layout_constraintStart_toStartOf="@id/tv_title_covid"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_covid">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_list_area_placeholder" />
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="342dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

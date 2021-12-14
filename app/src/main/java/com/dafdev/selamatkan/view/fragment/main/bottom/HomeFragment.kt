@@ -80,13 +80,10 @@ class HomeFragment : Fragment() {
         covidViewModel.dataCovidIndo.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Loading -> {
-                    binding.apply {
-                        tvPositive.text = "..."
-                        tvNegative.text = "..."
-                        tvDeath.text = "..."
-                    }
+                    loadingCovid(true)
                 }
                 is Resource.Success -> {
+                    loadingCovid(false)
                     binding.apply {
                         tvPositive.text = it.data?.positif?.toLong().toString()
                         tvNegative.text = it.data?.sembuh?.toLong().toString()
@@ -94,6 +91,7 @@ class HomeFragment : Fragment() {
                     }
                 }
                 is Resource.Error -> {
+                    loadingCovid(false)
                     Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
                 }
             }
@@ -114,6 +112,18 @@ class HomeFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun loadingCovid(state: Boolean) {
+        binding.apply {
+            if (state) {
+                cardCovid.visibility = View.GONE
+                loadingCovid.visibility = View.VISIBLE
+            } else {
+                cardCovid.visibility = View.VISIBLE
+                loadingCovid.visibility = View.GONE
+            }
+        }
     }
 
     private fun progressBar(state: Boolean) {

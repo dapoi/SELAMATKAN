@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.data.domain.model.Cities
-import com.dafdev.selamatkan.databinding.ItemProvinceUntilCityBinding
+import com.dafdev.selamatkan.databinding.ItemListAreaBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.activity.main.HospitalActivity
 
@@ -25,7 +25,7 @@ class CityAdapter(private val context: Context) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityAdapter.CityViewHolder {
         return CityViewHolder(
-            ItemProvinceUntilCityBinding.inflate(
+            ItemListAreaBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -40,7 +40,7 @@ class CityAdapter(private val context: Context) :
 
     override fun getItemCount(): Int = listCity.size
 
-    inner class CityViewHolder(private val binding: ItemProvinceUntilCityBinding) :
+    inner class CityViewHolder(private val binding: ItemListAreaBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: Cities) {
             with(binding) {
