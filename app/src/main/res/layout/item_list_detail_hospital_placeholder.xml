@@ -17,18 +17,18 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
-            android:src="@drawable/ic_bed"
+            android:background="@color/light_gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_detail_bed_title" />
 
         <TextView
             android:id="@+id/tv_detail_bed_title"
-            android:layout_width="wrap_content"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:background="@color/light_gray"
             android:fontFamily="@font/encodesans_bold"
-            android:text="@string/bed_class"
             android:textColor="@color/dark_gray"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/img_hospital_detail"
@@ -36,11 +36,11 @@
 
         <TextView
             android:id="@+id/tv_separated1"
-            android:layout_width="0dp"
+            android:layout_width="2dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:background="@color/light_gray"
             android:fontFamily="@font/encodesans_regular"
-            android:text="@string/separated"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tv_detail_bed_title"
@@ -54,21 +54,21 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:background="@color/light_gray"
             android:fontFamily="@font/encodesans_regular"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_separated1"
-            app:layout_constraintTop_toTopOf="@+id/tv_separated1"
-            tools:text="Kamar tulip" />
+            app:layout_constraintTop_toTopOf="@+id/tv_separated1" />
 
         <TextView
             android:id="@+id/tv_detail_total_bed_title"
-            android:layout_width="wrap_content"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:background="@color/light_gray"
             android:fontFamily="@font/encodesans_bold"
-            android:text="@string/bed_total"
             android:textColor="@color/dark_gray"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/tv_detail_bed_title"
@@ -78,8 +78,8 @@
             android:id="@+id/tv_separated2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@color/light_gray"
             android:fontFamily="@font/encodesans_regular"
-            android:text="@string/separated"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tv_detail_total_bed_title"
@@ -92,21 +92,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:background="@color/light_gray"
             android:fontFamily="@font/encodesans_regular"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/tv_detail_bed_name"
             app:layout_constraintStart_toEndOf="@+id/tv_separated2"
-            app:layout_constraintTop_toTopOf="@+id/tv_detail_total_bed_title"
-            tools:text="100" />
+            app:layout_constraintTop_toTopOf="@+id/tv_detail_total_bed_title" />
 
         <TextView
             android:id="@+id/tv_detail_available_bed_title"
-            android:layout_width="wrap_content"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:background="@color/light_gray"
             android:fontFamily="@font/encodesans_bold"
-            android:text="@string/bed_empty"
             android:textColor="@color/dark_gray"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/tv_detail_total_bed_title"
@@ -116,8 +116,8 @@
             android:id="@+id/tv_separated3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@color/light_gray"
             android:fontFamily="@font/encodesans_regular"
-            android:text="@string/separated"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tv_detail_available_bed_title"
@@ -128,27 +128,27 @@
             android:id="@+id/tv_detail_available_bed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@color/light_gray"
             android:fontFamily="@font/encodesans_regular"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tv_separated3"
             app:layout_constraintEnd_toEndOf="@+id/tv_detail_total_bed"
-            app:layout_constraintStart_toStartOf="@+id/tv_detail_total_bed"
-            tools:text="80" />
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_total_bed" />
 
         <TextView
             android:id="@+id/tv_info"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="16dp"
+            android:background="@color/light_gray"
             android:fontFamily="@font/encodesans_regular"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tv_detail_available_bed"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_available_bed"
-            tools:text="10 menit lalu" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_available_bed" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

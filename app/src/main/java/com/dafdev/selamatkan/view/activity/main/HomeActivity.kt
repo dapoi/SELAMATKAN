@@ -57,8 +57,7 @@ class HomeActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         for (grantResult in grantResults) {
             if (grantResult == PackageManager.PERMISSION_GRANTED) {
-                finish()
-                startActivity(intent)
+                return
             }
         }
     }

@@ -12,9 +12,9 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/nav_article"
-        android:name="com.dafdev.selamatkan.view.fragment.main.bottom.ArticleFragment"
-        android:label="fragment_article"
-        tools:layout="@layout/fragment_article" />
+        android:name="com.dafdev.selamatkan.view.fragment.main.bottom.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" />
     <fragment
         android:id="@+id/nav_other"
         android:name="com.dafdev.selamatkan.view.fragment.main.bottom.OtherFragment"
