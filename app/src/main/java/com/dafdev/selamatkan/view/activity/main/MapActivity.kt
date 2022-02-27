@@ -97,7 +97,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onMapReady(gMapReady: GoogleMap) {
-        locationViewModel.getLocationHospital(Constant.hospitalId).observe(this, {
+        locationViewModel.getLocationHospital(Constant.hospitalId).observe(this) {
             when (it) {
                 is Resource.Loading -> progressBar(true)
                 is Resource.Success -> {
@@ -109,7 +109,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                     Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
                 }
             }
-        })
+        }
     }
 
     private fun setUpMap(data: Location?, gMapReady: GoogleMap) {

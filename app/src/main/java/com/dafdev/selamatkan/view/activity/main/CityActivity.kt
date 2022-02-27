@@ -43,7 +43,7 @@ class CityActivity : AppCompatActivity() {
     }
 
     private fun setUpViewModel() {
-        cityViewModel.dataCity(Constant.provinceId).observe(this, {
+        cityViewModel.dataCity(Constant.provinceId).observe(this) {
             when (it) {
                 is Resource.Loading -> progressBar(true)
                 is Resource.Success -> {
@@ -55,7 +55,7 @@ class CityActivity : AppCompatActivity() {
                     Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
                 }
             }
-        })
+        }
     }
 
     private fun progressBar(state: Boolean) {

@@ -58,7 +58,7 @@ class NewsFragment : Fragment() {
     }
 
     private fun setViewModel() {
-        newsViewModel.getNews.observe(viewLifecycleOwner, {
+        newsViewModel.getNews.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Loading -> progressBar(true)
                 is Resource.Success -> {
@@ -70,7 +70,7 @@ class NewsFragment : Fragment() {
                     Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
                 }
             }
-        })
+        }
     }
 
     private fun progressBar(state: Boolean) {

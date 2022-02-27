@@ -42,29 +42,31 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.apply {
-            Calendar.getInstance().also {
-                with(tvWeather) {
-                    when (it.get(Calendar.HOUR_OF_DAY)) {
-                        in 0..11 -> text = "Selamat Pagi"
-                        in 12..15 -> text = "Selamat Siang"
-                        in 16..18 -> text = "Selamat Sore"
-                        in 19..24 -> text = "Selamat Malam"
+        if (activity != null) {
+            binding.apply {
+                Calendar.getInstance().also {
+                    with(tvWeather) {
+                        when (it.get(Calendar.HOUR_OF_DAY)) {
+                            in 0..11 -> text = "Selamat Pagi"
+                            in 12..15 -> text = "Selamat Siang"
+                            in 16..18 -> text = "Selamat Sore"
+                            in 19..24 -> text = "Selamat Malam"
+                        }
                     }
+                }
+
+                tvViewAll.setOnClickListener {
+                    startActivity(Intent(requireActivity(), ProvinceCovidActivity::class.java))
+                }
+
+                tvViewClear.setOnClickListener {
+                    startActivity(Intent(requireActivity(), ProvinceActivity::class.java))
                 }
             }
 
-            tvViewAll.setOnClickListener {
-                startActivity(Intent(requireActivity(), ProvinceCovidActivity::class.java))
-            }
-
-            tvViewClear.setOnClickListener {
-                startActivity(Intent(requireActivity(), ProvinceActivity::class.java))
-            }
+            setAdapter()
+            setViewModel()
         }
-
-        setAdapter()
-        setViewModel()
     }
 
     private fun setAdapter() {
@@ -77,7 +79,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setViewModel() {
-        covidViewModel.dataCovidIndo.observe(viewLifecycleOwner, {
+        covidViewModel.dataCovidIndo.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Loading -> {
                     loadingCovid(true)
@@ -95,9 +97,9 @@ class HomeFragment : Fragment() {
                     Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
                 }
             }
-        })
+        }
 
-        provinceViewModel.getListProv.observe(viewLifecycleOwner, {
+        provinceViewModel.getListProv.observe(viewLifecycleOwner) {
             if (it != null) {
                 when (it) {
                     is Resource.Loading -> progressBar(true)
@@ -111,7 +113,7 @@ class HomeFragment : Fragment() {
                     }
                 }
             }
-        })
+        }
     }
 
     private fun loadingCovid(state: Boolean) {

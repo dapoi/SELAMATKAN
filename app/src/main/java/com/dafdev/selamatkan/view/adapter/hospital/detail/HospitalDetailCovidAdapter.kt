@@ -14,8 +14,13 @@ class HospitalDetailCovidAdapter :
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(data: List<DetailHospital>) {
-        listHospitalCovidDetail.clear()
-        listHospitalCovidDetail.addAll(data)
+        with(listHospitalCovidDetail) {
+            clear()
+            addAll(data)
+            sortWith { object1, object2 ->
+                object1.bedName!!.compareTo(object2.bedName.toString())
+            }
+        }
         notifyDataSetChanged()
     }
 

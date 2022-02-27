@@ -18,8 +18,13 @@ class ProvinceInsideAdapter(private val context: Context) :
 
     @SuppressLint("NotifyDataSetChanged")
     fun setProvinceAdapter(data: List<Province>) {
-        listProvince.clear()
-        listProvince.addAll(data)
+        with(listProvince) {
+            clear()
+            addAll(data)
+            sortWith { object1, object2 ->
+                object1.name!!.compareTo(object2.name.toString())
+            }
+        }
         notifyDataSetChanged()
     }
 

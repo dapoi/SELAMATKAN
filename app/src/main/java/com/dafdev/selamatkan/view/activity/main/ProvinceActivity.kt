@@ -42,7 +42,7 @@ class ProvinceActivity : AppCompatActivity() {
     }
 
     private fun setUpViewModel() {
-        provinceVIewModel.getListProvInside().observe(this, {
+        provinceVIewModel.getListProvInside().observe(this) {
             when (it) {
                 is Resource.Loading -> progressBar(true)
                 is Resource.Success -> {
@@ -54,7 +54,7 @@ class ProvinceActivity : AppCompatActivity() {
                     Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
                 }
             }
-        })
+        }
     }
 
     private fun progressBar(state: Boolean) {

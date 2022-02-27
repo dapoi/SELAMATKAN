@@ -18,8 +18,13 @@ class CityAdapter(private val context: Context) :
 
     @SuppressLint("NotifyDataSetChanged")
     fun setCityAdapter(data: List<Cities>) {
-        listCity.clear()
-        listCity.addAll(data)
+        with(listCity) {
+            clear()
+            addAll(data)
+            sortWith { object1, object2 ->
+                object1.name!!.compareTo(object2.name.toString())
+            }
+        }
         notifyDataSetChanged()
     }
 

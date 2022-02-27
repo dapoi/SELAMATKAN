@@ -40,7 +40,7 @@ class ProvinceCovidActivity : AppCompatActivity() {
     }
 
     private fun setViewModel() {
-        covidViewModel.dataCovidProv().observe(this, {
+        covidViewModel.dataCovidProv().observe(this) {
             when (it) {
                 is Resource.Loading -> progressBar(true)
                 is Resource.Success -> {
@@ -52,7 +52,7 @@ class ProvinceCovidActivity : AppCompatActivity() {
                     Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
                 }
             }
-        })
+        }
     }
 
     private fun progressBar(state: Boolean) {

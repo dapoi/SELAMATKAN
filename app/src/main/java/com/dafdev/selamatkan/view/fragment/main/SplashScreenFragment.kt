@@ -1,9 +1,6 @@
 package com.dafdev.selamatkan.view.fragment.main
 
 import android.content.Context
-import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -14,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentSplashScreenBinding
-import com.dafdev.selamatkan.view.activity.main.HomeActivity
 
 class SplashScreenFragment : Fragment() {
 

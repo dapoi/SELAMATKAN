@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.data.domain.model.CovidProv
-import com.dafdev.selamatkan.data.source.remote.response.ProvinceCovidResponse
 import com.dafdev.selamatkan.databinding.ItemListDataCovidProvBinding
 
 class ProvinceCovidAdapter : RecyclerView.Adapter<ProvinceCovidAdapter.CovidViewHolder>() {
@@ -14,8 +13,13 @@ class ProvinceCovidAdapter : RecyclerView.Adapter<ProvinceCovidAdapter.CovidView
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(data: List<CovidProv>) {
-        listCovidProv.clear()
-        listCovidProv.addAll(data)
+        with(listCovidProv) {
+            clear()
+            addAll(data)
+            sortWith { object1, object2 ->
+                object1.provinsi!!.compareTo(object2.provinsi.toString())
+            }
+        }
         notifyDataSetChanged()
     }
 

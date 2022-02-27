@@ -48,7 +48,7 @@ class CovidHospitalFragment : Fragment() {
 
     private fun setViewModel() {
         hospitalViewModel.covidHospital(Constant.provinceId, Constant.cityId)
-            .observe(viewLifecycleOwner, {
+            .observe(viewLifecycleOwner) {
                 when (it) {
                     is Resource.Loading -> progressBar(true)
                     is Resource.Success -> {
@@ -60,7 +60,7 @@ class CovidHospitalFragment : Fragment() {
                         dataEmpty()
                     }
                 }
-            })
+            }
     }
 
     private fun progressBar(state: Boolean) {
