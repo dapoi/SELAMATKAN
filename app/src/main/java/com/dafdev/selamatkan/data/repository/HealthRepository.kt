@@ -154,11 +154,11 @@ class HealthRepository @Inject constructor(
     }
 
     override fun getNews(): Flow<Resource<List<News>>> {
-        return object : NetworkOnlyResource<List<News>, List<Articles>>() {
-            override fun loadFromNetwork(data: List<Articles>): Flow<List<News>> =
+        return object : NetworkOnlyResource<List<News>, List<Articles?>?>() {
+            override fun loadFromNetwork(data: List<Articles?>?): Flow<List<News>> =
                 DataMapper.mapArticlesToNews(data)
 
-            override suspend fun createCall(): Flow<ApiResponseOnline<List<Articles>>> =
+            override suspend fun createCall(): Flow<ApiResponseOnline<List<Articles?>?>> =
                 remoteDataSource.getNews()
 
         }.asFlow()

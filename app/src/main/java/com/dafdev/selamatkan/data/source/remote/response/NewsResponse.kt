@@ -1,37 +1,37 @@
 package com.dafdev.selamatkan.data.source.remote.response
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class NewsResponse(
-    @SerializedName("articles")
-    val articles: List<Articles>,
+    @Json(name = "articles")
+    val articles: List<Articles?>?,
 
-    @SerializedName("status")
-    val status: String,
+    @Json(name = "status")
+    val status: String? = null,
 
-    @SerializedName("totalResults")
-    val totalResults: Int
+    @Json(name = "totalResults")
+    val totalResults: Int? = null
 )
 
 data class Articles(
-    @field:SerializedName("author")
-    val author: String,
+    @Json(name = "author")
+    val author: String? = null,
 
-    @field:SerializedName("title")
-    val title: String,
+    @Json(name = "title")
+    val title: String? = null,
 
-    @field:SerializedName("publishedAt")
-    val publishedAt: String,
+    @Json(name = "publishedAt")
+    val publishedAt: String? = null,
 
-    @field:SerializedName("urlToImage")
-    val urlToImage: String,
+    @Json(name = "urlToImage")
+    val urlToImage: String? = null,
 
-    @field:SerializedName("description")
-    val description: String,
+    @Json(name = "description")
+    val description: String? = null,
 
-    @field:SerializedName("url")
-    val url: String,
+    @Json(name = "url")
+    val url: String? = null,
 
-    @field:SerializedName("content")
-    val content: String
+    @Json(name = "content")
+    val content: String? = null
 )

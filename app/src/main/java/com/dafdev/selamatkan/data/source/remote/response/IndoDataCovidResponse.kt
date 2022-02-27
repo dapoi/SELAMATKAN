@@ -1,21 +1,21 @@
 package com.dafdev.selamatkan.data.source.remote.response
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class IndoDataCovidResponse(
 
-    @SerializedName("meninggal")
+    @Json(name = "meninggal")
     val meninggal: Int? = null,
 
-    @SerializedName("positif")
+    @Json(name = "positif")
     val positif: Int? = null,
 
-    @SerializedName("sembuh")
+    @Json(name = "sembuh")
     val sembuh: Int? = null,
 
-    @SerializedName("dirawat")
+    @Json(name = "dirawat")
     val dirawat: Int? = null,
 
-    @SerializedName("lastUpdate")
+    @Json(name = "lastUpdate")
     val lastUpdate: String? = null
 )

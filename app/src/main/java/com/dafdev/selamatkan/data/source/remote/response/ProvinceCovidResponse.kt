@@ -1,18 +1,18 @@
 package com.dafdev.selamatkan.data.source.remote.response
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class ProvinceCovidResponse(
 
-    @field:SerializedName("provinsi")
+    @Json(name = "provinsi")
     val provinsi: String? = null,
 
-    @field:SerializedName("meninggal")
+    @Json(name = "meninggal")
     val meninggal: Int? = null,
 
-    @field:SerializedName("sembuh")
+    @Json(name = "sembuh")
     val sembuh: Int? = null,
 
-    @field:SerializedName("kasus")
+    @Json(name = "kasus")
     val kasus: Int? = null
 )

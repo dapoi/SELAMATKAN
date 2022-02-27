@@ -29,7 +29,7 @@
     <string name="khusus">Ruang Khusus</string>
     <string name="umum">Ruang Umum</string>
     <string name="bed_class">Tipe Kamar</string>
-    <string name="empty">Maaf, tidak ada data yang terdaftar :(</string>
+    <string name="empty">Maaf, tidak ada data yang terdaftar</string>
     <string name="api_key">AIzaSyBrIZ8NJV3ga7TEv3paRnX2pknF56FXtsA</string>
     <string name="data_prov">Data Covid Per Provinsi</string>
     <string name="article">Artikel Kesehatan</string>

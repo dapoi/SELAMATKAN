@@ -28,17 +28,17 @@ object DataMapper {
         return listProv
     }
 
-    fun mapArticlesToNews(input: List<Articles>): Flow<List<News>> {
+    fun mapArticlesToNews(input: List<Articles?>?): Flow<List<News>> {
         val listNews = ArrayList<News>()
-        input.map {
+        input?.map {
             val news = News(
-                it.author,
-                it.title,
-                it.publishedAt,
-                it.urlToImage,
-                it.description,
-                it.url,
-                it.content,
+                it?.author,
+                it?.title,
+                it?.publishedAt,
+                it?.urlToImage,
+                it?.description,
+                it?.url,
+                it?.content,
             )
             listNews.add(news)
         }

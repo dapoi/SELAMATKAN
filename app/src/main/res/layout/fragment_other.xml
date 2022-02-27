@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="Fitur ini sedang dalam tahap pengembangan" />
+        android:textSize="16sp"
+        android:text="Fitur sedang dalam tahap pengembangan" />
 
 </FrameLayout>
