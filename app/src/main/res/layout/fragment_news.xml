@@ -21,8 +21,7 @@
             android:fontFamily="@font/encodesans_medium"
             android:text="@string/article"
             android:textColor="@color/blue"
-            android:textSize="20sp"
-            android:textStyle="italic" />
+            android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
