@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentCovidHospitalBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.adapter.hospital.list.HospitalCovidAdapter
@@ -17,16 +19,19 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CovidHospitalFragment : Fragment() {
 
-    private lateinit var binding: FragmentCovidHospitalBinding
-    private lateinit var hospitalCovidAdapter: HospitalCovidAdapter
+    private var _binding: FragmentCovidHospitalBinding? = null
+    private val binding get() = _binding!!
+
     private val hospitalViewModel: HospitalCovidViewModel by viewModels()
+
+    private lateinit var hospitalCovidAdapter: HospitalCovidAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCovidHospitalBinding.inflate(inflater, container, false)
+        _binding = FragmentCovidHospitalBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -38,7 +43,10 @@ class CovidHospitalFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        hospitalCovidAdapter = HospitalCovidAdapter(requireActivity())
+        hospitalCovidAdapter = HospitalCovidAdapter()
+        hospitalCovidAdapter.onItemCLick = {
+            findNavController().navigate(R.id.action_baseHospitalListFragment_to_baseHospitalDetailFragment)
+        }
         with(binding.rvHospitalCovid) {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
@@ -73,5 +81,10 @@ class CovidHospitalFragment : Fragment() {
 
     private fun dataEmpty() {
         binding.viewEmpty.root.visibility = View.VISIBLE
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

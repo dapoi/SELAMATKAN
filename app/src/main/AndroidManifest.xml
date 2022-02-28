@@ -14,18 +14,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.SELAMATKAN"
+        android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity
-            android:name=".view.activity.main.MapActivity"
-            android:exported="false" />
-        <activity android:name=".view.activity.main.DetailNewsActivity" />
+        <activity android:name=".view.activity.main.MapActivity" />
         <activity android:name=".view.activity.main.ProvinceCovidActivity" />
-        <activity android:name=".view.activity.main.HospitalDetailActivity" />
-        <activity android:name=".view.activity.main.HospitalActivity" />
-        <activity android:name=".view.activity.main.ProvinceActivity" />
-        <activity android:name=".view.activity.main.CityActivity" />
         <activity android:name=".view.activity.main.HomeActivity" />
         <activity
             android:name=".view.activity.onboard.OnboardingActivity"

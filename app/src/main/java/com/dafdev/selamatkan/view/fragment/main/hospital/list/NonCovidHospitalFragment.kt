@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentNonCovidHospitalBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.view.adapter.hospital.list.HospitalNonCovidAdapter
@@ -17,16 +19,19 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class NonCovidHospitalFragment : Fragment() {
 
-    private lateinit var binding: FragmentNonCovidHospitalBinding
-    private lateinit var hospitalAdapter: HospitalNonCovidAdapter
+    private var _binding: FragmentNonCovidHospitalBinding? = null
+    private val binding get() = _binding!!
+
     private val hospitalViewModel: HospitalNonCovidViewModel by viewModels()
+
+    private lateinit var hospitalAdapter: HospitalNonCovidAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentNonCovidHospitalBinding.inflate(inflater, container, false)
+        _binding = FragmentNonCovidHospitalBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -38,7 +43,10 @@ class NonCovidHospitalFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        hospitalAdapter = HospitalNonCovidAdapter(requireActivity())
+        hospitalAdapter = HospitalNonCovidAdapter()
+        hospitalAdapter.onItemClick = {
+            findNavController().navigate(R.id.action_baseHospitalListFragment_to_baseHospitalDetailFragment)
+        }
         with(binding.rvHospitalNonCovid) {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
@@ -73,5 +81,10 @@ class NonCovidHospitalFragment : Fragment() {
 
     private fun dataEmpty() {
         binding.viewEmpty.root.visibility = View.VISIBLE
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

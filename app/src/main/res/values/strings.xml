@@ -19,7 +19,7 @@
     <string name="find_rs">Temukan rumah sakit di wilayah anda</string>
     <string name="wish">Apa yang anda butuhkan? semoga sehat selalu ya ....</string>
     <string name="choose_prov">Pilih Provinsi</string>
-    <string name="choose_city">Pilih Kota</string>
+    <string name="choose_city">Pilih Daerah</string>
     <string name="choose_hospital">Pilih Rumah Sakit</string>
     <string name="separated">:</string>
     <string name="bed_total">Total Kasur</string>
@@ -40,4 +40,6 @@
     <string name="telephone">Telepon</string>
     <string name="direction">Petunjuk</string>
     <string name="share">Bagikan</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

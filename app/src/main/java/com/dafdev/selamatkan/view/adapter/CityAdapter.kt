@@ -2,19 +2,21 @@ package com.dafdev.selamatkan.view.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.data.domain.model.Cities
 import com.dafdev.selamatkan.databinding.ItemListAreaBinding
 import com.dafdev.selamatkan.utils.Constant
-import com.dafdev.selamatkan.view.activity.main.HospitalActivity
 
-class CityAdapter(private val context: Context) :
-    RecyclerView.Adapter<CityAdapter.CityViewHolder>() {
+class CityAdapter : RecyclerView.Adapter<CityAdapter.CityViewHolder>() {
 
     private val listCity = ArrayList<Cities>()
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    internal fun setOnItemClick(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     fun setCityAdapter(data: List<Cities>) {
@@ -47,16 +49,25 @@ class CityAdapter(private val context: Context) :
 
     inner class CityViewHolder(private val binding: ItemListAreaBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(data: Cities) {
             with(binding) {
-                tvTerritorial.text = data.name
-                cvTerritorial.setOnClickListener {
-                    Constant.cityId = data.id!!
-                    Intent(context, HospitalActivity::class.java).also {
-                        context.startActivity(it)
+                data.name.let {
+                    if (it == "Bekasi") {
+                        tvTerritorial.text = "Bekasi Kabupaten"
+                    } else {
+                        tvTerritorial.text = it
                     }
+                }
+
+                cvTerritorial.setOnClickListener {
+                    onItemClickCallback.onItemClicked(data)
                 }
             }
         }
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: Cities)
     }
 }
