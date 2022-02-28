@@ -1,20 +1,20 @@
 package com.dafdev.selamatkan.view.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.databinding.ItemListAreaBinding
-import com.dafdev.selamatkan.utils.Constant
-import com.dafdev.selamatkan.view.activity.main.CityActivity
 
-class ProvinceAdapter(private val context: Context) :
-    RecyclerView.Adapter<ProvinceAdapter.ProvinceViewHolder>() {
+class ProvinceAdapter : RecyclerView.Adapter<ProvinceAdapter.ProvinceViewHolder>() {
 
     private val listProvince = ArrayList<ProvinceEntity>()
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    internal fun setOnItemClick(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     fun setProvinceAdapter(data: List<ProvinceEntity>) {
@@ -53,12 +53,13 @@ class ProvinceAdapter(private val context: Context) :
             with(binding) {
                 tvTerritorial.text = data.name
                 cvTerritorial.setOnClickListener {
-                    Constant.provinceId = data.id
-                    Intent(context, CityActivity::class.java).also {
-                        context.startActivity(it)
-                    }
+                    onItemClickCallback.onItemClicked(data)
                 }
             }
         }
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: ProvinceEntity)
     }
 }

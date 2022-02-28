@@ -5,7 +5,9 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.ActivityProvinceCovidBinding
+import com.dafdev.selamatkan.utils.StatusBarColor
 import com.dafdev.selamatkan.view.adapter.ProvinceCovidAdapter
 import com.dafdev.selamatkan.viewmodel.ProvinceCovidViewModel
 import com.dafdev.selamatkan.vo.Resource
@@ -23,6 +25,8 @@ class ProvinceCovidActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProvinceCovidBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        StatusBarColor.setStatusBar(this, R.color.white)
 
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
 

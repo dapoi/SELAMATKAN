@@ -1,15 +1,22 @@
 package com.dafdev.selamatkan.view.fragment.main.bottom
 
-import android.content.Intent
+import android.content.Context
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.browser.customtabs.CustomTabColorSchemeParams
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentNewsBinding
-import com.dafdev.selamatkan.view.activity.main.DetailNewsActivity
+import com.dafdev.selamatkan.utils.StatusBarColor
 import com.dafdev.selamatkan.view.adapter.NewsAdapter
 import com.dafdev.selamatkan.viewmodel.NewsViewModel
 import com.dafdev.selamatkan.vo.Resource
@@ -21,19 +28,24 @@ class NewsFragment : Fragment() {
 
     private lateinit var binding: FragmentNewsBinding
     private lateinit var newsAdapter: NewsAdapter
+
     private val newsViewModel: NewsViewModel by viewModels()
+
+    private var packageManager = "com.android.chrome"
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentNewsBinding.inflate(layoutInflater, container, false)
+        binding = FragmentNewsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        StatusBarColor.setStatusBar(requireActivity(), R.color.white)
 
         if (activity != null) {
 
@@ -50,10 +62,40 @@ class NewsFragment : Fragment() {
             adapter = newsAdapter
         }
         newsAdapter.onItemClick = {
-            Intent(activity, DetailNewsActivity::class.java).also { intent ->
-                intent.putExtra(DetailNewsActivity.EXTRA_DATA, it)
-                startActivity(intent)
-            }
+            moveToChrome(it.url)
+        }
+    }
+
+    private fun moveToChrome(news: String?) {
+        val builder = CustomTabsIntent.Builder()
+        val params = CustomTabColorSchemeParams.Builder()
+        params.setToolbarColor(ContextCompat.getColor(requireContext(), R.color.white))
+        builder.apply {
+            setDefaultColorSchemeParams(params.build())
+            setShowTitle(true)
+            setShareState(CustomTabsIntent.SHARE_STATE_ON)
+            setInstantAppsEnabled(true)
+        }
+
+        val customBuilder = builder.build()
+        if (requireActivity().isPackageInstalled(packageManager)) {
+            customBuilder.intent.setPackage(packageManager)
+            customBuilder.launchUrl(requireContext(), Uri.parse(news))
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "Maaf, halaman yang anda tuju tidak tersedia",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun Context.isPackageInstalled(packageName: String): Boolean {
+        return try {
+            packageManager!!.getPackageInfo(packageName, 0)
+            true
+        } catch (e: PackageManager.NameNotFoundException) {
+            false
         }
     }
 

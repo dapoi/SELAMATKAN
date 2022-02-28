@@ -20,16 +20,19 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CovidHospitalDetailFragment : Fragment() {
 
-    private lateinit var binding: FragmentCovidHospitalDetailBinding
-    private lateinit var covidDetailAdapter: HospitalDetailCovidAdapter
+    private var _binding: FragmentCovidHospitalDetailBinding? = null
+    private val binding get() = _binding!!
+
     private val covidDetailViewModel: DetailCovidHospitalViewModel by viewModels()
+
+    private lateinit var covidDetailAdapter: HospitalDetailCovidAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCovidHospitalDetailBinding.inflate(inflater, container, false)
+        _binding = FragmentCovidHospitalDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -112,5 +115,10 @@ class CovidHospitalDetailFragment : Fragment() {
 
     private fun dataEmpty() {
         binding.viewEmpty.root.visibility = View.VISIBLE
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

@@ -1,28 +1,18 @@
 package com.dafdev.selamatkan.view.adapter.pager
 
-import android.content.Context
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import com.dafdev.selamatkan.R
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dafdev.selamatkan.view.fragment.main.hospital.detail.CovidHospitalDetailFragment
 import com.dafdev.selamatkan.view.fragment.main.hospital.detail.NonCovidHospitalDetailFragment
 
-class HospitalDetailPagerAdapter(private val context: Context, fm: FragmentManager) :
-    FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-    override fun getCount(): Int = 2
+class HospitalDetailPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
+    override fun getItemCount(): Int = 2
 
-    override fun getItem(position: Int): Fragment =
+    override fun createFragment(position: Int): Fragment =
         when (position) {
             0 -> CovidHospitalDetailFragment()
             1 -> NonCovidHospitalDetailFragment()
             else -> CovidHospitalDetailFragment()
         }
-
-    override fun getPageTitle(position: Int): CharSequence =
-        context.resources.getString(TAB_TITLES[position])
-
-    companion object {
-        private val TAB_TITLES = intArrayOf(R.string.khusus, R.string.umum)
-    }
 }

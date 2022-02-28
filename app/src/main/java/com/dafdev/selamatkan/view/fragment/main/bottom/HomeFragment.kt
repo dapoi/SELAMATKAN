@@ -1,17 +1,19 @@
 package com.dafdev.selamatkan.view.fragment.main.bottom
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dafdev.selamatkan.R
+import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.databinding.FragmentHomeBinding
-import com.dafdev.selamatkan.view.activity.main.ProvinceActivity
-import com.dafdev.selamatkan.view.activity.main.ProvinceCovidActivity
+import com.dafdev.selamatkan.utils.Constant
+import com.dafdev.selamatkan.utils.StatusBarColor
 import com.dafdev.selamatkan.view.adapter.ProvinceAdapter
 import com.dafdev.selamatkan.viewmodel.IndoDataCovidViewModel
 import com.dafdev.selamatkan.viewmodel.ProvinceViewModel
@@ -23,24 +25,28 @@ import java.util.*
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomeBinding
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
-    private lateinit var provinceAdapter: ProvinceAdapter
     private val provinceViewModel: ProvinceViewModel by viewModels()
     private val covidViewModel: IndoDataCovidViewModel by viewModels()
+
+    private lateinit var provinceAdapter: ProvinceAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        StatusBarColor.setStatusBar(requireActivity(), R.color.blue)
 
         if (activity != null) {
             binding.apply {
@@ -56,11 +62,11 @@ class HomeFragment : Fragment() {
                 }
 
                 tvViewAll.setOnClickListener {
-                    startActivity(Intent(requireActivity(), ProvinceCovidActivity::class.java))
+                    findNavController().navigate(R.id.action_nav_home_to_provinceCovidActivity)
                 }
 
                 tvViewClear.setOnClickListener {
-                    startActivity(Intent(requireActivity(), ProvinceActivity::class.java))
+                    findNavController().navigate(R.id.action_nav_home_to_provinceFragment)
                 }
             }
 
@@ -70,7 +76,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        provinceAdapter = ProvinceAdapter(requireActivity())
+        provinceAdapter = ProvinceAdapter()
+        provinceAdapter.setOnItemClick(object : ProvinceAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: ProvinceEntity) {
+                Constant.provinceId = data.id
+                findNavController().navigate(R.id.action_nav_home_to_cityFragment)
+            }
+        })
         binding.rvProvince.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
