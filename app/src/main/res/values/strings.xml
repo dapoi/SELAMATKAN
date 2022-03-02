@@ -42,4 +42,5 @@
     <string name="share">Bagikan</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_internet">Internet anda bermasalah nih, cek dulu ya… Muat ulang/tutup aplikasi jika sudah benar</string>
 </resources>

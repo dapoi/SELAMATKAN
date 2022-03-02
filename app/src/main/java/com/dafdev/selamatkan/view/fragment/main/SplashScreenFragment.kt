@@ -2,25 +2,26 @@ package com.dafdev.selamatkan.view.fragment.main
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentSplashScreenBinding
-import com.dafdev.selamatkan.utils.StatusBarColor
+import com.dafdev.selamatkan.utils.HelpUtil
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenFragment : Fragment() {
 
     private lateinit var binding: FragmentSplashScreenBinding
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,7 +29,7 @@ class SplashScreenFragment : Fragment() {
     ): View {
         binding = FragmentSplashScreenBinding.inflate(inflater, container, false)
 
-        StatusBarColor.setStatusBar(requireActivity(), R.color.white)
+        HelpUtil.setStatusBarWhite(requireActivity(), R.color.white)
 
         Handler(Looper.getMainLooper()).postDelayed({
             if (onBoardingFinished()) {

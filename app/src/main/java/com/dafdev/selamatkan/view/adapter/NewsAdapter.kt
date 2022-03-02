@@ -13,7 +13,6 @@ import com.dafdev.selamatkan.databinding.ItemListNewsBinding
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
@@ -49,6 +48,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
             with(binding) {
                 Glide.with(itemView.context)
                     .load(data.urlToImage)
+                    .centerCrop()
                     .transform(RoundedCorners(10)).apply(
                         RequestOptions.placeholderOf(R.drawable.ic_loading)
                             .error(R.drawable.ic_error)
