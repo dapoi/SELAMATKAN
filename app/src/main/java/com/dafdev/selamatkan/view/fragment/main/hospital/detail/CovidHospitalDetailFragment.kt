@@ -61,29 +61,23 @@ class CovidHospitalDetailFragment : Fragment() {
                     super.onScrolled(recyclerView, dx, dy)
 
                     binding.apply {
-                        addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                                super.onScrolled(recyclerView, dx, dy)
+                        // if the recycler view is scrolled
+                        // above hide the FAB
+                        if (dy > 5 && fab.isShown) {
+                            fab.hide()
+                        }
 
-                                // if the recycler view is scrolled
-                                // above hide the FAB
-                                if (dy > 5 && fab.isShown) {
-                                    fab.hide()
-                                }
+                        // if the recycler view is
+                        // scrolled above show the FAB
+                        if (dy < -5 && !fab.isShown) {
+                            fab.show()
+                        }
 
-                                // if the recycler view is
-                                // scrolled above show the FAB
-                                if (dy < -5 && !fab.isShown) {
-                                    fab.show()
-                                }
-
-                                // of the recycler view is at the first
-                                // item always show the FAB
-                                if (!recyclerView.canScrollVertically(-1)) {
-                                    fab.show()
-                                }
-                            }
-                        })
+                        // of the recycler view is at the first
+                        // item always show the FAB
+                        if (!recyclerView.canScrollVertically(-1)) {
+                            fab.show()
+                        }
                     }
                 }
             })
