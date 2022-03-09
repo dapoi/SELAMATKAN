@@ -14,8 +14,6 @@
 
 <img src = "https://user-images.githubusercontent.com/68842666/157481939-ef4a97ff-3a55-4477-b05a-41fd717b44e1.jpg" width = 180 height = 395/>  <img src = "https://user-images.githubusercontent.com/68842666/157480938-8fb97ef7-446e-43c7-b51c-04344bda9ba9.jpg" width = 180 height = 395/>
 
-
-
 ## Dependensi
 - [Lifecycle & Livedata](https://developer.android.com/jetpack/androidx/releases/lifecycle)
 - [Navigation Component](https://developer.android.com/jetpack/androidx/releases/navigation)
@@ -27,7 +25,7 @@
 - [Glide](https://github.com/bumptech/glide)
 
 ## Referensi / Sumber Data
-Terimakasih kepada Mas Satya yang telah mengizinkan saya untuk menggunakan API Rumah Sakit ini
+Terimakasih kepada Mas Satya yang telah mengizinkan saya untuk menggunakan API Rumah Sakit ini 
 https://github.com/satyawikananda/rs-bed-covid-indo-api
 
 API Berita 
