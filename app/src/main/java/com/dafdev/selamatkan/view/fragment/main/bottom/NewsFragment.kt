@@ -3,11 +3,16 @@ package com.dafdev.selamatkan.view.fragment.main.bottom
 import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
@@ -16,17 +21,21 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentNewsBinding
-import com.dafdev.selamatkan.utils.StatusBarColor
+import com.dafdev.selamatkan.utils.HelpUtil
+import com.dafdev.selamatkan.utils.HelpUtil.isOnline
+import com.dafdev.selamatkan.utils.HelpUtil.noInternetView
+import com.dafdev.selamatkan.utils.HelpUtil.showProgressBar
 import com.dafdev.selamatkan.view.adapter.NewsAdapter
 import com.dafdev.selamatkan.viewmodel.NewsViewModel
 import com.dafdev.selamatkan.vo.Resource
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class NewsFragment : Fragment() {
 
-    private lateinit var binding: FragmentNewsBinding
+    private var _binding: FragmentNewsBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var newsAdapter: NewsAdapter
 
     private val newsViewModel: NewsViewModel by viewModels()
@@ -38,19 +47,38 @@ class NewsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentNewsBinding.inflate(inflater, container, false)
+        _binding = FragmentNewsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        StatusBarColor.setStatusBar(requireActivity(), R.color.white)
+        HelpUtil.setStatusBarWhite(requireActivity(), R.color.white)
 
-        if (activity != null) {
+        setViewModel()
+        setAdapter()
 
-            setViewModel()
-            setAdapter()
+        swipeData()
+    }
+
+    private fun swipeData() {
+        binding.apply {
+            srlNews.setOnRefreshListener {
+                val check = isOnline(requireActivity())
+                if (check) {
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        setAdapter()
+                        setViewModel()
+                        noInternetView(false, viewNoConnected, rvNews)
+                        srlNews.isRefreshing = false
+                    }, 2000)
+                } else {
+                    noInternetView(true, viewNoConnected, rvNews)
+                    srlNews.isRefreshing = false
+                }
+            }
         }
     }
 
@@ -101,25 +129,19 @@ class NewsFragment : Fragment() {
 
     private fun setViewModel() {
         newsViewModel.getNews.observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Loading -> progressBar(true)
-                is Resource.Success -> {
-                    progressBar(false)
-                    it.data?.let { data -> newsAdapter.setNews(data) }
-                }
-                is Resource.Error -> {
-                    progressBar(false)
-                    Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
+            binding.apply {
+                when (it) {
+                    is Resource.Loading -> progressBar.showProgressBar(true)
+                    is Resource.Success -> {
+                        progressBar.showProgressBar(false)
+                        it.data?.let { data -> newsAdapter.setNews(data) }
+                    }
+                    is Resource.Error -> {
+                        progressBar.showProgressBar(false)
+                        viewNoConnected.root.visibility = View.VISIBLE
+                    }
                 }
             }
-        }
-    }
-
-    private fun progressBar(state: Boolean) {
-        if (state) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.GONE
         }
     }
 }

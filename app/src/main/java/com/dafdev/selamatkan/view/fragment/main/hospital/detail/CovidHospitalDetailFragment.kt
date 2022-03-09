@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.databinding.FragmentCovidHospitalDetailBinding
 import com.dafdev.selamatkan.utils.Constant
+import com.dafdev.selamatkan.utils.HelpUtil.dataEmpty
+import com.dafdev.selamatkan.utils.HelpUtil.showProgressBar
 import com.dafdev.selamatkan.view.activity.main.MapActivity
 import com.dafdev.selamatkan.view.adapter.hospital.detail.HospitalDetailCovidAdapter
 import com.dafdev.selamatkan.viewmodel.DetailCovidHospitalViewModel
@@ -59,29 +61,23 @@ class CovidHospitalDetailFragment : Fragment() {
                     super.onScrolled(recyclerView, dx, dy)
 
                     binding.apply {
-                        addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                                super.onScrolled(recyclerView, dx, dy)
+                        // if the recycler view is scrolled
+                        // above hide the FAB
+                        if (dy > 5 && fab.isShown) {
+                            fab.hide()
+                        }
 
-                                // if the recycler view is scrolled
-                                // above hide the FAB
-                                if (dy > 5 && fab.isShown) {
-                                    fab.hide()
-                                }
+                        // if the recycler view is
+                        // scrolled above show the FAB
+                        if (dy < -5 && !fab.isShown) {
+                            fab.show()
+                        }
 
-                                // if the recycler view is
-                                // scrolled above show the FAB
-                                if (dy < -5 && !fab.isShown) {
-                                    fab.show()
-                                }
-
-                                // of the recycler view is at the first
-                                // item always show the FAB
-                                if (!recyclerView.canScrollVertically(-1)) {
-                                    fab.show()
-                                }
-                            }
-                        })
+                        // of the recycler view is at the first
+                        // item always show the FAB
+                        if (!recyclerView.canScrollVertically(-1)) {
+                            fab.show()
+                        }
                     }
                 }
             })
@@ -91,30 +87,20 @@ class CovidHospitalDetailFragment : Fragment() {
     private fun setViewModel() {
         covidDetailViewModel.dataDetailCovidHospital(Constant.hospitalId)
             .observe(viewLifecycleOwner) {
-                when (it) {
-                    is Resource.Loading -> progressBar(true)
-                    is Resource.Success -> {
-                        progressBar(false)
-                        covidDetailAdapter.setData(it.data!!)
-                    }
-                    is Resource.Error -> {
-                        progressBar(false)
-                        dataEmpty()
+                binding.apply {
+                    when (it) {
+                        is Resource.Loading -> progressBar.showProgressBar(true)
+                        is Resource.Success -> {
+                            progressBar.showProgressBar(false)
+                            covidDetailAdapter.setData(it.data!!)
+                        }
+                        is Resource.Error -> {
+                            progressBar.showProgressBar(false)
+                            viewEmpty.dataEmpty()
+                        }
                     }
                 }
             }
-    }
-
-    private fun progressBar(state: Boolean) {
-        if (state) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.GONE
-        }
-    }
-
-    private fun dataEmpty() {
-        binding.viewEmpty.root.visibility = View.VISIBLE
     }
 
     override fun onDestroy() {

@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.databinding.FragmentNonCovidHospitalDetailBinding
 import com.dafdev.selamatkan.utils.Constant
+import com.dafdev.selamatkan.utils.HelpUtil.dataEmpty
+import com.dafdev.selamatkan.utils.HelpUtil.showProgressBar
 import com.dafdev.selamatkan.view.activity.main.MapActivity
 import com.dafdev.selamatkan.view.adapter.hospital.detail.HospitalDetailNonCovidAdapter
 import com.dafdev.selamatkan.viewmodel.DetailNonCovidHospitalViewModel
@@ -85,30 +87,20 @@ class NonCovidHospitalDetailFragment : Fragment() {
     private fun setViewModel() {
         nonCovidDetailViewModel.dataDetailNonCovidHospital(Constant.hospitalId)
             .observe(viewLifecycleOwner) {
-                when (it) {
-                    is Resource.Loading -> progressBar(true)
-                    is Resource.Success -> {
-                        progressBar(false)
-                        nonCovidDetailAdapter.setData(it.data!!)
-                    }
-                    is Resource.Error -> {
-                        progressBar(false)
-                        dataEmpty()
+                binding.apply {
+                    when (it) {
+                        is Resource.Loading -> progressBar.showProgressBar(true)
+                        is Resource.Success -> {
+                            progressBar.showProgressBar(false)
+                            nonCovidDetailAdapter.setData(it.data!!)
+                        }
+                        is Resource.Error -> {
+                            progressBar.showProgressBar(false)
+                            viewEmpty.dataEmpty()
+                        }
                     }
                 }
             }
-    }
-
-    private fun progressBar(state: Boolean) {
-        if (state) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.GONE
-        }
-    }
-
-    private fun dataEmpty() {
-        binding.viewEmpty.root.visibility = View.VISIBLE
     }
 
     override fun onDestroy() {

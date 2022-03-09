@@ -1,13 +1,15 @@
 package com.dafdev.selamatkan.view.activity.main
 
+import android.os.Build
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.ActivityProvinceCovidBinding
-import com.dafdev.selamatkan.utils.StatusBarColor
+import com.dafdev.selamatkan.utils.HelpUtil
+import com.dafdev.selamatkan.utils.HelpUtil.showProgressBar
 import com.dafdev.selamatkan.view.adapter.ProvinceCovidAdapter
 import com.dafdev.selamatkan.viewmodel.ProvinceCovidViewModel
 import com.dafdev.selamatkan.vo.Resource
@@ -21,12 +23,13 @@ class ProvinceCovidActivity : AppCompatActivity() {
     private lateinit var covidAdapter: ProvinceCovidAdapter
     private val covidViewModel: ProvinceCovidViewModel by viewModels()
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProvinceCovidBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        StatusBarColor.setStatusBar(this, R.color.white)
+        HelpUtil.setStatusBarWhite(this, R.color.white)
 
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
 
@@ -45,25 +48,19 @@ class ProvinceCovidActivity : AppCompatActivity() {
 
     private fun setViewModel() {
         covidViewModel.dataCovidProv().observe(this) {
-            when (it) {
-                is Resource.Loading -> progressBar(true)
-                is Resource.Success -> {
-                    progressBar(false)
-                    covidAdapter.setData(it.data!!)
-                }
-                is Resource.Error -> {
-                    progressBar(false)
-                    Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
+            binding.apply {
+                when (it) {
+                    is Resource.Loading -> progressBar.showProgressBar(true)
+                    is Resource.Success -> {
+                        progressBar.showProgressBar(false)
+                        covidAdapter.setData(it.data!!)
+                    }
+                    is Resource.Error -> {
+                        progressBar.showProgressBar(false)
+                        Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
+                    }
                 }
             }
-        }
-    }
-
-    private fun progressBar(state: Boolean) {
-        if (state) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.GONE
         }
     }
 }

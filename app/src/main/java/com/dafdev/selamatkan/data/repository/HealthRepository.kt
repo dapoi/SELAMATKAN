@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
+@Suppress("UNCHECKED_CAST")
 @Singleton
 class HealthRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
