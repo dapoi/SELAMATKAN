@@ -1,5 +1,5 @@
 <div align="center">
-<h1>SELAMATKAN: Persebaran Rumah Sakit di Indonesia</h1>
+<h1>SELAMATKAN! : Aplikasi Persebaran Rumah Sakit di Indonesia</h1>
 </div>
 Repositori ini merupakan projek akhir(skripsi) dari perkuliahan saya, dan sekaligus untuk memenuhi persyaratan kelulusan. Dengan aplikasi ini, Anda dapat menemukan Rumah Sakit Covid dan Non-Covid di Indonesia secara mudah dan efisien. Di dalamnya juga terdapat beberapa fitur menarik lain.
 
