@@ -9,12 +9,12 @@
 - Data Covid-19 di Indonesia & Provinsi!
 - Kalkulator BMI (Comming Soon)
 
-## Preview
+## Pratinjau 
 <img src = "https://user-images.githubusercontent.com/68842666/157479211-2a9bf740-0cc6-4e4a-97a9-b063655cbae9.jpg" width = 180 height = 395/>  <img src = "https://user-images.githubusercontent.com/68842666/157482449-c9a4c2a7-ab73-4213-8e10-3d67544ea1da.jpg" width = 180 height = 395/>  <img src = "https://user-images.githubusercontent.com/68842666/157482592-9182dbb9-a5ed-4388-a62e-d29738604fa7.jpg" width = 180 height = 395/>
 
 <img src = "https://user-images.githubusercontent.com/68842666/157481939-ef4a97ff-3a55-4477-b05a-41fd717b44e1.jpg" width = 180 height = 395/>  <img src = "https://user-images.githubusercontent.com/68842666/157480938-8fb97ef7-446e-43c7-b51c-04344bda9ba9.jpg" width = 180 height = 395/>
 
-## Dependensi
+## Teknologi Yang Digunakan
 - [Lifecycle & Livedata](https://developer.android.com/jetpack/androidx/releases/lifecycle)
 - [Navigation Component](https://developer.android.com/jetpack/androidx/releases/navigation)
 - [Dagger Hilt](https://dagger.dev/hilt/)
