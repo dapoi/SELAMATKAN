@@ -1,12 +1,13 @@
 <div align="center">
 <h1>SELAMATKAN! : Aplikasi Persebaran Rumah Sakit di Indonesia</h1>
+<p>Repositori ini merupakan projek akhir (skripsi) perkuliahan saya, dan sekaligus untuk memenuhi persyaratan kelulusan. Dengan aplikasi ini, Anda dapat menemukan Rumah Sakit Covid dan Non-Covid di Indonesia secara mudah dan efisien. Di dalamnya juga terdapat beberapa fitur menarik lainnya. </p>
 </div>
-Repositori ini merupakan projek akhir(skripsi) dari perkuliahan saya, dan sekaligus untuk memenuhi persyaratan kelulusan. Dengan aplikasi ini, Anda dapat menemukan Rumah Sakit Covid dan Non-Covid di Indonesia secara mudah dan efisien. Di dalamnya juga terdapat beberapa fitur menarik lain.
 
 ## Fitur
 - Data rumah sakit Covid dan Non-Covid di Indonesia (kuota kamar/kasur, nomor telepon, dan map)
 - Artikel Berita dari media ternama di Indonesia
 - Data Covid-19 di Indonesia & Provinsi!
+- Kalkulator BMI (Comming Soon)
 
 ## Preview
 <img src = "https://user-images.githubusercontent.com/68842666/157479211-2a9bf740-0cc6-4e4a-97a9-b063655cbae9.jpg" width = 180 height = 395/>  <img src = "https://user-images.githubusercontent.com/68842666/157482449-c9a4c2a7-ab73-4213-8e10-3d67544ea1da.jpg" width = 180 height = 395/>  <img src = "https://user-images.githubusercontent.com/68842666/157482592-9182dbb9-a5ed-4388-a62e-d29738604fa7.jpg" width = 180 height = 395/>
