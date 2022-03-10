@@ -8,7 +8,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.navigation.NavDestination
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.ActivityHomeBinding
@@ -34,9 +35,11 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setBottom() {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.findNavController()
         binding.apply {
-            bottomNav.setupWithNavController(findNavController(R.id.nav_host_fragment))
-            findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { _, destination: NavDestination, _ ->
+            bottomNav.setupWithNavController(navController)
+            navController.addOnDestinationChangedListener { _, destination: NavDestination, _ ->
                 when (destination.id) {
                     R.id.provinceFragment, R.id.cityFragment, R.id.baseHospitalListFragment, R.id.baseHospitalDetailFragment, R.id.provinceCovidFragment -> {
                         setBottomNav(View.GONE)

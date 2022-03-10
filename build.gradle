@@ -1,6 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.nav_version = '2.4.1'
+    ext.nav_version = '2.5.0-alpha03'
+    ext.fragment_version = '1.4.1'
     ext.cardview_version = "1.0.0"
     ext.recyclerview_version = "1.2.1"
     ext.material_version = "1.2.1"
