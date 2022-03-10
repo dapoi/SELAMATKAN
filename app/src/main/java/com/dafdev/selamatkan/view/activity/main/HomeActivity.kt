@@ -38,7 +38,7 @@ class HomeActivity : AppCompatActivity() {
             bottomNav.setupWithNavController(findNavController(R.id.nav_host_fragment))
             findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { _, destination: NavDestination, _ ->
                 when (destination.id) {
-                    R.id.provinceFragment, R.id.cityFragment, R.id.baseHospitalListFragment, R.id.baseHospitalDetailFragment -> {
+                    R.id.provinceFragment, R.id.cityFragment, R.id.baseHospitalListFragment, R.id.baseHospitalDetailFragment, R.id.provinceCovidFragment -> {
                         setBottomNav(View.GONE)
                     }
                     else -> {

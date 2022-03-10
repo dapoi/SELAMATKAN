@@ -48,7 +48,7 @@ class ProvinceFragment : Fragment() {
         HelpUtil.setStatusBarWhite(requireActivity(), R.color.white)
 
         binding.ivBack.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigateUp()
         }
 
         if (activity != null) {

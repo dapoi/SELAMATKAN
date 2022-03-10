@@ -57,10 +57,10 @@ class NewsFragment : Fragment() {
 
         HelpUtil.setStatusBarWhite(requireActivity(), R.color.white)
 
+        swipeData()
+
         setViewModel()
         setAdapter()
-
-        swipeData()
     }
 
     private fun swipeData() {

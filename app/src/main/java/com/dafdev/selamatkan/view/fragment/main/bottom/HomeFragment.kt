@@ -63,7 +63,7 @@ class HomeFragment : Fragment() {
             }
 
             tvViewAll.setOnClickListener {
-                findNavController().navigate(R.id.action_nav_home_to_provinceCovidActivity)
+                findNavController().navigate(R.id.action_nav_home_to_provinceCovidFragment)
             }
 
             tvViewClear.setOnClickListener {

@@ -25,8 +25,12 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_nav_home_to_provinceCovidActivity"
-            app:destination="@id/provinceCovidActivity" />
+            android:id="@+id/action_nav_home_to_provinceCovidFragment"
+            app:destination="@id/provinceCovidFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/nav_article"
@@ -50,19 +54,12 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
-            android:id="@+id/action_provinceFragment_to_nav_home"
-            app:destination="@id/nav_home"
-            />
     </fragment>
     <fragment
         android:id="@+id/cityFragment"
         android:name="com.dafdev.selamatkan.view.fragment.main.area.CityFragment"
         android:label="CityFragment"
         tools:layout="@layout/fragment_city">
-        <action
-            android:id="@+id/action_cityFragment_to_nav_home"
-            app:destination="@id/nav_home" />
         <action
             android:id="@+id/action_cityFragment_to_baseHospitalListFragment"
             app:destination="@id/baseHospitalListFragment"
@@ -89,7 +86,7 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <fragment
         android:id="@+id/baseHospitalDetailFragment"
@@ -104,10 +101,10 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
-    <activity
-        android:id="@+id/provinceCovidActivity"
-        android:name="com.dafdev.selamatkan.view.activity.main.ProvinceCovidActivity"
-        android:label="activity_province_covid"
-        tools:layout="@layout/activity_province_covid" />
+    <fragment
+        android:id="@+id/provinceCovidFragment"
+        android:name="com.dafdev.selamatkan.view.fragment.main.area.ProvinceCovidFragment"
+        android:label="fragment_province_covid"
+        tools:layout="@layout/fragment_province_covid" />
 
 </navigation>
