@@ -11,13 +11,13 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_map_hospital"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_map"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/fragment_map_hospital" />
+        app:layout_constraintTop_toTopOf="@+id/fragment_map" />
 
     <fragment
-        android:id="@+id/fragment_map_hospital"
+        android:id="@+id/fragment_map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="300dp"
@@ -43,7 +43,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_map_hospital">
+        app:layout_constraintTop_toBottomOf="@+id/fragment_map">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -220,6 +220,21 @@
                 app:layout_constraintStart_toEndOf="@+id/img_phone_second"
                 app:layout_constraintTop_toTopOf="@+id/img_phone_second"
                 tools:text="12345" />
+
+            <TextView
+                android:id="@+id/tv_distance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/encodesans_regular"
+                android:textAlignment="center"
+                android:textColor="@color/dark_gray"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_hospital_address"
+                app:layout_constraintStart_toStartOf="@+id/img_phone_second"
+                app:layout_constraintTop_toBottomOf="@id/tv_hospital_phone"
+                tools:text="Total Jarak" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
