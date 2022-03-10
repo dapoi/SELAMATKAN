@@ -1,14 +1,19 @@
 <div align="center">
-<h1>TEMUKAN</h1>
+<h1>SELAMATKAN! : Aplikasi Pencarian Rumah Sakit di Indonesia</h1>
+<p>Repositori ini merupakan projek akhir (skripsi) perkuliahan saya, dan sekaligus untuk memenuhi persyaratan kelulusan. Dengan aplikasi ini, Anda dapat menemukan Rumah Sakit Covid dan Non-Covid di Indonesia secara mudah dan efisien. Di dalamnya juga terdapat beberapa fitur menarik lainnya. </p>
 </div>
-Repositori ini merupakan projek akhir(skripsi) dari perkuliahan saya, dan sekaligus untuk memenuhi persyaratan kelulusan. Dengan aplikasi ini, Anda dapat menemukan Rumah Sakit Covid dan Non-Covid di Indonesia secara mudah dan efisien. Di dalamnya juga terdapat beberapa fitur menarik lain.
 
 ## Fitur
 - Data rumah sakit Covid dan Non-Covid di Indonesia (kuota kamar/kasur, nomor telepon, dan map)
 - Artikel Berita dari media ternama di Indonesia
-- Data Covid-19 di Indonesia & Provinsi
+- Data Covid-19 di Indonesia & Provinsi!
+- Kalkulator BMI (Comming Soon)
 
-## Dependensi
+## Pratinjau 
+<img src = "https://user-images.githubusercontent.com/68842666/157479211-2a9bf740-0cc6-4e4a-97a9-b063655cbae9.jpg" width = 180 height = 395/>  <img src = "https://user-images.githubusercontent.com/68842666/157482449-c9a4c2a7-ab73-4213-8e10-3d67544ea1da.jpg" width = 180 height = 395/>  <img src = "https://user-images.githubusercontent.com/68842666/157482592-9182dbb9-a5ed-4388-a62e-d29738604fa7.jpg" width = 180 height = 395/>
+<img src = "https://user-images.githubusercontent.com/68842666/157481939-ef4a97ff-3a55-4477-b05a-41fd717b44e1.jpg" width = 180 height = 395/>  <img src = "https://user-images.githubusercontent.com/68842666/157480938-8fb97ef7-446e-43c7-b51c-04344bda9ba9.jpg" width = 180 height = 395/>
+
+## Teknologi Yang Digunakan
 - [Lifecycle & Livedata](https://developer.android.com/jetpack/androidx/releases/lifecycle)
 - [Navigation Component](https://developer.android.com/jetpack/androidx/releases/navigation)
 - [Dagger Hilt](https://dagger.dev/hilt/)
@@ -19,7 +24,7 @@ Repositori ini merupakan projek akhir(skripsi) dari perkuliahan saya, dan sekali
 - [Glide](https://github.com/bumptech/glide)
 
 ## Referensi / Sumber Data
-Terimakasih kepada Mas Satya yang telah mengizinkan saya untuk menggunakan API Rumah Sakit ini
+Terimakasih kepada Mas Satya yang telah mengizinkan saya untuk menggunakan API Rumah Sakit ini 
 https://github.com/satyawikananda/rs-bed-covid-indo-api
 
 API Berita 
@@ -29,19 +34,26 @@ https://newsapi.org
 
 ```
 
-   Copyright © 2021 Luthfi Daffa Prabowo
+Copyright (c) 2022 Luthfi Daffa Prabowo
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
 
-       http://www.apache.org/licenses/LICENSE-2.0
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ```
 
