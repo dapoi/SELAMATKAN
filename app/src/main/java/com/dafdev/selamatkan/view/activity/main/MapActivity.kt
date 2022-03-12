@@ -28,10 +28,8 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
-import com.google.maps.android.SphericalUtil
 import dagger.hilt.android.AndroidEntryPoint
-
+import kotlin.math.*
 
 @AndroidEntryPoint
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -104,6 +102,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    @Suppress("DEPRECATION")
     @SuppressLint("MissingPermission", "SetTextI18n")
     private fun getLocation() {
         if (checkPermissions()) {
@@ -116,15 +115,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                         myLong = location.longitude
                         myLat = location.latitude
                         myLoc = LatLng(myLat, myLong)
-                        val distance =
-                            SphericalUtil.computeDistanceBetween(destinationLatLng, myLoc)
-                        binding.tvDistance.text =
-                            "Jarak dari lokasi Anda ke ${Constant.hospitalName} sekitar ${
-                                String.format(
-                                    "%.2f",
-                                    distance / 1000
-                                )
-                            } KM"
+                        getDistance(myLat, myLong, destinationLat, destinationLong)
                     }
                 }
             } else {
@@ -132,7 +123,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 Toast.makeText(this, "Tunggu sebentar....", Toast.LENGTH_LONG).show()
                 Handler(Looper.getMainLooper()).postDelayed({
                     val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                    startActivityForResult(intent, 0)
+                    startActivityForResult(intent, 2)
                 }, 3000)
             }
         } else {
@@ -142,23 +133,15 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     @SuppressLint("MissingPermission", "SetTextI18n")
     private fun requestNewLocationData() {
-        val locationRequest = LocationRequest()
-        locationRequest.apply {
+        val locationRequest = LocationRequest.create().apply {
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-            interval = 0
-            fastestInterval = 0
+            interval = 100
+            fastestInterval = 3000
             numUpdates = 1
         }
         fusedLocation = LocationServices.getFusedLocationProviderClient(this)
         fusedLocation.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper()!!)
-        val distance = SphericalUtil.computeDistanceBetween(destinationLatLng, myLoc)
-        binding.tvDistance.text =
-            "Jarak dari lokasi Anda ke ${Constant.hospitalName} sekitar ${
-                String.format(
-                    "%.2f",
-                    distance / 1000
-                )
-            } KM"
+        getDistance(myLat, myLong, destinationLat, destinationLong)
     }
 
     private val locationCallback = object : LocationCallback() {
@@ -215,6 +198,24 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun getDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
+        val earthRadius = 6372.8
+        val dLat = Math.toRadians(lat2 - lat1)
+        val dLon = Math.toRadians(lon2 - lon1)
+        val originLat = Math.toRadians(lat1)
+        val destinationLat = Math.toRadians(lat2)
+
+        val a = sin(dLat / 2).pow(2.toDouble()) + sin(dLon / 2).pow(2.toDouble()) *
+                cos(originLat) * cos(destinationLat)
+        val c = 2 * asin(sqrt(a))
+        val distance = earthRadius * c
+        binding.tvDistance.text = "Jarak dari lokasi Anda ke ${Constant.hospitalName} sekitar ${
+            String.format("%.2f", distance)
+        } - ${String.format("%.2f", distance * 1.5)} KM"
+        return sqrt(distance)
+    }
+
     override fun onMapReady(gMapReady: GoogleMap) {
         locationViewModel.getLocationHospital(Constant.hospitalId).observe(this) {
             when (it) {
@@ -239,14 +240,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             destinationLong = data.long!!.toDouble()
         }
 
-        gMap = gMapReady
         destinationLatLng = LatLng(destinationLat, destinationLong)
+        gMap = gMapReady
+
         with(gMap) {
-            addMarker(
-                MarkerOptions().position(destinationLatLng).title(Constant.hospitalName)
-            ).also {
-                it?.showInfoWindow()
-            }
             moveCamera(CameraUpdateFactory.newLatLng(destinationLatLng))
             animateCamera(
                 CameraUpdateFactory.newLatLngZoom(
@@ -268,9 +265,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    @Suppress("DEPRECATION")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 0) {
+        if (requestCode == 2) {
             val wifi = getSystemService(Context.LOCATION_SERVICE) as LocationManager
             if (wifi.isProviderEnabled(LocationManager.GPS_PROVIDER) || wifi.isProviderEnabled(
                     LocationManager.NETWORK_PROVIDER

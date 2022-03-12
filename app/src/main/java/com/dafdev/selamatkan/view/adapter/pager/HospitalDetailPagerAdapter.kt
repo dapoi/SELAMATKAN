@@ -13,6 +13,6 @@ class HospitalDetailPagerAdapter(activity: AppCompatActivity) : FragmentStateAda
         when (position) {
             0 -> CovidHospitalDetailFragment()
             1 -> NonCovidHospitalDetailFragment()
-            else -> CovidHospitalDetailFragment()
+            else -> Fragment()
         }
 }

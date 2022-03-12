@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.data.domain.model.HospitalNonCovid
 import com.dafdev.selamatkan.databinding.ItemListHospitalBinding
-import com.dafdev.selamatkan.utils.Constant
 
 class HospitalNonCovidAdapter : RecyclerView.Adapter<HospitalNonCovidAdapter.NonCovidViewHolder>() {
 
@@ -49,14 +48,6 @@ class HospitalNonCovidAdapter : RecyclerView.Adapter<HospitalNonCovidAdapter.Non
                 data.apply {
                     tvHospitalName.text = name
                     tvInfo.text = info
-                    Constant.hospitalAddress = address!!
-                    Constant.hospitalId = id!!
-                    Constant.hospitalName = name!!
-                    if (phone != null) {
-                        Constant.phoneNumber = phone
-                    } else {
-                        Constant.phoneNumber = "-"
-                    }
                 }
             }
         }

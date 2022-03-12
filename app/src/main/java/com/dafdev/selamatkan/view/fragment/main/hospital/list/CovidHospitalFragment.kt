@@ -47,6 +47,14 @@ class CovidHospitalFragment : Fragment() {
     private fun setAdapter() {
         hospitalCovidAdapter = HospitalCovidAdapter()
         hospitalCovidAdapter.onItemCLick = {
+            Constant.hospitalId = it.id!!
+            Constant.hospitalAddress = it.address!!
+            Constant.hospitalName = it.name!!
+            if (it.phone != null) {
+                Constant.phoneNumber = it.phone
+            } else {
+                Constant.phoneNumber = "-"
+            }
             findNavController().navigate(R.id.action_baseHospitalListFragment_to_baseHospitalDetailFragment)
         }
         with(binding.rvHospitalCovid) {

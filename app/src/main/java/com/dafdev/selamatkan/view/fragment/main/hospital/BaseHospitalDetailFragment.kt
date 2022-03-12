@@ -1,5 +1,6 @@
 package com.dafdev.selamatkan.view.fragment.main.hospital
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +10,11 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentBaseHospitalDetailBinding
 import com.dafdev.selamatkan.utils.HelpUtil
+import com.dafdev.selamatkan.view.activity.main.MapActivity
 import com.dafdev.selamatkan.view.adapter.pager.HospitalDetailPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,6 +41,11 @@ class BaseHospitalDetailFragment : Fragment() {
         HelpUtil.setStatusBarWhite(requireActivity(), R.color.white)
 
         with(binding) {
+
+            fab.setOnClickListener {
+                startActivity(Intent(requireActivity(), MapActivity::class.java))
+            }
+
             ivBack.setOnClickListener {
                 findNavController().navigateUp()
             }
@@ -48,6 +56,16 @@ class BaseHospitalDetailFragment : Fragment() {
             TabLayoutMediator(tabsHospital, viewPager) { tab, position ->
                 tab.text = resources.getString(TAB_TITLES[position])
             }.attach()
+
+            viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageScrollStateChanged(state: Int) {
+                    super.onPageScrollStateChanged(state)
+                    when (state) {
+                        ViewPager2.SCROLL_STATE_SETTLING -> fab.hide()
+                        else -> fab.show()
+                    }
+                }
+            })
         }
     }
 
