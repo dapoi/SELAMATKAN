@@ -8,7 +8,7 @@
     <string name="title3">Data Covid-19</string>
     <string name="home">Beranda</string>
     <string name="content">Artikel</string>
-    <string name="other">Lainnya</string>
+    <string name="bmi">BMI</string>
     <string name="greet">Halo,</string>
     <string name="covid_indonesia">Covid-19 di Indonesia</string>
     <string name="positive">POSITIF</string>
@@ -40,4 +40,8 @@
     <string name="share">Bagikan</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="no_internet">Internet anda bermasalah nih, cek dulu ya… Muat ulang/tutup aplikasi jika sudah benar</string>
+    <string name="input_data">Masukkan data Anda :</string>
+    <string name="kg">Berat(kg)</string>
+    <string name="cm">Tinggi(cm)</string>
+    <string name="calculate">Hitung</string>
 </resources>

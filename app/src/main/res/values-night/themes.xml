@@ -19,9 +19,4 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.SELAMATKAN.BottomNavigationActive">
-        <item name="android:fontFamily">@font/encodesans_semibold</item>
-        <item name="background">@null</item>
-        <item name="android:textSize">12sp</item>
-    </style>
 </resources>
