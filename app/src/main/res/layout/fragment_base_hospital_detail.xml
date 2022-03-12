@@ -19,7 +19,8 @@
             android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back" />
+            android:src="@drawable/ic_back"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tv_title_hosptial"
@@ -61,14 +62,14 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_direction"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_map"
         app:backgroundTint="@color/blue"
-        app:fabCustomSize="60dp"
+        app:fabCustomSize="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="30dp"
+        app:maxImageSize="40dp"
         app:tint="@color/white"
         tools:ignore="ContentDescription" />
 
