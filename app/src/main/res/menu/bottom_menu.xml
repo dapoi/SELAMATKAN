@@ -7,9 +7,9 @@
     <item
         android:id="@+id/nav_article"
         android:title="@string/content"
-        android:icon="@drawable/ic_info_selector"/>
+        android:icon="@drawable/ic_article_selector"/>
     <item
-        android:id="@+id/nav_other"
-        android:title="@string/other"
-        android:icon="@drawable/ic_other_selector"/>
+        android:id="@+id/nav_bmi"
+        android:title="@string/bmi"
+        android:icon="@drawable/ic_scale_selector"/>
 </menu>

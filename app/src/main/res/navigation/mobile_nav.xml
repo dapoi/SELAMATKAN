@@ -38,10 +38,10 @@
         android:label="fragment_news"
         tools:layout="@layout/fragment_news" />
     <fragment
-        android:id="@+id/nav_other"
-        android:name="com.dafdev.selamatkan.view.fragment.main.bottom.OtherFragment"
-        android:label="fragment_other"
-        tools:layout="@layout/fragment_other" />
+        android:id="@+id/nav_bmi"
+        android:name="com.dafdev.selamatkan.view.fragment.main.bottom.BMIFragment"
+        android:label="fragment_bmi"
+        tools:layout="@layout/fragment_bmi" />
     <fragment
         android:id="@+id/provinceFragment"
         android:name="com.dafdev.selamatkan.view.fragment.main.area.ProvinceFragment"

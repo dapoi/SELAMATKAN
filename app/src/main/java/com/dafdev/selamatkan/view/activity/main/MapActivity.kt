@@ -28,6 +28,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.*
 
@@ -212,7 +213,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         val distance = earthRadius * c
         binding.tvDistance.text = "Jarak dari lokasi Anda ke ${Constant.hospitalName} sekitar ${
             String.format("%.2f", distance)
-        } - ${String.format("%.2f", distance * 1.5)} KM"
+        } - ${String.format("%.2f", distance * 1.4)} KM \n *kondisi mungkin berbeda"
         return sqrt(distance)
     }
 
@@ -244,10 +245,11 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         gMap = gMapReady
 
         with(gMap) {
+            addMarker(MarkerOptions().position(destinationLatLng).title(Constant.hospitalName))
             moveCamera(CameraUpdateFactory.newLatLng(destinationLatLng))
             animateCamera(
                 CameraUpdateFactory.newLatLngZoom(
-                    destinationLatLng,
+                    LatLng(destinationLat, destinationLong),
                     14f
                 )
             )

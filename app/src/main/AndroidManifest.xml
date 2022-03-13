@@ -19,7 +19,8 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity android:name=".view.activity.main.MapActivity" />
-        <activity android:name=".view.activity.main.HomeActivity" />
+        <activity android:name=".view.activity.main.HomeActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".view.activity.onboard.OnboardingActivity"
             android:exported="true"
