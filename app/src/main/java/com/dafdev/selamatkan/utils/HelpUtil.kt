@@ -6,7 +6,6 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.databinding.EmptyLayoutBinding
@@ -15,13 +14,7 @@ import com.facebook.shimmer.ShimmerFrameLayout
 
 object HelpUtil {
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    fun setStatusBarWhite(activity: Activity, color: Int) {
-        activity.window.statusBarColor = ContextCompat.getColor(activity, color)
-        activity.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-    }
-
-    fun setStatusBarBlue(activity: Activity, color: Int) {
+    fun setStatusBarColor(activity: Activity, color: Int) {
         activity.window.statusBarColor = ContextCompat.getColor(activity, color)
     }
 

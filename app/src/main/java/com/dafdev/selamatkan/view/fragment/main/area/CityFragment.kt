@@ -15,6 +15,7 @@ import com.dafdev.selamatkan.data.domain.model.Cities
 import com.dafdev.selamatkan.databinding.FragmentCityBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.utils.HelpUtil
+import com.dafdev.selamatkan.utils.HelpUtil.setStatusBarColor
 import com.dafdev.selamatkan.utils.HelpUtil.showProgressBar
 import com.dafdev.selamatkan.view.adapter.CityAdapter
 import com.dafdev.selamatkan.viewmodel.CitiesViewModel
@@ -40,11 +41,10 @@ class CityFragment : Fragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        HelpUtil.setStatusBarWhite(requireActivity(), R.color.white)
+        setStatusBarColor(requireActivity(), R.color.white)
 
         binding.ivBack.setOnClickListener {
             findNavController().navigateUp()

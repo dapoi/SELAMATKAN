@@ -14,7 +14,7 @@ import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.databinding.FragmentHomeBinding
 import com.dafdev.selamatkan.utils.Constant
-import com.dafdev.selamatkan.utils.HelpUtil.setStatusBarBlue
+import com.dafdev.selamatkan.utils.HelpUtil.setStatusBarColor
 import com.dafdev.selamatkan.utils.HelpUtil.showProgressBar
 import com.dafdev.selamatkan.view.adapter.ProvinceAdapter
 import com.dafdev.selamatkan.viewmodel.IndoDataCovidViewModel
@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setStatusBarBlue(requireActivity(), R.color.blue)
+        setStatusBarColor(requireActivity(), R.color.blue)
 
         binding.apply {
             Calendar.getInstance().also {

@@ -1,19 +1,17 @@
 package com.dafdev.selamatkan.view.fragment.main.hospital
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentBaseHospitalDetailBinding
-import com.dafdev.selamatkan.utils.HelpUtil
+import com.dafdev.selamatkan.utils.HelpUtil.setStatusBarColor
 import com.dafdev.selamatkan.view.activity.main.MapActivity
 import com.dafdev.selamatkan.view.adapter.pager.HospitalDetailPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -34,11 +32,10 @@ class BaseHospitalDetailFragment : Fragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        HelpUtil.setStatusBarWhite(requireActivity(), R.color.white)
+        setStatusBarColor(requireActivity(), R.color.white)
 
         with(binding) {
 

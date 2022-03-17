@@ -15,8 +15,8 @@
 
         <ImageView
             android:id="@+id/img_bmi"
-            android:layout_width="230dp"
-            android:layout_height="230dp"
+            android:layout_width="210dp"
+            android:layout_height="210dp"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:src="@drawable/img_bmi"
@@ -34,15 +34,15 @@
             android:gravity="start"
             android:text="@string/input_data"
             android:textColor="#FD7A4C"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_bmi" />
 
         <ImageView
             android:id="@+id/img_scale"
-            android:layout_width="40dp"
-            android:layout_height="30dp"
+            android:layout_width="35dp"
+            android:layout_height="25dp"
             android:layout_marginTop="32dp"
             android:src="@drawable/img_scale"
             app:layout_constraintStart_toStartOf="parent"
@@ -74,15 +74,15 @@
             android:gravity="start"
             android:text="@string/kg"
             android:textColor="#FD7A4C"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/img_scale"
             app:layout_constraintStart_toEndOf="@+id/img_scale"
             app:layout_constraintTop_toTopOf="@+id/img_scale" />
 
         <ImageView
             android:id="@+id/img_height"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginTop="32dp"
             android:src="@drawable/img_height"
             app:layout_constraintStart_toStartOf="parent"
@@ -113,15 +113,15 @@
             android:gravity="start"
             android:text="@string/cm"
             android:textColor="#FD7A4C"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/img_height"
             app:layout_constraintStart_toEndOf="@+id/img_height"
             app:layout_constraintTop_toTopOf="@+id/img_height" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btn_calculate"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
+            android:layout_width="110dp"
+            android:layout_height="40dp"
             android:layout_marginTop="32dp"
             app:cardBackgroundColor="#FD7A4C"
             app:cardCornerRadius="10dp"

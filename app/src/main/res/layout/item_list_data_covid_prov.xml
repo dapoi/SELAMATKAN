@@ -20,7 +20,7 @@
             android:fontFamily="@font/encodesans_medium"
             android:textAlignment="center"
             android:textColor="@color/dark_gray"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,8 +28,8 @@
 
         <ImageView
             android:id="@+id/img_positive"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:src="@drawable/ic_positive"
@@ -66,8 +66,8 @@
 
         <ImageView
             android:id="@+id/img_negative"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/ic_negative"
             app:layout_constraintEnd_toStartOf="@+id/img_death"
             app:layout_constraintStart_toEndOf="@+id/img_positive"
@@ -103,8 +103,8 @@
 
         <ImageView
             android:id="@+id/img_death"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginEnd="32dp"
             android:src="@drawable/ic_death"
             app:layout_constraintEnd_toEndOf="parent"

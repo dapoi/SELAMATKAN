@@ -1,9 +1,7 @@
 package com.dafdev.selamatkan.view.fragment.main.bottom
 
-import android.app.Dialog
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,12 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentBmiBinding
-import com.dafdev.selamatkan.utils.HelpUtil
+import com.dafdev.selamatkan.utils.HelpUtil.setStatusBarColor
 import com.dafdev.selamatkan.view.fragment.main.DialogBMI
 import com.google.android.material.snackbar.Snackbar
 import java.math.BigDecimal
@@ -27,8 +24,6 @@ class BMIFragment : Fragment() {
     private var _binding: FragmentBmiBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var dialog: Dialog
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,11 +33,10 @@ class BMIFragment : Fragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        HelpUtil.setStatusBarWhite(requireActivity(), R.color.white)
+        setStatusBarColor(requireActivity(), R.color.white)
 
         binding.apply {
             showControl(false)
