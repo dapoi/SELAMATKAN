@@ -7,9 +7,9 @@ import com.dafdev.selamatkan.data.source.local.LocalDataSource
 import com.dafdev.selamatkan.data.source.local.model.CovidIndoEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.data.source.remote.RemoteDataSource
+import com.dafdev.selamatkan.data.source.remote.model.*
 import com.dafdev.selamatkan.data.source.remote.network.ApiResponse
 import com.dafdev.selamatkan.data.source.remote.network.ApiResponseOnline
-import com.dafdev.selamatkan.data.source.remote.model.*
 import com.dafdev.selamatkan.utils.AppExecutors
 import com.dafdev.selamatkan.utils.DataMapper
 import com.dafdev.selamatkan.vo.Resource
@@ -17,7 +17,6 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Suppress("UNCHECKED_CAST")
 @Singleton
 class HealthRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
@@ -83,12 +82,12 @@ class HealthRepository @Inject constructor(
     }
 
     override fun getListCities(provinceId: String): Flow<Resource<List<Cities>>> {
-        return object : NetworkOnlyResource<List<Cities>, List<CitiesItem>>() {
-            override fun loadFromNetwork(data: List<CitiesItem>): Flow<List<Cities>> =
+        return object : NetworkOnlyResource<List<Cities>, List<CitiesItem?>>() {
+            override fun loadFromNetwork(data: List<CitiesItem?>): Flow<List<Cities>> =
                 DataMapper.mapCitiesResponseToCities(data)
 
-            override suspend fun createCall(): Flow<ApiResponseOnline<List<CitiesItem>>> =
-                remoteDataSource.getListCities(provinceId) as Flow<ApiResponseOnline<List<CitiesItem>>>
+            override suspend fun createCall(): Flow<ApiResponseOnline<List<CitiesItem?>>> =
+                remoteDataSource.getListCities(provinceId)
         }.asFlow()
     }
 
@@ -96,15 +95,15 @@ class HealthRepository @Inject constructor(
         provinceId: String,
         cityId: String
     ): Flow<Resource<List<HospitalCovid>>> {
-        return object : NetworkOnlyResource<List<HospitalCovid>, List<HospitalsCovidItem>>() {
-            override fun loadFromNetwork(data: List<HospitalsCovidItem>): Flow<List<HospitalCovid>> =
+        return object : NetworkOnlyResource<List<HospitalCovid>, List<HospitalsCovidItem?>>() {
+            override fun loadFromNetwork(data: List<HospitalsCovidItem?>): Flow<List<HospitalCovid>> =
                 DataMapper.mapHospitalCovidResponseToHospitalCovid(data)
 
-            override suspend fun createCall(): Flow<ApiResponseOnline<List<HospitalsCovidItem>>> =
+            override suspend fun createCall(): Flow<ApiResponseOnline<List<HospitalsCovidItem?>>> =
                 remoteDataSource.getListCovidHospital(
                     provinceId,
                     cityId
-                ) as Flow<ApiResponseOnline<List<HospitalsCovidItem>>>
+                )
         }.asFlow()
     }
 
@@ -112,45 +111,46 @@ class HealthRepository @Inject constructor(
         provinceId: String,
         cityId: String
     ): Flow<Resource<List<HospitalNonCovid>>> {
-        return object : NetworkOnlyResource<List<HospitalNonCovid>, List<HospitalsNonCovidItem>>() {
-            override fun loadFromNetwork(data: List<HospitalsNonCovidItem>): Flow<List<HospitalNonCovid>> =
+        return object :
+            NetworkOnlyResource<List<HospitalNonCovid>, List<HospitalsNonCovidItem?>>() {
+            override fun loadFromNetwork(data: List<HospitalsNonCovidItem?>): Flow<List<HospitalNonCovid>> =
                 DataMapper.mapHospitalNonCovidResponseToHospitalNonCovid(data)
 
-            override suspend fun createCall(): Flow<ApiResponseOnline<List<HospitalsNonCovidItem>>> =
+            override suspend fun createCall(): Flow<ApiResponseOnline<List<HospitalsNonCovidItem?>>> =
                 remoteDataSource.getListNonCovidHospital(
                     provinceId,
                     cityId
-                ) as Flow<ApiResponseOnline<List<HospitalsNonCovidItem>>>
+                )
         }.asFlow()
     }
 
     override fun getDetailCovidHospital(hospitalId: String): Flow<Resource<List<DetailHospital>>> {
-        return object : NetworkOnlyResource<List<DetailHospital>, List<BedDetailItem>>() {
-            override fun loadFromNetwork(data: List<BedDetailItem>): Flow<List<DetailHospital>> =
+        return object : NetworkOnlyResource<List<DetailHospital>, List<BedDetailItem?>>() {
+            override fun loadFromNetwork(data: List<BedDetailItem?>): Flow<List<DetailHospital>> =
                 DataMapper.mapHospitalDetailResponseToHospitalDetail(data)
 
-            override suspend fun createCall(): Flow<ApiResponseOnline<List<BedDetailItem>>> =
-                remoteDataSource.getDetailCovidHospital(hospitalId) as Flow<ApiResponseOnline<List<BedDetailItem>>>
+            override suspend fun createCall(): Flow<ApiResponseOnline<List<BedDetailItem?>>> =
+                remoteDataSource.getDetailCovidHospital(hospitalId)
         }.asFlow()
     }
 
     override fun getDetailNonCovidHospital(hospitalId: String): Flow<Resource<List<DetailHospital>>> {
-        return object : NetworkOnlyResource<List<DetailHospital>, List<BedDetailItem>>() {
-            override fun loadFromNetwork(data: List<BedDetailItem>): Flow<List<DetailHospital>> =
+        return object : NetworkOnlyResource<List<DetailHospital>, List<BedDetailItem?>>() {
+            override fun loadFromNetwork(data: List<BedDetailItem?>): Flow<List<DetailHospital>> =
                 DataMapper.mapHospitalDetailResponseToHospitalDetail(data)
 
-            override suspend fun createCall(): Flow<ApiResponseOnline<List<BedDetailItem>>> =
-                remoteDataSource.getDetailNonCovidHospital(hospitalId) as Flow<ApiResponseOnline<List<BedDetailItem>>>
+            override suspend fun createCall(): Flow<ApiResponseOnline<List<BedDetailItem?>>> =
+                remoteDataSource.getDetailNonCovidHospital(hospitalId)
         }.asFlow()
     }
 
     override fun getLocationHospitalMap(hospitalId: String): Flow<Resource<Location>> {
-        return object : NetworkOnlyResource<Location, DataMapHospital>() {
-            override fun loadFromNetwork(data: DataMapHospital): Flow<Location> =
+        return object : NetworkOnlyResource<Location, DataMapHospital?>() {
+            override fun loadFromNetwork(data: DataMapHospital?): Flow<Location> =
                 DataMapper.mapLocationResponseToLocation(data)
 
-            override suspend fun createCall(): Flow<ApiResponseOnline<DataMapHospital>> =
-                remoteDataSource.getLocationHospital(hospitalId) as Flow<ApiResponseOnline<DataMapHospital>>
+            override suspend fun createCall(): Flow<ApiResponseOnline<DataMapHospital?>> =
+                remoteDataSource.getLocationHospital(hospitalId)
         }.asFlow()
     }
 

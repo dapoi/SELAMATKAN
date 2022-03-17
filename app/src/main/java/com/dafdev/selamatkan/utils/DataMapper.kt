@@ -71,71 +71,71 @@ object DataMapper {
         return flowOf(listProv)
     }
 
-    fun mapCitiesResponseToCities(provincesItem: List<CitiesItem>): Flow<List<Cities>> {
+    fun mapCitiesResponseToCities(provincesItem: List<CitiesItem?>?): Flow<List<Cities>> {
         val listCities = ArrayList<Cities>()
-        provincesItem.map {
+        provincesItem?.map {
             val prov = Cities(
-                it.id,
-                it.name
+                it?.id,
+                it?.name
             )
             listCities.add(prov)
         }
         return flowOf(listCities)
     }
 
-    fun mapHospitalCovidResponseToHospitalCovid(hospitalsCovidItem: List<HospitalsCovidItem>): Flow<List<HospitalCovid>> {
+    fun mapHospitalCovidResponseToHospitalCovid(hospitalsCovidItem: List<HospitalsCovidItem?>?): Flow<List<HospitalCovid>> {
         val listHospital = ArrayList<HospitalCovid>()
-        hospitalsCovidItem.map {
+        hospitalsCovidItem?.map {
             val hospitalCovid = HospitalCovid(
-                it.id,
-                it.name,
-                it.address,
-                it.phone,
-                it.info
+                it?.id,
+                it?.name,
+                it?.address,
+                it?.phone,
+                it?.info
             )
             listHospital.add(hospitalCovid)
         }
         return flowOf(listHospital)
     }
 
-    fun mapHospitalNonCovidResponseToHospitalNonCovid(hospitalsNonCovidItem: List<HospitalsNonCovidItem>): Flow<List<HospitalNonCovid>> {
+    fun mapHospitalNonCovidResponseToHospitalNonCovid(hospitalsNonCovidItem: List<HospitalsNonCovidItem?>?): Flow<List<HospitalNonCovid>> {
         val listHospital = ArrayList<HospitalNonCovid>()
-        hospitalsNonCovidItem.map {
+        hospitalsNonCovidItem?.map {
             val hospitalNonCovid = HospitalNonCovid(
-                it.id,
-                it.name,
-                it.address,
-                it.phone,
-                it.available_beds?.get(0)?.info
+                it?.id,
+                it?.name,
+                it?.address,
+                it?.phone,
+                it?.available_beds?.get(0)?.info
             )
             listHospital.add(hospitalNonCovid)
         }
         return flowOf(listHospital)
     }
 
-    fun mapHospitalDetailResponseToHospitalDetail(hospitalDetail: List<BedDetailItem>): Flow<List<DetailHospital>> {
+    fun mapHospitalDetailResponseToHospitalDetail(hospitalDetail: List<BedDetailItem?>?): Flow<List<DetailHospital>> {
         val listDetail = ArrayList<DetailHospital>()
-        hospitalDetail.map {
+        hospitalDetail?.map {
             val detail = DetailHospital(
-                it.stats?.title,
-                it.stats?.bed_available,
-                it.stats?.bed_empty,
-                it.time
+                it?.stats?.title,
+                it?.stats?.bed_available,
+                it?.stats?.bed_empty,
+                it?.time
             )
             listDetail.add(detail)
         }
         return flowOf(listDetail)
     }
 
-    fun mapLocationResponseToLocation(locationResponse: DataMapHospital): Flow<Location> =
+    fun mapLocationResponseToLocation(locationResponse: DataMapHospital?): Flow<Location> =
         flowOf(
             Location(
-                locationResponse.gmaps,
-                locationResponse.address,
-                locationResponse.name,
-                locationResponse.id,
-                locationResponse.lat,
-                locationResponse.long
+                locationResponse?.gmaps,
+                locationResponse?.address,
+                locationResponse?.name,
+                locationResponse?.id,
+                locationResponse?.lat,
+                locationResponse?.long
             )
         )
 }
