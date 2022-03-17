@@ -1,4 +1,4 @@
-package com.dafdev.selamatkan.data.source.remote.response
+package com.dafdev.selamatkan.data.source.remote.model
 
 import com.squareup.moshi.Json
 

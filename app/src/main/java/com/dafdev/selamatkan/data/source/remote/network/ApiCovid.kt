@@ -1,7 +1,7 @@
 package com.dafdev.selamatkan.data.source.remote.network
 
-import com.dafdev.selamatkan.data.source.remote.response.IndoDataCovidResponse
-import com.dafdev.selamatkan.data.source.remote.response.ProvinceCovidResponse
+import com.dafdev.selamatkan.data.source.remote.model.IndoDataCovidResponse
+import com.dafdev.selamatkan.data.source.remote.model.ProvinceCovidResponse
 import retrofit2.http.GET
 
 interface ApiCovid {

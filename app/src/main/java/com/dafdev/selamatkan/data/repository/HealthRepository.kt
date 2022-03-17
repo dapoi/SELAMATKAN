@@ -9,7 +9,7 @@ import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.data.source.remote.RemoteDataSource
 import com.dafdev.selamatkan.data.source.remote.network.ApiResponse
 import com.dafdev.selamatkan.data.source.remote.network.ApiResponseOnline
-import com.dafdev.selamatkan.data.source.remote.response.*
+import com.dafdev.selamatkan.data.source.remote.model.*
 import com.dafdev.selamatkan.utils.AppExecutors
 import com.dafdev.selamatkan.utils.DataMapper
 import com.dafdev.selamatkan.vo.Resource

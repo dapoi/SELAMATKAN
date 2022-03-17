@@ -1,7 +1,7 @@
 package com.dafdev.selamatkan.data.source.remote.network
 
 import com.dafdev.selamatkan.BuildConfig
-import com.dafdev.selamatkan.data.source.remote.response.NewsResponse
+import com.dafdev.selamatkan.data.source.remote.model.NewsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

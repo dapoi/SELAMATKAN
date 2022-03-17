@@ -1,7 +1,6 @@
 package com.dafdev.selamatkan.data.source.remote.network
 
-import com.dafdev.selamatkan.data.source.remote.response.*
-import dagger.Provides
+import com.dafdev.selamatkan.data.source.remote.model.*
 import retrofit2.http.GET
 import retrofit2.http.Query
 

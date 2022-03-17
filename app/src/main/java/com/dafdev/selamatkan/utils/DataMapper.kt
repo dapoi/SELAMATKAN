@@ -3,7 +3,7 @@ package com.dafdev.selamatkan.utils
 import com.dafdev.selamatkan.data.domain.model.*
 import com.dafdev.selamatkan.data.source.local.model.CovidIndoEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
-import com.dafdev.selamatkan.data.source.remote.response.*
+import com.dafdev.selamatkan.data.source.remote.model.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
