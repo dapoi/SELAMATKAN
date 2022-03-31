@@ -1,13 +1,11 @@
 package com.dafdev.selamatkan.view.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.data.domain.model.Cities
 import com.dafdev.selamatkan.databinding.ItemListAreaBinding
-import com.dafdev.selamatkan.utils.Constant
 
 class CityAdapter : RecyclerView.Adapter<CityAdapter.CityViewHolder>() {
 
