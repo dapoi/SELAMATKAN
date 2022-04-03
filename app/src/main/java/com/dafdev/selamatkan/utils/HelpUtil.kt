@@ -2,12 +2,16 @@ package com.dafdev.selamatkan.utils
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.dafdev.selamatkan.databinding.EmptyLayoutBinding
 import com.dafdev.selamatkan.databinding.NoInternetLayoutBinding
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -61,6 +65,16 @@ object HelpUtil {
         } else {
             layout.root.visibility = View.GONE
             rv.visibility = View.VISIBLE
+        }
+    }
+
+    fun recreateActivity(activity: Activity) {
+        activity.intent.let {
+            it.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            activity.finish()
+            activity.overridePendingTransition(0, 0)
+            activity.startActivity(it)
+            activity.overridePendingTransition(0, 0)
         }
     }
 }

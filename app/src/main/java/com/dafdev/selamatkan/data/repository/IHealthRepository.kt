@@ -1,20 +1,15 @@
 package com.dafdev.selamatkan.data.repository
 
 import com.dafdev.selamatkan.data.domain.model.*
-import com.dafdev.selamatkan.data.source.local.model.CovidIndoEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.vo.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface IHealthRepository {
 
-    fun getDataCovidIndonesia(): Flow<Resource<CovidIndoEntity>>
-
     fun getDataCovidProv(): Flow<Resource<List<CovidProv>>>
 
     fun getListProvinceHome(): Flow<Resource<List<ProvinceEntity>>>
-
-    fun getListProvinceInside(): Flow<Resource<List<Province>>>
 
     fun getListCities(provinceId: String): Flow<Resource<List<Cities>>>
 

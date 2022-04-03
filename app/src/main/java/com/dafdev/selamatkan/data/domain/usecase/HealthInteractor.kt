@@ -2,7 +2,6 @@ package com.dafdev.selamatkan.data.domain.usecase
 
 import com.dafdev.selamatkan.data.domain.model.*
 import com.dafdev.selamatkan.data.repository.IHealthRepository
-import com.dafdev.selamatkan.data.source.local.model.CovidIndoEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.vo.Resource
 import kotlinx.coroutines.flow.Flow
@@ -11,20 +10,13 @@ import javax.inject.Inject
 class HealthInteractor @Inject constructor(
     private val iHealthRepository: IHealthRepository
 ) : HealthUseCase {
-    override fun getDataCovidIndonesia(): Flow<Resource<CovidIndoEntity>> {
-        return iHealthRepository.getDataCovidIndonesia()
-    }
 
-    override fun getDataCovidProv(): Flow<Resource<List<CovidProv>>> {
+    override fun getCovidProvince(): Flow<Resource<List<CovidProv>>> {
         return iHealthRepository.getDataCovidProv()
     }
 
     override fun getListProvinceHome(): Flow<Resource<List<ProvinceEntity>>> {
         return iHealthRepository.getListProvinceHome()
-    }
-
-    override fun getListProvinceInside(): Flow<Resource<List<Province>>> {
-        return iHealthRepository.getListProvinceInside()
     }
 
     override fun getListCities(provinceId: String): Flow<Resource<List<Cities>>> {

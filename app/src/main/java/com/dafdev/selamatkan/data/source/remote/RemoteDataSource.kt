@@ -14,30 +14,22 @@ class RemoteDataSource @Inject constructor(
     private val apiHospital: ApiHospital,
     private val apiNews: ApiNews
 ) {
-
-    fun getDataCovidIndo() = flow {
-        try {
-            val data = apiCovid.getDataCovidIndo()
-            emit(ApiResponse.Success(data))
-            Timber.d(data.toString())
-        } catch (e: Exception) {
-            emit(ApiResponse.Error(e.message.toString()))
-            Timber.e("Remote Data Source, ${e.message}")
-        }
-    }.flowOn(Dispatchers.IO)
-
     fun getDataCovidProv() = flow {
         try {
-            val data = apiCovid.getDataCovidProv()
-            if (data.isNotEmpty()) {
-                emit(ApiResponseOnline.Success(data))
-                Timber.d(data.toString())
-            } else {
-                emit(ApiResponseOnline.Error(data.toString()))
+            val response = apiCovid.getDataCovid().regions
+            if (response != null) {
+                if (response.isNotEmpty()) {
+                    emit(ApiResponseOnline.Success(response))
+                    Timber.d(response.toString())
+                } else {
+                    emit(ApiResponseOnline.Error("Data kosong"))
+                    Timber.e("Data kosong")
+                }
             }
+
         } catch (e: Exception) {
-            emit(ApiResponseOnline.Error(e.message.toString()))
-            Timber.e("Remote Data Source, ${e.message}")
+            emit(ApiResponseOnline.Error(e.toString()))
+            Timber.e(e)
         }
     }.flowOn(Dispatchers.IO)
 
@@ -52,21 +44,6 @@ class RemoteDataSource @Inject constructor(
             }
         } catch (e: Exception) {
             emit(ApiResponse.Error(e.message.toString()))
-            Timber.e("Remote Data Source, ${e.message}")
-        }
-    }.flowOn(Dispatchers.IO)
-
-    fun getListProvinceInside() = flow {
-        try {
-            val data = apiHospital.getListProvinces().provinces
-            if (data.isNotEmpty()) {
-                emit(ApiResponseOnline.Success(data))
-                Timber.d(data.toString())
-            } else {
-                emit(ApiResponseOnline.Error(data.toString()))
-            }
-        } catch (e: Exception) {
-            emit(ApiResponseOnline.Error(e.message.toString()))
             Timber.e("Remote Data Source, ${e.message}")
         }
     }.flowOn(Dispatchers.IO)

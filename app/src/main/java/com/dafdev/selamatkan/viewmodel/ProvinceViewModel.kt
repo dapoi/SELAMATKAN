@@ -8,6 +8,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProvinceViewModel @Inject constructor(province: HealthUseCase) : ViewModel() {
-
     val getListProv = province.getListProvinceHome().asLiveData()
 }

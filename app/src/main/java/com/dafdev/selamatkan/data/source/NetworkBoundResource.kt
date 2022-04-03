@@ -1,11 +1,10 @@
 package com.dafdev.selamatkan.data.source
 
 import com.dafdev.selamatkan.data.source.remote.network.ApiResponse
-import com.dafdev.selamatkan.utils.AppExecutors
 import com.dafdev.selamatkan.vo.Resource
 import kotlinx.coroutines.flow.*
 
-abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecutors: AppExecutors) {
+abstract class NetworkBoundResource<ResultType, RequestType>() {
 
     private var result: Flow<Resource<ResultType>> = flow {
         emit(Resource.Loading())

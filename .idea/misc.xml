@@ -19,6 +19,8 @@
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/bg_fat.xml" value="0.1595" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/bg_gradient.xml" value="0.21614583333333334" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/bg_ideal.xml" value="0.1595" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/bg_round_top.xml" value="0.1595" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/bg_search.xml" value="0.1595" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/bg_tab_indicator.xml" value="0.2125" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/bg_tab_indicator_default.xml" value="0.2125" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/bg_tab_indicator_selected.xml" value="0.2125" />
@@ -45,6 +47,7 @@
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_info_selector.xml" value="0.21614583333333334" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1751054852320675" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_loading.xml" value="0.1" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_menu.xml" value="0.1595" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_negative.xml" value="0.21614583333333334" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_news.xml" value="0.18703703703703703" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_other.xml" value="0.1595" />
@@ -58,8 +61,13 @@
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_scale_true.xml" value="0.1595" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_search_hospital.xml" value="0.21614583333333334" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_share.xml" value="0.1925925925925926" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_stripe.xml" value="0.1595" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/ic_wave.xml" value="0.21614583333333334" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/drawable/line_div.xml" value="0.1595" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/activity_bmi.xml" value="0.2" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/activity_bmiactivity.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/activity_city.xml" value="0.2" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/activity_data_covid.xml" value="0.22" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/activity_detail.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/activity_detail_hospital.xml" value="0.22" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/activity_detail_news.xml" value="0.2" />
@@ -69,6 +77,7 @@
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/activity_log_in.xml" value="0.22" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/activity_main.xml" value="0.19635416666666666" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/activity_map.xml" value="0.16666666666666666" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/activity_news.xml" value="0.22" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/activity_onboarding.xml" value="0.16666666666666666" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/activity_province.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/activity_province_covid.xml" value="0.1859375" />
@@ -86,7 +95,8 @@
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_covid_hospital_detail.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_find.xml" value="0.22" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_first_onboarding.xml" value="0.14666666666666667" />
-        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_home.xml" value="0.16666666666666666" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_main.xml" value="0.22" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_news.xml" value="0.22" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_non_covid_hospital.xml" value="0.22" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_non_covid_hospital_detail.xml" value="0.22" />
@@ -98,13 +108,14 @@
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_third_onboarding.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/fragment_view_pager.xml" value="0.1859375" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/ideal_layout.xml" value="0.22" />
-        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_covid_indo.xml" value="0.3333333333333333" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_covid_indo.xml" value="0.22" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_detail_hospital.xml" value="0.22" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_area.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_area_placeholder.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_covid_hospital.xml" value="0.3333333333333333" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_covid_stat.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_data_covid_prov.xml" value="0.2" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_data_covid_prov_placeholder.xml" value="0.16666666666666666" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_detail_hospital.xml" value="0.16666666666666666" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_detail_hospital_placeholder.xml" value="0.16666666666666666" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_list_hospital.xml" value="0.22" />
@@ -116,9 +127,11 @@
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_news.xml" value="0.3333333333333333" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_news_placeholder.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/item_province_until_city.xml" value="0.2" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/nav_header.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/no_internet_layout.xml" value="0.16666666666666666" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/layout/thin_layout.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/menu/bottom_menu.xml" value="0.2" />
+        <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/menu/drawer_menu.xml" value="0.2" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/mipmap-anydpi-v26/ic_icon.xml" value="0.1751054852320675" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/mipmap-anydpi-v26/ic_icon_app_round.xml" value="0.1751054852320675" />
         <entry key="..\:/Projek/SELAMATKAN/app/src/main/res/mipmap-anydpi-v26/ic_icon_round.xml" value="0.1751054852320675" />

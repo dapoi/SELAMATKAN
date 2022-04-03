@@ -7,10 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2
-import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentThirdOnboardingBinding
-import com.dafdev.selamatkan.view.activity.main.HomeActivity
+import com.dafdev.selamatkan.view.activity.core.HomeActivity
 
 class ThirdOnboardingFragment : Fragment() {
 

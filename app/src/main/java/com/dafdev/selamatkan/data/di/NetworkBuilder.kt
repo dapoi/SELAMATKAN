@@ -33,7 +33,7 @@ object NetworkBuilder {
     @Covid
     fun provideApiCovid(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://apicovid19indonesia-v2.vercel.app/api/")
+            .baseUrl("https://dekontaminasi.com/")
             .addConverterFactory(MoshiConverterFactory.create())
             .client(provideOkHttpClient())
             .build()

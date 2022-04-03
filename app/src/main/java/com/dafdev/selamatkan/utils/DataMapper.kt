@@ -1,21 +1,12 @@
 package com.dafdev.selamatkan.utils
 
 import com.dafdev.selamatkan.data.domain.model.*
-import com.dafdev.selamatkan.data.source.local.model.CovidIndoEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.data.source.remote.model.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
 object DataMapper {
-    fun mapCovidResponseToEntity(dataResponse: IndoDataCovidResponse): CovidIndoEntity =
-        CovidIndoEntity(
-            0,
-            dataResponse.positif,
-            dataResponse.sembuh,
-            dataResponse.meninggal
-        )
-
     fun mapProvinceResponseToEntity(provinceResponse: List<ProvincesItem>): List<ProvinceEntity> {
         val listProv = ArrayList<ProvinceEntity>()
         provinceResponse.map {
@@ -26,6 +17,21 @@ object DataMapper {
             listProv.add(provinceEntity)
         }
         return listProv
+    }
+
+    fun mapDataCovidResponseToCovidProvince(dataResponse: List<RegionsItem?>?): Flow<List<CovidProv>> {
+        val listCovid = ArrayList<CovidProv>()
+        dataResponse?.map {
+            CovidProv(
+                it?.name,
+                it?.numbers?.infected,
+                it?.numbers?.recovered,
+                it?.numbers?.fatal
+            ).let { data ->
+                listCovid.add(data)
+            }
+        }
+        return flowOf(listCovid)
     }
 
     fun mapArticlesToNews(input: List<Articles?>?): Flow<List<News>> {
@@ -43,32 +49,6 @@ object DataMapper {
             listNews.add(news)
         }
         return flowOf(listNews)
-    }
-
-    fun mapProvinceCovidResponseToProvince(provincesItem: List<ProvinceCovidResponse>): Flow<List<CovidProv>> {
-        val listProv = ArrayList<CovidProv>()
-        provincesItem.map {
-            val prov = CovidProv(
-                it.provinsi,
-                it.meninggal,
-                it.sembuh,
-                it.kasus
-            )
-            listProv.add(prov)
-        }
-        return flowOf(listProv)
-    }
-
-    fun mapProvinceResponseToProvince(provincesItem: List<ProvincesItem>): Flow<List<Province>> {
-        val listProv = ArrayList<Province>()
-        provincesItem.map {
-            val prov = Province(
-                it.id,
-                it.name
-            )
-            listProv.add(prov)
-        }
-        return flowOf(listProv)
     }
 
     fun mapCitiesResponseToCities(provincesItem: List<CitiesItem?>?): Flow<List<Cities>> {
@@ -127,8 +107,8 @@ object DataMapper {
         return flowOf(listDetail)
     }
 
-    fun mapLocationResponseToLocation(locationResponse: DataMapHospital?): Flow<Location> =
-        flowOf(
+    fun mapLocationResponseToLocation(locationResponse: DataMapHospital?): Flow<Location> {
+        return flowOf(
             Location(
                 locationResponse?.gmaps,
                 locationResponse?.address,
@@ -138,4 +118,5 @@ object DataMapper {
                 locationResponse?.long
             )
         )
+    }
 }

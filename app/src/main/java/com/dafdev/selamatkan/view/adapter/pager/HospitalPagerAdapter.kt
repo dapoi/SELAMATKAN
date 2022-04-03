@@ -3,8 +3,8 @@ package com.dafdev.selamatkan.view.adapter.pager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.dafdev.selamatkan.view.fragment.main.hospital.list.CovidHospitalFragment
-import com.dafdev.selamatkan.view.fragment.main.hospital.list.NonCovidHospitalFragment
+import com.dafdev.selamatkan.view.fragment.core.hospital.list.CovidHospitalFragment
+import com.dafdev.selamatkan.view.fragment.core.hospital.list.NonCovidHospitalFragment
 
 class HospitalPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
 

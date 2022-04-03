@@ -3,30 +3,30 @@ package com.dafdev.selamatkan.view.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.data.domain.model.CovidProv
 import com.dafdev.selamatkan.databinding.ItemListDataCovidProvBinding
+import com.dafdev.selamatkan.view.adapter.ProvinceCovidAdapter.CovidViewHolder
 
-class ProvinceCovidAdapter : RecyclerView.Adapter<ProvinceCovidAdapter.CovidViewHolder>() {
+class ProvinceCovidAdapter : RecyclerView.Adapter<CovidViewHolder>(), Filterable {
 
-    private val listCovidProv = ArrayList<CovidProv>()
+    private var listCovidProv = ArrayList<CovidProv>()
+    private var listCovidProvFiltered = ArrayList<CovidProv>()
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(data: List<CovidProv>) {
-        with(listCovidProv) {
-            clear()
-            addAll(data)
-            sortWith { object1, object2 ->
-                object1.provinsi!!.compareTo(object2.provinsi.toString())
-            }
-        }
+        listCovidProv = data as ArrayList<CovidProv>
+        listCovidProv.sortWith(compareBy { it.name })
+        listCovidProvFiltered = listCovidProv
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ProvinceCovidAdapter.CovidViewHolder {
+    ): CovidViewHolder {
         return CovidViewHolder(
             ItemListDataCovidProvBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -36,22 +36,51 @@ class ProvinceCovidAdapter : RecyclerView.Adapter<ProvinceCovidAdapter.CovidView
         )
     }
 
-    override fun onBindViewHolder(holder: ProvinceCovidAdapter.CovidViewHolder, position: Int) {
-        holder.bind(listCovidProv[position])
+    override fun onBindViewHolder(holder: CovidViewHolder, position: Int) {
+        holder.bind(listCovidProvFiltered[position])
     }
 
-    override fun getItemCount(): Int = listCovidProv.size
+    override fun getItemCount(): Int = listCovidProvFiltered.size
 
     inner class CovidViewHolder(private val binding: ItemListDataCovidProvBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: CovidProv) {
             with(binding) {
                 data.apply {
-                    tvProvince.text = provinsi
-                    tvPositive.text = kasus.toString()
-                    tvNegative.text = sembuh.toString()
-                    tvDeath.text = meninggal.toString()
+                    tvProvince.text = name
+                    tvPositive.text = infected.toString()
+                    tvNegative.text = recovered.toString()
+                    tvDeath.text = fatal.toString()
                 }
+            }
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                listCovidProvFiltered = if (charSearch.isEmpty()) {
+                    listCovidProv
+                } else {
+                    val resultList = ArrayList<CovidProv>()
+                    for (row in listCovidProv) {
+                        if (row.name?.lowercase()!!.contains(charSearch.lowercase())) {
+                            resultList.add(row)
+                        }
+                    }
+                    resultList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = listCovidProvFiltered
+                return filterResults
+            }
+
+            @SuppressLint("NotifyDataSetChanged")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                listCovidProvFiltered = results?.values as ArrayList<CovidProv>
+                notifyDataSetChanged()
             }
         }
     }

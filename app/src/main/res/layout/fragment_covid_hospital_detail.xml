@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.main.hospital.detail.CovidHospitalDetailFragment">
+    tools:context=".view.fragment.core.hospital.detail.CovidHospitalDetailFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_hospital_detail_covid"

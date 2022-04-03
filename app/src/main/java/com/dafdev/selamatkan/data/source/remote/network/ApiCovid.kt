@@ -1,16 +1,12 @@
 package com.dafdev.selamatkan.data.source.remote.network
 
-import com.dafdev.selamatkan.data.source.remote.model.IndoDataCovidResponse
-import com.dafdev.selamatkan.data.source.remote.model.ProvinceCovidResponse
+import com.dafdev.selamatkan.data.source.remote.model.DataCovidResponse
 import retrofit2.http.GET
 
 interface ApiCovid {
     /**
      * API Data Covid
      */
-    @GET("indonesia")
-    suspend fun getDataCovidIndo(): IndoDataCovidResponse
-
-    @GET("indonesia/provinsi")
-    suspend fun getDataCovidProv(): List<ProvinceCovidResponse>
+    @GET("api/id/covid19/stats")
+    suspend fun getDataCovid(): DataCovidResponse
 }

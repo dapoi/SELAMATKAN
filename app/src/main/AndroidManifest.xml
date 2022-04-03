@@ -18,9 +18,20 @@
         android:theme="@style/Theme.SELAMATKAN"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".view.activity.main.MapActivity" />
-        <activity android:name=".view.activity.main.HomeActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".view.activity.core.DataCovidActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.core.BMIActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.core.NewsActivity"
+            android:exported="false" />
+        <activity android:name=".view.activity.core.MapActivity" />
+        <activity
+            android:name=".view.activity.core.HomeActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:launchMode="singleTop"/>
         <activity
             android:name=".view.activity.onboard.OnboardingActivity"
             android:exported="true"

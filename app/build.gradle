@@ -18,6 +18,7 @@ android {
         buildConfigField("String", "API_KEY_NEWS", api_key_news)
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {

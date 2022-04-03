@@ -3,61 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_nav"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_main">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.dafdev.selamatkan.view.fragment.main.bottom.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home">
+        android:id="@+id/nav_main"
+        android:name="com.dafdev.selamatkan.view.fragment.core.main.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
         <action
-            android:id="@+id/action_nav_home_to_provinceFragment"
-            app:destination="@id/provinceFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
-            android:id="@+id/action_nav_home_to_cityFragment"
+            android:id="@+id/action_nav_main_to_cityFragment"
             app:destination="@id/cityFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
-            android:id="@+id/action_nav_home_to_provinceCovidFragment"
-            app:destination="@id/provinceCovidFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
-    <fragment
+    <activity
         android:id="@+id/nav_article"
-        android:name="com.dafdev.selamatkan.view.fragment.main.bottom.NewsFragment"
-        android:label="fragment_news"
-        tools:layout="@layout/fragment_news" />
-    <fragment
+        android:name="com.dafdev.selamatkan.view.activity.core.NewsActivity"
+        android:label="activity_news"
+        tools:layout="@layout/activity_news" />
+    <activity
         android:id="@+id/nav_bmi"
-        android:name="com.dafdev.selamatkan.view.fragment.main.bottom.BMIFragment"
-        android:label="fragment_bmi"
-        tools:layout="@layout/fragment_bmi" />
-    <fragment
-        android:id="@+id/provinceFragment"
-        android:name="com.dafdev.selamatkan.view.fragment.main.area.ProvinceFragment"
-        android:label="ProvinceFragment"
-        tools:layout="@layout/fragment_province">
-        <action
-            android:id="@+id/action_provinceFragment_to_cityFragment"
-            app:destination="@id/cityFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-    </fragment>
+        android:name="com.dafdev.selamatkan.view.activity.core.BMIActivity"
+        android:label="activity_bmi"
+        tools:layout="@layout/activity_bmi" />
     <fragment
         android:id="@+id/cityFragment"
-        android:name="com.dafdev.selamatkan.view.fragment.main.area.CityFragment"
+        android:name="com.dafdev.selamatkan.view.fragment.core.area.CityFragment"
         android:label="CityFragment"
         tools:layout="@layout/fragment_city">
         <action
@@ -67,10 +40,17 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_cityFragment_to_nav_main"
+            app:destination="@id/nav_main"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/baseHospitalListFragment"
-        android:name="com.dafdev.selamatkan.view.fragment.main.hospital.BaseHospitalListFragment"
+        android:name="com.dafdev.selamatkan.view.fragment.core.hospital.BaseHospitalListFragment"
         android:label="fragment_base_hospital_list"
         tools:layout="@layout/fragment_base_hospital_list">
         <action
@@ -86,11 +66,11 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/baseHospitalDetailFragment"
-        android:name="com.dafdev.selamatkan.view.fragment.main.hospital.BaseHospitalDetailFragment"
+        android:name="com.dafdev.selamatkan.view.fragment.core.hospital.BaseHospitalDetailFragment"
         android:label="fragment_base_hospital_detail"
         tools:layout="@layout/fragment_base_hospital_detail">
         <action
@@ -101,10 +81,10 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
-    <fragment
-        android:id="@+id/provinceCovidFragment"
-        android:name="com.dafdev.selamatkan.view.fragment.main.area.ProvinceCovidFragment"
-        android:label="fragment_province_covid"
-        tools:layout="@layout/fragment_province_covid" />
+    <activity
+        android:id="@+id/nav_covid"
+        android:name="com.dafdev.selamatkan.view.activity.core.DataCovidActivity"
+        android:label="activity_data_covid"
+        tools:layout="@layout/activity_data_covid" />
 
 </navigation>
