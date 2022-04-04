@@ -23,7 +23,7 @@
             app:expandedTitleGravity="bottom|start"
             app:expandedTitleTextAppearance="@style/expandedTitleStyleCovid"
             app:expandedTitleTextColor="@color/dark_gray"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:scrimAnimationDuration="100"
             app:scrimVisibleHeightTrigger="400dp"
             app:title="@string/article"
@@ -35,9 +35,6 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@android:color/transparent"
                 android:theme="@style/Theme.SELAMATKAN.Toolbar"
-                app:contentInsetEnd="0dp"
-                app:contentInsetStart="0dp"
-                app:contentInsetStartWithNavigation="0dp"
                 app:layout_collapseMode="pin"
                 app:navigationIcon="@drawable/ic_back"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -51,7 +48,7 @@
         app:layout_anchor="@id/app_bar"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        <com.simform.refresh.SSPullToRefreshLayout
             android:id="@+id/srl_news"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -64,8 +61,9 @@
                 android:id="@+id/rv_news"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:overScrollMode="never"
                 tools:listitem="@layout/item_list_news" />
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </com.simform.refresh.SSPullToRefreshLayout>
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/progress_bar"
@@ -96,21 +94,14 @@
                     <include layout="@layout/item_list_news_placeholder" />
 
                     <include layout="@layout/item_list_news_placeholder" />
-
                 </LinearLayout>
-
             </ScrollView>
-
         </com.facebook.shimmer.ShimmerFrameLayout>
 
         <include
             android:id="@+id/view_no_connected"
             layout="@layout/no_internet_layout"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

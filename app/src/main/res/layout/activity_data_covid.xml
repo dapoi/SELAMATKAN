@@ -86,7 +86,7 @@
         app:layout_anchor="@id/appbar"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        <com.simform.refresh.SSPullToRefreshLayout
             android:id="@+id/srl_news"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -102,7 +102,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:overScrollMode="never"
                 tools:listitem="@layout/item_list_data_covid_prov" />
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </com.simform.refresh.SSPullToRefreshLayout>
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/progress_bar_prov"

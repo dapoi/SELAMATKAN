@@ -24,8 +24,7 @@ import com.dafdev.selamatkan.utils.HelpUtil.showProgressBar
 import com.dafdev.selamatkan.view.adapter.NewsAdapter
 import com.dafdev.selamatkan.viewmodel.NewsViewModel
 import com.dafdev.selamatkan.vo.Resource
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.simform.refresh.SSPullToRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -61,18 +60,27 @@ class NewsActivity : AppCompatActivity() {
 
     private fun swipeData() {
         binding.apply {
-            srlNews.setOnRefreshListener {
-                val check = isOnline(this@NewsActivity)
-                if (check) {
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        val status = InternetReceiver()
-                        status.onReceive(this@NewsActivity, intent)
-                        srlNews.isRefreshing = false
-                    }, 2000)
-                } else {
-                    HelpUtil.noInternetView(true, viewNoConnected, rvNews)
-                    srlNews.isRefreshing = false
-                }
+            with(srlNews) {
+                setLottieAnimation("loading.json")
+                setRepeatMode(SSPullToRefreshLayout.RepeatMode.REPEAT)
+                setRepeatCount(SSPullToRefreshLayout.RepeatCount.INFINITE)
+                setOnRefreshListener(object : SSPullToRefreshLayout.OnRefreshListener {
+                    override fun onRefresh() {
+                        val check = isOnline(this@NewsActivity)
+                        if (check) {
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                srlNews.setRefreshing(false)
+                            }, 2000)
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                val status = InternetReceiver()
+                                status.onReceive(this@NewsActivity, intent)
+                            }, 2150)
+                        } else {
+                            HelpUtil.noInternetView(true, viewNoConnected, rvNews)
+                            setRefreshing(false)
+                        }
+                    }
+                })
             }
         }
     }
@@ -125,7 +133,7 @@ class NewsActivity : AppCompatActivity() {
         } else {
             Toast.makeText(
                 this,
-                "Maaf, halaman yang anda tuju tidak tersedia",
+                "Maaf, halaman yang Anda tuju tidak tersedia",
                 Toast.LENGTH_SHORT
             ).show()
         }
