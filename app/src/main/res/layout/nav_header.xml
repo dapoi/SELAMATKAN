@@ -11,7 +11,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="60dp"
-        android:src="@drawable/img_stethoscope"
+        android:src="@drawable/img_app"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/encodesans_medium"
+        android:fontFamily="@font/encodesans_semibold"
         android:text="@string/choose"
         android:textColor="@color/dark_gray"
         android:textSize="16sp"

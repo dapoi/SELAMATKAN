@@ -1,11 +1,13 @@
 <resources>
-    <string name="app_name">Selamatkan!</string>
+    <string name="app_name">Selamatkan: Aplikasi Pencari Rumah Sakit</string>
     <string name="desc1">Aplikasi ini dapat membantu Anda menemukan rumah sakit di Indonesia, tanpa harus mendatanginya secara langsung</string>
-    <string name="desc2">Terdapat artikel kesehatan terkini dan terpercaya, dari media ternama di Indonesia</string>
-    <string name="desc3">Anda juga dapat memantau perkembangan Covid-19 di Indonesia bahkan Provinsi</string>
+    <string name="desc2">Anda juga dapat memantau perkembangan Covid-19 di Indonesia</string>
+    <string name="desc3">Terdapat artikel kesehatan terkini dan terpercaya, dari media ternama di Indonesia</string>
+    <string name="desc4">Kini Anda bisa mengetahui apakah tubuh Anda ideal atau tidak</string>
     <string name="title1">Rumah Sakit</string>
-    <string name="title2">Berita Kesehatan</string>
-    <string name="title3">Data Covid-19</string>
+    <string name="title2">Data Covid-19</string>
+    <string name="title3">Artikel Kesehatan</string>
+    <string name="title4">Kalkulator BMI</string>
     <string name="bmi">BMI</string>
     <string name="greet">Halo,</string>
     <string name="covid_indonesia">Covid-19 di Indonesia</string>
@@ -27,19 +29,19 @@
     <string name="empty">Maaf, tidak ada data yang terdaftar</string>
     <string name="api_key">AIzaSyBrIZ8NJV3ga7TEv3paRnX2pknF56FXtsA</string>
     <string name="article">Artikel Kesehatan</string>
-    <string name="next">Lanjut</string>
-    <string name="selesai">Selesai</string>
+    <string name="next">Selanjutnya</string>
+    <string name="back">Sebelumnya</string>
+    <string name="out">Kembali</string>
+    <string name="finish">Selesai</string>
     <string name="available_room">Kapasitas Tersedia</string>
     <string name="telephone">Telepon</string>
     <string name="direction">Petunjuk</string>
     <string name="share">Bagikan</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="no_internet">Internet Anda bermasalah nih, cek dulu ya… Tarik ke bawah untuk memuat ulang</string>
     <string name="input_data">Masukkan data Anda :</string>
     <string name="kg">Berat(kg)</string>
     <string name="cm">Tinggi(cm)</string>
     <string name="calculate">Hitung</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="search_prov">Cari provinsi agar lebih cepat…</string>
     <string name="choose">Silahkan pilih fitur yang Anda butuhkan</string>
     <string name="data_covid">Perkembangan Covid</string>

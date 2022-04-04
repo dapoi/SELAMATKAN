@@ -35,7 +35,7 @@ class SplashScreenFragment : Fragment() {
             } else {
                 findNavController().navigate(R.id.action_splashScreenFragment_to_viewPagerFragment)
             }
-        }, 2000)
+        }, 3000)
 
         return binding.root
     }
