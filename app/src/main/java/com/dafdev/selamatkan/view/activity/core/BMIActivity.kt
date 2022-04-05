@@ -1,17 +1,15 @@
 package com.dafdev.selamatkan.view.activity.core
 
-import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.ActivityBmiBinding
-import com.dafdev.selamatkan.utils.HelpUtil
+import com.dafdev.selamatkan.utils.HelpUtil.hideKeyboard
 import com.dafdev.selamatkan.view.fragment.core.DialogBMI
 import com.google.android.material.snackbar.Snackbar
 import java.math.BigDecimal
@@ -27,8 +25,6 @@ class BMIActivity : AppCompatActivity() {
         _binding = ActivityBmiBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        HelpUtil.setStatusBarColor(this, R.color.white)
-
         binding.apply {
             toolbar.setNavigationOnClickListener { onBackPressed() }
             showControl(false)
@@ -39,20 +35,14 @@ class BMIActivity : AppCompatActivity() {
                         val height = etHeight.text.toString().toDouble() / 100
                         if (weight > 0 && weight < 600 && height >= 0.50 && height < 2.50) {
                             showControl(true)
-                            val imm = this@BMIActivity.getSystemService(
-                                Context.INPUT_METHOD_SERVICE
-                            ) as InputMethodManager
-                            imm.hideSoftInputFromWindow(container.windowToken, 0)
+                            hideKeyboard(this@BMIActivity)
                             Handler(Looper.getMainLooper()).postDelayed({
                                 val result = calculate(height, weight)
                                 setResult(result)
                                 showControl(false)
                             }, 1000)
                         } else {
-                            val imm = this@BMIActivity.getSystemService(
-                                Context.INPUT_METHOD_SERVICE
-                            ) as InputMethodManager
-                            imm.hideSoftInputFromWindow(container.windowToken, 0)
+                            hideKeyboard(this@BMIActivity)
                             Snackbar.make(
                                 binding.root,
                                 "Data yang dimasukkan tidak valid",

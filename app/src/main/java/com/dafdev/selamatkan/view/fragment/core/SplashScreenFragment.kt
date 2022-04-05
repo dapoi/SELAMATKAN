@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentSplashScreenBinding
-import com.dafdev.selamatkan.utils.HelpUtil.setStatusBarColor
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenFragment : Fragment() {
@@ -25,8 +24,6 @@ class SplashScreenFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSplashScreenBinding.inflate(inflater, container, false)
-
-        setStatusBarColor(requireActivity(), R.color.white)
 
         Handler(Looper.getMainLooper()).postDelayed({
             if (onBoardingFinished()) {

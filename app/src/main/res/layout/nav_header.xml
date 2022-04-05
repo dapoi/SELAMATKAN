@@ -7,20 +7,35 @@
 
     <ImageView
         android:id="@+id/img_icon"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/img_app"
+        android:layout_marginTop="50dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_app"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tv_app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/encodesans_semibold"
+        android:text="@string/app_sort_name"
+        android:textColor="@color/dark_gray"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_icon"
+        app:layout_constraintStart_toEndOf="@+id/img_icon"
+        app:layout_constraintTop_toTopOf="@+id/img_icon" />
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/encodesans_semibold"
+        android:fontFamily="@font/encodesans_medium"
         android:text="@string/choose"
         android:textColor="@color/dark_gray"
         android:textSize="16sp"

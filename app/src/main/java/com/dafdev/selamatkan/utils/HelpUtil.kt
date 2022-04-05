@@ -6,20 +6,28 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import android.os.Handler
-import android.os.Looper
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.dafdev.selamatkan.databinding.EmptyLayoutBinding
 import com.dafdev.selamatkan.databinding.NoInternetLayoutBinding
 import com.facebook.shimmer.ShimmerFrameLayout
 
 object HelpUtil {
 
-    fun setStatusBarColor(activity: Activity, color: Int) {
+    fun hideKeyboard(activity: Activity) {
+        val view = activity.currentFocus
+        if (view != null) {
+            val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm?.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
+
+    fun setStatusBarColor(activity: Activity, color: Int, view: View, state: Boolean = true) {
         activity.window.statusBarColor = ContextCompat.getColor(activity, color)
+        WindowInsetsControllerCompat(activity.window, view).isAppearanceLightStatusBars = state
     }
 
     fun ShimmerFrameLayout.showProgressBar(state: Boolean) {

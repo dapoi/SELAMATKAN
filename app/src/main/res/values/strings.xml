@@ -46,4 +46,5 @@
     <string name="choose">Silahkan pilih fitur yang Anda butuhkan</string>
     <string name="data_covid">Perkembangan Covid</string>
     <string name="calculator_bmi">Kalkulator BMI</string>
+    <string name="app_sort_name">SELAMATKAN!</string>
 </resources>

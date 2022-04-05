@@ -35,7 +35,7 @@ class BaseHospitalDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setStatusBarColor(requireActivity(), R.color.white)
+        setStatusBarColor(requireActivity(), R.color.white, binding.root)
 
         with(binding) {
 

@@ -1,6 +1,5 @@
 package com.dafdev.selamatkan.view.activity.core
 
-import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -8,16 +7,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.ActivityDataCovidBinding
 import com.dafdev.selamatkan.utils.HelpUtil
+import com.dafdev.selamatkan.utils.HelpUtil.hideKeyboard
 import com.dafdev.selamatkan.utils.HelpUtil.isOnline
-import com.dafdev.selamatkan.utils.HelpUtil.setStatusBarColor
 import com.dafdev.selamatkan.utils.HelpUtil.showProgressBar
 import com.dafdev.selamatkan.view.adapter.ProvinceCovidAdapter
 import com.dafdev.selamatkan.viewmodel.DataCovidViewModel
@@ -38,8 +35,6 @@ class DataCovidActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityDataCovidBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        setStatusBarColor(this, R.color.white)
 
         binding.apply {
             with(srlNews) {
@@ -71,11 +66,8 @@ class DataCovidActivity : AppCompatActivity() {
             etSearch.apply {
                 setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(query: String?): Boolean {
-                        val imm =
-                            this@DataCovidActivity.getSystemService(Activity.INPUT_METHOD_SERVICE)
-                                    as InputMethodManager
-                        imm.hideSoftInputFromWindow(rootView.windowToken, 0)
-                        return true
+                        hideKeyboard(this@DataCovidActivity)
+                        return false
                     }
 
                     override fun onQueryTextChange(newText: String?): Boolean {
