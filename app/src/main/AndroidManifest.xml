@@ -30,7 +30,6 @@
         <activity android:name=".view.activity.core.MapActivity" />
         <activity
             android:name=".view.activity.core.HomeActivity"
-            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".view.activity.onboard.OnboardingActivity"

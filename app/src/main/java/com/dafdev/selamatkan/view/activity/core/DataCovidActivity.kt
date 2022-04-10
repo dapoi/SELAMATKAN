@@ -10,7 +10,9 @@ import android.view.View
 import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.ActivityDataCovidBinding
 import com.dafdev.selamatkan.utils.HelpUtil
 import com.dafdev.selamatkan.utils.HelpUtil.hideKeyboard
@@ -35,6 +37,8 @@ class DataCovidActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityDataCovidBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        HelpUtil.setStatusBarColor(this, R.color.white, binding.root)
 
         binding.apply {
             with(srlNews) {

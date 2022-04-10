@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.ActivityBmiBinding
 import com.dafdev.selamatkan.utils.HelpUtil.hideKeyboard
+import com.dafdev.selamatkan.utils.HelpUtil.setStatusBarColor
 import com.dafdev.selamatkan.view.fragment.core.DialogBMI
 import com.google.android.material.snackbar.Snackbar
 import java.math.BigDecimal
@@ -24,6 +25,8 @@ class BMIActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityBmiBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setStatusBarColor(this, R.color.white, binding.root)
 
         binding.apply {
             toolbar.setNavigationOnClickListener { onBackPressed() }

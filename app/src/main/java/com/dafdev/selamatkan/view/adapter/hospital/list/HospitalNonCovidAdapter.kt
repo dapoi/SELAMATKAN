@@ -54,7 +54,7 @@ class HospitalNonCovidAdapter : RecyclerView.Adapter<HospitalNonCovidAdapter.Non
 
         init {
             binding.root.setOnClickListener {
-                onItemClick?.invoke(listHospital[absoluteAdapterPosition])
+                onItemClick?.invoke(listHospital[adapterPosition])
             }
         }
     }

@@ -46,6 +46,8 @@ class NewsActivity : AppCompatActivity() {
 
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
 
+        HelpUtil.setStatusBarColor(this, R.color.white, binding.root)
+
         swipeData()
 
         setViewModel()
