@@ -7,8 +7,8 @@ import com.dafdev.selamatkan.data.source.local.LocalDataSource
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.data.source.remote.RemoteDataSource
 import com.dafdev.selamatkan.data.source.remote.model.*
-import com.dafdev.selamatkan.data.source.remote.network.ApiResponse
-import com.dafdev.selamatkan.data.source.remote.network.ApiResponseOnline
+import com.dafdev.selamatkan.data.source.remote.network.StatusResponse
+import com.dafdev.selamatkan.data.source.remote.network.StatusResponseOnline
 import com.dafdev.selamatkan.utils.DataMapper
 import com.dafdev.selamatkan.vo.Resource
 import kotlinx.coroutines.flow.Flow
@@ -26,7 +26,7 @@ class HealthRepository @Inject constructor(
             override fun loadFromNetwork(data: List<RegionsItem?>): Flow<List<CovidProv>> =
                 DataMapper.mapDataCovidResponseToCovidProvince(data)
 
-            override suspend fun createCall(): Flow<ApiResponseOnline<List<RegionsItem?>>> =
+            override suspend fun createCall(): Flow<StatusResponseOnline<List<RegionsItem?>>> =
                 remoteDataSource.getDataCovidProv()
         }.asFlow()
     }
@@ -40,7 +40,7 @@ class HealthRepository @Inject constructor(
             override fun shouldFetch(data: List<ProvinceEntity>?): Boolean =
                 data == null || data.isEmpty()
 
-            override suspend fun createCall(): Flow<ApiResponse<List<ProvincesItem>>> =
+            override suspend fun createCall(): Flow<StatusResponse<List<ProvincesItem>>> =
                 remoteDataSource.getListProvinceHome()
 
             override suspend fun saveCallResult(data: List<ProvincesItem>) {
@@ -55,7 +55,7 @@ class HealthRepository @Inject constructor(
             override fun loadFromNetwork(data: List<CitiesItem?>): Flow<List<Cities>> =
                 DataMapper.mapCitiesResponseToCities(data)
 
-            override suspend fun createCall(): Flow<ApiResponseOnline<List<CitiesItem?>>> =
+            override suspend fun createCall(): Flow<StatusResponseOnline<List<CitiesItem?>>> =
                 remoteDataSource.getListCities(provinceId)
         }.asFlow()
     }
@@ -68,7 +68,7 @@ class HealthRepository @Inject constructor(
             override fun loadFromNetwork(data: List<HospitalsCovidItem?>): Flow<List<HospitalCovid>> =
                 DataMapper.mapHospitalCovidResponseToHospitalCovid(data)
 
-            override suspend fun createCall(): Flow<ApiResponseOnline<List<HospitalsCovidItem?>>> =
+            override suspend fun createCall(): Flow<StatusResponseOnline<List<HospitalsCovidItem?>>> =
                 remoteDataSource.getListCovidHospital(
                     provinceId,
                     cityId
@@ -85,7 +85,7 @@ class HealthRepository @Inject constructor(
             override fun loadFromNetwork(data: List<HospitalsNonCovidItem?>): Flow<List<HospitalNonCovid>> =
                 DataMapper.mapHospitalNonCovidResponseToHospitalNonCovid(data)
 
-            override suspend fun createCall(): Flow<ApiResponseOnline<List<HospitalsNonCovidItem?>>> =
+            override suspend fun createCall(): Flow<StatusResponseOnline<List<HospitalsNonCovidItem?>>> =
                 remoteDataSource.getListNonCovidHospital(
                     provinceId,
                     cityId
@@ -98,7 +98,7 @@ class HealthRepository @Inject constructor(
             override fun loadFromNetwork(data: List<BedDetailItem?>): Flow<List<DetailHospital>> =
                 DataMapper.mapHospitalDetailResponseToHospitalDetail(data)
 
-            override suspend fun createCall(): Flow<ApiResponseOnline<List<BedDetailItem?>>> =
+            override suspend fun createCall(): Flow<StatusResponseOnline<List<BedDetailItem?>>> =
                 remoteDataSource.getDetailCovidHospital(hospitalId)
         }.asFlow()
     }
@@ -108,7 +108,7 @@ class HealthRepository @Inject constructor(
             override fun loadFromNetwork(data: List<BedDetailItem?>): Flow<List<DetailHospital>> =
                 DataMapper.mapHospitalDetailResponseToHospitalDetail(data)
 
-            override suspend fun createCall(): Flow<ApiResponseOnline<List<BedDetailItem?>>> =
+            override suspend fun createCall(): Flow<StatusResponseOnline<List<BedDetailItem?>>> =
                 remoteDataSource.getDetailNonCovidHospital(hospitalId)
         }.asFlow()
     }
@@ -118,7 +118,7 @@ class HealthRepository @Inject constructor(
             override fun loadFromNetwork(data: DataMapHospital?): Flow<Location> =
                 DataMapper.mapLocationResponseToLocation(data)
 
-            override suspend fun createCall(): Flow<ApiResponseOnline<DataMapHospital?>> =
+            override suspend fun createCall(): Flow<StatusResponseOnline<DataMapHospital?>> =
                 remoteDataSource.getLocationHospital(hospitalId)
         }.asFlow()
     }
@@ -128,7 +128,7 @@ class HealthRepository @Inject constructor(
             override fun loadFromNetwork(data: List<Articles?>?): Flow<List<News>> =
                 DataMapper.mapArticlesToNews(data)
 
-            override suspend fun createCall(): Flow<ApiResponseOnline<List<Articles?>?>> =
+            override suspend fun createCall(): Flow<StatusResponseOnline<List<Articles?>?>> =
                 remoteDataSource.getNews()
 
         }.asFlow()

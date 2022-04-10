@@ -19,16 +19,16 @@ class RemoteDataSource @Inject constructor(
             val response = apiCovid.getDataCovid().regions
             if (response != null) {
                 if (response.isNotEmpty()) {
-                    emit(ApiResponseOnline.Success(response))
+                    emit(StatusResponseOnline.Success(response))
                     Timber.d(response.toString())
                 } else {
-                    emit(ApiResponseOnline.Error("Data kosong"))
+                    emit(StatusResponseOnline.Error("Data kosong"))
                     Timber.e("Data kosong")
                 }
             }
 
         } catch (e: Exception) {
-            emit(ApiResponseOnline.Error(e.toString()))
+            emit(StatusResponseOnline.Error(e.toString()))
             Timber.e(e)
         }
     }.flowOn(Dispatchers.IO)
@@ -37,13 +37,13 @@ class RemoteDataSource @Inject constructor(
         try {
             val data = apiHospital.getListProvinces().provinces
             if (data.isNotEmpty()) {
-                emit(ApiResponse.Success(data))
+                emit(StatusResponse.Success(data))
                 Timber.d(data.toString())
             } else {
-                emit(ApiResponse.Empty)
+                emit(StatusResponse.Empty)
             }
         } catch (e: Exception) {
-            emit(ApiResponse.Error(e.message.toString()))
+            emit(StatusResponse.Error(e.message.toString()))
             Timber.e("Remote Data Source, ${e.message}")
         }
     }.flowOn(Dispatchers.IO)
@@ -53,14 +53,14 @@ class RemoteDataSource @Inject constructor(
             val data = apiHospital.getListCities(provinceId).cities
             if (data != null) {
                 if (data.isNotEmpty()) {
-                    emit(ApiResponseOnline.Success(data))
+                    emit(StatusResponseOnline.Success(data))
                     Timber.d(data.toString())
                 } else {
-                    emit(ApiResponseOnline.Error(data.toString()))
+                    emit(StatusResponseOnline.Error(data.toString()))
                 }
             }
         } catch (e: Exception) {
-            emit(ApiResponseOnline.Error(e.message.toString()))
+            emit(StatusResponseOnline.Error(e.message.toString()))
             Timber.e("Remote Data Source, ${e.message}")
         }
     }.flowOn(Dispatchers.IO)
@@ -70,14 +70,14 @@ class RemoteDataSource @Inject constructor(
             val data = apiHospital.getListHospitalsCovid(provinceId, cityId, "1").hospitals
             if (data != null) {
                 if (data.isNotEmpty()) {
-                    emit(ApiResponseOnline.Success(data))
+                    emit(StatusResponseOnline.Success(data))
                     Timber.d(data.toString())
                 } else {
-                    emit(ApiResponseOnline.Error(data.toString()))
+                    emit(StatusResponseOnline.Error(data.toString()))
                 }
             }
         } catch (e: Exception) {
-            emit(ApiResponseOnline.Error(e.message.toString()))
+            emit(StatusResponseOnline.Error(e.message.toString()))
             Timber.e("Remote Data Source, ${e.message}")
         }
     }.flowOn(Dispatchers.IO)
@@ -87,14 +87,14 @@ class RemoteDataSource @Inject constructor(
             val data = apiHospital.getListHospitalsNonCovid(provinceId, cityId, "2").hospitals
             if (data != null) {
                 if (data.isNotEmpty()) {
-                    emit(ApiResponseOnline.Success(data))
+                    emit(StatusResponseOnline.Success(data))
                     Timber.d(data.toString())
                 } else {
-                    emit(ApiResponseOnline.Error(data.toString()))
+                    emit(StatusResponseOnline.Error(data.toString()))
                 }
             }
         } catch (e: Exception) {
-            emit(ApiResponseOnline.Error(e.message.toString()))
+            emit(StatusResponseOnline.Error(e.message.toString()))
             Timber.e("Remote Data Source, ${e.message}")
         }
     }.flowOn(Dispatchers.IO)
@@ -104,14 +104,14 @@ class RemoteDataSource @Inject constructor(
             val data = apiHospital.getListDetails(hospitalId, "1").data?.bedDetail
             if (data != null) {
                 if (data.isNotEmpty()) {
-                    emit(ApiResponseOnline.Success(data))
+                    emit(StatusResponseOnline.Success(data))
                     Timber.d(data.toString())
                 } else {
-                    emit(ApiResponseOnline.Error(data.toString()))
+                    emit(StatusResponseOnline.Error(data.toString()))
                 }
             }
         } catch (e: Exception) {
-            emit(ApiResponseOnline.Error(e.message.toString()))
+            emit(StatusResponseOnline.Error(e.message.toString()))
             Timber.e("Remote Data Source, ${e.message}")
         }
     }.flowOn(Dispatchers.IO)
@@ -121,14 +121,14 @@ class RemoteDataSource @Inject constructor(
             val data = apiHospital.getListDetails(hospitalId, "2").data?.bedDetail
             if (data != null) {
                 if (data.isNotEmpty()) {
-                    emit(ApiResponseOnline.Success(data))
+                    emit(StatusResponseOnline.Success(data))
                     Timber.d(data.toString())
                 } else {
-                    emit(ApiResponseOnline.Error(data.toString()))
+                    emit(StatusResponseOnline.Error(data.toString()))
                 }
             }
         } catch (e: Exception) {
-            emit(ApiResponseOnline.Error(e.message.toString()))
+            emit(StatusResponseOnline.Error(e.message.toString()))
             Timber.e("Remote Data Source, ${e.message}")
         }
     }.flowOn(Dispatchers.IO)
@@ -136,10 +136,10 @@ class RemoteDataSource @Inject constructor(
     fun getLocationHospital(hospitalId: String) = flow {
         try {
             val data = apiHospital.getMapLocation(hospitalId).data
-            emit(ApiResponseOnline.Success(data))
+            emit(StatusResponseOnline.Success(data))
             Timber.d(data.toString())
         } catch (e: Exception) {
-            emit(ApiResponseOnline.Error(e.message.toString()))
+            emit(StatusResponseOnline.Error(e.message.toString()))
             Timber.e("Remote Data Source, ${e.message}")
         }
     }.flowOn(Dispatchers.IO)
@@ -147,10 +147,10 @@ class RemoteDataSource @Inject constructor(
     fun getNews() = flow {
         try {
             val data = apiNews.getNews().articles
-            emit(ApiResponseOnline.Success(data))
+            emit(StatusResponseOnline.Success(data))
             Timber.d(data.toString())
         } catch (e: Exception) {
-            emit(ApiResponseOnline.Error(e.message.toString()))
+            emit(StatusResponseOnline.Error(e.message.toString()))
             Timber.e("Remote Data Source, ${e.message}")
         }
     }.flowOn(Dispatchers.IO)
