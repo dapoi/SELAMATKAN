@@ -10,10 +10,11 @@
 - Kalkulator BMI
 
 ## Pratinjau 
-<img src = "https://user-images.githubusercontent.com/68842666/157479211-2a9bf740-0cc6-4e4a-97a9-b063655cbae9.jpg" width = 180 height = 395/> <img src = "https://user-images.githubusercontent.com/68842666/157481939-ef4a97ff-3a55-4477-b05a-41fd717b44e1.jpg" width = 180 height = 395/> <img src = "https://user-images.githubusercontent.com/68842666/158648711-3b317105-8508-42e4-b85d-870331c4299d.jpeg" width = 180 height = 395/>
+<img src = "https://user-images.githubusercontent.com/68842666/163114840-c5a60f29-705e-4133-afcd-3bd746903e76.png" width = 180 height = 395/> 
 
-<img src = "https://user-images.githubusercontent.com/68842666/157482449-c9a4c2a7-ab73-4213-8e10-3d67544ea1da.jpg" width = 180 height = 395/>  <img src = "https://user-images.githubusercontent.com/68842666/157482592-9182dbb9-a5ed-4388-a62e-d29738604fa7.jpg" width = 180 height = 395/>
-  <img src = "https://user-images.githubusercontent.com/68842666/157480938-8fb97ef7-446e-43c7-b51c-04344bda9ba9.jpg" width = 180 height = 395/>
+<img src = "https://user-images.githubusercontent.com/68842666/163114661-1d064fc2-f9f5-44ba-a885-cf69964cac27.png" width = 180 height = 395/> <img src = "https://user-images.githubusercontent.com/68842666/157482449-c9a4c2a7-ab73-4213-8e10-3d67544ea1da.jpg" width = 180 height = 395/> <img src = "https://user-images.githubusercontent.com/68842666/157482592-9182dbb9-a5ed-4388-a62e-d29738604fa7.jpg" width = 180 height = 395/>
+
+<img src = "https://user-images.githubusercontent.com/68842666/163114958-aa7bffa2-561d-4ade-af03-f8d67133d628.png" width = 180 height = 395/> <img src = "https://user-images.githubusercontent.com/68842666/163115096-409feaed-be92-4ab0-b6b7-47e4966963c7.png" width = 180 height = 395/> <img src = "https://user-images.githubusercontent.com/68842666/163115373-71ae320a-f64b-480e-b82b-780d5c913543.png" width = 180 height = 395/> 
 
 ## Teknologi Yang Digunakan
 - [Lifecycle & Livedata](https://developer.android.com/jetpack/androidx/releases/lifecycle)
