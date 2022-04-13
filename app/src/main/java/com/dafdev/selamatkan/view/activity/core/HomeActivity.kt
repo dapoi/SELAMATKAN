@@ -1,5 +1,7 @@
 package com.dafdev.selamatkan.view.activity.core
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +29,35 @@ class HomeActivity : AppCompatActivity() {
         ) as NavHostFragment
         val navController = navHostFragment.navController
         binding.navView.setupWithNavController(navController)
+        binding.navView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_support -> {
+                    val email = "luthfidaffa2202@gmail.com"
+                    val subject = "Feedback Aplikasi Selamatkan"
+                    val body = "Silahkan tulis pesan anda disini"
+
+                    Intent(Intent.ACTION_SENDTO).let { actionTo ->
+                        val urlString =
+                            "mailto:${Uri.encode(email)}?subject=${Uri.encode(subject)}&body=${
+                                Uri.encode(body)
+                            }"
+                        actionTo.data = Uri.parse(urlString)
+
+                        Intent(Intent.ACTION_SEND).apply {
+                            putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
+                            putExtra(Intent.EXTRA_SUBJECT, subject)
+                            putExtra(Intent.EXTRA_TEXT, body)
+                            selector = actionTo
+                            startActivity(Intent.createChooser(this, "Kirim Email"))
+                        }
+                    }
+                }
+                else -> {
+                    navController.navigate(it.itemId)
+                }
+            }
+            true
+        }
     }
 
     fun openCloseNavigationDrawer(view: View) {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Selamatkan: Aplikasi Pencari Rumah Sakit</string>
+    <string name="app_name">Selamatkan:\nAplikasi Pencari Rumah Sakit</string>
     <string name="desc1">Aplikasi ini dapat membantu Anda menemukan rumah sakit di Indonesia, tanpa harus mendatanginya secara langsung</string>
     <string name="desc2">Anda juga dapat memantau perkembangan Covid-19 di Indonesia</string>
     <string name="desc3">Terdapat artikel kesehatan terkini dan terpercaya, dari media ternama di Indonesia</string>
@@ -47,4 +47,8 @@
     <string name="data_covid">Perkembangan Covid</string>
     <string name="calculator_bmi">Kalkulator BMI</string>
     <string name="app_sort_name">SELAMATKAN!</string>
+    <string name="other">Lainnya</string>
+    <string name="about">Tentang Aplikasi</string>
+    <string name="support"><![CDATA[Kontak & Masukkan]]></string>
+    <string name="about_desc">Projek ini merupakan tugas akhir sekaligus salah satu syarat kelulusan saya Luthfi Daffa Prabowo (201810225212) di Universitas Bhayangkara Jakarta Raya.\n\n Seluruh kode yang saya buat dapat diakses di <a href="https://github.com/dapoi/SELAMATKAN">Github saya</a>.\n\n Terima kasih untuk semua yang telah membantu saya dalam mengembangkan aplikasi ini. Semoga aplikasi ini bermanfaat untuk kita semua. :)</string>
 </resources>

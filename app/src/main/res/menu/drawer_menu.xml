@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="none">
         <item
             android:id="@+id/nav_covid"
             android:icon="@drawable/ic_graphic"
@@ -16,4 +16,17 @@
             android:title="@string/bmi" />
     </group>
 
+    <item android:title="@string/other">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_about"
+                android:title="@string/about" />
+
+            <item
+                android:id="@+id/nav_support"
+                android:icon="@drawable/ic_support"
+                android:title="@string/support" />
+        </menu>
+    </item>
 </menu>

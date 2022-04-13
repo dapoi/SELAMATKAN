@@ -86,5 +86,10 @@
         android:name="com.dafdev.selamatkan.view.activity.core.DataCovidActivity"
         android:label="activity_data_covid"
         tools:layout="@layout/activity_data_covid" />
+    <activity
+        android:id="@+id/nav_about"
+        android:name="com.dafdev.selamatkan.view.activity.core.AboutActivity"
+        android:label="activity_about"
+        tools:layout="@layout/activity_about" />
 
 </navigation>
