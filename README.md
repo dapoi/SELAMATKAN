@@ -24,6 +24,7 @@
 - [Moshi](https://github.com/square/moshi)
 - [Coroutines](https://developer.android.com/kotlin/coroutines?gclsrc=aw.ds&gclid=CjwKCAiAnO2MBhApEiwA8q0HYSKx8VWo_WPkBPO0Oiku9QN_d0sbi6zHhntW8pD7ZsAjciGIp7_oyhoCjvgQAvD_BwE)
 - [Glide](https://github.com/bumptech/glide)
+- [Google Maps SDK](https://developers.google.com/maps/documentation)
 
 ## Referensi / Sumber Data
 Terimakasih kepada Mas Satya yang telah mengizinkan saya untuk menggunakan API Rumah Sakit ini 
