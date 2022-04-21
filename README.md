@@ -6,7 +6,7 @@
 ## Fitur
 - Data rumah sakit Covid dan Non-Covid di Indonesia (kuota kamar/kasur, nomor telepon, dan map)
 - Artikel Berita dari media ternama di Indonesia
-- Data Covid-19 di Indonesia & Provinsi!
+- Data Covid-19 di Indonesia
 - Kalkulator BMI
 
 ## Pratinjau 
