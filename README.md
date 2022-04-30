@@ -18,6 +18,7 @@
 
 ## Teknologi Yang Digunakan
 - [Lifecycle & Livedata](https://developer.android.com/jetpack/androidx/releases/lifecycle)
+- [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 - [Navigation Component](https://developer.android.com/jetpack/androidx/releases/navigation)
 - [Dagger Hilt](https://dagger.dev/hilt/)
 - [Retrofit 2](https://square.github.io/retrofit/)
