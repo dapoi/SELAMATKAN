@@ -36,7 +36,7 @@ class BaseHospitalListFragment : Fragment() {
 
         with(binding) {
             ivBack.setOnClickListener {
-                findNavController().popBackStack()
+                findNavController().navigateUp()
             }
 
             val pagerAdapter = HospitalPagerAdapter(activity as AppCompatActivity)

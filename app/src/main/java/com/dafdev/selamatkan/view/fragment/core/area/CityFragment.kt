@@ -44,7 +44,7 @@ class CityFragment : Fragment() {
         setStatusBarColor(requireActivity(), R.color.white, binding.root)
 
         binding.ivBack.setOnClickListener {
-            findNavController().navigateUp()
+            requireActivity().onBackPressed()
         }
 
         if (activity != null) {
@@ -77,10 +77,5 @@ class CityFragment : Fragment() {
                 }
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }
