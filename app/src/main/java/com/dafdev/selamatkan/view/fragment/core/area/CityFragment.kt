@@ -1,6 +1,8 @@
 package com.dafdev.selamatkan.view.fragment.core.area
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +14,14 @@ import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.data.domain.model.Cities
 import com.dafdev.selamatkan.databinding.FragmentCityBinding
 import com.dafdev.selamatkan.utils.Constant
+import com.dafdev.selamatkan.utils.HelpUtil.isOnline
+import com.dafdev.selamatkan.utils.HelpUtil.noInternetView
 import com.dafdev.selamatkan.utils.HelpUtil.setStatusBarColor
 import com.dafdev.selamatkan.utils.HelpUtil.showProgressBar
 import com.dafdev.selamatkan.view.adapter.CityAdapter
 import com.dafdev.selamatkan.viewmodel.CitiesViewModel
 import com.dafdev.selamatkan.vo.Resource
-import com.google.android.material.snackbar.Snackbar
+import com.simform.refresh.SSPullToRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -61,21 +65,64 @@ class CityFragment : Fragment() {
                 adapter = cityAdapter
             }
 
-            cityViewModel.dataCity(Constant.provinceId).observe(viewLifecycleOwner) {
-                binding.apply {
-                    when (it) {
-                        is Resource.Loading -> progressBar.showProgressBar(true)
-                        is Resource.Success -> {
-                            progressBar.showProgressBar(false)
-                            cityAdapter.setCityAdapter(it.data!!)
+            setViewModel()
+        }
+
+        swipeData()
+    }
+
+    private fun swipeData() {
+        binding.apply {
+            with(srlCity) {
+                setLottieAnimation("loading.json")
+                setRepeatMode(SSPullToRefreshLayout.RepeatMode.REPEAT)
+                setRepeatCount(SSPullToRefreshLayout.RepeatCount.INFINITE)
+                setOnRefreshListener(object : SSPullToRefreshLayout.OnRefreshListener {
+                    override fun onRefresh() {
+                        val check = isOnline(requireActivity())
+                        if (check) {
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                setRefreshing(false)
+                            }, 2000)
+
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                noInternetView(false, viewNoConnected, rvCity)
+                                setViewModel()
+                            }, 2350)
+                        } else {
+                            noInternetView(true, viewNoConnected, rvCity)
+                            setRefreshing(false)
                         }
-                        is Resource.Error -> {
-                            progressBar.showProgressBar(false)
-                            Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
-                        }
+                    }
+                })
+            }
+        }
+    }
+
+    private fun setViewModel() {
+        cityViewModel.dataCity(Constant.provinceId).observe(viewLifecycleOwner) {
+            binding.apply {
+                when (it) {
+                    is Resource.Loading -> {
+                        progressBar.showProgressBar(true)
+                        rvCity.visibility = View.GONE
+                    }
+                    is Resource.Success -> {
+                        progressBar.showProgressBar(false)
+                        cityAdapter.setCityAdapter(it.data!!)
+                        rvCity.visibility = View.VISIBLE
+                    }
+                    is Resource.Error -> {
+                        progressBar.showProgressBar(false)
+                        viewNoConnected.root.visibility = View.VISIBLE
                     }
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

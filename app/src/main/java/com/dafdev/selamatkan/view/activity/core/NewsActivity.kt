@@ -65,7 +65,7 @@ class NewsActivity : AppCompatActivity() {
                         val check = isOnline(this@NewsActivity)
                         if (check) {
                             Handler(Looper.getMainLooper()).postDelayed({
-                                srlNews.setRefreshing(false)
+                                setRefreshing(false)
                             }, 2000)
                             Handler(Looper.getMainLooper()).postDelayed({
                                 val status = InternetReceiver()

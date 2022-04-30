@@ -8,6 +8,7 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -34,8 +35,12 @@ object HelpUtil {
         visibility = if (state) View.VISIBLE else View.GONE
     }
 
-    fun EmptyLayoutBinding.dataEmpty() {
-        root.visibility = View.VISIBLE
+    fun EmptyLayoutBinding.dataEmpty(state: Boolean) {
+        if (state) {
+            root.visibility = View.VISIBLE
+        } else {
+            root.visibility = View.GONE
+        }
     }
 
     fun isOnline(context: Context): Boolean {

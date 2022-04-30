@@ -3,13 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_nav"
-    app:startDestination="@+id/nav_main">
+    app:startDestination="@+id/nav_home">
 
     <fragment
-        android:id="@+id/nav_main"
-        android:name="com.dafdev.selamatkan.view.fragment.core.main.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        android:id="@+id/nav_home"
+        android:name="com.dafdev.selamatkan.view.fragment.core.main.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_mainActivity"
+            app:destination="@id/mainActivity"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
+    </fragment>
     <activity
         android:id="@+id/nav_article"
         android:name="com.dafdev.selamatkan.view.activity.core.NewsActivity"
@@ -33,7 +41,7 @@
         tools:layout="@layout/activity_about" />
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.dafdev.selamatkan.view.activity.MainActivity"
+        android:name="com.dafdev.selamatkan.view.activity.core.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
 

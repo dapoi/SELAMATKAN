@@ -10,7 +10,6 @@ import android.view.View
 import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.ActivityDataCovidBinding
@@ -71,6 +70,7 @@ class DataCovidActivity : AppCompatActivity() {
                 setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(query: String?): Boolean {
                         hideKeyboard(this@DataCovidActivity)
+                        clearFocus()
                         return false
                     }
 

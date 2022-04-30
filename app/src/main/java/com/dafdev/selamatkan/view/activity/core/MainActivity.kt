@@ -1,4 +1,4 @@
-package com.dafdev.selamatkan.view.activity
+package com.dafdev.selamatkan.view.activity.core
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

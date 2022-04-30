@@ -1,7 +1,6 @@
 package com.dafdev.selamatkan.view.fragment.core.main
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,15 +11,15 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
-import com.dafdev.selamatkan.databinding.FragmentMainBinding
+import com.dafdev.selamatkan.databinding.FragmentHomeBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.utils.HelpUtil.hideKeyboard
 import com.dafdev.selamatkan.utils.HelpUtil.setStatusBarColor
 import com.dafdev.selamatkan.utils.HelpUtil.showProgressBar
-import com.dafdev.selamatkan.view.activity.MainActivity
 import com.dafdev.selamatkan.view.adapter.ProvinceAdapter
 import com.dafdev.selamatkan.viewmodel.ProvinceViewModel
 import com.dafdev.selamatkan.vo.Resource
@@ -28,9 +27,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 @AndroidEntryPoint
-class MainFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-    private var _binding: FragmentMainBinding? = null
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     private val provinceViewModel: ProvinceViewModel by viewModels()
@@ -41,7 +40,7 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -52,12 +51,11 @@ class MainFragment : Fragment() {
 
         setStatusBarColor(requireActivity(), R.color.blue, binding.root, false)
 
-        hideKeyboard(requireActivity())
-
         binding.etSearch.apply {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     hideKeyboard(requireActivity())
+                    clearFocus()
                     return false
                 }
 
@@ -112,7 +110,7 @@ class MainFragment : Fragment() {
         provinceAdapter.setOnItemClick(object : ProvinceAdapter.OnItemClickCallback {
             override fun onItemClicked(data: ProvinceEntity) {
                 Constant.provinceId = data.id
-                startActivity(Intent(requireActivity(), MainActivity::class.java))
+                findNavController().navigate(R.id.action_nav_home_to_mainActivity)
             }
         })
 
@@ -124,7 +122,8 @@ class MainFragment : Fragment() {
     }
 
     override fun onResume() {
-        super.onResume()
         provinceAdapter.filter.filter(binding.etSearch.query)
+        binding.etSearch.clearFocus()
+        super.onResume()
     }
 }

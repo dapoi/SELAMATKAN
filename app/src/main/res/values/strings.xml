@@ -37,7 +37,7 @@
     <string name="telephone">Telepon</string>
     <string name="direction">Petunjuk</string>
     <string name="share">Bagikan</string>
-    <string name="no_internet">Internet Anda bermasalah nih, cek dulu ya… Tarik ke bawah untuk memuat ulang</string>
+    <string name="no_internet">Maaf sepertinya ada masalah… Coba tarik ke bawah untuk memuat ulang</string>
     <string name="input_data">Masukkan data Anda :</string>
     <string name="kg">Berat(kg)</string>
     <string name="cm">Tinggi(cm)</string>

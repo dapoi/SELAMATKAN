@@ -6,15 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".view.fragment.core.hospital.list.CovidHospitalFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_hospital_covid"
+    <com.simform.refresh.SSPullToRefreshLayout
+        android:id="@+id/srl_covid_hospital"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_list_hospital" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_hospital_covid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            tools:listitem="@layout/item_list_hospital" />
+    </com.simform.refresh.SSPullToRefreshLayout>
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/progress_bar"
@@ -40,11 +43,14 @@
             <include layout="@layout/item_list_hospital_placeholder" />
 
             <include layout="@layout/item_list_hospital_placeholder" />
-
-            <include layout="@layout/item_list_hospital_placeholder" />
         </LinearLayout>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <include
+        android:id="@+id/view_no_connected"
+        layout="@layout/no_internet_layout"
+        android:visibility="gone" />
 
     <include
         android:id="@+id/view_empty"
@@ -53,6 +59,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

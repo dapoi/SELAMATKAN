@@ -1,6 +1,8 @@
 package com.dafdev.selamatkan.view.fragment.core.hospital.list
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,22 +13,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentNonCovidHospitalBinding
 import com.dafdev.selamatkan.utils.Constant
+import com.dafdev.selamatkan.utils.HelpUtil
 import com.dafdev.selamatkan.utils.HelpUtil.dataEmpty
+import com.dafdev.selamatkan.utils.HelpUtil.isOnline
 import com.dafdev.selamatkan.utils.HelpUtil.showProgressBar
 import com.dafdev.selamatkan.view.adapter.hospital.list.HospitalNonCovidAdapter
 import com.dafdev.selamatkan.viewmodel.HospitalNonCovidViewModel
 import com.dafdev.selamatkan.vo.Resource
+import com.simform.refresh.SSPullToRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class NonCovidHospitalFragment : Fragment() {
 
+    private lateinit var hospitalAdapter: HospitalNonCovidAdapter
+
     private var _binding: FragmentNonCovidHospitalBinding? = null
     private val binding get() = _binding!!
-
     private val hospitalViewModel: HospitalNonCovidViewModel by viewModels()
-
-    private lateinit var hospitalAdapter: HospitalNonCovidAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,8 +44,41 @@ class NonCovidHospitalFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        swipeData()
         setAdapter()
         setViewModel()
+    }
+
+    private fun swipeData() {
+        binding.apply {
+            with(srlNonCovidHospital) {
+                setLottieAnimation("loading.json")
+                setRepeatMode(SSPullToRefreshLayout.RepeatMode.REPEAT)
+                setRepeatCount(SSPullToRefreshLayout.RepeatCount.INFINITE)
+                setOnRefreshListener(object : SSPullToRefreshLayout.OnRefreshListener {
+                    override fun onRefresh() {
+                        val check = isOnline(requireActivity())
+                        if (check) {
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                setRefreshing(false)
+                            }, 2000)
+
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                HelpUtil.noInternetView(
+                                    false,
+                                    viewNoConnected,
+                                    rvHospitalNonCovid
+                                )
+                                setViewModel()
+                            }, 2350)
+                        } else {
+                            stateEmptyData(false)
+                            setRefreshing(false)
+                        }
+                    }
+                })
+            }
+        }
     }
 
     private fun setAdapter() {
@@ -65,22 +102,54 @@ class NonCovidHospitalFragment : Fragment() {
     }
 
     private fun setViewModel() {
-        hospitalViewModel.nonCovidHospital(Constant.provinceId, Constant.cityId)
-            .observe(viewLifecycleOwner) {
-                binding.apply {
-                    when (it) {
-                        is Resource.Loading -> progressBar.showProgressBar(true)
-                        is Resource.Success -> {
-                            progressBar.showProgressBar(false)
-                            hospitalAdapter.setNonCovidHospital(it.data!!)
-                        }
-                        is Resource.Error -> {
-                            progressBar.showProgressBar(false)
-                            viewEmpty.dataEmpty()
+        hospitalViewModel.nonCovidHospital(
+            Constant.provinceId,
+            Constant.cityId
+        ).observe(viewLifecycleOwner) {
+            binding.apply {
+                when (it) {
+                    is Resource.Loading -> {
+                        progressBar.showProgressBar(true)
+                        viewEmpty.dataEmpty(false)
+                        rvHospitalNonCovid.visibility = View.GONE
+                    }
+                    is Resource.Success -> {
+                        progressBar.showProgressBar(false)
+                        hospitalAdapter.setNonCovidHospital(it.data!!)
+                        rvHospitalNonCovid.visibility = View.VISIBLE
+                    }
+                    is Resource.Error -> {
+                        progressBar.showProgressBar(false)
+                        val check = isOnline(requireActivity())
+                        if (check) {
+                            stateEmptyData(true)
+                        } else {
+                            stateEmptyData(false)
                         }
                     }
                 }
             }
+        }
+    }
+
+    private fun stateEmptyData(value: Boolean) {
+        binding.apply {
+            if (value) {
+                viewEmpty.dataEmpty(true)
+                HelpUtil.noInternetView(
+                    false,
+                    viewNoConnected,
+                    rvHospitalNonCovid
+                )
+            } else {
+                viewEmpty.dataEmpty(false)
+                HelpUtil.noInternetView(
+                    true,
+                    viewNoConnected,
+                    rvHospitalNonCovid
+                )
+            }
+        }
     }
 
     override fun onDestroy() {
