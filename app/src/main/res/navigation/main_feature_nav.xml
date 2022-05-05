@@ -50,5 +50,17 @@
             app:exitAnim="@anim/to_right"
             app:popEnterAnim="@anim/from_right"
             app:popExitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_baseHospitalDetailFragment_to_mapActivity"
+            app:destination="@id/mapActivity"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
     </fragment>
+    <activity
+        android:id="@+id/mapActivity"
+        android:name="com.dafdev.selamatkan.view.activity.core.MapActivity"
+        android:label="activity_map"
+        tools:layout="@layout/activity_map" />
 </navigation>

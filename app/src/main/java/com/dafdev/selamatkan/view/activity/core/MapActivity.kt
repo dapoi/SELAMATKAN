@@ -61,7 +61,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         fusedLocation = LocationServices.getFusedLocationProviderClient(this)
         with(binding) {
-            toolbar.setNavigationOnClickListener { onBackPressed() }
+            toolbar.setNavigationOnClickListener {
+                onBackPressed()
+            }
 
             // show map
             val mapFragment =
@@ -267,6 +269,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     @Suppress("DEPRECATION")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -276,7 +279,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                     LocationManager.NETWORK_PROVIDER
                 )
             ) {
-                this.recreate()
+                onMapReady(gMap)
             }
         }
     }

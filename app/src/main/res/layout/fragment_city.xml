@@ -13,21 +13,14 @@
         android:background="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_back"
-            tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back">
 
         <TextView
             android:id="@+id/tv_title_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/encodesans_medium"
+            android:textColor="@color/dark_gray"
             android:text="@string/choose_city"
             android:textSize="18sp"
             android:textStyle="bold" />

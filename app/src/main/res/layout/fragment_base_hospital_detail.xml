@@ -13,22 +13,15 @@
         android:background="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_back"
-            tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back">
 
         <TextView
             android:id="@+id/tv_title_hosptial"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/encodesans_medium"
             android:text="@string/available_room"
+            android:textColor="@color/dark_gray"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -58,19 +51,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabs_hospital" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
-        android:src="@drawable/ic_map"
+        android:text="@string/other_info"
+        android:textColor="@color/white"
         app:backgroundTint="@color/blue"
-        app:fabCustomSize="65dp"
+        app:collapsedSize="58dp"
+        app:icon="@drawable/ic_info"
+        app:iconSize="28dp"
+        app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="40dp"
-        app:tint="@color/white"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,7 @@
     <string name="title4">Kalkulator BMI</string>
     <string name="bmi">BMI</string>
     <string name="greet">Halo,</string>
-    <string name="covid_indonesia">Covid-19 di Indonesia</string>
+    <string name="covid_indonesia">Covid-19 Di Indonesia</string>
     <string name="positive">POSITIF</string>
     <string name="negative">SEMBUH</string>
     <string name="die">MENINGGAL</string>
@@ -35,7 +35,7 @@
     <string name="finish">Selesai</string>
     <string name="available_room">Kapasitas Tersedia</string>
     <string name="telephone">Telepon</string>
-    <string name="direction">Petunjuk</string>
+    <string name="direction">Rute</string>
     <string name="share">Bagikan</string>
     <string name="no_internet">Maaf sepertinya ada masalah… Coba tarik ke bawah untuk memuat ulang</string>
     <string name="input_data">Masukkan data Anda :</string>
@@ -51,4 +51,5 @@
     <string name="about">Tentang Aplikasi</string>
     <string name="support"><![CDATA[Kontak & Masukkan]]></string>
     <string name="about_desc">Projek ini merupakan tugas akhir sekaligus salah satu syarat kelulusan saya Luthfi Daffa Prabowo (201810225212) di Universitas Bhayangkara Jakarta Raya.\n\n Seluruh kode yang saya buat dapat diakses di <a href="https://github.com/dapoi/SELAMATKAN">Github saya</a>.\n\n Terima kasih untuk semua yang telah membantu saya dalam mengembangkan aplikasi ini. Semoga aplikasi ini bermanfaat untuk kita semua. :)</string>
+    <string name="other_info">Info Lainnya</string>
 </resources>

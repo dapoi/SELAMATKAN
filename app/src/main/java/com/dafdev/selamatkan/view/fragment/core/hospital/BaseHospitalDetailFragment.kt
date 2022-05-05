@@ -1,6 +1,6 @@
 package com.dafdev.selamatkan.view.fragment.core.hospital
 
-import android.content.Intent
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentBaseHospitalDetailBinding
+import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.utils.HelpUtil.setStatusBarColor
-import com.dafdev.selamatkan.view.activity.core.MapActivity
 import com.dafdev.selamatkan.view.adapter.pager.HospitalDetailPagerAdapter
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,6 +34,7 @@ class BaseHospitalDetailFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -40,12 +43,14 @@ class BaseHospitalDetailFragment : Fragment() {
         with(binding) {
 
             fab.setOnClickListener {
-                startActivity(Intent(requireActivity(), MapActivity::class.java))
+                findNavController().navigate(R.id.action_baseHospitalDetailFragment_to_mapActivity)
             }
 
-            ivBack.setOnClickListener {
+            toolbar.setNavigationOnClickListener {
                 findNavController().navigateUp()
             }
+
+            tvTitleHosptial.text = "Kapasitas ${Constant.hospitalName}"
 
             val pagerAdapter = HospitalDetailPagerAdapter(activity as AppCompatActivity)
             viewPager.adapter = pagerAdapter
@@ -68,6 +73,19 @@ class BaseHospitalDetailFragment : Fragment() {
 
     companion object {
         private val TAB_TITLES = intArrayOf(R.string.khusus, R.string.umum)
+        fun RecyclerView.attachFab(fab: ExtendedFloatingActionButton) {
+            this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    if (dy > 20 && fab.isExtended) {
+                        fab.shrink()
+                    }
+
+                    if (dy < -10 && !fab.isExtended) {
+                        fab.extend()
+                    }
+                }
+            })
+        }
     }
 
     override fun onDestroy() {

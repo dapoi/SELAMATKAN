@@ -1,5 +1,6 @@
 package com.dafdev.selamatkan.view.fragment.core.area
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -27,8 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CityFragment : Fragment() {
 
-    private var _binding: FragmentCityBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentCityBinding
 
     private val cityViewModel: CitiesViewModel by viewModels()
 
@@ -38,34 +38,29 @@ class CityFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCityBinding.inflate(inflater, container, false)
+        if (this::binding.isInitialized) {
+            binding
+        } else {
+            binding = FragmentCityBinding.inflate(inflater, container, false)
+            setAdapter()
+            setViewModel()
+        }
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setStatusBarColor(requireActivity(), R.color.white, binding.root)
 
-        binding.ivBack.setOnClickListener {
-            requireActivity().onBackPressed()
-        }
-
-        if (activity != null) {
-            cityAdapter = CityAdapter()
-            cityAdapter.setOnItemClick(object : CityAdapter.OnItemClickCallback {
-                override fun onItemClicked(data: Cities) {
-                    Constant.cityId = data.id!!
-                    findNavController().navigate(R.id.action_cityFragment_to_baseHospitalListFragment)
-                }
-            })
-            binding.rvCity.apply {
-                setHasFixedSize(true)
-                layoutManager = LinearLayoutManager(requireActivity())
-                adapter = cityAdapter
+        binding.apply {
+            toolbar.setNavigationOnClickListener { requireActivity().onBackPressed() }
+            if (Constant.provinceName == "DI Yogyakarta") {
+                tvTitleCity.text = "Pilih Daerah Di Yogyakarta"
+            } else {
+                tvTitleCity.text = "Pilih Daerah Di ${Constant.provinceName}"
             }
-
-            setViewModel()
         }
 
         swipeData()
@@ -99,6 +94,23 @@ class CityFragment : Fragment() {
         }
     }
 
+    private fun setAdapter() {
+        cityAdapter = CityAdapter()
+        cityAdapter.setOnItemClick(object : CityAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: Cities) {
+                Constant.cityId = data.id!!
+                Constant.cityName = data.name!!
+                findNavController().navigate(R.id.action_cityFragment_to_baseHospitalListFragment)
+            }
+        })
+
+        binding.rvCity.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(requireActivity())
+            adapter = cityAdapter
+        }
+    }
+
     private fun setViewModel() {
         cityViewModel.dataCity(Constant.provinceId).observe(viewLifecycleOwner) {
             binding.apply {
@@ -119,10 +131,5 @@ class CityFragment : Fragment() {
                 }
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

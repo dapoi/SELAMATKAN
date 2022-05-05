@@ -1,5 +1,6 @@
 package com.dafdev.selamatkan.view.fragment.core.hospital
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentBaseHospitalListBinding
+import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.utils.HelpUtil.setStatusBarColor
 import com.dafdev.selamatkan.view.adapter.pager.HospitalPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -29,14 +31,21 @@ class BaseHospitalListFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setStatusBarColor(requireActivity(), R.color.white, binding.root)
 
         with(binding) {
-            ivBack.setOnClickListener {
+            toolbar.setNavigationOnClickListener {
                 findNavController().navigateUp()
+            }
+
+            if (Constant.cityName == "Bekasi") {
+                tvTitleHosptial.text = "Pilih Rumah Sakit Di Kab. Bekasi"
+            } else {
+                tvTitleHosptial.text = "Pilih Rumah Sakit Di ${Constant.cityName}"
             }
 
             val pagerAdapter = HospitalPagerAdapter(activity as AppCompatActivity)

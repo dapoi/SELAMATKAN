@@ -110,6 +110,7 @@ class HomeFragment : Fragment() {
         provinceAdapter.setOnItemClick(object : ProvinceAdapter.OnItemClickCallback {
             override fun onItemClicked(data: ProvinceEntity) {
                 Constant.provinceId = data.id
+                Constant.provinceName = data.name
                 findNavController().navigate(R.id.action_nav_home_to_mainActivity)
             }
         })

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentNonCovidHospitalDetailBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.utils.HelpUtil
@@ -16,6 +17,7 @@ import com.dafdev.selamatkan.utils.HelpUtil.dataEmpty
 import com.dafdev.selamatkan.utils.HelpUtil.isOnline
 import com.dafdev.selamatkan.utils.HelpUtil.showProgressBar
 import com.dafdev.selamatkan.view.adapter.hospital.detail.HospitalDetailNonCovidAdapter
+import com.dafdev.selamatkan.view.fragment.core.hospital.BaseHospitalDetailFragment.Companion.attachFab
 import com.dafdev.selamatkan.viewmodel.DetailNonCovidHospitalViewModel
 import com.dafdev.selamatkan.vo.Resource
 import com.simform.refresh.SSPullToRefreshLayout
@@ -46,6 +48,9 @@ class NonCovidHospitalDetailFragment : Fragment() {
         setAdapter()
         setViewModel()
         swipeData()
+
+        val rv = binding.rvHospitalDetailNonCovid
+        rv.attachFab(requireActivity().findViewById(R.id.fab))
     }
 
     private fun swipeData() {
