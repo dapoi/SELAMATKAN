@@ -18,7 +18,7 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun getInstance(@ApplicationContext context: Context): HealthDatabase = Room.databaseBuilder(
-        context, HealthDatabase::class.java, "health.db"
+        context, HealthDatabase::class.java, "SELAMATKAN.db"
     ).build()
 
     @Provides

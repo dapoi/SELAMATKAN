@@ -2,6 +2,7 @@ package com.dafdev.selamatkan.view.activity.core
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -10,7 +11,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.provider.Settings
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -20,6 +20,8 @@ import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.data.domain.model.Location
 import com.dafdev.selamatkan.databinding.ActivityMapBinding
 import com.dafdev.selamatkan.utils.Constant
+import com.dafdev.selamatkan.utils.HelpUtil
+import com.dafdev.selamatkan.utils.HelpUtil.isOnline
 import com.dafdev.selamatkan.viewmodel.LocationMapHospitalViewModel
 import com.dafdev.selamatkan.vo.Resource
 import com.google.android.gms.location.*
@@ -29,6 +31,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.simform.refresh.SSPullToRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.*
 
@@ -40,9 +43,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var gMap: GoogleMap
     private lateinit var fusedLocation: FusedLocationProviderClient
-
     private lateinit var myLoc: LatLng
     private lateinit var destinationLatLng: LatLng
+    private lateinit var repeatHandler: Handler
+    private lateinit var repeatRunnable: Runnable
 
     private var myLat = 0.0
     private var myLong = 0.0
@@ -59,10 +63,37 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         _binding = ActivityMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        repeatHandler = Handler(Looper.getMainLooper())
+
         fusedLocation = LocationServices.getFusedLocationProviderClient(this)
         with(binding) {
             toolbar.setNavigationOnClickListener {
                 onBackPressed()
+            }
+
+            srlMap.apply {
+                setLottieAnimation("loading.json")
+                setRepeatMode(SSPullToRefreshLayout.RepeatMode.REPEAT)
+                setRepeatCount(SSPullToRefreshLayout.RepeatCount.INFINITE)
+                setOnRefreshListener(object : SSPullToRefreshLayout.OnRefreshListener {
+                    override fun onRefresh() {
+                        val check = isOnline(this@MapActivity)
+                        if (check) {
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                setRefreshing(false)
+                            }, 2000)
+
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                val status = InternetReceiver()
+                                status.onReceive(this@MapActivity, intent)
+                            }, 2150)
+                        } else {
+                            nestedScrollView.visibility = View.GONE
+                            childLayout.visibility = View.VISIBLE
+                            setRefreshing(false)
+                        }
+                    }
+                })
             }
 
             // show map
@@ -123,11 +154,11 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             } else {
                 binding.tvDistance.text = "Hidupkan GPS Anda untuk melihat jarak"
-                Toast.makeText(this, "Tunggu sebentar....", Toast.LENGTH_LONG).show()
-                Handler(Looper.getMainLooper()).postDelayed({
-                    val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                    startActivityForResult(intent, 2)
-                }, 3000)
+                // TODO: uncomment jika ingin menghidupkan gps secara otomatis
+//                Handler(Looper.getMainLooper()).postDelayed({
+//                    val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+//                    startActivityForResult(intent, 2)
+//                }, 3000)
             }
         } else {
             requestPermissions()
@@ -213,9 +244,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 cos(originLat) * cos(destinationLat)
         val c = 2 * asin(sqrt(a))
         val distance = earthRadius * c
-        binding.tvDistance.text = "Jarak dari lokasi Anda ke ${Constant.hospitalName} sekitar ${
+        binding.tvDistance.text = "Perkiraan jarak dari lokasi Anda ke ${Constant.hospitalName} sekitar ${
             String.format("%.2f", distance)
-        } - ${String.format("%.2f", distance * 1.4)} KM \n *kondisi mungkin berbeda"
+        } - ${String.format("%.2f", distance * 2)} KM"
         return sqrt(distance)
     }
 
@@ -230,7 +261,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
                 is Resource.Error -> {
                     progressBar(false)
-                    Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
+                    binding.nestedScrollView.visibility = View.GONE
+                    binding.childLayout.visibility = View.VISIBLE
                 }
             }
         }
@@ -269,18 +301,44 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    inner class InternetReceiver : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            val status = isOnline(context)
+            if (status) {
+                HelpUtil.recreateActivity(this@MapActivity)
+            }
+        }
+    }
+
     @Deprecated("Deprecated in Java")
     @Suppress("DEPRECATION")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 2) {
-            val wifi = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-            if (wifi.isProviderEnabled(LocationManager.GPS_PROVIDER) || wifi.isProviderEnabled(
-                    LocationManager.NETWORK_PROVIDER
-                )
-            ) {
-                onMapReady(gMap)
-            }
+            checkGPS()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        repeatHandler.postDelayed(Runnable { //do your function;
+            getLocation()
+            repeatHandler.postDelayed(repeatRunnable, 2000)
+        }.also { repeatRunnable = it }, 2000)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        repeatHandler.removeCallbacks(repeatRunnable)
+    }
+
+    private fun checkGPS() {
+        val gps = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if (gps.isProviderEnabled(LocationManager.GPS_PROVIDER) || gps.isProviderEnabled(
+                LocationManager.NETWORK_PROVIDER
+            )
+        ) {
+            getLocation()
         }
     }
 }

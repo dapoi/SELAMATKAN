@@ -49,7 +49,7 @@ class DataCovidActivity : AppCompatActivity() {
                         val check = isOnline(this@DataCovidActivity)
                         if (check) {
                             Handler(Looper.getMainLooper()).postDelayed({
-                                srlNews.setRefreshing(false)
+                                setRefreshing(false)
                             }, 2000)
                             Handler(Looper.getMainLooper()).postDelayed({
                                 val status = InternetReceiver()
@@ -58,7 +58,7 @@ class DataCovidActivity : AppCompatActivity() {
                         } else {
                             rvProvinceCovid.visibility = View.GONE
                             viewNoConnected.visibility = View.VISIBLE
-                            srlNews.setRefreshing(false)
+                            setRefreshing(false)
                         }
                     }
                 })
