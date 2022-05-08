@@ -1,8 +1,5 @@
 package com.dafdev.selamatkan.view.activity.core
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -17,6 +14,7 @@ import com.dafdev.selamatkan.utils.HelpUtil
 import com.dafdev.selamatkan.utils.HelpUtil.hideKeyboard
 import com.dafdev.selamatkan.utils.HelpUtil.isOnline
 import com.dafdev.selamatkan.utils.HelpUtil.showProgressBar
+import com.dafdev.selamatkan.utils.InternetReceiver
 import com.dafdev.selamatkan.view.adapter.ProvinceCovidAdapter
 import com.dafdev.selamatkan.viewmodel.DataCovidViewModel
 import com.dafdev.selamatkan.vo.Resource
@@ -107,15 +105,6 @@ class DataCovidActivity : AppCompatActivity() {
                         viewNoConnected.visibility = View.VISIBLE
                     }
                 }
-            }
-        }
-    }
-
-    inner class InternetReceiver : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            val status = isOnline(context)
-            if (status) {
-                HelpUtil.recreateActivity(this@DataCovidActivity)
             }
         }
     }

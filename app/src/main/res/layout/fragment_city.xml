@@ -8,10 +8,10 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
         android:background="@null"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sv_city"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_back">
@@ -20,12 +20,25 @@
             android:id="@+id/tv_title_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/dark_gray"
             android:text="@string/choose_city"
+            android:textColor="@color/dark_gray"
             android:textSize="18sp"
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/sv_city"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/srl_city"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="Cari kota/daerah"
+        app:searchIcon="@drawable/ic_search"
+        tools:ignore="ContentDescription" />
 
     <com.simform.refresh.SSPullToRefreshLayout
         android:id="@+id/srl_city"

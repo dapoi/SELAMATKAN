@@ -15,6 +15,8 @@ buildscript {
     ext.kotlin_coroutines_version = "1.5.2"
     ext.lifecycle_version = "2.4.1"
     ext.hilt_version = "2.40.1"
+    ext.paging_version = "3.1.1"
+    ext.room_paging_version = "2.5.0-alpha01"
 
     repositories {
         google()

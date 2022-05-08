@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentBaseHospitalListBinding
 import com.dafdev.selamatkan.utils.Constant
@@ -49,11 +50,14 @@ class BaseHospitalListFragment : Fragment() {
             }
 
             val pagerAdapter = HospitalPagerAdapter(activity as AppCompatActivity)
-            viewPager.adapter = pagerAdapter
+            binding.viewPager.apply {
+                adapter = pagerAdapter
+                (getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
 
-            TabLayoutMediator(tabsHospital, viewPager) { tab, position ->
-                tab.text = resources.getString(TAB_TITLES[position])
-            }.attach()
+                TabLayoutMediator(tabsHospital, this) { tab, position ->
+                    tab.text = resources.getString(TAB_TITLES[position])
+                }.attach()
+            }
         }
     }
 

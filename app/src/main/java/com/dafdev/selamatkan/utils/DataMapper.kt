@@ -1,6 +1,7 @@
 package com.dafdev.selamatkan.utils
 
 import com.dafdev.selamatkan.data.domain.model.*
+import com.dafdev.selamatkan.data.source.local.model.NewsEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.data.source.remote.model.*
 import kotlinx.coroutines.flow.Flow
@@ -34,21 +35,20 @@ object DataMapper {
         return flowOf(listCovid)
     }
 
-    fun mapArticlesToNews(input: List<Articles?>?): Flow<List<News>> {
-        val listNews = ArrayList<News>()
-        input?.map {
-            val news = News(
-                it?.author,
-                it?.title,
-                it?.publishedAt,
-                it?.urlToImage,
-                it?.description,
-                it?.url,
-                it?.content,
-            )
-            listNews.add(news)
+    fun mapArticlesToNewsEntity(articles: List<ArticlesItem>): List<NewsEntity> {
+        ArrayList<NewsEntity>().let { listNews ->
+            articles.map {
+                val newsEntity = NewsEntity(
+                    it.title.toString(),
+                    it.publishedAt.toString(),
+                    it.urlToImage.toString(),
+                    it.url.toString(),
+                    it.content.toString()
+                )
+                listNews.add(newsEntity)
+            }
+            return listNews
         }
-        return flowOf(listNews)
     }
 
     fun mapCitiesResponseToCities(provincesItem: List<CitiesItem?>?): Flow<List<Cities>> {

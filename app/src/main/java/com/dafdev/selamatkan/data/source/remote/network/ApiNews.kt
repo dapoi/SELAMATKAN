@@ -11,7 +11,7 @@ interface ApiNews {
      */
     @GET("v2/top-headlines")
     suspend fun getNews(
-        @Query("country") countryCode: String = "id",
+        @Query("country") country: String = "id",
         @Query("category") category: String = "health",
         @Query("apiKey") apiKey: String = BuildConfig.API_KEY_NEWS
     ): NewsResponse

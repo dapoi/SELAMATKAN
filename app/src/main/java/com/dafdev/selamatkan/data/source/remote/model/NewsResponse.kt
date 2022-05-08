@@ -3,19 +3,18 @@ package com.dafdev.selamatkan.data.source.remote.model
 import com.squareup.moshi.Json
 
 data class NewsResponse(
-    @Json(name = "articles")
-    val articles: List<Articles?>?,
-
-    @Json(name = "status")
-    val status: String? = null,
 
     @Json(name = "totalResults")
-    val totalResults: Int? = null
+    val totalResults: Int? = null,
+
+    @Json(name = "articles")
+    val articles: List<ArticlesItem?>? = null,
+
+    @Json(name = "status")
+    val status: String? = null
 )
 
-data class Articles(
-    @Json(name = "author")
-    val author: String? = null,
+data class ArticlesItem(
 
     @Json(name = "title")
     val title: String? = null,
@@ -25,9 +24,6 @@ data class Articles(
 
     @Json(name = "urlToImage")
     val urlToImage: String? = null,
-
-    @Json(name = "description")
-    val description: String? = null,
 
     @Json(name = "url")
     val url: String? = null,

@@ -2,7 +2,6 @@ package com.dafdev.selamatkan.view.activity.core
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -20,8 +19,8 @@ import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.data.domain.model.Location
 import com.dafdev.selamatkan.databinding.ActivityMapBinding
 import com.dafdev.selamatkan.utils.Constant
-import com.dafdev.selamatkan.utils.HelpUtil
 import com.dafdev.selamatkan.utils.HelpUtil.isOnline
+import com.dafdev.selamatkan.utils.InternetReceiver
 import com.dafdev.selamatkan.viewmodel.LocationMapHospitalViewModel
 import com.dafdev.selamatkan.vo.Resource
 import com.google.android.gms.location.*
@@ -154,7 +153,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             } else {
                 binding.tvDistance.text = "Hidupkan GPS Anda untuk melihat jarak"
-                // TODO: uncomment jika ingin menghidupkan gps secara otomatis
+                // TODO: uncomment if want to open settings to turn on location
 //                Handler(Looper.getMainLooper()).postDelayed({
 //                    val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
 //                    startActivityForResult(intent, 2)
@@ -244,9 +243,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 cos(originLat) * cos(destinationLat)
         val c = 2 * asin(sqrt(a))
         val distance = earthRadius * c
-        binding.tvDistance.text = "Perkiraan jarak dari lokasi Anda ke ${Constant.hospitalName} sekitar ${
-            String.format("%.2f", distance)
-        } - ${String.format("%.2f", distance * 2)} KM"
+        binding.tvDistance.text =
+            "Perkiraan jarak dari lokasi Anda ke ${Constant.hospitalName} sekitar ${
+                String.format("%.2f", distance)
+            } - ${String.format("%.2f", distance * 2)} KM"
         return sqrt(distance)
     }
 
@@ -301,23 +301,17 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    inner class InternetReceiver : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            val status = isOnline(context)
-            if (status) {
-                HelpUtil.recreateActivity(this@MapActivity)
-            }
-        }
-    }
-
-    @Deprecated("Deprecated in Java")
-    @Suppress("DEPRECATION")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 2) {
-            checkGPS()
-        }
-    }
+    /*
+     + TODO: uncomment this when location is ready
+     */
+//    @Deprecated("Deprecated in Java")
+//    @Suppress("DEPRECATION")
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == 2) {
+//            checkGPS()
+//        }
+//    }
 
     override fun onResume() {
         super.onResume()
@@ -332,13 +326,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         repeatHandler.removeCallbacks(repeatRunnable)
     }
 
-    private fun checkGPS() {
-        val gps = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        if (gps.isProviderEnabled(LocationManager.GPS_PROVIDER) || gps.isProviderEnabled(
-                LocationManager.NETWORK_PROVIDER
-            )
-        ) {
-            getLocation()
-        }
-    }
+//    private fun checkGPS() {
+//        val gps = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+//        if (gps.isProviderEnabled(LocationManager.GPS_PROVIDER) || gps.isProviderEnabled(
+//                LocationManager.NETWORK_PROVIDER
+//            )
+//        ) {
+//            getLocation()
+//        }
+//    }
 }

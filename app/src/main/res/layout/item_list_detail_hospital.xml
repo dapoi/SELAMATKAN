@@ -27,10 +27,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/encodesans_bold"
+            android:fontFamily="@font/encodesans_medium"
             android:text="@string/bed_class"
             android:textColor="@color/dark_gray"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/img_hospital_detail"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,10 +68,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/encodesans_bold"
+            android:fontFamily="@font/encodesans_medium"
             android:text="@string/bed_total"
             android:textColor="@color/dark_gray"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/tv_detail_bed_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_bed_name" />
 
@@ -105,10 +107,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/encodesans_bold"
+            android:fontFamily="@font/encodesans_medium"
             android:text="@string/bed_empty"
             android:textColor="@color/dark_gray"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/tv_detail_total_bed_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_total_bed" />
 

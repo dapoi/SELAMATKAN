@@ -6,21 +6,24 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.dafdev.selamatkan.R
-import com.dafdev.selamatkan.data.domain.model.News
+import com.dafdev.selamatkan.data.source.local.model.NewsEntity
 import com.dafdev.selamatkan.databinding.ItemListNewsBinding
+import com.facebook.shimmer.Shimmer
+import com.facebook.shimmer.ShimmerDrawable
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
-    private var listNews = ArrayList<News>()
-    var onItemClick: ((News) -> Unit)? = null
+    private var listNews = ArrayList<NewsEntity>()
+    var onItemClick: ((NewsEntity) -> Unit)? = null
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setNews(data: List<News>) {
+    fun setNews(data: List<NewsEntity>) {
         listNews.clear()
         listNews.addAll(data)
         notifyDataSetChanged()
@@ -44,19 +47,32 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     inner class NewsViewHolder(private val binding: ItemListNewsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("NewApi", "SetTextI18n")
-        fun bind(data: News) {
+        fun bind(data: NewsEntity) {
             with(binding) {
+                val shimmer =
+                    Shimmer.AlphaHighlightBuilder()// The attributes for a ShimmerDrawable is set by this builder
+                        .setDuration(1800) // how long the shimmering animation takes to do one full sweep
+                        .setBaseAlpha(0.7f) //the alpha of the underlying children
+                        .setHighlightAlpha(0.6f) // the shimmer alpha amount
+                        .setDirection(Shimmer.Direction.LEFT_TO_RIGHT)
+                        .setAutoStart(true)
+                        .build()
+
+                val shimmerDrawable = ShimmerDrawable().apply {
+                    setShimmer(shimmer)
+                }
+
                 Glide.with(itemView.context)
                     .load(data.urlToImage)
                     .centerCrop()
                     .transform(RoundedCorners(10)).apply(
-                        RequestOptions.placeholderOf(R.drawable.ic_loading)
-                            .error(R.drawable.ic_error)
+                        RequestOptions.placeholderOf(shimmerDrawable).error(R.drawable.ic_error)
                     )
+                    .transition(DrawableTransitionOptions.withCrossFade())
                     .into(imgNews)
 
                 tvTitleNews.text = data.title
-                if (data.content.isNullOrEmpty()) {
+                if (data.content.isEmpty() || data.content == "null") {
                     tvContentNews.text = "Klik untuk melihat lebih detil"
                 } else {
                     tvContentNews.text = data.content
@@ -70,7 +86,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
         init {
             binding.root.setOnClickListener {
-                onItemClick?.invoke(listNews[adapterPosition])
+                onItemClick?.invoke(listNews[absoluteAdapterPosition])
             }
         }
     }

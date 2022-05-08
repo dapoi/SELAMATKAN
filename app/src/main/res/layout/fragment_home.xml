@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue"
-    tools:context=".view.fragment.core.main.HomeFragment">
+    tools:context=".view.fragment.core.home.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -106,22 +106,22 @@
                     app:layout_constraintTop_toTopOf="@+id/img_burger"
                     tools:ignore="ContentDescription" />
 
-                <SearchView
+                <androidx.appcompat.widget.SearchView
                     android:id="@+id/et_search"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="16dp"
                     android:background="@drawable/bg_search"
-                    android:iconifiedByDefault="false"
                     android:inputType="text"
-                    android:queryBackground="@color/white"
-                    android:queryHint="@string/search_prov"
-                    android:textSize="16sp"
+                    app:queryBackground="@android:color/transparent"
+                    android:theme="@style/Theme.SELAMATKAN"
+                    app:iconifiedByDefault="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/img_icon"
+                    app:queryHint="@string/search_prov"
                     tools:ignore="Autofill" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -188,14 +188,15 @@
 
         </com.facebook.shimmer.ShimmerFrameLayout>
 
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/nsv_prov"
+
+        <com.simform.refresh.SSPullToRefreshLayout
+            android:id="@+id/srl_province"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ic_strip">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -205,8 +206,44 @@
                 android:nestedScrollingEnabled="true"
                 android:overScrollMode="never"
                 tools:listitem="@layout/item_list_area" />
+        </com.simform.refresh.SSPullToRefreshLayout>
 
-        </androidx.core.widget.NestedScrollView>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/child_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ic_strip">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_empty"
+                android:layout_width="230dp"
+                android:layout_height="230dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="no_internet.json"
+                app:lottie_loop="true"
+                app:lottie_speed="1" />
+
+            <TextView
+                android:id="@+id/tv_result"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/encodesans_medium"
+                android:text="@string/no_internet"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lottie_empty" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

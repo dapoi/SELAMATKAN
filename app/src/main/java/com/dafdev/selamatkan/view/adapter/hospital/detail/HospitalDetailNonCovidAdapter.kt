@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.data.domain.model.DetailHospital
 import com.dafdev.selamatkan.databinding.ItemListDetailHospitalBinding
+import com.dafdev.selamatkan.utils.HelpUtil.formatDate
 
 class HospitalDetailNonCovidAdapter :
     RecyclerView.Adapter<HospitalDetailNonCovidAdapter.HospitalDetailViewHolder>() {
@@ -54,7 +55,13 @@ class HospitalDetailNonCovidAdapter :
                     tvDetailBedName.text = bedName
                     tvDetailTotalBed.text = totalBed.toString()
                     tvDetailAvailableBed.text = bedAble.toString()
-                    tvInfo.text = info
+
+                    val lastUpdateRoom = formatDate(
+                        info.toString(),
+                        "dd-MM-yyyy HH:mm:ss",
+                        "dd MMM yyyy HH:mm z"
+                    )
+                    tvInfo.text = lastUpdateRoom
                 }
             }
         }

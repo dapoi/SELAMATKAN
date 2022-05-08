@@ -1,20 +1,21 @@
 package com.dafdev.selamatkan.utils
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dafdev.selamatkan.databinding.EmptyLayoutBinding
 import com.dafdev.selamatkan.databinding.NoInternetLayoutBinding
 import com.facebook.shimmer.ShimmerFrameLayout
+import java.text.SimpleDateFormat
+import java.util.*
 
 object HelpUtil {
 
@@ -81,13 +82,17 @@ object HelpUtil {
         }
     }
 
-    fun recreateActivity(activity: Activity) {
-        activity.intent.let {
-            it.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            activity.finish()
-            activity.overridePendingTransition(0, 0)
-            activity.startActivity(it)
-            activity.overridePendingTransition(0, 0)
+    @SuppressLint("SimpleDateFormat")
+    fun formatDate(dateTime: String, dateFormat: String, field: String): String? {
+        val id = Locale("in", "ID")
+        val input = SimpleDateFormat(dateFormat)
+        val output = SimpleDateFormat(field, id)
+        try {
+            val date = input.parse(dateTime)
+            return date?.let { output.format(it) }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
+        return null
     }
 }

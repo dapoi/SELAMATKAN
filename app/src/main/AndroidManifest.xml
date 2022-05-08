@@ -19,10 +19,6 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
-            android:name=".view.activity.core.MainActivity"
-            android:exported="false"
-            android:parentActivityName=".view.activity.core.HomeActivity" />
-        <activity
             android:name=".view.activity.core.AboutActivity"
             android:exported="false"
             android:parentActivityName=".view.activity.core.HomeActivity" />
@@ -38,8 +34,8 @@
         <activity android:name=".view.activity.core.MapActivity" />
         <activity
             android:name=".view.activity.core.HomeActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".view.activity.onboard.OnboardingActivity"
             android:exported="true"

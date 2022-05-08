@@ -4,6 +4,7 @@ import com.dafdev.selamatkan.data.domain.model.*
 import com.dafdev.selamatkan.data.source.NetworkBoundResource
 import com.dafdev.selamatkan.data.source.NetworkOnlyResource
 import com.dafdev.selamatkan.data.source.local.LocalDataSource
+import com.dafdev.selamatkan.data.source.local.model.NewsEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.data.source.remote.RemoteDataSource
 import com.dafdev.selamatkan.data.source.remote.model.*
@@ -123,14 +124,22 @@ class HealthRepository @Inject constructor(
         }.asFlow()
     }
 
-    override fun getNews(): Flow<Resource<List<News>>> {
-        return object : NetworkOnlyResource<List<News>, List<Articles?>?>() {
-            override fun loadFromNetwork(data: List<Articles?>?): Flow<List<News>> =
-                DataMapper.mapArticlesToNews(data)
+    @Suppress("UNCHECKED_CAST")
+    override fun getNews(): Flow<Resource<List<NewsEntity>>> {
+        return object : NetworkBoundResource<List<NewsEntity>, List<ArticlesItem?>>() {
+            override fun loadFromDB(): Flow<List<NewsEntity>> = localDataSource.getListNews()
 
-            override suspend fun createCall(): Flow<StatusResponseOnline<List<Articles?>?>> =
+            override fun shouldFetch(data: List<NewsEntity>?): Boolean =
+                data == null || data.isEmpty()
+
+            override suspend fun createCall(): Flow<StatusResponse<List<ArticlesItem?>>> =
                 remoteDataSource.getNews()
 
+            override suspend fun saveCallResult(data: List<ArticlesItem?>) {
+                DataMapper.mapArticlesToNewsEntity(data as List<ArticlesItem>).let {
+                    localDataSource.insertNews(it)
+                }
+            }
         }.asFlow()
     }
 }

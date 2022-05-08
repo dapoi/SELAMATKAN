@@ -1,8 +1,6 @@
 package com.dafdev.selamatkan.view.activity.core
 
-import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -21,6 +19,7 @@ import com.dafdev.selamatkan.databinding.ActivityNewsBinding
 import com.dafdev.selamatkan.utils.HelpUtil
 import com.dafdev.selamatkan.utils.HelpUtil.isOnline
 import com.dafdev.selamatkan.utils.HelpUtil.showProgressBar
+import com.dafdev.selamatkan.utils.InternetReceiver
 import com.dafdev.selamatkan.view.adapter.NewsAdapter
 import com.dafdev.selamatkan.viewmodel.NewsViewModel
 import com.dafdev.selamatkan.vo.Resource
@@ -34,6 +33,7 @@ class NewsActivity : AppCompatActivity() {
     private val binding get() = _binding!!
 
     private lateinit var newsAdapter: NewsAdapter
+    private lateinit var handler: Handler
 
     private val newsViewModel: NewsViewModel by viewModels()
 
@@ -45,11 +45,11 @@ class NewsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
-
         HelpUtil.setStatusBarColor(this, R.color.white, binding.root)
 
-        swipeData()
+        handler = Handler(Looper.getMainLooper())
 
+        swipeData()
         setViewModel()
         setAdapter()
     }
@@ -64,10 +64,10 @@ class NewsActivity : AppCompatActivity() {
                     override fun onRefresh() {
                         val check = isOnline(this@NewsActivity)
                         if (check) {
-                            Handler(Looper.getMainLooper()).postDelayed({
+                            handler.postDelayed({
                                 setRefreshing(false)
                             }, 2000)
-                            Handler(Looper.getMainLooper()).postDelayed({
+                            handler.postDelayed({
                                 val status = InternetReceiver()
                                 status.onReceive(this@NewsActivity, intent)
                             }, 2150)
@@ -84,9 +84,9 @@ class NewsActivity : AppCompatActivity() {
     private fun setAdapter() {
         newsAdapter = NewsAdapter()
         binding.rvNews.apply {
-            setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = newsAdapter
+            setHasFixedSize(true)
         }
         newsAdapter.onItemClick = {
             moveToChrome(it.url)
@@ -100,7 +100,7 @@ class NewsActivity : AppCompatActivity() {
                     is Resource.Loading -> progressBar.showProgressBar(true)
                     is Resource.Success -> {
                         progressBar.showProgressBar(false)
-                        it.data?.let { data -> newsAdapter.setNews(data) }
+                        newsAdapter.setNews(it.data!!)
                     }
                     is Resource.Error -> {
                         progressBar.showProgressBar(false)
@@ -144,12 +144,8 @@ class NewsActivity : AppCompatActivity() {
         }
     }
 
-    inner class InternetReceiver : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            val status = isOnline(context)
-            if (status) {
-                HelpUtil.recreateActivity(this@NewsActivity)
-            }
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentBaseHospitalDetailBinding
 import com.dafdev.selamatkan.utils.Constant
@@ -53,21 +52,14 @@ class BaseHospitalDetailFragment : Fragment() {
             tvTitleHosptial.text = "Kapasitas ${Constant.hospitalName}"
 
             val pagerAdapter = HospitalDetailPagerAdapter(activity as AppCompatActivity)
-            viewPager.adapter = pagerAdapter
+            binding.viewPager.apply {
+                adapter = pagerAdapter
+                (getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
 
-            TabLayoutMediator(tabsHospital, viewPager) { tab, position ->
-                tab.text = resources.getString(TAB_TITLES[position])
-            }.attach()
-
-            viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageScrollStateChanged(state: Int) {
-                    super.onPageScrollStateChanged(state)
-                    when (state) {
-                        ViewPager2.SCROLL_STATE_SETTLING -> fab.hide()
-                        else -> fab.show()
-                    }
-                }
-            })
+                TabLayoutMediator(tabsHospital, this) { tab, position ->
+                    tab.text = resources.getString(TAB_TITLES[position])
+                }.attach()
+            }
         }
     }
 

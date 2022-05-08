@@ -14,6 +14,8 @@
         <!-- Customize your theme here. -->
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:navigationBarColor" tools:targetApi="m">@color/white</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
     </style>
 
     <style name="Theme.SELAMATKAN.NoActionBar">
@@ -50,7 +52,7 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="expandedTitleStyleCovid" >
+    <style name="expandedTitleStyleCovid">
         <item name="android:textColor">@color/dark_gray</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">26sp</item>

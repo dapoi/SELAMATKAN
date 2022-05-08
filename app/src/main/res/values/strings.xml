@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Selamatkan:\nAplikasi Pencari Rumah Sakit</string>
     <string name="desc1">Aplikasi ini dapat membantu Anda menemukan rumah sakit di Indonesia, tanpa harus mendatanginya secara langsung</string>
     <string name="desc2">Anda juga dapat memantau perkembangan Covid-19 di Indonesia</string>
     <string name="desc3">Terdapat artikel kesehatan terkini dan terpercaya, dari media ternama di Indonesia</string>
@@ -14,7 +13,7 @@
     <string name="positive">POSITIF</string>
     <string name="negative">SEMBUH</string>
     <string name="die">MENINGGAL</string>
-    <string name="wish">Apa yang Anda butuhkan? semoga sehat selalu ya....</string>
+    <string name="wish">Apa yang Anda butuhkan? semoga sehat selalu ya…</string>
     <string name="choose_prov">Pilih Provinsi</string>
     <string name="choose_city">Pilih Daerah</string>
     <string name="choose_hospital">Pilih Rumah Sakit</string>
@@ -42,7 +41,7 @@
     <string name="kg">Berat(kg)</string>
     <string name="cm">Tinggi(cm)</string>
     <string name="calculate">Hitung</string>
-    <string name="search_prov">Cari provinsi agar lebih cepat…</string>
+    <string name="search_prov">Cari provinsi agar lebih cepat</string>
     <string name="choose">Silahkan pilih fitur yang Anda butuhkan</string>
     <string name="data_covid">Perkembangan Covid</string>
     <string name="calculator_bmi">Kalkulator BMI</string>

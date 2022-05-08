@@ -2,6 +2,7 @@ package com.dafdev.selamatkan.data.domain.usecase
 
 import com.dafdev.selamatkan.data.domain.model.*
 import com.dafdev.selamatkan.data.repository.IHealthRepository
+import com.dafdev.selamatkan.data.source.local.model.NewsEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.vo.Resource
 import kotlinx.coroutines.flow.Flow
@@ -49,7 +50,7 @@ class HealthInteractor @Inject constructor(
         return iHealthRepository.getLocationHospitalMap(hospitalId)
     }
 
-    override fun getNews(): Flow<Resource<List<News>>> {
+    override fun getNews(): Flow<Resource<List<NewsEntity>>> {
         return iHealthRepository.getNews()
     }
 }

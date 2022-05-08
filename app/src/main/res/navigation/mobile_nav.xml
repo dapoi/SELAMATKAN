@@ -7,17 +7,82 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.dafdev.selamatkan.view.fragment.core.main.HomeFragment"
+        android:name="com.dafdev.selamatkan.view.fragment.core.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_nav_home_to_mainActivity"
-            app:destination="@id/mainActivity"
+            android:id="@+id/action_nav_home_to_cityFragment"
+            app:destination="@id/cityFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right"/>
+            app:popExitAnim="@anim/to_right" />
     </fragment>
+    <fragment
+        android:id="@+id/cityFragment"
+        android:name="com.dafdev.selamatkan.view.fragment.core.area.CityFragment"
+        android:label="CityFragment"
+        tools:layout="@layout/fragment_city">
+        <action
+            android:id="@+id/action_cityFragment_to_baseHospitalListFragment"
+            app:destination="@id/baseHospitalListFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_cityFragment_to_nav_home"
+            app:destination="@id/nav_home"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/baseHospitalListFragment"
+        android:name="com.dafdev.selamatkan.view.fragment.core.hospital.BaseHospitalListFragment"
+        android:label="fragment_base_hospital_list"
+        tools:layout="@layout/fragment_base_hospital_list">
+        <action
+            android:id="@+id/action_baseHospitalListFragment_to_cityFragment"
+            app:destination="@id/cityFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_baseHospitalListFragment_to_baseHospitalDetailFragment"
+            app:destination="@id/baseHospitalDetailFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/baseHospitalDetailFragment"
+        android:name="com.dafdev.selamatkan.view.fragment.core.hospital.BaseHospitalDetailFragment"
+        android:label="fragment_base_hospital_detail"
+        tools:layout="@layout/fragment_base_hospital_detail">
+        <action
+            android:id="@+id/action_baseHospitalDetailFragment_to_baseHospitalListFragment"
+            app:destination="@id/baseHospitalListFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_baseHospitalDetailFragment_to_mapActivity"
+            app:destination="@id/mapActivity"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <activity
+        android:id="@+id/mapActivity"
+        android:name="com.dafdev.selamatkan.view.activity.core.MapActivity"
+        android:label="activity_map"
+        tools:layout="@layout/activity_map" />
     <activity
         android:id="@+id/nav_article"
         android:name="com.dafdev.selamatkan.view.activity.core.NewsActivity"
@@ -39,10 +104,5 @@
         android:name="com.dafdev.selamatkan.view.activity.core.AboutActivity"
         android:label="activity_about"
         tools:layout="@layout/activity_about" />
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.dafdev.selamatkan.view.activity.core.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
 
 </navigation>

@@ -12,7 +12,7 @@ import javax.inject.Singleton
 class RemoteDataSource @Inject constructor(
     private val apiCovid: ApiCovid,
     private val apiHospital: ApiHospital,
-    private val apiNews: ApiNews
+    private val apiNews: ApiNews,
 ) {
     fun getDataCovidProv() = flow {
         try {
@@ -147,10 +147,17 @@ class RemoteDataSource @Inject constructor(
     fun getNews() = flow {
         try {
             val data = apiNews.getNews().articles
-            emit(StatusResponseOnline.Success(data))
-            Timber.d(data.toString())
+            if (data != null) {
+                if (data.isNotEmpty()) {
+                    emit(StatusResponse.Success(data))
+                    Timber.d(data.toString())
+                } else {
+                    emit(StatusResponse.Error("Data kosong"))
+                    Timber.e("Data kosong")
+                }
+            }
         } catch (e: Exception) {
-            emit(StatusResponseOnline.Error(e.message.toString()))
+            emit(StatusResponse.Error(e.message.toString()))
             Timber.e("Remote Data Source, ${e.message}")
         }
     }.flowOn(Dispatchers.IO)

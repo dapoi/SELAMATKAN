@@ -1,6 +1,7 @@
 package com.dafdev.selamatkan.data.domain.usecase
 
 import com.dafdev.selamatkan.data.domain.model.*
+import com.dafdev.selamatkan.data.source.local.model.NewsEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.vo.Resource
 import kotlinx.coroutines.flow.Flow
@@ -29,5 +30,5 @@ interface HealthUseCase {
 
     fun getLocationHospitalMap(hospitalId: String): Flow<Resource<Location>>
 
-    fun getNews(): Flow<Resource<List<News>>>
+    fun getNews(): Flow<Resource<List<NewsEntity>>>
 }
