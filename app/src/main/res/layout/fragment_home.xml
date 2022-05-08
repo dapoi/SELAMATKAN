@@ -16,14 +16,15 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="330dp"
+            app:collapsedTitleGravity="start"
             app:collapsedTitleTextAppearance="@style/collapsedTitleStyle"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginBottom="20dp"
             app:expandedTitleMarginStart="20dp"
             app:expandedTitleTextAppearance="@style/expandedTitleStyle"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-            app:scrimAnimationDuration="200"
-            app:scrimVisibleHeightTrigger="320dp"
+            app:scrimAnimationDuration="110"
+            app:scrimVisibleHeightTrigger="330dp"
             app:title="@string/choose_prov"
             app:titleEnabled="true">
 
@@ -115,12 +116,12 @@
                     android:layout_marginEnd="16dp"
                     android:background="@drawable/bg_search"
                     android:inputType="text"
-                    app:queryBackground="@android:color/transparent"
                     android:theme="@style/Theme.SELAMATKAN"
                     app:iconifiedByDefault="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/img_icon"
+                    app:queryBackground="@android:color/transparent"
                     app:queryHint="@string/search_prov"
                     tools:ignore="Autofill" />
 
@@ -133,7 +134,7 @@
                 android:background="@android:color/transparent"
                 android:fitsSystemWindows="true"
                 android:theme="@style/Theme.SELAMATKAN.Toolbar"
-                app:layout_collapseMode="parallax"
+                app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:titleTextColor="@color/white" />
 
@@ -187,7 +188,6 @@
             </LinearLayout>
 
         </com.facebook.shimmer.ShimmerFrameLayout>
-
 
         <com.simform.refresh.SSPullToRefreshLayout
             android:id="@+id/srl_province"

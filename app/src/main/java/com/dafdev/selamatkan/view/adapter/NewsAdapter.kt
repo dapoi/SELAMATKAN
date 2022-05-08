@@ -86,7 +86,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
         init {
             binding.root.setOnClickListener {
-                onItemClick?.invoke(listNews[absoluteAdapterPosition])
+                onItemClick?.invoke(listNews[adapterPosition])
             }
         }
     }

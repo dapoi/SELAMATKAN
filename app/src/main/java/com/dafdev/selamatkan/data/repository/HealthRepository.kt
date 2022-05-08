@@ -130,7 +130,7 @@ class HealthRepository @Inject constructor(
             override fun loadFromDB(): Flow<List<NewsEntity>> = localDataSource.getListNews()
 
             override fun shouldFetch(data: List<NewsEntity>?): Boolean =
-                data == null || data.isEmpty()
+                true
 
             override suspend fun createCall(): Flow<StatusResponse<List<ArticlesItem?>>> =
                 remoteDataSource.getNews()

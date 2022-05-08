@@ -23,7 +23,7 @@
             app:expandedTitleGravity="bottom|start"
             app:expandedTitleTextAppearance="@style/expandedTitleStyleCovid"
             app:expandedTitleTextColor="@color/dark_gray"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:scrimAnimationDuration="100"
             app:scrimVisibleHeightTrigger="400dp"
             app:title="@string/article"
@@ -45,6 +45,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginHorizontal="16dp"
         app:layout_anchor="@id/app_bar"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
@@ -76,26 +77,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:shimmer_auto_start="true">
 
-            <ScrollView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                <include layout="@layout/item_list_news_placeholder" />
 
-                    <include layout="@layout/item_list_news_placeholder" />
+                <include layout="@layout/item_list_news_placeholder" />
 
-                    <include layout="@layout/item_list_news_placeholder" />
+                <include layout="@layout/item_list_news_placeholder" />
 
-                    <include layout="@layout/item_list_news_placeholder" />
+                <include layout="@layout/item_list_news_placeholder" />
 
-                    <include layout="@layout/item_list_news_placeholder" />
-
-                    <include layout="@layout/item_list_news_placeholder" />
-                </LinearLayout>
-            </ScrollView>
+                <include layout="@layout/item_list_news_placeholder" />
+            </LinearLayout>
         </com.facebook.shimmer.ShimmerFrameLayout>
 
         <include
