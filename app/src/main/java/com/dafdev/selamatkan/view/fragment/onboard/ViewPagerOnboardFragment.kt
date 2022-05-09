@@ -9,20 +9,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.dafdev.selamatkan.R
-import com.dafdev.selamatkan.databinding.FragmentViewPagerBinding
+import com.dafdev.selamatkan.databinding.FragmentViewPagerOnboardBinding
 import com.dafdev.selamatkan.view.activity.core.HomeActivity
 import com.dafdev.selamatkan.view.adapter.pager.OnboardingPagerAdapter
 
-class ViewPagerFragment : Fragment() {
+class ViewPagerOnboardFragment : Fragment() {
 
-    private lateinit var binding: FragmentViewPagerBinding
+    private lateinit var binding: FragmentViewPagerOnboardBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentViewPagerBinding.inflate(inflater, container, false)
+        binding = FragmentViewPagerOnboardBinding.inflate(inflater, container, false)
         return binding.root
     }
 

@@ -1,6 +1,7 @@
 package com.dafdev.selamatkan.view.fragment.core.hospital
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentBaseHospitalDetailBinding
 import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.utils.HelpUtil.setStatusBarColor
+import com.dafdev.selamatkan.view.activity.core.MapActivity
 import com.dafdev.selamatkan.view.adapter.pager.HospitalDetailPagerAdapter
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.tabs.TabLayoutMediator
@@ -21,15 +23,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class BaseHospitalDetailFragment : Fragment() {
 
-    private var _binding: FragmentBaseHospitalDetailBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentBaseHospitalDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBaseHospitalDetailBinding.inflate(inflater, container, false)
+        binding = FragmentBaseHospitalDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -42,7 +43,7 @@ class BaseHospitalDetailFragment : Fragment() {
         with(binding) {
 
             fab.setOnClickListener {
-                findNavController().navigate(R.id.action_baseHospitalDetailFragment_to_mapActivity)
+                startActivity(Intent(requireActivity(), MapActivity::class.java))
             }
 
             toolbar.setNavigationOnClickListener {
@@ -78,10 +79,5 @@ class BaseHospitalDetailFragment : Fragment() {
                 }
             })
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }

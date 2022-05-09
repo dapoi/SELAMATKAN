@@ -13,8 +13,9 @@ import com.dafdev.selamatkan.data.source.local.model.NewsEntity
 import com.dafdev.selamatkan.databinding.ItemListNewsBinding
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerDrawable
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
+import java.text.DateFormat
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
@@ -64,7 +65,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
                 Glide.with(itemView.context)
                     .load(data.urlToImage)
-                    .centerCrop()
+                    .fitCenter()
                     .transform(RoundedCorners(10)).apply(
                         RequestOptions.placeholderOf(shimmerDrawable).error(R.drawable.ic_error)
                     )
@@ -78,9 +79,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
                     tvContentNews.text = data.content
                 }
 
-                val zdt = ZonedDateTime.parse(data.publishedAt)
-                val resultDate = DateTimeFormatter.ofPattern("d MMM yyyy HH:mm", Locale.ENGLISH)
-                tvDateNews.text = resultDate.format(zdt)
+                tvDateNews.text = newsFormatDate(data.publishedAt)
             }
         }
 
@@ -89,5 +88,26 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
                 onItemClick?.invoke(listNews[adapterPosition])
             }
         }
+    }
+
+    private fun newsFormatDate(currentDate: String): String? {
+        val currentFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        val targetFormat = "dd MMM yyyy | HH:mm"
+        val timeZone = "GMT"
+        val id = Locale("in", "ID")
+        val currentDateFormat: DateFormat = SimpleDateFormat(currentFormat, id)
+        currentDateFormat.timeZone = TimeZone.getTimeZone(timeZone)
+        val targetDateFormat: DateFormat = SimpleDateFormat(targetFormat, id)
+
+        var targetDate: String? = null
+        try {
+            val date = currentDateFormat.parse(currentDate)
+            if (date != null) {
+                targetDate = targetDateFormat.format(date)
+            }
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        return targetDate
     }
 }

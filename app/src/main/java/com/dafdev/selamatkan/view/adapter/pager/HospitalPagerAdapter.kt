@@ -14,6 +14,6 @@ class HospitalPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(a
         when (position) {
             0 -> CovidHospitalFragment()
             1 -> NonCovidHospitalFragment()
-            else -> Fragment()
+            else -> throw IllegalArgumentException("Invalid position")
         }
 }

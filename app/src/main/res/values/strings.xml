@@ -49,6 +49,6 @@
     <string name="other">Lainnya</string>
     <string name="about">Tentang Aplikasi</string>
     <string name="support"><![CDATA[Kontak & Masukkan]]></string>
-    <string name="about_desc">Projek ini merupakan tugas akhir sekaligus salah satu syarat kelulusan saya Luthfi Daffa Prabowo (201810225212) di Universitas Bhayangkara Jakarta Raya.\n\n Seluruh kode yang saya buat dapat diakses di <a href="https://github.com/dapoi/SELAMATKAN">Github saya</a>.\n\n Terima kasih untuk semua yang telah membantu saya dalam mengembangkan aplikasi ini. Semoga aplikasi ini bermanfaat untuk kita semua. :)</string>
+    <string name="about_desc">Projek ini merupakan tugas akhir sekaligus salah satu syarat kelulusan pengembang Luthfi Daffa Prabowo (201810225212) di Universitas Bhayangkara Jakarta Raya.\n\n Seluruh kode yang pengembang buat dapat diakses <a href="https://github.com/dapoi/SELAMATKAN">di sini</a>.\n\n Terima kasih untuk semua yang telah membantu dalam mengembangkan aplikasi ini. Semoga aplikasi ini bermanfaat untuk kita semua. :)</string>
     <string name="other_info">Info Lainnya</string>
 </resources>

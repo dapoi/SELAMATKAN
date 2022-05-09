@@ -27,9 +27,9 @@
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
-        android:name="com.dafdev.selamatkan.view.fragment.onboard.ViewPagerFragment"
+        android:name="com.dafdev.selamatkan.view.fragment.onboard.ViewPagerOnboardFragment"
         android:label="fragment_view_pager"
-        tools:layout="@layout/fragment_view_pager">
+        tools:layout="@layout/fragment_view_pager_onboard">
         <action
             android:id="@+id/action_viewPagerFragment_to_homeActivity"
             app:destination="@id/homeActivity" />

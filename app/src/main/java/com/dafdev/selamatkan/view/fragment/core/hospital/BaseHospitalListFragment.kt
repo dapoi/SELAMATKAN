@@ -20,15 +20,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class BaseHospitalListFragment : Fragment() {
 
-    private var _binding: FragmentBaseHospitalListBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentBaseHospitalListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBaseHospitalListBinding.inflate(inflater, container, false)
+        binding = FragmentBaseHospitalListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -63,10 +62,5 @@ class BaseHospitalListFragment : Fragment() {
 
     companion object {
         private val TAB_TITLES = intArrayOf(R.string.covid, R.string.non_covid)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }

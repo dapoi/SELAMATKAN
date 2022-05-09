@@ -26,9 +26,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class CovidHospitalFragment : Fragment() {
 
     private lateinit var hospitalCovidAdapter: HospitalCovidAdapter
+    private lateinit var binding: FragmentCovidHospitalBinding
 
-    private var _binding: FragmentCovidHospitalBinding? = null
-    private val binding get() = _binding!!
     private val hospitalViewModel: HospitalCovidViewModel by viewModels()
 
     override fun onCreateView(
@@ -36,16 +35,16 @@ class CovidHospitalFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCovidHospitalBinding.inflate(inflater, container, false)
+        binding = FragmentCovidHospitalBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        swipeData()
         setAdapter()
         setViewModel()
+        swipeData()
     }
 
     private fun swipeData() {
@@ -82,7 +81,7 @@ class CovidHospitalFragment : Fragment() {
 
     private fun setAdapter() {
         hospitalCovidAdapter = HospitalCovidAdapter()
-        hospitalCovidAdapter.onItemCLick = {
+        hospitalCovidAdapter.onItemClick = {
             Constant.hospitalId = it.id!!
             Constant.hospitalAddress = it.address!!
             Constant.hospitalName = it.name!!
@@ -149,10 +148,5 @@ class CovidHospitalFragment : Fragment() {
                 )
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }

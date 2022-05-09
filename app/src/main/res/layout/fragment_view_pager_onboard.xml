@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.onboard.ViewPagerFragment">
+    tools:context=".view.fragment.onboard.ViewPagerOnboardFragment">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager2"
@@ -41,10 +41,11 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_back"
-            android:layout_width="110dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
             android:background="@drawable/btn_grey_selector"
             android:text="@string/back"
+            android:textSize="13sp"
             android:textColor="@color/dark_gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,12 +53,12 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
-            android:layout_width="110dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
             android:background="@drawable/btn_blue_selector"
             android:text="@string/next"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

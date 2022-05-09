@@ -59,7 +59,7 @@ class HospitalDetailCovidAdapter :
                     val lastUpdateRoom = formatDate(
                         info.toString(),
                         "dd-MM-yyyy HH:mm:ss",
-                        "dd MMM yyyy HH:mm z"
+                        "dd MMM yyyy | HH:mm z"
                     )
                     tvInfo.text = lastUpdateRoom
                 }
