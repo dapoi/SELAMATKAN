@@ -103,7 +103,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             imgRoute.setOnClickListener {
                 Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse("http://maps.google.com/maps?daddr=$destinationLat,$destinationLong")
+                    Uri.parse("http://maps.google.com/maps?daddr=${Constant.hospitalName}")
                 ).also { startActivity(it) }
             }
             imgPhone.setOnClickListener {
@@ -120,7 +120,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
             imgShare.setOnClickListener {
-                val uriString = "http://maps.google.com/maps?saddr=$destinationLat,$destinationLong"
+                val uriString = "http://maps.google.com/maps?daddr=${Constant.hospitalName}"
                 Intent(Intent.ACTION_SEND).also {
                     it.type = "text/plain"
                     it.putExtra(Intent.EXTRA_SUBJECT, Constant.hospitalName)
@@ -132,35 +132,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             tvHospitalName.text = Constant.hospitalName
             tvHospitalAddress.text = Constant.hospitalAddress
             tvHospitalPhone.text = Constant.phoneNumber
-        }
-    }
-
-    @Suppress("DEPRECATION")
-    @SuppressLint("MissingPermission", "SetTextI18n")
-    private fun getLocation() {
-        if (checkPermissions()) {
-            if (isLocationEnabled()) {
-                fusedLocation.lastLocation.addOnCompleteListener(this) { task ->
-                    val location = task.result
-                    if (location == null) {
-                        requestNewLocationData()
-                    } else {
-                        myLong = location.longitude
-                        myLat = location.latitude
-                        myLoc = LatLng(myLat, myLong)
-                        getDistance(myLat, myLong, destinationLat, destinationLong)
-                    }
-                }
-            } else {
-                binding.tvDistance.text = "Hidupkan GPS Anda untuk melihat jarak"
-                // TODO: uncomment if want to open settings to turn on location
-//                Handler(Looper.getMainLooper()).postDelayed({
-//                    val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-//                    startActivityForResult(intent, 2)
-//                }, 3000)
-            }
-        } else {
-            requestPermissions()
         }
     }
 
@@ -184,13 +155,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             myLat = location.latitude
             myLoc = LatLng(myLat, myLong)
         }
-    }
-
-    private fun isLocationEnabled(): Boolean {
-        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
-            LocationManager.NETWORK_PROVIDER
-        )
     }
 
     private fun checkPermissions(): Boolean {
@@ -301,17 +265,41 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    /*
-     + TODO: uncomment this when location is ready
-     */
-//    @Deprecated("Deprecated in Java")
-//    @Suppress("DEPRECATION")
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (requestCode == 2) {
-//            checkGPS()
-//        }
-//    }
+    @Suppress("DEPRECATION")
+    @SuppressLint("MissingPermission", "SetTextI18n")
+    private fun getLocation() {
+        if (checkPermissions()) {
+            if (isLocationEnabled()) {
+                fusedLocation.lastLocation.addOnCompleteListener(this) { task ->
+                    val location = task.result
+                    if (location == null) {
+                        requestNewLocationData()
+                    } else {
+                        myLong = location.longitude
+                        myLat = location.latitude
+                        myLoc = LatLng(myLat, myLong)
+                        getDistance(myLat, myLong, destinationLat, destinationLong)
+                    }
+                }
+            } else {
+                binding.tvDistance.text = "Hidupkan GPS Anda untuk melihat jarak"
+                // TODO: uncomment if want to open settings to turn on location
+//                Handler(Looper.getMainLooper()).postDelayed({
+//                    val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+//                    startActivityForResult(intent, 2)
+//                }, 3000)
+            }
+        } else {
+            requestPermissions()
+        }
+    }
+
+    private fun isLocationEnabled(): Boolean {
+        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
+    }
 
     override fun onResume() {
         super.onResume()
@@ -325,6 +313,20 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onPause()
         repeatHandler.removeCallbacks(repeatRunnable)
     }
+
+    /**
+     *
+     * TODO: uncomment if want to open settings to turn on location
+     *
+     */
+//    @Deprecated("Deprecated in Java")
+//    @Suppress("DEPRECATION")
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == 2) {
+//            checkGPS()
+//        }
+//    }
 
 //    private fun checkGPS() {
 //        val gps = getSystemService(Context.LOCATION_SERVICE) as LocationManager
