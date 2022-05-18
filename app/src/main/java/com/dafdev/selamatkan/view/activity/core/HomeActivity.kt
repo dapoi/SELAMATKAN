@@ -3,9 +3,7 @@ package com.dafdev.selamatkan.view.activity.core
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -57,16 +55,6 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
             true
-        }
-    }
-
-    fun openCloseNavigationDrawer(view: View) {
-        with(binding) {
-            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                drawerLayout.closeDrawer(GravityCompat.START)
-            } else {
-                drawerLayout.openDrawer(GravityCompat.START)
-            }
         }
     }
 

@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -60,6 +62,8 @@ class HomeFragment : Fragment() {
 
         setStatusBarColor(requireActivity(), R.color.blue, binding.root, false)
 
+        binding.imgBurger.setOnClickListener { openNavigationDrawer() }
+
         binding.etSearch.apply {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
@@ -85,6 +89,11 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun openNavigationDrawer() {
+        val drawerLayout: DrawerLayout = requireActivity().findViewById(R.id.drawer_layout)
+        drawerLayout.openDrawer(GravityCompat.START)
     }
 
     private fun setAdapter() {

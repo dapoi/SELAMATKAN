@@ -65,11 +65,11 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
                 Glide.with(itemView.context)
                     .load(data.urlToImage)
-                    .fitCenter()
                     .transform(RoundedCorners(10)).apply(
                         RequestOptions.placeholderOf(shimmerDrawable).error(R.drawable.ic_error)
                     )
                     .transition(DrawableTransitionOptions.withCrossFade())
+                    .centerCrop()
                     .into(imgNews)
 
                 tvTitleNews.text = data.title

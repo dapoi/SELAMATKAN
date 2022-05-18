@@ -48,7 +48,6 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="50dp"
                     android:backgroundTint="@color/white"
-                    android:onClick="openCloseNavigationDrawer"
                     android:src="@drawable/ic_burger"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
