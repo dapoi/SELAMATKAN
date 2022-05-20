@@ -3,7 +3,9 @@ package com.dafdev.selamatkan.view.activity.core
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import androidx.appcompat.app.AppCompatActivity
+import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.ActivityAboutBinding
+import com.dafdev.selamatkan.utils.HelpUtil
 
 class AboutActivity : AppCompatActivity() {
 
@@ -14,7 +16,10 @@ class AboutActivity : AppCompatActivity() {
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
-        binding.tvDesc.movementMethod = LinkMovementMethod.getInstance()
+        binding.apply {
+            HelpUtil.setStatusBarColor(this@AboutActivity, R.color.white, root)
+            toolbar.setNavigationOnClickListener { onBackPressed() }
+            tvDesc.movementMethod = LinkMovementMethod.getInstance()
+        }
     }
 }
