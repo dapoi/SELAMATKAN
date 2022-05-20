@@ -20,6 +20,6 @@ interface HealthDao {
     @Query("SELECT * FROM province")
     fun getListProvinceHome(): Flow<List<ProvinceEntity>>
 
-    @Query("SELECT * FROM news")
+    @Query("SELECT * FROM news ORDER BY publishedAt DESC")
     fun getListNews(): Flow<List<NewsEntity>>
 }

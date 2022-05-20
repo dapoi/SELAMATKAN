@@ -1,7 +1,5 @@
 package com.dafdev.selamatkan.view.activity.core
 
-import android.content.Context
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -37,7 +35,7 @@ class NewsActivity : AppCompatActivity() {
 
     private val newsViewModel: NewsViewModel by viewModels()
 
-    private var packageManager = "com.android.chrome"
+//    private var packageManager = "com.android.chrome"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,7 +87,15 @@ class NewsActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
         newsAdapter.onItemClick = {
-            moveToChrome(it.url)
+            if (it.url.isEmpty()) {
+                Toast.makeText(
+                    this,
+                    "Halaman yang Anda tuju tidak tersedia",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                moveToChrome(it.url)
+            }
         }
     }
 
@@ -120,29 +126,33 @@ class NewsActivity : AppCompatActivity() {
             setShowTitle(true)
             setShareState(CustomTabsIntent.SHARE_STATE_ON)
             setInstantAppsEnabled(true)
+        }.build().also {
+            it.launchUrl(this, Uri.parse(news))
         }
 
-        val customBuilder = builder.build()
-        if (this.isPackageInstalled(packageManager)) {
-            customBuilder.intent.setPackage(packageManager)
-            customBuilder.launchUrl(this, Uri.parse(news))
-        } else {
-            Toast.makeText(
-                this,
-                "Maaf, halaman yang Anda tuju tidak tersedia",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+        /**
+         * uncomment this if you want to open in chrome custom tab
+         */
+//        if (this.isPackageInstalled(packageManager)) {
+//            customBuilder.intent.setPackage(packageManager)
+//            customBuilder.launchUrl(this, Uri.parse(news))
+//        } else {
+//            Toast.makeText(
+//                this,
+//                "Maaf, halaman yang Anda tuju tidak tersedia",
+//                Toast.LENGTH_SHORT
+//            ).show()
+//        }
     }
 
-    private fun Context.isPackageInstalled(packageName: String): Boolean {
-        return try {
-            packageManager!!.getPackageInfo(packageName, 0)
-            true
-        } catch (e: PackageManager.NameNotFoundException) {
-            false
-        }
-    }
+//    private fun Context.isPackageInstalled(packageName: String): Boolean {
+//        return try {
+//            packageManager!!.getPackageInfo(packageName, 0)
+//            true
+//        } catch (e: PackageManager.NameNotFoundException) {
+//            false
+//        }
+//    }
 
     override fun onDestroy() {
         super.onDestroy()
