@@ -9,6 +9,9 @@
 - Data Covid-19 di Indonesia
 - Kalkulator BMI
 
+## Unduh Aplikasi
+<a href="https://github.com/dapoi/SELAMATKAN/releases"><img src="https://user-images.githubusercontent.com/32610660/162803122-3817839a-f58a-49b4-883d-5feb4ee7316f.png" title="Selamatkan App" width="64" height="64" /></a>
+
 ## Pratinjau 
 <img src = "https://user-images.githubusercontent.com/68842666/163114840-c5a60f29-705e-4133-afcd-3bd746903e76.png" width = 180 height = 395/> 
 
