@@ -1,7 +1,6 @@
 package com.dafdev.selamatkan.data.repository
 
 import com.dafdev.selamatkan.data.domain.model.*
-import com.dafdev.selamatkan.data.source.local.model.NewsEntity
 import com.dafdev.selamatkan.data.source.local.model.ProvinceEntity
 import com.dafdev.selamatkan.vo.Resource
 import kotlinx.coroutines.flow.Flow
@@ -30,5 +29,7 @@ interface IHealthRepository {
 
     fun getLocationHospitalMap(hospitalId: String): Flow<Resource<Location>>
 
-    fun getNews(): Flow<Resource<List<NewsEntity>>>
+    fun getNews(): Flow<Resource<List<News>>>
+
+    fun getNewsSearch(query: String): Flow<Resource<List<SearchNews>>>
 }

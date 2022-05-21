@@ -3,17 +3,24 @@ package com.dafdev.selamatkan.utils
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.net.Uri
 import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.browser.customtabs.CustomTabColorSchemeParams
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.EmptyLayoutBinding
 import com.dafdev.selamatkan.databinding.NoInternetLayoutBinding
 import com.facebook.shimmer.ShimmerFrameLayout
+import java.text.DateFormat
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -94,5 +101,56 @@ object HelpUtil {
             e.printStackTrace()
         }
         return null
+    }
+
+    fun newsFormatDate(currentDate: String): String? {
+        val currentFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        val targetFormat = "dd MMM yyyy | HH:mm"
+        val timeZone = "GMT"
+        val id = Locale("in", "ID")
+        val currentDateFormat: DateFormat = SimpleDateFormat(currentFormat, id)
+        currentDateFormat.timeZone = TimeZone.getTimeZone(timeZone)
+        val targetDateFormat: DateFormat = SimpleDateFormat(targetFormat, id)
+
+        var targetDate: String? = null
+        try {
+            val date = currentDateFormat.parse(currentDate)
+            if (date != null) {
+                targetDate = targetDateFormat.format(date)
+            }
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        return targetDate
+    }
+
+    fun moveToChrome(context: Context, news: String?) {
+        val packageManager = "com.android.chrome"
+        val builder = CustomTabsIntent.Builder()
+        val params = CustomTabColorSchemeParams.Builder()
+        params.setToolbarColor(ContextCompat.getColor(context, R.color.white))
+        builder.apply {
+            setDefaultColorSchemeParams(params.build())
+            setShowTitle(true)
+            setShareState(CustomTabsIntent.SHARE_STATE_ON)
+            setInstantAppsEnabled(true)
+        }
+
+        val customBuilder = builder.build()
+        if (context.isPackageInstalled(packageManager)) {
+            customBuilder.intent.setPackage(packageManager)
+            customBuilder.launchUrl(context, Uri.parse(news))
+        } else {
+            customBuilder.launchUrl(context, Uri.parse(news))
+        }
+    }
+
+    private fun Context.isPackageInstalled(packageName: String): Boolean {
+        return try {
+            packageManager!!.getPackageInfo(packageName, 0)
+            true
+        } catch (e: PackageManager.NameNotFoundException) {
+            false
+        }
     }
 }

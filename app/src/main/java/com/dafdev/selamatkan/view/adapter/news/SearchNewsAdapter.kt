@@ -1,4 +1,4 @@
-package com.dafdev.selamatkan.view.adapter
+package com.dafdev.selamatkan.view.adapter.news
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -9,46 +9,43 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.dafdev.selamatkan.R
-import com.dafdev.selamatkan.data.source.local.model.NewsEntity
+import com.dafdev.selamatkan.data.domain.model.SearchNews
 import com.dafdev.selamatkan.databinding.ItemListNewsBinding
+import com.dafdev.selamatkan.utils.HelpUtil.newsFormatDate
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerDrawable
-import java.text.DateFormat
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.*
 
-class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class SearchNewsAdapter : RecyclerView.Adapter<SearchNewsAdapter.SearchViewHolder>() {
 
-    private var listNews = ArrayList<NewsEntity>()
-    var onItemClick: ((NewsEntity) -> Unit)? = null
+    private var listNews = ArrayList<SearchNews>()
+    var onItemClick: ((SearchNews) -> Unit)? = null
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setNews(data: List<NewsEntity>) {
-        listNews.clear()
-        listNews.addAll(data)
+    fun setNews(data: List<SearchNews>) {
+        listNews.apply {
+            clear()
+            addAll(data)
+        }
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsAdapter.NewsViewHolder =
-        NewsViewHolder(
-            ItemListNewsBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
+        ItemListNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false).let {
+            return SearchViewHolder(it)
+        }
+    }
 
-    override fun onBindViewHolder(holder: NewsAdapter.NewsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         holder.bind(listNews[position])
     }
 
     override fun getItemCount(): Int = listNews.size
 
-    inner class NewsViewHolder(private val binding: ItemListNewsBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        @SuppressLint("NewApi", "SetTextI18n")
-        fun bind(data: NewsEntity) {
+    inner class SearchViewHolder(
+        private val binding: ItemListNewsBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
+        fun bind(data: SearchNews) {
             with(binding) {
                 val shimmer =
                     Shimmer.AlphaHighlightBuilder()// The attributes for a ShimmerDrawable is set by this builder
@@ -65,7 +62,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
                 Glide.with(itemView.context)
                     .load(data.urlToImage)
-                    .transform(RoundedCorners(10)).apply(
+                    .transform(RoundedCorners(20)).apply(
                         RequestOptions.placeholderOf(shimmerDrawable).error(R.drawable.ic_error)
                     )
                     .transition(DrawableTransitionOptions.withCrossFade())
@@ -88,26 +85,5 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
                 onItemClick?.invoke(listNews[adapterPosition])
             }
         }
-    }
-
-    private fun newsFormatDate(currentDate: String): String? {
-        val currentFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        val targetFormat = "dd MMM yyyy | HH:mm"
-        val timeZone = "GMT"
-        val id = Locale("in", "ID")
-        val currentDateFormat: DateFormat = SimpleDateFormat(currentFormat, id)
-        currentDateFormat.timeZone = TimeZone.getTimeZone(timeZone)
-        val targetDateFormat: DateFormat = SimpleDateFormat(targetFormat, id)
-
-        var targetDate: String? = null
-        try {
-            val date = currentDateFormat.parse(currentDate)
-            if (date != null) {
-                targetDate = targetDateFormat.format(date)
-            }
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
-        return targetDate
     }
 }

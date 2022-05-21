@@ -149,15 +149,33 @@ class RemoteDataSource @Inject constructor(
             val data = apiNews.getNews().articles
             if (data != null) {
                 if (data.isNotEmpty()) {
-                    emit(StatusResponse.Success(data))
+                    emit(StatusResponseOnline.Success(data))
                     Timber.d(data.toString())
                 } else {
-                    emit(StatusResponse.Error("Data kosong"))
+                    emit(StatusResponseOnline.Error("Data kosong"))
                     Timber.e("Data kosong")
                 }
             }
         } catch (e: Exception) {
-            emit(StatusResponse.Error(e.message.toString()))
+            emit(StatusResponseOnline.Error(e.message.toString()))
+            Timber.e("Remote Data Source, ${e.message}")
+        }
+    }.flowOn(Dispatchers.IO)
+
+    fun getNewsSearch(query: String) = flow {
+        try {
+            val data = apiNews.getNewsSearch(query).articles
+            if (data != null) {
+                if (data.isNotEmpty()) {
+                    emit(StatusResponseOnline.Success(data))
+                    Timber.d(data.toString())
+                } else {
+                    emit(StatusResponseOnline.Error("Data kosong"))
+                    Timber.e("Data kosong")
+                }
+            }
+        } catch (e: Exception) {
+            emit(StatusResponseOnline.Error(e.message.toString()))
             Timber.e("Remote Data Source, ${e.message}")
         }
     }.flowOn(Dispatchers.IO)
