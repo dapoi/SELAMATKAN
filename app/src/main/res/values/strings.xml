@@ -25,7 +25,7 @@
     <string name="khusus">Ruang Khusus</string>
     <string name="umum">Ruang Umum</string>
     <string name="bed_class">Tipe Kamar</string>
-    <string name="empty">Maaf, tidak ada data yang terdaftar</string>
+    <string name="empty">Maaf, tidak ada data yang ditemukan</string>
     <string name="api_key">AIzaSyBrIZ8NJV3ga7TEv3paRnX2pknF56FXtsA</string>
     <string name="article">Artikel Kesehatan</string>
     <string name="next">Selanjutnya</string>
@@ -37,6 +37,7 @@
     <string name="direction">Rute</string>
     <string name="share">Bagikan</string>
     <string name="no_internet">Maaf sepertinya ada masalah… Coba tarik ke bawah untuk memuat ulang</string>
+    <string name="no_internet_search_news">Maaf sepertinya ada masalah internet… Coba ketik kembali artikelnya</string>
     <string name="input_data">Masukkan data Anda :</string>
     <string name="kg">Berat(kg)</string>
     <string name="cm">Tinggi(cm)</string>

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dafdev.selamatkan.databinding.FragmentSearchNewsBinding
 import com.dafdev.selamatkan.utils.HelpUtil
 import com.dafdev.selamatkan.utils.HelpUtil.hideKeyboard
+import com.dafdev.selamatkan.utils.HelpUtil.isOnline
 import com.dafdev.selamatkan.utils.HelpUtil.showProgressBar
 import com.dafdev.selamatkan.view.adapter.news.SearchNewsAdapter
 import com.dafdev.selamatkan.viewmodel.SearchNewsViewModel
@@ -45,13 +46,12 @@ class SearchNewsFragment : Fragment() {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     query?.let {
                         if (it.isNotEmpty()) {
-                            binding.clEmptySearch.visibility = View.GONE
+                            clSearchCommand.visibility = View.GONE
+                            clEmptyData.visibility = View.GONE
+                            clNoInternet.visibility = View.GONE
                             setViewModel(it)
                         } else {
-                            binding.apply {
-                                rvSearchNews.visibility = View.GONE
-                                clEmptySearch.visibility = View.VISIBLE
-                            }
+                            clSearchCommand.visibility = View.VISIBLE
                         }
                     }
                     hideKeyboard(requireActivity())
@@ -70,14 +70,26 @@ class SearchNewsFragment : Fragment() {
         searchNewsViewModel.getNewsSearch(query).observe(viewLifecycleOwner) {
             with(binding) {
                 when (it) {
-                    is Resource.Loading -> progressBar.showProgressBar(true)
+                    is Resource.Loading -> {
+                        rvSearchNews.visibility = View.GONE
+                        progressBar.showProgressBar(true)
+                    }
                     is Resource.Success -> {
+                        rvSearchNews.visibility = View.VISIBLE
                         progressBar.showProgressBar(false)
                         searchNewsAdapter.setNews(it.data!!)
                     }
                     is Resource.Error -> {
                         progressBar.showProgressBar(false)
-                        Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+                        rvSearchNews.visibility = View.GONE
+                        val check = isOnline(requireActivity())
+                        if (check) {
+                            clEmptyData.visibility = View.VISIBLE
+                            clNoInternet.visibility = View.GONE
+                        } else {
+                            clEmptyData.visibility = View.GONE
+                            clNoInternet.visibility = View.VISIBLE
+                        }
                     }
                 }
             }

@@ -134,12 +134,12 @@ class HomeFragment : Fragment() {
                                         InternetReceiver().onReceive(requireActivity(), Intent())
                                     } else {
                                         rvProvince.visibility = View.VISIBLE
-                                        childLayout.visibility = View.GONE
+                                        clNoInternet.visibility = View.GONE
                                     }
                                 }, 2350)
                             } else {
                                 rvProvince.visibility = View.GONE
-                                childLayout.visibility = View.VISIBLE
+                                clNoInternet.visibility = View.VISIBLE
                                 setRefreshing(false)
                             }
                         }
@@ -154,7 +154,7 @@ class HomeFragment : Fragment() {
                     }
                     is Resource.Error -> {
                         progressBar.showProgressBar(false)
-                        childLayout.visibility = View.VISIBLE
+                        clNoInternet.visibility = View.VISIBLE
                     }
                 }
             }

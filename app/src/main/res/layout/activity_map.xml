@@ -251,7 +251,7 @@
     </com.simform.refresh.SSPullToRefreshLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/child_layout"
+        android:id="@+id/cl_no_internet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"

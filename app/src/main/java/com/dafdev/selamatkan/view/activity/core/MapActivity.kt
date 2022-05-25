@@ -88,7 +88,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                             }, 2150)
                         } else {
                             nestedScrollView.visibility = View.GONE
-                            childLayout.visibility = View.VISIBLE
+                            clNoInternet.visibility = View.VISIBLE
                             setRefreshing(false)
                         }
                     }
@@ -226,7 +226,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 is Resource.Error -> {
                     progressBar(false)
                     binding.nestedScrollView.visibility = View.GONE
-                    binding.childLayout.visibility = View.VISIBLE
+                    binding.clNoInternet.visibility = View.VISIBLE
                 }
             }
         }

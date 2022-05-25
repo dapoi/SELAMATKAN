@@ -21,8 +21,9 @@ interface ApiNews {
     suspend fun getNewsSearch(
         @Query("q") query: String,
         @Query("page") page: Int = 1,
-        @Query("pageSize") pageSize: Int = 20,
+        @Query("pageSize") pageSize: Int = 30,
         @Query("sortBy") sortBy: String = "publishedAt",
+        @Query("language") language: String = "id",
         @Query("apiKey") apiKey: String = BuildConfig.API_KEY_NEWS
     ): SearchNewsResponse
 }
