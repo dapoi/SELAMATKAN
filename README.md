@@ -1,6 +1,7 @@
 <div align="center">
 <h1>SELAMATKAN: Aplikasi Pencarian Rumah Sakit di Indonesia</h1>
 <p>Repositori ini merupakan projek akhir (skripsi) perkuliahan saya, dan sekaligus untuk memenuhi persyaratan kelulusan. Dengan aplikasi ini, Anda dapat menemukan Rumah Sakit Covid dan Non-Covid di Indonesia secara mudah dan efisien. Di dalamnya juga terdapat beberapa fitur menarik lainnya. </p>
+<img src = "https://user-images.githubusercontent.com/68842666/170542415-af569cef-b1d1-4a54-8b54-f1c825a73e50.png" width = 700 height = 350/> 
 </div>
 
 ## Fitur
@@ -8,12 +9,6 @@
 - Artikel Berita dari media ternama di Indonesia
 - Data Covid-19 di Indonesia
 - Kalkulator BMI
-
-## Unduh Aplikasi
-<a href="https://github.com/dapoi/SELAMATKAN/releases"><img src="https://user-images.githubusercontent.com/32610660/162803122-3817839a-f58a-49b4-883d-5feb4ee7316f.png" title="Selamatkan App" width="64" height="64" /></a>
-
-## Pratinjau 
-<img src = "https://user-images.githubusercontent.com/68842666/170541677-b9330ba3-50a5-4417-b83a-5b63c2e8f6f5.png" width = 700 height = 350/> 
 
 ## Teknologi Yang Digunakan
 - [Lifecycle & Livedata](https://developer.android.com/jetpack/androidx/releases/lifecycle)
@@ -26,6 +21,9 @@
 - [Glide](https://github.com/bumptech/glide)
 - [Google Maps SDK](https://developers.google.com/maps/documentation)
 - [Room](https://developer.android.com/training/data-storage/room)
+
+## Unduh Aplikasi
+<a href="https://github.com/dapoi/SELAMATKAN/releases"><img src="https://user-images.githubusercontent.com/32610660/162803122-3817839a-f58a-49b4-883d-5feb4ee7316f.png" title="Selamatkan App" width="64" height="64" /></a>
 
 ## Referensi / Sumber Data
 Terimakasih kepada Mas Satya yang telah mengizinkan saya untuk menggunakan API Rumah Sakit ini 
