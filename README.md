@@ -13,11 +13,7 @@
 <a href="https://github.com/dapoi/SELAMATKAN/releases"><img src="https://user-images.githubusercontent.com/32610660/162803122-3817839a-f58a-49b4-883d-5feb4ee7316f.png" title="Selamatkan App" width="64" height="64" /></a>
 
 ## Pratinjau 
-<img src = "https://user-images.githubusercontent.com/68842666/163114840-c5a60f29-705e-4133-afcd-3bd746903e76.png" width = 180 height = 395/> 
-
-<img src = "https://user-images.githubusercontent.com/68842666/163114661-1d064fc2-f9f5-44ba-a885-cf69964cac27.png" width = 180 height = 395/> <img src = "https://user-images.githubusercontent.com/68842666/157482449-c9a4c2a7-ab73-4213-8e10-3d67544ea1da.jpg" width = 180 height = 395/> <img src = "https://user-images.githubusercontent.com/68842666/157482592-9182dbb9-a5ed-4388-a62e-d29738604fa7.jpg" width = 180 height = 395/>
-
-<img src = "https://user-images.githubusercontent.com/68842666/163114958-aa7bffa2-561d-4ade-af03-f8d67133d628.png" width = 180 height = 395/> <img src = "https://user-images.githubusercontent.com/68842666/163115096-409feaed-be92-4ab0-b6b7-47e4966963c7.png" width = 180 height = 395/> <img src = "https://user-images.githubusercontent.com/68842666/163115373-71ae320a-f64b-480e-b82b-780d5c913543.png" width = 180 height = 395/> 
+<img src = "https://user-images.githubusercontent.com/68842666/170541677-b9330ba3-50a5-4417-b83a-5b63c2e8f6f5.png" width = 700 height = 350/> 
 
 ## Teknologi Yang Digunakan
 - [Lifecycle & Livedata](https://developer.android.com/jetpack/androidx/releases/lifecycle)
