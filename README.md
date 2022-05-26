@@ -1,7 +1,7 @@
 <div align="center">
 <h1>SELAMATKAN: Aplikasi Pencarian Rumah Sakit di Indonesia</h1>
 <p>Repositori ini merupakan projek akhir (skripsi) perkuliahan saya, dan sekaligus untuk memenuhi persyaratan kelulusan. Dengan aplikasi ini, Anda dapat menemukan Rumah Sakit Covid dan Non-Covid di Indonesia secara mudah dan efisien. Di dalamnya juga terdapat beberapa fitur menarik lainnya. </p>
-<img src = "https://user-images.githubusercontent.com/68842666/170542415-af569cef-b1d1-4a54-8b54-f1c825a73e50.png" width = 700 height = 350/> 
+<img src = "https://user-images.githubusercontent.com/68842666/170542415-af569cef-b1d1-4a54-8b54-f1c825a73e50.png" width = 500 height = 250/> 
 </div>
 
 ## Fitur
