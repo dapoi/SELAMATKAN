@@ -22,7 +22,7 @@
 - [Google Maps SDK](https://developers.google.com/maps/documentation)
 - [Room](https://developer.android.com/training/data-storage/room)
 
-## Unduh Aplikasi
+## Unduh Aplikasi (Klik gambar di bawah ini)
 <a href="https://github.com/dapoi/SELAMATKAN/releases"><img src="https://user-images.githubusercontent.com/32610660/162803122-3817839a-f58a-49b4-883d-5feb4ee7316f.png" title="Selamatkan App" width="64" height="64" /></a>
 
 ## Referensi / Sumber Data
