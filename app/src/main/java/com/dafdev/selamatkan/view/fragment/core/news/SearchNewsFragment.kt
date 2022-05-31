@@ -1,6 +1,7 @@
 package com.dafdev.selamatkan.view.fragment.core.news
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dafdev.selamatkan.databinding.FragmentSearchNewsBinding
 import com.dafdev.selamatkan.utils.HelpUtil
@@ -22,7 +24,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SearchNewsFragment : Fragment() {
 
-    private lateinit var binding: FragmentSearchNewsBinding
+    private var _binding: FragmentSearchNewsBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var searchNewsAdapter: SearchNewsAdapter
 
     private val searchNewsViewModel: SearchNewsViewModel by viewModels()
@@ -32,7 +36,7 @@ class SearchNewsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSearchNewsBinding.inflate(inflater, container, false)
+        _binding = FragmentSearchNewsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -40,7 +44,9 @@ class SearchNewsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            toolbar.setNavigationOnClickListener { parentFragmentManager.popBackStack() }
+            toolbar.setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
 
             svNews.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
@@ -114,5 +120,10 @@ class SearchNewsFragment : Fragment() {
                 HelpUtil.moveToChrome(requireActivity(), it.url)
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

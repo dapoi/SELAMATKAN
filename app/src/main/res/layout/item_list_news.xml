@@ -22,6 +22,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 

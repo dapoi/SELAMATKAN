@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dafdev.selamatkan.R
 import com.dafdev.selamatkan.databinding.FragmentTopNewsBinding
@@ -37,7 +38,13 @@ class TopNewsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentTopNewsBinding.inflate(inflater, container, false)
+        if (this::binding.isInitialized) {
+            binding
+        } else {
+            binding = FragmentTopNewsBinding.inflate(inflater, container, false)
+            setViewModel()
+            setAdapter()
+        }
         return binding.root
     }
 
@@ -48,29 +55,13 @@ class TopNewsFragment : Fragment() {
             toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
 
             imgSearchNews.setOnClickListener {
-                parentFragmentManager.beginTransaction()
-                    .setCustomAnimations(
-                        android.R.animator.fade_in,
-                        android.R.animator.fade_out,
-                        android.R.animator.fade_in,
-                        android.R.animator.fade_out
-                    )
-                    .replace(
-                        R.id.fl_container,
-                        SearchNewsFragment(),
-                        SearchNewsFragment::class.java.simpleName
-                    )
-                    .addToBackStack(null)
-                    .commit()
+                findNavController().navigate(R.id.action_top_news_fragment_to_search_news_fragment)
             }
+
+            HelpUtil.setStatusBarColor(requireActivity(), R.color.white, root)
         }
 
-        HelpUtil.setStatusBarColor(requireActivity(), R.color.white, binding.root)
-
         handler = Handler(Looper.getMainLooper())
-
-        setViewModel()
-        setAdapter()
         swipeData()
     }
 
