@@ -68,6 +68,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         with(binding) {
             toolbar.setNavigationOnClickListener {
                 onBackPressed()
+                overridePendingTransition(R.anim.from_left, R.anim.to_right)
             }
 
             srlMap.apply {
@@ -138,7 +139,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     @SuppressLint("MissingPermission", "SetTextI18n")
     private fun requestNewLocationData() {
         val locationRequest = LocationRequest.create().apply {
-            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+            priority = Priority.PRIORITY_HIGH_ACCURACY
             interval = 100
             fastestInterval = 3000
             numUpdates = 1
@@ -150,7 +151,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(result: LocationResult) {
-            val location = result.lastLocation
+            val location = result.lastLocation!!
             myLong = location.longitude
             myLat = location.latitude
             myLoc = LatLng(myLat, myLong)

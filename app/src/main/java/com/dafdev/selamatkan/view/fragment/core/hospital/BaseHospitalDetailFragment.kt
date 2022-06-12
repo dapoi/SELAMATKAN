@@ -44,6 +44,7 @@ class BaseHospitalDetailFragment : Fragment() {
 
             fab.setOnClickListener {
                 startActivity(Intent(requireActivity(), MapActivity::class.java))
+                requireActivity().overridePendingTransition(R.anim.from_right, R.anim.to_left)
             }
 
             toolbar.setNavigationOnClickListener {
