@@ -14,15 +14,15 @@ buildscript {
     ext.timber_version = "5.0.1"
     ext.kotlin_coroutines_version = "1.5.2"
     ext.lifecycle_version = "2.4.1"
-    ext.hilt_version = "2.40.1"
+    ext.hilt_version = "2.42"
 
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.0'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21'
+        classpath 'com.android.tools.build:gradle:7.2.1'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.0'
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
 
         // NOTE: Do not place your application dependencies here; they belong
