@@ -26,7 +26,7 @@
     <string name="umum">Ruang Umum</string>
     <string name="bed_class">Tipe Kamar</string>
     <string name="empty">Maaf, tidak ada data yang ditemukan</string>
-    <string name="api_key">AIzaSyBrIZ8NJV3ga7TEv3paRnX2pknF56FXtsA</string>
+    <string name="api_key">AIzaSyCCtw2yj2Vj4hYJcADvkWsiVAe_Qg8jwKs</string>
     <string name="article">Artikel Kesehatan</string>
     <string name="next">Selanjutnya</string>
     <string name="back">Sebelumnya</string>
@@ -52,7 +52,5 @@
     <string name="support"><![CDATA[Kontak & Masukkan]]></string>
     <string name="about_desc">Projek ini merupakan tugas akhir sekaligus salah satu syarat kelulusan pengembang Luthfi Daffa Prabowo (201810225212) di Universitas Bhayangkara Jakarta Raya.\n\n Seluruh kode yang pengembang buat dapat diakses <a href="https://github.com/dapoi/SELAMATKAN">di sini</a>.\n\n Terima kasih untuk semua yang telah membantu dalam mengembangkan aplikasi ini. Semoga aplikasi ini bermanfaat untuk kita semua. :)</string>
     <string name="other_info">Info Lainnya</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="find_article">Silakan cari artikel yang anda inginkan</string>
 </resources>
