@@ -52,7 +52,7 @@ class TopNewsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
+            toolbar.setNavigationOnClickListener { activity?.finish() }
 
             imgSearchNews.setOnClickListener {
                 findNavController().navigate(R.id.action_top_news_fragment_to_search_news_fragment)

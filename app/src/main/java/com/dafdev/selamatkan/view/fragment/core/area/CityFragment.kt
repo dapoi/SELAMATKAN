@@ -19,7 +19,6 @@ import com.dafdev.selamatkan.utils.Constant
 import com.dafdev.selamatkan.utils.HelpUtil
 import com.dafdev.selamatkan.utils.HelpUtil.isOnline
 import com.dafdev.selamatkan.utils.HelpUtil.noInternetView
-import com.dafdev.selamatkan.utils.HelpUtil.setStatusBarColor
 import com.dafdev.selamatkan.utils.HelpUtil.showProgressBar
 import com.dafdev.selamatkan.view.adapter.CityAdapter
 import com.dafdev.selamatkan.viewmodel.CitiesViewModel
@@ -54,7 +53,10 @@ class CityFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setStatusBarColor(requireActivity(), R.color.white, binding.root)
+        handlerData = Handler(Looper.getMainLooper())
+        handlerData.postDelayed({
+            HelpUtil.setStatusBarColor(requireActivity(), R.color.white, binding.root)
+        }, 750)
 
         binding.apply {
             toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
@@ -90,7 +92,6 @@ class CityFragment : Fragment() {
                     override fun onRefresh() {
                         val check = isOnline(requireActivity())
                         if (check) {
-                            handlerData = Handler(Looper.getMainLooper())
                             handlerData.postDelayed({
                                 setRefreshing(false)
                             }, 2000)

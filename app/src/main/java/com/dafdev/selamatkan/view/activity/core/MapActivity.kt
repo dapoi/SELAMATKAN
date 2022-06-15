@@ -67,7 +67,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         fusedLocation = LocationServices.getFusedLocationProviderClient(this)
         with(binding) {
             toolbar.setNavigationOnClickListener {
-                onBackPressed()
+                finish()
                 overridePendingTransition(R.anim.from_left, R.anim.to_right)
             }
 
@@ -313,6 +313,11 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onPause() {
         super.onPause()
         repeatHandler.removeCallbacks(repeatRunnable)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.from_left, R.anim.to_right)
     }
 
     /**
