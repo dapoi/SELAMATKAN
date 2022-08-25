@@ -29,9 +29,6 @@
 Terimakasih kepada Mas Satya yang telah mengizinkan saya untuk menggunakan API Rumah Sakit ini 
 https://github.com/satyawikananda/rs-bed-covid-indo-api
 
-API Berita 
-https://newsapi.org
-
 ## Kebijakan & Lisensi
 
 ```
